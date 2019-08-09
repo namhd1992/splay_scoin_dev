@@ -17,11 +17,11 @@ app.get('/', function(request, response) {
     if (err) {
       return console.log(err);
     }
-    data = data.replace(/\$OG_URL/g, 'https://splay.vn');
+    data = data.replace(/\$OG_URL/g, 'https://vongquayt8.splay.vn/');
     data = data.replace(/\$OG_TYPE/g, "Game");
-    data = data.replace(/\$OG_TITLE/g, 'Cổng game SPLAY - VTC Mobile');
-    data = data.replace(/\$OG_DESCRIPTION/g, "Tổng hợp các game HOT nhất trên thị trường & đa nền tảng.");
-    result = data.replace(/\$OG_IMAGE/g, 'https://splay.vn/logo_demo.png');
+    data = data.replace(/\$OG_TITLE/g, 'Vòng quay Tháng 8 - Rinh xe Honda Airblade cùng Scoin');
+    data = data.replace(/\$OG_DESCRIPTION/g, "Sk diễn ra từ 19/08/2019 đến 25/08/2019 dành cho tất cả khách hàng có sử dụng thẻ Scoin để nạp và tiêu dùng ingame.");
+    result = data.replace(/\$OG_IMAGE/g, 'https://i.postimg.cc/SsGBL0MR/image-2019-08-08-T09-04-12-114-Z.png');
     response.send(result);
   });
 });
