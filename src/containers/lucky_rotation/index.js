@@ -224,12 +224,12 @@ class Lucky_Rotation extends React.Component {
 		var distance_3day=start - 3 * 86400 * 1000;
 		var duration=end-time;
 
-		if (time > distance_3day && time < start) {
-			this.timeRemain(luckySpin.endDate)
+		if (time < start) {
+			this.timeRemain(start)
 			this.setState({ img_status: sapdienra, message_status:"Sự kiện chưa diễn ra."});
 		}
 		if (time > start && time < end) {
-			this.timeRemain(luckySpin.endDate)
+			this.timeRemain(end)
 			this.setState({ img_status: sukiendangdienra});
 		}
 		if (time > end) {
@@ -607,7 +607,7 @@ class Lucky_Rotation extends React.Component {
 						
 					</div>
 					<div className="btn-quay">
-						<h5 className="text-center">Còn: {turnsFree} lượt</h5>
+						<h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a class="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
@@ -1195,6 +1195,87 @@ class Lucky_Rotation extends React.Component {
 					</div>
 				</div>
 			</div>
+
+			<div class="modal fade" id="myModal10">
+				<div class="modal-dialog">
+					<div class="modal-content popup-phanthuong">
+
+					<div class="modal-header border-bottom-0">
+						<h4 class="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
+						<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive mt-2">
+							<h3 class="text-purple text-center">Thêm lượt? <br />Nạp Ví hoặc Nạp Game dùng thẻ Scoin</h3>
+							<table class="table table-striped mx-auto text-center" style={{color:"#282652", width:"99%"}}> 
+								<thead>
+								<tr class="text-uppercase">
+									<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">STT</th>
+									<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Mệnh giá thẻ Scoin (VNĐ)</th>
+									<th class="border-bottom-0 border-left-0 border-right-0 border-top-0">Số lượt quay</th>
+								</tr>
+								</thead>            
+								<tbody class="popup-tudo">
+								<tr>
+									<td>1</td>
+									<td >10.000</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20.000</td>
+									<td>2</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>50.000</td>
+									<td>5</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td >100.000</td>
+									<td>11</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>200.000</td>
+									<td>22</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>300.000</td>
+									<td>33</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td >500.000</td>
+									<td>55</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>1.000.000</td>
+									<td>120</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>2.000.000</td>
+									<td>240</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>5.000.000</td>
+									<td>600</td>
+								</tr>
+								</tbody>
+							</table>              
+							<button type="button" class="btn btn-xacnhan text-white btn-block text-center" onClick={()=>this.openTabNapScoin('https://scoin.vn/nap-game')}>Nạp</button>
+						</div>
+						
+					</div>
+
+					</div>
+				</div>
+				</div>
 
 		</div>)
 	}
