@@ -601,7 +601,7 @@ class Lucky_Rotation extends React.Component {
 					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1">
 						<ul className="nav flex-column menu-left-p1">
-							<li className="pt-6"><a href="http://scoin.vn/" title="Nạp Scoin" target="_blank">Nạp Scoin</a></li>
+							<li className="pt-6"><a href="http://sandbox.scoin.vn/nap-tien" title="Nạp Scoin" target="_blank">Nạp Scoin</a></li>
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
 							<li className="pt-5a"><a href="#bvd" title="Vinh danh">Vinh danh</a></li>
@@ -734,7 +734,7 @@ class Lucky_Rotation extends React.Component {
 						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://www.facebook.com/scoinvtcmobile/" title="Nhận thông báo sk" target="_blank">Nhận thông báo sk</a>
 						</li>
 						<li className="nav-item">
-						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://scoin.vn/nap-game" title="Nạp scoin" target="_blank">Nạp scoin</a>
+						<a className="nav-link btn-dv text-uppercase text-nowrap" href="http://sandbox.scoin.vn/nap-tien" title="Nạp scoin" target="_blank">Nạp scoin</a>
 						</li>
 						<li className="nav-item">
 						<a className="nav-link btn-dv text-uppercase text-nowrap" href="tel:19001104" title="Hotline hỗ trợ">HOT LINE: 19001104</a>
@@ -1159,7 +1159,7 @@ class Lucky_Rotation extends React.Component {
 						<div class="table-responsive mt-2">              
 							<h5 class="text-thele lead text-center">Bạn đã hết lượt quay!</h5>
 							<p class="text-thele lead text-center">Hãy nạp Scoin để nhận thêm lượt chơi Vòng quay tháng 8.</p>
-							<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('https://scoin.vn/nap-game')}>Nạp Scoin</button>
+							<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/nap-tien')}>Nạp Scoin</button>
 						</div>       
 					</div>
 
@@ -1289,7 +1289,7 @@ class Lucky_Rotation extends React.Component {
 								</tr>
 								</tbody>
 							</table>              
-							<button type="button" class="btn btn-xacnhan text-white btn-block text-center" onClick={()=>this.openTabNapScoin('https://scoin.vn/nap-game')}>Nạp</button>
+							<button type="button" class="btn btn-xacnhan text-white btn-block text-center" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/nap-tien')}>Nạp</button>
 						</div>
 						
 					</div>
