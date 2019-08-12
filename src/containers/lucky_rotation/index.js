@@ -115,6 +115,7 @@ class Lucky_Rotation extends React.Component {
 			data_auto:[],
 			isSpin:false,
 			closeAuto:true,
+			message_error:'',
 		};
 	}
 	componentWillMount(){
@@ -151,6 +152,9 @@ class Lucky_Rotation extends React.Component {
 				if(data.status==='01'){
 					this.getStatus(data.data.luckySpin)
 					this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
 				}
 			});
 		} else {
@@ -159,6 +163,9 @@ class Lucky_Rotation extends React.Component {
 				if(data.status==='01'){
 					this.getStatus(data.data.luckySpin)
 					this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
 				}
 			});
 		}
@@ -212,6 +219,9 @@ class Lucky_Rotation extends React.Component {
 			var data=this.props.dataVinhDanh;
 			if(data.status==='01'){	
 				this.setState({dataVinhDanh:data.data, countVinhDanh:data.data.length, listVinhDanh:data.data.slice(0, 10)})
+			}else{
+				$('#myModal11').modal('show');
+				this.setState({message_error:'Không lấy được dữ liệu bảng vinh danh.'})
 			}
 		});
 	}
@@ -303,11 +313,13 @@ class Lucky_Rotation extends React.Component {
 								this.startSpin(pos+1);
 							}	
 							_this.setState({itemBonus: data.data.item, data_auto: list, closeAuto:true});
-						}
-						if(data.status ==="07"){
-							this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
+						}else if(data.status ==="07"){
+								this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
 								$('#myModal8').modal('show');
 							})
+						}else{
+							$('#myModal11').modal('show');
+							this.setState({message_error:'Vòng quay đang có lỗi. Vui lòng tải lại trang.'})
 						}
 					})
 					
@@ -404,6 +416,9 @@ class Lucky_Rotation extends React.Component {
 					this.start()
 				}
 				this.setState({turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy)})
+			}else{
+				$('#myModal11').modal('show');
+				this.setState({message_error:'Lỗi hệ thống. Vui lòng thử lại.'})
 			}
 		});
 	}
@@ -460,6 +475,9 @@ class Lucky_Rotation extends React.Component {
 				var data=this.props.dataTuDo;
 				if(data.status==='01'){
 					this.setState({dataTuDo:data.data, countTuDo:data.data.length, listTuDo: data.data.slice(0,5), noti_tudo:false})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
 				}
 			});
 			$('#myModal4').modal('hide');
@@ -481,6 +499,9 @@ class Lucky_Rotation extends React.Component {
 				var data=this.props.dataCodeBonus;
 				if(data.status==='01'){
 					this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
 				}
 			});
 			$('#myModal4').modal('hide');
@@ -546,7 +567,7 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	render() {
-		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,
+		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,
 			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span class="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
@@ -1275,6 +1296,27 @@ class Lucky_Rotation extends React.Component {
 
 					</div>
 				</div>
+				</div>
+
+				<div class="modal fade" id="myModal11">
+					<div class="modal-dialog">
+						<div class="modal-content popup-phanthuong">
+
+						{/* <!-- Modal Header --> */}
+						<div class="modal-header border-bottom-0">
+							<h4 class="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
+							<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+						</div>
+
+						{/* <!-- Modal body --> */}
+						<div class="modal-body">
+							<div class="table-responsive mt-2">              
+								<h5 class="text-thele lead text-center">{message_error}</h5>
+							</div>       
+						</div>
+
+						</div>
+					</div>
 				</div>
 
 		</div>)
