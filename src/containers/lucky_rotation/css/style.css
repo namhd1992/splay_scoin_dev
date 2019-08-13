@@ -40,8 +40,6 @@ font-style:normal;
 .btn-logout h5 a {line-height: 50px; color:#282652;}
 .btn-logout h5:hover{
 	opacity: 0.8;
-	width: 145px; 
-	height: 53px;
 	cursor: pointer;
 }
 .btn-quay {width:200px; height: auto; position: absolute; bottom: 15%; right: 14%;}
@@ -49,8 +47,6 @@ font-style:normal;
 .btn-quay .custom-control {font-size: 22px; padding-left: 30px; color:#565656}
 .hv:hover{
 	opacity: 0.8;
-	width: 98%;
-	height: 98%;
 }
 
 .custom-control-label:before {width: 1.2rem; height: 1.2rem; background-color:#d4cff3;}

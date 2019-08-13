@@ -411,11 +411,15 @@ class Lucky_Rotation extends React.Component {
 		var user = JSON.parse(localStorage.getItem("user"));
 		this.props.getRotationDetailDataUser(user.access_token, 0).then(()=>{
 			var data=this.props.dataRotationWithUser;
+			var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
 			if(data.status==='01'){
-				if(auto){
+				if(auto && turnsFree>0){
 					this.start()
+				}else{
+					$('#myModal6').modal('show');
+					clearInterval(this.state.intervalId);
 				}
-				this.setState({turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy)})
+				this.setState({turnsFree:turnsFree})
 			}else{
 				$('#myModal11').modal('show');
 				this.setState({message_error:'Lỗi hệ thống. Vui lòng thử lại.'})
