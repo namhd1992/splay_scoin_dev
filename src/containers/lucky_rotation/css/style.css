@@ -10,6 +10,7 @@ font-weight:normal;
 font-style:normal;
 }
 * {font-family: 'mijasultra' !important;}
+html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png); background-size: cover; background-position: center; background-repeat: no-repeat;}
 .content-inner-p1 {height: 1100px; width: 100%; position: relative; background-image:url(../images/bg1a.png); background-position: 50% 55%; background-repeat: no-repeat;}
 .logo-p1 {text-align: center; padding-top: -20px; display: block; position: relative; overflow: auto;}
