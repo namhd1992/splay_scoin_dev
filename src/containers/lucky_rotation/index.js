@@ -413,8 +413,10 @@ class Lucky_Rotation extends React.Component {
 			var data=this.props.dataRotationWithUser;
 			var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
 			if(data.status==='01'){
-				if(auto && turnsFree>0){
-					this.start()
+				if(turnsFree>0){
+					if(auto){
+						this.start();
+					}
 				}else{
 					$('#myModal6').modal('show');
 					clearInterval(this.state.intervalId);
