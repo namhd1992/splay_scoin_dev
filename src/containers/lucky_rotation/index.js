@@ -55,7 +55,9 @@ import img_thele from './images/img-thele.png';
 import img_tudo from './images/img-tudo.png';
 import img_maduthuong from './images/img-maduthuong.png';
 import img_thongbao from './images/img-thongbao.png';
+import img_livestream from './images/img-livestream.png';
 import muiten from './images/muiten.png';
+import spin from './images/spin.gif';
 import $ from 'jquery';
 import 'bootstrap';
 
@@ -818,6 +820,9 @@ class Lucky_Rotation extends React.Component {
 					</ul>
 				</div>
 			</div>
+			<div class="button-bt">
+				<button type="button" class="btn fixed-bottom btn-dv btn-block" data-toggle="modal" data-target="#myModal14"><h5 class="glow mb-0"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream so Mã dự thưởng tại đây sau: 8giờ 34phút 21giây </h5></button>
+			</div>
 
 
 			<div className="container-fluid footer">
@@ -1436,6 +1441,25 @@ class Lucky_Rotation extends React.Component {
 								<h5 class="text-thele lead text-center">BTC trân trọng thông báo.</h5>
 								<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={this.closePopupFinish}>Xác nhận</button>
 							</div>       
+						</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="myModal14">
+					<div class="modal-dialog">
+						<div class="modal-content popup-phanthuong">
+
+						<div class="modal-header border-bottom-0">
+							<h4 class="modal-title w-100 text-center"><img src={img_livestream} alt="" /></h4>
+							<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+						</div>
+
+						<div class="modal-body">
+								<div class="facebook-responsive">
+									<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthiendia.splay.vn%2Fvideos%2F434691860464596%2F&show_text=0&width=560" width="560" height="315" style={{border:'none', overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+								</div>     
 						</div>
 
 						</div>

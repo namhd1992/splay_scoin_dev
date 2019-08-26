@@ -70,7 +70,7 @@ html {scroll-behavior: smooth;}
 .pag-custom .page-link {background-color: #fff; border-color: #868e94; border-radius: 4px; color:#868e94; font-size:18px; padding: 2px 10px}
 .pag-custom .page-be {background-color: #664cbd; border-color: #664cbd;}
 .pag-custom .page-item.active .page-link {background-color: #664cbd; border-color: #664cbd;}
-.btn-dv {background-color: #664cbd; border-color: #664cbd; border-radius: 4px; color:#FFFFFF; margin: 2px 1px}
+.btn-dv {background-color: #664cbd !important; border-color: #664cbd !important; border-radius: 4px !important; color:#FFFFFF !important; margin: 2px 1px}
 a.btn-dv:hover {color: #ffd102;}
 .footer {background:url(../images/bg-footer.jpg) center bottom no-repeat; color:#282652; padding: 60px 0; line-height: 20px}
 .popup-phanthuong h4 {text-align: center; margin-top: -30px; width: 180px;}
@@ -110,6 +110,37 @@ a.btn-dv:hover {color: #ffd102;}
 .ol_popup{
 	list-style: decimal inside;
 }
+
+
+.glow {
+	-webkit-animation: glow 1s ease-in-out infinite alternate;
+	-moz-animation: glow 1s ease-in-out infinite alternate;
+	animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+	from {
+	  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #75003b, 0 0 40px #75003b, 0 0 50px #75003b, 0 0 60px #75003b, 0 0 70px #75003b;
+	}
+	to {
+	  text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+	}
+  }
+  
+  .facebook-responsive {
+	  overflow:hidden;
+	  padding-bottom:56.25%;
+	  position:relative;
+	  height:0;
+  }
+  
+  .facebook-responsive iframe {
+	  left:0;
+	  top:0;
+	  height:100%;
+	  width:100%;
+	  position:absolute;
+  }
 
 @media (max-width: 1024px) {
 	.btn-quay {bottom: 13%; right: 3%;}
