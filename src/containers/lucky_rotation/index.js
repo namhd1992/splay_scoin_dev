@@ -120,6 +120,10 @@ class Lucky_Rotation extends React.Component {
 			message_error:'',
 			server_err:false,
 			finished:false,
+			hour_live:'00', 
+			minute_live:'00', 
+			second_live:'00',
+			linkLiveStream:'',
 		};
 	}
 	componentWillMount(){
@@ -149,6 +153,7 @@ class Lucky_Rotation extends React.Component {
 	componentDidMount(){
 		const {img_width, img_height}=this.state;
 		var user = JSON.parse(localStorage.getItem("user"));
+		this.timeRemain();
 		if (user !== null) {
 			this.props.getRotationDetailDataUser(user.access_token, 0).then(()=>{
 				var data=this.props.dataRotationWithUser;
@@ -159,7 +164,7 @@ class Lucky_Rotation extends React.Component {
 							$('#myModal13').modal('show');
 						}
 						this.getStatus(data.data.luckySpin)
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
@@ -180,7 +185,7 @@ class Lucky_Rotation extends React.Component {
 							$('#myModal13').modal('show');
 						}
 						this.getStatus(data.data.luckySpin)
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
@@ -493,15 +498,18 @@ class Lucky_Rotation extends React.Component {
 	// 	}
 	// }
 
-	timeRemain=(toDate)=>{
+	timeRemain=()=>{
 		var _this=this;
 		setInterval(()=>{
-			var time=(toDate-Date.now())/1000;
-			var day=Math.floor(time/86400) > 9 ? Math.floor(time/86400) : `0${Math.floor(time/86400)}`;
-			var hour=Math.floor((time%86400)/3600) > 9 ? Math.floor((time%86400)/3600) : `0${Math.floor((time%86400)/3600)}`;
-			var minute=Math.floor(((time%86400)%3600)/60) > 9 ? Math.floor(((time%86400)%3600)/60) : `0${Math.floor(((time%86400)%3600)/60)}`;
-			var second=Math.ceil(((time%86400)%3600)%60) > 9 ? Math.ceil(((time%86400)%3600)%60) : `0${Math.ceil(((time%86400)%3600)%60)}`;
-			_this.setState({day:day, hour: hour, minute: minute, second:second})
+			var time=(1566815400000-Date.now())/1000;
+			if(time>0){
+				var day=Math.floor(time/86400) > 9 ? Math.floor(time/86400) : `0${Math.floor(time/86400)}`;
+				var hour=Math.floor((time%86400)/3600) > 9 ? Math.floor((time%86400)/3600) : `0${Math.floor((time%86400)/3600)}`;
+				var minute=Math.floor(((time%86400)%3600)/60) > 9 ? Math.floor(((time%86400)%3600)/60) : `0${Math.floor(((time%86400)%3600)/60)}`;
+				var second=Math.ceil(((time%86400)%3600)%60) > 9 ? Math.ceil(((time%86400)%3600)%60) : `0${Math.ceil(((time%86400)%3600)%60)}`;
+				// _this.setState({day:day, hour: hour, minute: minute, second:second})
+				_this.setState({hour_live: hour, minute_live: minute, second_live:second})
+			}
 		}, 1000);
 	}
 
@@ -640,8 +648,8 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	render() {
-		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,
-			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished}=this.state;
+		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,
+			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished, hour_live, minute_live, second_live}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span class="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span class="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
@@ -821,7 +829,7 @@ class Lucky_Rotation extends React.Component {
 				</div>
 			</div>
 			<div class="button-bt">
-				<button type="button" class="btn fixed-bottom btn-dv btn-block" data-toggle="modal" data-target="#myModal14"><h5 class="glow mb-0"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream so Mã dự thưởng tại đây sau: 8giờ 34phút 21giây </h5></button>
+				<button type="button" class="btn fixed-bottom btn-dv btn-block" data-toggle="modal" data-target="#myModal14"><h5 class="glow mb-0"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream so Mã dự thưởng tại đây sau: {hour_live}giờ&nbsp;&nbsp;{minute_live}phút&nbsp;&nbsp;{second_live}giây </h5></button>
 			</div>
 
 
@@ -1458,7 +1466,7 @@ class Lucky_Rotation extends React.Component {
 
 						<div class="modal-body">
 								<div class="facebook-responsive">
-									<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fthiendia.splay.vn%2Fvideos%2F434691860464596%2F&show_text=0&width=560" width="560" height="315" style={{border:'none', overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+									<iframe src={linkLiveStream} width="560" height="315" style={{border:'none', overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
 								</div>     
 						</div>
 
