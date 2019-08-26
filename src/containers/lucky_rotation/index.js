@@ -1431,9 +1431,9 @@ class Lucky_Rotation extends React.Component {
 						{/* <!-- Modal body --> */}
 						<div class="modal-body">
 							<div class="table-responsive mt-2">           
-								<h5 class="text-thele lead text-center">Kết quả trúng thưởng 2 giải Xe máy Airblade 2019 & điện thoại Xiaomi Black Shark 2 sẽ được công bố sau ngày 26/08/2019. Vui lòng quay lại sau.</h5>
+								<h5 class="text-thele lead text-center">Kết quả trúng thưởng 2 giải Xe máy Airblade 2019 & điện thoại Xiaomi Black Shark 2 sẽ được công bố sau ngày 26/08/2019.</h5>
 								<h5 class="text-thele lead text-center">Đón xem live stream buổi so mã Dự thưởng vào lúc 17:30 - 19:00 ngày 26/08 tại fanpage Scoin: <a href="https://www.facebook.com/scoinvtcmobile/">https://www.facebook.com/scoinvtcmobile/</a></h5>
-								<h5 class="text-thele lead text-center">BTC trân trọng kính báo tới quý khách hàng.</h5>
+								<h5 class="text-thele lead text-center">BTC trân trọng thông báo.</h5>
 								<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={this.closePopupFinish}>Xác nhận</button>
 							</div>       
 						</div>
