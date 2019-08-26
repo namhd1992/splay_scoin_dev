@@ -647,6 +647,17 @@ class Lucky_Rotation extends React.Component {
 		this.setState({countCodeBonus:data.length, listCodeBonus:data.slice(0,5)})
 	}
 
+	showPopupLiveStream=()=>{
+		var time=(1566815400000-Date.now())/1000;
+		if(time>0){
+			this.setState({message_error:'Chưa đến thời điểm live stream'},()=>{
+				$('#myModal11').modal('show');
+			})
+		}else{
+			$('#myModal14').modal('show');
+		}
+	}
+
 	render() {
 		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,
 			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished, hour_live, minute_live, second_live}=this.state;
@@ -829,7 +840,7 @@ class Lucky_Rotation extends React.Component {
 				</div>
 			</div>
 			<div class="button-bt">
-				<button type="button" class="btn fixed-bottom btn-dv btn-block" data-toggle="modal" data-target="#myModal14"><h5 class="glow mb-0"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream so Mã dự thưởng tại đây sau: {hour_live}giờ&nbsp;&nbsp;{minute_live}phút&nbsp;&nbsp;{second_live}giây </h5></button>
+				<button type="button" class="btn fixed-bottom btn-dv btn-block" onClick={this.showPopupLiveStream}><h5 class="glow mb-0"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream so Mã dự thưởng tại đây sau: {hour_live}giờ&nbsp;&nbsp;{minute_live}phút&nbsp;&nbsp;{second_live}giây </h5></button>
 			</div>
 
 
