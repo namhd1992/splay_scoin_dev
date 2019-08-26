@@ -116,6 +116,8 @@ class Lucky_Rotation extends React.Component {
 			isSpin:false,
 			closeAuto:true,
 			message_error:'',
+			server_err:false,
+			finished:false,
 		};
 	}
 	componentWillMount(){
@@ -148,24 +150,42 @@ class Lucky_Rotation extends React.Component {
 		if (user !== null) {
 			this.props.getRotationDetailDataUser(user.access_token, 0).then(()=>{
 				var data=this.props.dataRotationWithUser;
-
-				if(data.status==='01'){
-					this.getStatus(data.data.luckySpin)
-					this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true})
+				if(data!==undefined){
+					if(data.status==='01'){
+						if(data.data.itemOfSpin[1].quantity===0 && data.data.itemOfSpin[4].quantity===0){
+							this.setState({finished:true})
+							$('#myModal13').modal('show');
+						}
+						this.getStatus(data.data.luckySpin)
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
+					}
 				}else{
-					$('#myModal11').modal('show');
-					this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
+					$('#myModal12').modal('show');
+					this.setState({server_err:true})
 				}
+				
 			});
 		} else {
 			this.props.getRotationDetailData(0).then(()=>{
 				var data=this.props.dataRotation;
-				if(data.status==='01'){
-					this.getStatus(data.data.luckySpin)
-					this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false})
+				if(data!==undefined){
+					if(data.status==='01'){
+						if(data.data.itemOfSpin[1].quantity===0 && data.data.itemOfSpin[4].quantity===0){
+							this.setState({finished:true})
+							$('#myModal13').modal('show');
+						}
+						this.getStatus(data.data.luckySpin)
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
+					}
 				}else{
-					$('#myModal11').modal('show');
-					this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
+					$('#myModal12').modal('show');
+					this.setState({server_err:true})
 				}
 			});
 		}
@@ -217,11 +237,16 @@ class Lucky_Rotation extends React.Component {
 	getVinhDanh=()=>{
 		this.props.getVinhDanh(0).then(()=>{
 			var data=this.props.dataVinhDanh;
-			if(data.status==='01'){	
-				this.setState({dataVinhDanh:data.data, countVinhDanh:data.data.length, listVinhDanh:data.data.slice(0, 10)})
+			if(data!==undefined){
+				if(data.status==='01'){	
+					this.setState({dataVinhDanh:data.data, countVinhDanh:data.data.length, listVinhDanh:data.data.slice(0, 10)})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Không lấy được dữ liệu bảng vinh danh.'})
+				}
 			}else{
-				$('#myModal11').modal('show');
-				this.setState({message_error:'Không lấy được dữ liệu bảng vinh danh.'})
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
 			}
 		});
 	}
@@ -256,14 +281,19 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	loginAction = () => {
-		if (typeof(Storage) !== "undefined") {
-			var currentPath = window.location.pathname;
-			localStorage.setItem("currentPath", currentPath);
-		} else {
-			console.log("Trình duyệt không hỗ trợ localStorage");
+		const {server_err}=this.state;
+		if(!server_err){
+			if (typeof(Storage) !== "undefined") {
+				var currentPath = window.location.pathname;
+				localStorage.setItem("currentPath", currentPath);
+			} else {
+				console.log("Trình duyệt không hỗ trợ localStorage");
+			}
+			// window.location.replace(`http://graph.vtcmobile.vn/oauth/authorize?client_id=707fece431a0948c498d43e881acd2c5&redirect_uri=${window.location.protocol}//${window.location.host}/login&agencyid=0`)
+			window.location.replace(`http://sandbox.graph.vtcmobile.vn/oauth/authorize?client_id=4e7549789b14693eda4e019faaa0c446&agencyid=0&redirect_uri=${window.location.protocol}//${window.location.host}/`);
+		}else{
+			$('#myModal12').modal('show');
 		}
-		// window.location.replace(`http://graph.vtcmobile.vn/oauth/authorize?client_id=707fece431a0948c498d43e881acd2c5&redirect_uri=${window.location.protocol}//${window.location.host}/login&agencyid=0`)
-		window.location.replace(`http://sandbox.graph.vtcmobile.vn/oauth/authorize?client_id=4e7549789b14693eda4e019faaa0c446&agencyid=0&redirect_uri=${window.location.protocol}//${window.location.host}/`);
 	}
 	logoutAction = () => {
 		localStorage.removeItem("user");
@@ -277,7 +307,7 @@ class Lucky_Rotation extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto}=this.state;
+		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished}=this.state;
 		var _this = this;
 		var user = JSON.parse(localStorage.getItem("user"));
 		var time=Date.now();
@@ -285,46 +315,57 @@ class Lucky_Rotation extends React.Component {
 			$('#myModal8').modal('show');
 		}else{
 			if (user !== null) {
-				if(turnsFree>0){
-					this.props.pickCard(user.access_token, luckySpin.id).then(()=>{
-						var data=_this.props.dataPick;
-						var list=this.state.data_auto;
-						if(data.status ==="01"){
-							if(data.data.item.type==="LUCKY_NUMBER"){
-								this.setState({code:true})
-								setTimeout(()=>{
-									this.setState({noti_mdt:true})
-								},2000)
-							}else{
-								if(data.data.item.type!=="ACTION"){
-									setTimeout(()=>{
-										this.setState({noti_tudo:true})
-									},2000)
-									this.getVinhDanh();	
+				if(!finished){
+					if(turnsFree>0){
+						this.props.pickCard(user.access_token, luckySpin.id).then(()=>{
+							var data=_this.props.dataPick;
+							var list=this.state.data_auto;
+							if(data!==undefined){
+								if(data.status ==="01"){
+									if(data.data.item.type==="LUCKY_NUMBER"){
+										this.setState({code:true})
+										setTimeout(()=>{
+											this.setState({noti_mdt:true})
+										},2000)
+									}else{
+										if(data.data.item.type!=="ACTION"){
+											setTimeout(()=>{
+												this.setState({noti_tudo:true})
+											},2000)
+											this.getVinhDanh();	
+										}
+										this.setState({code:false})
+										
+									}
+									list.push(data.data.item.name);
+									var id=_this.props.dataPick.data.id;
+									var pos = itemOfSpin.map(function(e) { return e.id; }).indexOf(id);
+									this.resetWheel();
+									if(!isSpin && closeAuto){
+										this.startSpin(pos+1);
+									}	
+									_this.setState({itemBonus: data.data.item, data_auto: list, closeAuto:true});
+								}else if(data.status ==="04"){
+									$('#myModal13').modal('show');
+								}else if(data.status ==="07"){
+										this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
+										$('#myModal8').modal('show');
+									})
+								}else{
+									$('#myModal11').modal('show');
+									this.setState({message_error:'Vòng quay đang có lỗi. Vui lòng tải lại trang.'})
 								}
-								this.setState({code:false})
-								
+							}else{
+								$('#myModal12').modal('show');
+								this.setState({server_err:true})
 							}
-							list.push(data.data.item.name);
-							var id=_this.props.dataPick.data.id;
-							var pos = itemOfSpin.map(function(e) { return e.id; }).indexOf(id);
-							this.resetWheel();
-							if(!isSpin && closeAuto){
-								this.startSpin(pos+1);
-							}	
-							_this.setState({itemBonus: data.data.item, data_auto: list, closeAuto:true});
-						}else if(data.status ==="07"){
-								this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
-								$('#myModal8').modal('show');
-							})
-						}else{
-							$('#myModal11').modal('show');
-							this.setState({message_error:'Vòng quay đang có lỗi. Vui lòng tải lại trang.'})
-						}
-					})
-					
+						})
+						
+					}else{
+						$('#myModal6').modal('show');
+					}
 				}else{
-					$('#myModal6').modal('show');
+					$('#myModal13').modal('show');
 				}
 			} else {
 				$('#myModal5').modal('show');
@@ -411,20 +452,27 @@ class Lucky_Rotation extends React.Component {
 		var user = JSON.parse(localStorage.getItem("user"));
 		this.props.getRotationDetailDataUser(user.access_token, 0).then(()=>{
 			var data=this.props.dataRotationWithUser;
-			var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
-			if(data.status==='01'){
-				if(turnsFree>0){
-					if(auto){
-						this.start();
+			if(data!==undefined){
+				var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
+				if(data.status==='01'){
+					if(turnsFree>0){
+						if(auto){
+							this.start();
+						}
+					}else{
+						$('#myModal6').modal('show');
+						clearInterval(this.state.intervalId);
 					}
+					this.setState({turnsFree:turnsFree})
+				}else if(data.status ==="04"){
+					$('#myModal13').modal('show');
 				}else{
-					$('#myModal6').modal('show');
-					clearInterval(this.state.intervalId);
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Lỗi hệ thống. Vui lòng thử lại.'})
 				}
-				this.setState({turnsFree:turnsFree})
 			}else{
-				$('#myModal11').modal('show');
-				this.setState({message_error:'Lỗi hệ thống. Vui lòng thử lại.'})
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
 			}
 		});
 	}
@@ -479,11 +527,16 @@ class Lucky_Rotation extends React.Component {
 		if (user !== null) {
 			this.props.getTuDo(user.access_token, luckySpin.id).then(()=>{
 				var data=this.props.dataTuDo;
-				if(data.status==='01'){
-					this.setState({dataTuDo:data.data, countTuDo:data.data.length, listTuDo: data.data.slice(0,5), noti_tudo:false})
+				if(data!==undefined){
+					if(data.status==='01'){
+						this.setState({dataTuDo:data.data, countTuDo:data.data.length, listTuDo: data.data.slice(0,5), noti_tudo:false})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					}
 				}else{
-					$('#myModal11').modal('show');
-					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					$('#myModal12').modal('show');
+					this.setState({server_err:true})
 				}
 			});
 			$('#myModal4').modal('hide');
@@ -503,11 +556,16 @@ class Lucky_Rotation extends React.Component {
 		if(user !== null){
 			this.props.getCodeBonus(user.access_token, luckySpin.id, 'LUCKY_NUMBER').then(()=>{
 				var data=this.props.dataCodeBonus;
-				if(data.status==='01'){
-					this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
+				if(data!==undefined){
+					if(data.status==='01'){
+						this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					}
 				}else{
-					$('#myModal11').modal('show');
-					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+					$('#myModal12').modal('show');
+					this.setState({server_err:true})
 				}
 			});
 			$('#myModal4').modal('hide');
@@ -533,6 +591,13 @@ class Lucky_Rotation extends React.Component {
 
 	hideModalDetailBonus=()=>{
 		$('#myModal4').modal('hide');
+	}
+	closeServerErr=()=>{
+		$('#myModal12').modal('hide');
+	}
+
+	closePopupFinish=()=>{
+		$('#myModal13').modal('hide');
 	}
 
 	// hideModalCode=()=>{
@@ -574,7 +639,7 @@ class Lucky_Rotation extends React.Component {
 
 	render() {
 		const {height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,
-			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo}=this.state;
+			 activeTuDo, activeCodeBonus, activeVinhDanh, numberItemInpage, countCodeBonus, countTuDo, countVinhDanh, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span class="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span class="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
@@ -601,6 +666,11 @@ class Lucky_Rotation extends React.Component {
 									<td align="center" className="p-0 h6">Giây</td>
 								</tr>
 							</table>
+							{(finished)?(<div class="alert alert-danger text-center">
+								<p class="text-dark mb-0">Đã phát hết Mã dự thưởng</p>
+								<h2>100,000 / 100,000</h2>
+							</div>):(<div></div>)}
+							
 							</div>
 						</div> 
 					</div>
@@ -630,7 +700,7 @@ class Lucky_Rotation extends React.Component {
 					</div>
 					<div className="btn-logout">
 						{(isLogin)?(<div><p className="p-0 m-0 text-center">Xin chào {userTurnSpin.currName}</p>
-						<h5 className="text-center"><a style={{cursor:'pointer'}} title="Đăng xuất" onClick={this.logoutAction}>Đăng xuất</a></h5></div>):(<h5 className="text-center"><a style={{cursor:'pointer'}} title="Đăng nhập" onClick={this.loginAction}>Đăng nhập</a></h5>)}
+						<h5 className="text-center" onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 className="text-center" onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
 						
 					</div>
 					<div className="btn-quay">
@@ -1324,6 +1394,54 @@ class Lucky_Rotation extends React.Component {
 						</div>
 					</div>
 				</div>
+				<div class="modal fade" id="myModal12">
+					<div class="modal-dialog">
+						<div class="modal-content popup-phanthuong">
+
+						{/* <!-- Modal Header --> */}
+						<div class="modal-header border-bottom-0">
+							<h4 class="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
+							<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+						</div>
+
+						{/* <!-- Modal body --> */}
+						<div class="modal-body">
+							<div class="table-responsive mt-2">              
+								<h5 class="text-thele lead text-center">Thông báo bảo trì!</h5>
+								<h5 class="text-thele lead text-center">Hệ thống đang được nâng cấp để tối ưu. Vui lòng quay lại sau 10 phút.</h5>
+								<h5 class="text-thele lead text-center">Xin lỗi vì sự bất tiện này</h5>
+								<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={this.closeServerErr}>Xác nhận</button>
+							</div>       
+						</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="modal fade" id="myModal13">
+					<div class="modal-dialog">
+						<div class="modal-content popup-phanthuong">
+
+						{/* <!-- Modal Header --> */}
+						<div class="modal-header border-bottom-0">
+							<h4 class="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
+							<button type="button" class="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
+						</div>
+
+						{/* <!-- Modal body --> */}
+						<div class="modal-body">
+							<div class="table-responsive mt-2">           
+								<h5 class="text-thele lead text-center">Kết quả trúng thưởng 2 giải Xe máy Airblade 2019 & điện thoại Xiaomi Black Shark 2 sẽ được công bố sau ngày 26/08/2019. Vui lòng quay lại sau.</h5>
+								<h5 class="text-thele lead text-center">Đón xem live stream buổi so mã Dự thưởng vào lúc 17:30 - 19:00 ngày 26/08 tại fanpage Scoin: <a href="https://www.facebook.com/scoinvtcmobile/">https://www.facebook.com/scoinvtcmobile/</a></h5>
+								<h5 class="text-thele lead text-center">BTC trân trọng kính báo tới quý khách hàng.</h5>
+								<button type="button" class="btn btn-xacnhan text-white btn-block text-center py-4" onClick={this.closePopupFinish}>Xác nhận</button>
+							</div>       
+						</div>
+
+						</div>
+					</div>
+				</div>
+
 
 		</div>)
 	}
