@@ -118,7 +118,7 @@ class MissionComponent extends React.Component {
 			<Grid container style={{ width: "100%", margin: "0px" }}>
 				<Grid item xs={12} md={12} >
 					<Grid container>
-						<Grid container xs={12} md={12} style={{background:'#fff', border:'1px solid #d0d0d1', padding: 10}}>
+						<Grid container xs={12} md={12} style={{background:'#ecf4fe', padding: 10}}>
 							<Grid item xs={12} md={12} style={{marginTop:5}}>
 								<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_nhiemvu.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a", fontSize:18}}>Nhiệm vụ</span>
 							</Grid>

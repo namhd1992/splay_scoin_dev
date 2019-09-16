@@ -22,7 +22,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			main: null,
-			backgroundColor:'#fff',
+			backgroundColor:'#ecf4fe',
 		};
 	}
 
@@ -30,7 +30,7 @@ class App extends React.Component {
 		return (
 			<div style={{ backgroundColor: this.state.backgroundColor }}>
 				{/* <div style={{maxWidth:"1200px", margin:"auto", background: this.state.backgroundColor }}> */}
-				<div>
+				<div style={{maxWidth:"1200px", margin:"auto", background: this.state.backgroundColor }}>
 				<MenuAppBar isMobile={this.state.isMobile} pathname={document.location.pathname} compact={this.state.compact} scrolling={this.state.scrolling}
 						data={[{ url: "home", label: "home" }, { url: "about", label: "about" }]}></MenuAppBar>
 					<main ref={(c) => this.main = c}>
@@ -47,7 +47,7 @@ class App extends React.Component {
 						<Route exact path="/itemgiftcodedetail/:id" component={Item_giftcode_detail} />
 						<Route exact path="/giftcode" component={Giftcode} />
 						<Route exact path="/giftcodedetail/:id" component={Giftcode_detail} /> */}
-						<Route exact path="/" component={Lucky_Rotation} />
+						<Route exact path="/" component={Mission} />
 						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
 						<Route exact path="/auction" component={Auction} />
 						<Route exact path="/history" component={History} />
