@@ -53,7 +53,7 @@ class Lucky_BuyTurn extends React.Component {
 		var _this = this;
 		var user = JSON.parse(localStorage.getItem("user"));
 		var idLucky= localStorage.getItem("idLucky");
-		var spin_name=this.props.dataDetail.luckySpin.name;
+		var spin_name=this.props.dataDetail.data.luckySpin.name;
 		// this.props.buyTurn(user.access_token, user.scoinAccessToken, idLucky, turn).then(function () {
 		// 	if (_this.props.dataTurn.statusCode === "T") {
 		// 		_this.setState({ openSnack: true, message: "Mua lượt thành công", snackVariant: "success" });

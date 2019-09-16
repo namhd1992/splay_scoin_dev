@@ -35,7 +35,7 @@ class LuckyItemComponent extends React.Component {
 						</div>
 								
 					</Grid>
-					{/* {dataDetail.itemOfSpin.map((obj, key) => (
+					{/* {dataDetail.data.itemOfSpin.map((obj, key) => (
 						<ListItem key={key} style={{ minWidth: "120px", color:'black', borderBottom:'1px solid #999999' }}>
 							<div>
 								<img alt="just alt" className="lucky-item-img" src={obj.item.urlImage} />
@@ -44,7 +44,7 @@ class LuckyItemComponent extends React.Component {
 						</ListItem>
 					))} */}
 					<div className={"article_content"}
-						 dangerouslySetInnerHTML={{ __html: dataDetail.luckySpin.description }}>
+						 dangerouslySetInnerHTML={{ __html: dataDetail.data.luckySpin.description }}>
 					</div>
 
 					<div item xs={12} className="btn_buy_latthe" onClick={this.backLucky}>

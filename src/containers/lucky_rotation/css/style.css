@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-@font-face {
+/* @font-face {
 font-family: 'mijasultra';
 src:
 	url('../fonts/mijas-ultra-webfont.OTF')format('opentype'),
@@ -8,7 +8,7 @@ src:
 	url('../fonts/mijas-ultra-webfont.woff2')format('woff2');
 font-weight:normal;
 font-style:normal;
-}
+} */
 * {font-family: 'mijasultra' !important;}
 html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png); background-size: cover; background-position: center; background-repeat: no-repeat;}

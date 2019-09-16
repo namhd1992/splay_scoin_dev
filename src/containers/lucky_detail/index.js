@@ -53,12 +53,12 @@ class Lucky_detail extends React.Component {
 		// if (user !== null) {
 		// 	this.props.getDetailData(user.access_token, this.props.match.params.id).then(function () {
 		// 		if(_this.props.dataDetail!==null){
-		// 			// _this.props.changeTitle(_this.props.dataDetail.luckyspin.name);
+		// 			// _this.props.changeTitle(_this.props.dataDetail.data.luckyspin.name);
 		// 			var new_arr = [];
-		// 			_this.props.dataDetail.itemOfSpin.forEach(function (item, key) {
+		// 			_this.props.dataDetail.data.itemOfSpin.forEach(function (item, key) {
 		// 				new_arr.push({ id: item.item.id, status: true });
 		// 			});
-		// 			_this.setState({ cardArr: _this.props.dataDetail.itemOfSpin, flippedArr: new_arr });
+		// 			_this.setState({ cardArr: _this.props.dataDetail.data.itemOfSpin, flippedArr: new_arr });
 		// 		}
 			
 		// 	});
@@ -68,13 +68,13 @@ class Lucky_detail extends React.Component {
 		// }
 		this.props.getDetailData(this.props.match.params.id).then(function () {
 			if(_this.props.dataDetail!==undefined){
-				// _this.props.changeTitle(_this.props.dataDetail.luckyspin.name);
+				// _this.props.changeTitle(_this.props.dataDetail.data.luckyspin.name);
 				var new_arr = [];
-				_this.props.dataDetail.itemOfSpin.forEach(function (item, key) {
+				_this.props.dataDetail.data.itemOfSpin.forEach(function (item, key) {
 					// console.log(_this.props.dataDetail)
 					new_arr.push({ id: item.id, status: true });
 				});
-				_this.setState({ cardArr: _this.props.dataDetail.itemOfSpin, flippedArr: new_arr });
+				_this.setState({ cardArr: _this.props.dataDetail.data.itemOfSpin, flippedArr: new_arr });
 			}
 		
 		});
@@ -159,7 +159,7 @@ class Lucky_detail extends React.Component {
 	}
 
 	start = () => {
-		if (this.props.dataDetail.userTurnSpin.turnsBuy + this.props.dataDetail.userTurnSpin.turnsFree <= 0) {
+		if (this.props.dataDetail.data.userTurnSpin.turnsBuy + this.props.dataDetail.data.userTurnSpin.turnsFree <= 0) {
 			this.setState({ dialogMoreTurnOpen: true });
 		} else {
 			if (this.state.canPlay) {

@@ -109,7 +109,7 @@ class LuckyDetailComponent extends React.Component {
 	}
 	
 	start=()=>{
-		if(this.props.dataDetail.userTurnSpin.turnsBuy + this.props.dataDetail.userTurnSpin.turnsFree >0){
+		if(this.props.dataDetail.data.userTurnSpin.turnsBuy + this.props.dataDetail.data.userTurnSpin.turnsFree >0){
 			this.setState({btnPlay: true,div1:'front', div2:'back', guide1:'- Mời bạn lật thẻ để nhận phần thưởng.', guide2:''})
 		}
 		this.props.start();
@@ -182,9 +182,10 @@ class LuckyDetailComponent extends React.Component {
 			splayPoint=this.convettoLocaleString(splayPoint);
 		}
 		if(dataDetail!==undefined){
-			this.getStringBonus(dataDetail.luckySpinHistory)
+			this.getStringBonus(dataDetail.data.luckySpinHistory)
 		}
-		return (dataDetail) ? (
+		console.log(dataDetail)
+		return (dataDetail !==undefined) ? (
 			<div className="lucky-detail-root">
 				<Grid container spacing={12}>
 					<Grid item xs={12} md={12}>
@@ -196,7 +197,7 @@ class LuckyDetailComponent extends React.Component {
 									</div>
 								</Grid>
 								<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:20}}>
-									<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>{dataDetail.luckySpin.name}</span>
+									<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>{dataDetail.data.luckySpin.name}</span>
 								</Grid>
 								<Grid item xs={12} sm={12}>
 									<div className="lucky-wrap"
@@ -264,7 +265,7 @@ class LuckyDetailComponent extends React.Component {
 									<div className="actionPlay">
 										<Grid item xs={12} style={{paddingBottom:"5px"}}>
 											{(this.state.btnPlay)?(<button className="buttonGreen" onClick={() => this.pick(cardArr[0].id)}>LẬT BẤT KỲ</button>):(
-												<button className="buttonGreen" onClick={this.start}>CHƠI ({dataDetail.userTurnSpin.turnsBuy + dataDetail.userTurnSpin.turnsFree})</button>
+												<button className="buttonGreen" onClick={this.start}>CHƠI ({dataDetail.data.userTurnSpin.turnsBuy + dataDetail.data.userTurnSpin.turnsFree})</button>
 											)}
 											
 										</Grid>
@@ -329,7 +330,7 @@ class LuckyDetailComponent extends React.Component {
 					<DialogTitle id="responsive-dialog-title"><span style={{ color: secondary.main }} >Phần thưởng</span></DialogTitle>
 					<DialogContent>
 						<List className="lucky-detail-root">
-							{dataDetail.itemOfSpin.map((obj, key) => (
+							{dataDetail.data.itemOfSpin.map((obj, key) => (
 								<ListItem key={key} style={{ minWidth: "120px" }}>
 									<div>
 										<img alt="just alt" className="lucky-item-img" src={obj.item.urlImage} />
