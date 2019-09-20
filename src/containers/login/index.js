@@ -16,7 +16,10 @@ class Login extends React.Component {
 	}
 
 	componentWillMount(){
-		this.setState({scoin_token: this.getParamValue("ud")})	
+		var scoin_token=this.getParamValue("ud");
+		if(scoin_token!=="" && scoin_token!==undefined){
+			this.setState({scoin_token: scoin_token})
+		}		
 	}
 
 	componentDidMount() {
