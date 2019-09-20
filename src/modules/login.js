@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
 		case LOGIN_RESPONSE:
 			return {
 				...state,
-				data: action.data,
+				data: action.data.data,
 				waiting: false
 			}
 		default:
@@ -27,16 +27,19 @@ export default (state = initialState, action) => {
 	}
 }
 
-export const login = (sign) => {
+export const login = (scoin_token) => {
 	var api_key = Ultilities.splay_api_key();
 	// var SERVICE_URL = "http://sandbox.scoin.vn/authapi/";
-	var SERVICE_URL = "https://graph.vtcmobile.vn/authapi/";
+	var SERVICE_URL = "http://171.244.14.44:9090/signin";
 	return dispatch => {
 		dispatch({
 			type: LOGIN_REQUEST
 		})
-		var url = SERVICE_URL + "server/check_device.aspx?api_key=" + api_key + "&sign=" + sign;
-		return axios.get(url).then(function (response) {
+		var data = {
+			scoin_token: scoin_token
+		}
+		var url = SERVICE_URL;
+		return axios.post(url, data).then(function (response) {
 			dispatch({
 				type: LOGIN_RESPONSE,
 				data: response
