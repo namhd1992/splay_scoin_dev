@@ -45,7 +45,7 @@ export const getData = (token) => {
 		dispatch({
 			type: CHECKIN_REQUEST
 		})
-		var url = Ultilities.base_url() + "checkinItem";
+		var url = Ultilities.base_url() + "checkin";
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: CHECKIN_RESPONSE,
@@ -59,11 +59,11 @@ export const getData = (token) => {
 	}
 }
 
-export const checkin = () => {
+export const checkin = (token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
-			// "Authorization": "bearer " + token,
+			"Authorization": "bearer " + token,
 		}
 	}
 	return dispatch => {

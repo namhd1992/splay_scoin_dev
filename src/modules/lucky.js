@@ -99,13 +99,19 @@ export default (state = initialState, action) => {
 	}
 }
 
-export const getData = (limit, offset) => {
+export const getData = (limit, offset, token) => {
+	var header = {
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "bearer " + token,
+		}
+	}
 	return dispatch => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
 		var url = Ultilities.base_url() + "lucky-spin/get?limit=" + limit + "&offset=" + offset;
-		return axios.get(url).then(function (response) {
+		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_RESPONSE,
 				data: response.data.data,
@@ -119,10 +125,11 @@ export const getData = (limit, offset) => {
 	}
 }
 
-export const getMoreData = (limit, offset) => {
+export const getMoreData = (limit, offset, token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
+			"Authorization": "bearer " + token,
 		}
 	}
 	return dispatch => {
@@ -144,11 +151,11 @@ export const getMoreData = (limit, offset) => {
 	}
 }
 
-export const getDetailData = (id) => {
+export const getDetailData = (id, token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
-			// "Authorization": "bearer " + token,
+			"Authorization": "bearer " + token,
 		}
 	}
 	return dispatch => {
@@ -171,7 +178,7 @@ export const getDetailData = (id) => {
 
 
 
-export const pickCard = (token, id) => {
+export const pickCard = (id, token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -197,11 +204,11 @@ export const pickCard = (token, id) => {
 	}
 }
 
-export const buyTurn = (id, turn, spin_name) => {
+export const buyTurn = (id, turn, spin_name, token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
-			// "Authorization": "bearer " + token,
+			"Authorization": "bearer " + token,
 		}
 	}
 	var body = {
@@ -230,11 +237,11 @@ export const buyTurn = (id, turn, spin_name) => {
 }
 
 
-export const history = (id, type) => {
+export const history = (id, type, token) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
-			// "Authorization": "bearer " + token,
+			"Authorization": "bearer " + token,
 		}
 	}
 

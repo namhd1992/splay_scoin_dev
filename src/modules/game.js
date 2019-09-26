@@ -84,7 +84,7 @@ export const getDataId = (id) => {
     dispatch({
       type: GAME_REQUEST
     })
-    var url = Ultilities.base_url() + "/game/detail?service_id=" + id;
+    var url = Ultilities.base_url() + "game/detail?service_id=" + id;
     return axios.get(url).then(function (response) {
       dispatch({
         type: GAME_DETAIL_RESPONSE,

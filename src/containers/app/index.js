@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import '../../styles/main.css';
-import Login from '../login';
+// import Login from '../login';
 import Logout from '../logout';
 import Lucky from '../lucky';
 import Lucky_detail from '../lucky_detail';
@@ -49,7 +49,7 @@ class App extends React.Component {
 						<Route exact path="/itemgiftcodedetail/:id" component={Item_giftcode_detail} />
 						<Route exact path="/giftcode" component={Giftcode} />
 						<Route exact path="/giftcodedetail/:id" component={Giftcode_detail} /> */}
-						<Route exact path="/login" component={Login} />
+						{/* <Route exact path="/login" component={Login} /> */}
 						<Route exact path="/logout" component={Logout} />
 						<Route exact path="/" component={Mission} />
 						<Route exact path="/luckyrotation" component={Lucky_Rotation} />

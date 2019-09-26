@@ -1,21 +1,21 @@
 .error{
-    width: 1280px;
-    height: 740px;
+    width: 864px;
+    height: 864px;
 }
 
 
 @media only screen and (max-width:1280px){
 	.error{
-        width: 1280px;
-        height: 740px;
+        width: 864px;
+        height: 864px;
     }
 
 }
 
 @media only screen and (max-width:1024px){
     .error{
-        width: 990px;
-        height: 740px;
+        width: 864px;
+        height: 864px;
     }
 }
  
@@ -23,20 +23,20 @@
 @media only screen and (max-width:960px){
     .error{
         width: 780px;
-        height: 600px;
+        height: 780px;
     }
 }
 
 @media only screen and (max-width:600px){
 	.error{
         width: 340px;
-        height: 220px;
+        height: 340px;
     }
 }
 
 @media only screen and (max-width:320px){
 	.error{
         width: 340px;
-        height: 220px;
+        height: 340px;
     }
 }

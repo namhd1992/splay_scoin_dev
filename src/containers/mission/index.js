@@ -30,17 +30,20 @@ class Mission extends React.Component {
 			dialogLoginOpen: false,
 			title_dialog:"",
 			snackVariant: "info",
+			scoin_token:'bGR5M50ZKlUCZs7D9AAWET7abuVZU0EKbdvBmIk%2bHKQg%2b0ajR3P49tOhMfmW%2b1Yt6NHLwoxgAIc%3d',
 		};
 	}
 	componentWillMount(){
-		for(let i=0; i<100; i++){
-			window.clearInterval(i);
-		}
+		var scoin_token=this.getParamValue("ud");
+		if(scoin_token!=="" && scoin_token!==undefined){
+			this.setState({scoin_token: scoin_token})
+		}		
 	}
 
 	componentDidMount() {
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var _this = this;
+		const {scoin_token}= this.state;
 		// if (user !== null) {
 		// 	this.props.getData(this.state.limit, this.state.offset, user.access_token).then(function () {
 		// 		_this.props.changeTitle("NHIỆM VỤ");
@@ -50,18 +53,32 @@ class Mission extends React.Component {
 		// 	_this.setState({ dialogLoginOpen: true });
 		// }
 
-		this.props.getData(this.state.limit, this.state.offset).then(function () {
+		this.props.getData(this.state.limit, this.state.offset,scoin_token).then(function () {
 			// _this.props.changeTitle("NHIỆM VỤ");
 			_this.setState({ loadedRecords: _this.state.limit + _this.state.offset });
 		});
 	}
 
+	getParamValue=(key)=>
+	{
+		var url = window.location.search.substring(1);
+		var qArray = url.split('&');
+		for (var i = 0; i < qArray.length; i++) 
+		{
+			var pArr = qArray[i].split('=');
+			if (pArr[0] === key) 
+				return pArr[1];
+		}
+	}
+
+
 	loadMoreAction = () => {
 		var _this = this;
-		var user = JSON.parse(localStorage.getItem("user"));
+		const {scoin_token}= this.state;
+		// var user = JSON.parse(localStorage.getItem("user"));
 		var newOffset = this.state.limit + this.state.offset;
 		// this.props.getMoreData(this.state.limit, newOffset, user.access_token);
-		this.props.getMoreData(this.state.limit, newOffset);
+		this.props.getMoreData(this.state.limit, newOffset, scoin_token);
 		this.setState({
 			loadedRecords: _this.state.limit + newOffset,
 			offset: newOffset
@@ -71,8 +88,9 @@ class Mission extends React.Component {
 	checkin=()=>{
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var _this=this;
-		this.props.checkin().then(function () {
-			_this.props.getData(_this.state.limit, _this.state.offset);
+		const {scoin_token}= this.state;
+		this.props.checkin(scoin_token).then(function () {
+			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
 		});
 	}
 
@@ -110,9 +128,10 @@ class Mission extends React.Component {
 
 	reward = (id) => {
 		var _this = this;
+		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
-		this.props.finishData(id).then(function (response) {
-			_this.props.getData(_this.state.limit, _this.state.offset);
+		this.props.finishData(id, scoin_token).then(function (response) {
+			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
 			if(_this.props.status==="03"){
 				_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
 			}

@@ -55,11 +55,11 @@ export default (state = initialState, action) => {
   }
 }
 
-export const getData = (limit, offset) => {
+export const getData = (limit, offset, token) => {
   var header = {
     headers: {
       "Content-Type": "application/json",
-      // "Authorization": "bearer " + token,
+      "Authorization": "bearer " + token,
     }
   }
   return dispatch => {
@@ -81,11 +81,11 @@ export const getData = (limit, offset) => {
   }
 }
 
-export const finishData = (id) => {
+export const finishData = (id, token) => {
   var header = {
     headers: {
       "Content-Type": "application/json",
-      // "Authorization": "bearer " + token,
+      "Authorization": "bearer " + token,
     }
   }
   return dispatch => {
@@ -108,11 +108,11 @@ export const finishData = (id) => {
   }
 }
 
-export const getMoreData = (limit, offset) => {
+export const getMoreData = (limit, offset, token) => {
   var header = {
     headers: {
       "Content-Type": "application/json",
-      // "Authorization": "bearer " + token,
+      "Authorization": "bearer " + token,
     }
   }
   return dispatch => {
