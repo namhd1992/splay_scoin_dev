@@ -9,6 +9,7 @@ class LiveStreamComponent extends React.Component {
 		super(props);
 		this.state = {
 			numberShow:15,
+			linkLiveStream:'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fscoinvtcmobile%2Fvideos%2F1364269870398870%2F&show_text=0&width=560'
 		};
 	}
 
@@ -27,6 +28,7 @@ class LiveStreamComponent extends React.Component {
 
 	render() {
 		const { dataDetail } = this.props;
+		const {linkLiveStream}=this.state;
 		var data=[];
 		var totalRecords=0;
 		if(dataDetail !==undefined && dataDetail!==null){
@@ -39,21 +41,9 @@ class LiveStreamComponent extends React.Component {
 				<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>Lịch sử trúng thưởng</span>
 			</Grid>
 			<Grid item xs={12} md={12} style={{marginBottom:20}}>
-				<div>
-					{data.map((obj, key) => (
-						<div key={key} style={{borderBottom:'1px solid #a6a6a6', marginBottom:20, paddingBottom:15}}>
-							<span>{obj.date}</span>
-							<span>{obj.itemName}</span>
-							<span>{obj.userName}</span>
-							<span>{obj.phone}</span>
-						</div>
-					))}	
-				</div>
-			</Grid>
-			<Grid item xs={12}>
-				{(totalRecords>this.state.numberShow)?(<div item xs={12} className="div_more_history" onClick={this.loadMoreAction}>
-					<div style={{float:'left'}}><img style={{width:20, height:20, marginRight:5}} src="../icon_add.png" alt="icon"/></div><span style={{float:'left'}}>Xem Thêm</span>
-				</div>):(<div></div>)}
+				<div class="facebook-responsive">
+					<iframe src={linkLiveStream} width="560" height="315" style={{border:'none', overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+				</div>     
 			</Grid>
 			<Grid item xs={12}>
 				<div style={{textAlign:'center', marginBottom:25, fontSize:14}}>
