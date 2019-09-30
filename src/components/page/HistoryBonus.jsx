@@ -11,6 +11,8 @@ class HistoryBonusComponent extends React.Component {
 		this.state = {
 			numberShow:15,
 			isAll:true,
+			isSelect:false,
+			itemSelect:'',
 		};
 	}
 
@@ -18,12 +20,14 @@ class HistoryBonusComponent extends React.Component {
 		this.setState({numberShow: this.state.numberShow+15})
 	}
 
-	getAll=()=>{
-		this.props.getHistory('All')
+	getAllData=()=>{
+		// this.props.getHistory('All')
+		this.setState({isAll:true})
 	}
 
-	getMe=()=>{
-		this.props.getHistory('')
+	getData=()=>{
+		// this.props.getHistory('')
+		this.setState({isAll:false})
 	}
 
 	getXu=()=>{
@@ -41,12 +45,12 @@ class HistoryBonusComponent extends React.Component {
 
 	render() {
 		const { dataHistory } = this.props;
+		const {isAll}= this.state;
 		var data=[];
 		var totalRecords=0;
 		if(dataHistory !==undefined && dataHistory!==null){
-			console.log(dataHistory)
-			data=dataHistory.slice(0, this.state.numberShow);
-			totalRecords=dataHistory.length;
+			data=dataHistory.data.slice(0, this.state.numberShow);
+			totalRecords=dataHistory.data.length;
 		}
 
 		return (dataHistory !==undefined && dataHistory!==null)?(<Grid container spacing={12}>
@@ -56,20 +60,21 @@ class HistoryBonusComponent extends React.Component {
 				</Grid>
 				<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:25}}>
 					<div style={{display:'flex'}}>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span>Tất cả</span></div>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span>Của tôi</span></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{cursor:'pointer'}} onClick={this.getAllData}>Tất cả</span></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{cursor:'pointer'}} onClick={this.getData}>Của tôi</span></div>
 					</div>
 				</Grid>
 				<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:15}}>
-					<div style={{display:'flex'}}>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}}>Xu</span></div>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}}>Thẻ</span></div>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}}>Giftcode</span></div>
+					{(!isAll)?(<div style={{display:'flex'}}>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}} onClick={this.getXu}>Xu</span></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}} onClick={this.getCard}>Thẻ</span></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}} onClick={this.getGiftcode}>Giftcode</span></div>
 						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{color:'#34c1c3', border:'2px solid #34c1c3', padding:'3px 20px', borderRadius:'5px', cursor:'pointer'}}>....</span></div>
-					</div>
+					</div>):(<div></div>)}
+					
 				</Grid>
 				<Grid item xs={12} md={12} style={{marginBottom:20}}>
-					<div>
+					{(data.length>0)?(<div>
 						{data.map((obj, key) => (
 							<div key={key} style={{borderBottom:'1px solid #a6a6a6', marginBottom:20, paddingBottom:15, display:'flex'}}>
 								<div style={{flex:1, float:'left', color:"#6a6a6a"}}>{obj.date}</div>
@@ -78,7 +83,8 @@ class HistoryBonusComponent extends React.Component {
 								<div style={{flex:1, color:"#6a6a6a"}}>{obj.phone}</div>
 							</div>
 						))}	
-					</div>
+					</div>):(<div><p style={{textAlign:'center'}}>Chưa có thông tin</p></div>)}
+					
 				</Grid>
 				<Grid item xs={12}>
 					{(totalRecords>this.state.numberShow)?(<div item xs={12} className="div_more_history" onClick={this.loadMoreAction}>

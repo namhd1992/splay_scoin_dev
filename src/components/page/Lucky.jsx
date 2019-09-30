@@ -62,6 +62,15 @@ class LuckyComponent extends React.Component {
 		console.log('ABV')
 	}
 
+	linkGame=(obj)=>{
+		if(obj.type==="LAT_THE"){
+			return '/luckydetail'
+		}else if(obj.type==="VONG_QUAY"){
+			return '/luckyrotation'
+		}
+	}
+
+
 	render() {
 		const {data, waiting, totalRecords, loadedRecords, server}=this.props;
 		const { classes } = this.props;
@@ -93,7 +102,7 @@ class LuckyComponent extends React.Component {
 										<div className={classes.gridItem}>
 											
 												<GridListTile style={{ listStyleType: "none", backgroundColor: "#fff" }}>
-													<Link to={"/luckydetail/" + obj.id} onClick={() => this.setIdLucky(obj.id)}>
+													<Link to={this.linkGame(obj)} onClick={() => this.setIdLucky(obj.id)}>
 														<div style={{
 															backgroundImage: "url(" + obj.image + ")",
 															backgroundSize: "cover",
@@ -135,13 +144,13 @@ class LuckyComponent extends React.Component {
 							) : (<div></div>)}
 						</Grid>
 					</Grid>
-					<Grid item xs={12}>
+					{/* <Grid item xs={12}>
 						<div style={{textAlign:'center', marginTop:40, marginBottom:25, fontSize:14}}>
 							<div><span style={{color:'#747c89'}}>Hệ thống phát hành game VTC Mobile</span></div>
 							<div><span style={{color:'#747c89'}}>Copyright 2017 VTC Mobile. All rights reverved</span></div>
 							<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 						</div>
-					</Grid>
+					</Grid> */}
 				</Grid>
 			</Grid>
 		</div>):(<div></div>)

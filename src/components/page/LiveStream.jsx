@@ -36,7 +36,7 @@ class LiveStreamComponent extends React.Component {
 			totalRecords=dataDetail.luckySpinHistory.length;
 		}
 
-		return (dataDetail !==undefined && dataDetail!==null)?(<Grid container spacing={12}>
+		return (<Grid container spacing={12}>
 			<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:30}}>
 				<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>Lịch sử trúng thưởng</span>
 			</Grid>
@@ -52,7 +52,7 @@ class LiveStreamComponent extends React.Component {
 					<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 				</div>
 			</Grid>
-		</Grid>):(<div></div>)
+		</Grid>)
 	}
 }
 

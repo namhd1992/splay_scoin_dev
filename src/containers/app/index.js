@@ -66,7 +66,7 @@ class App extends React.Component {
 						<Route exact path="/article" component={Article} />
 						<Route exact path="/article_detail/:id" component={Article_detail} /> */}
 						<Route exact path="/checkin" component={Checkin} />
-						<Route exact path="/luckydetail/:id" component={Lucky_detail} />
+						<Route exact path="/luckydetail" component={Lucky_detail} />
 						<Route exact path="/luckyitembonus" component={Lucky_Item} />
 						<Route exact path="/luckyhistory" component={Lucky_History} />
 						<Route exact path="/luckybuyturn" component={Lucky_BuyTurn} />

@@ -38,7 +38,7 @@ class Lucky_detail extends React.Component {
 			dialogMoreTurnOpen: false,
 			numberWidth:6,
 			numberHeight:2,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzcLJBKtAcAxHWOBqIXY2WHOv9d5FzFtkf3oMd3jxvY5sUqvL0C0YkfE8r1i%2bHEkZkOOUrt%2fdy7J3YNpuOeS5orOsWN8URIIP7iS%2f2qwFH4JXsuElWz4%2ffN6JGiMfLAvdFr53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzaXDKYSA8ZFVIuBx1b99%2fmOv9d5FzFtkf0mbhmi%2fM7hiTbKsdQdtQLyfEZDr%2f8kElkYOUAd1B3keJNo1YVe0frvzxlFqzfa6vA4g5OgNSlZmpmhkT%2bEn4rrWOgaSFfrD8b53Dc2UQ%2fHb',
 
 		};
 	}
@@ -52,6 +52,7 @@ class Lucky_detail extends React.Component {
 	componentDidMount() {
 		var _this = this;
 		const {scoin_token}= this.state;
+		var idLucky = localStorage.getItem("idLucky");
 		// var user = JSON.parse(localStorage.getItem("user"));
 		// if (user !== null) {
 		// 	this.props.getDetailData(user.access_token, this.props.match.params.id).then(function () {
@@ -69,7 +70,7 @@ class Lucky_detail extends React.Component {
 		// } else {
 		// 	_this.setState({ dialogLoginOpen: true });
 		// }
-		this.props.getDetailData(this.props.match.params.id, scoin_token).then(function () {
+		this.props.getDetailData(+idLucky, scoin_token).then(function () {
 			if(_this.props.dataDetail!==undefined){
 				// _this.props.changeTitle(_this.props.dataDetail.data.luckyspin.name);
 				var new_arr = [];
@@ -118,6 +119,7 @@ class Lucky_detail extends React.Component {
 	openCard = (id) => {
 		var _this = this;
 		const {scoin_token}= this.state;
+		var idLucky = localStorage.getItem("idLucky");
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var new_arr = [];
 		var new_arr_after = [];
@@ -134,7 +136,7 @@ class Lucky_detail extends React.Component {
 			_this.setState({ flippedArr: new_arr_after, highLightCard: id, canPlay: true });
 		}, 1000);
 		// this.props.getDetailData(user.access_token, this.props.match.params.id)
-		this.props.getDetailData(this.props.match.params.id, scoin_token)
+		this.props.getDetailData(+idLucky, scoin_token)
 	}
 
 	random = () => {
@@ -213,7 +215,8 @@ class Lucky_detail extends React.Component {
 			// 	_this.props.getDetailData(user.access_token, _this.props.match.params.id);
 			// 	// _this.props.getData(user.access_token, user.scoinAccessToken);
 			// });
-			this.props.pickCard(this.props.match.params.id, scoin_token).then(function () {
+			var idLucky = localStorage.getItem("idLucky");
+			this.props.pickCard(+idLucky, scoin_token).then(function () {
 				if (_this.props.dataPick === null) {
 					_this.setState({ openSnack: true, message: "Bạn đã hết lượt quay", snackVariant: "error" });
 				} else {
@@ -221,7 +224,7 @@ class Lucky_detail extends React.Component {
 					_this.openCard(_this.props.dataPick.id);
 					_this.setState({ openSnack: true, message: "Thành công, vào hộp thư để xem vật phẩm trúng thưởng", snackVariant: "success" });
 				}
-				_this.props.getDetailData(_this.props.match.params.id, scoin_token);
+				_this.props.getDetailData(+idLucky, scoin_token);
 				// _this.props.getData(user.access_token, user.scoinAccessToken);
 			});
 		}
@@ -232,13 +235,14 @@ class Lucky_detail extends React.Component {
 		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var spin_name=this.props.dataDetail.data.luckySpin.name;
-		this.props.buyTurn(this.props.match.params.id, turn,spin_name, scoin_token).then(function () {
+		var idLucky = localStorage.getItem("idLucky");
+		this.props.buyTurn(+idLucky, turn,spin_name, scoin_token).then(function () {
 			if (_this.props.dataTurn.statusCode === "T") {
 				_this.setState({ openSnack: true, message: "Mua lượt thành công", snackVariant: "success" });
 			} else {
 				_this.setState({ openSnack: true, message: "Số thịt không đủ", snackVariant: "error" });
 			}
-			_this.props.getDetailData(_this.props.match.params.id, scoin_token);
+			_this.props.getDetailData(+idLucky, scoin_token);
 			// _this.props.getData(user.access_token, user.scoinAccessToken);
 		});
 	}
