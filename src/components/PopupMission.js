@@ -58,7 +58,7 @@ class PopupMission extends React.Component {
 								<span style={{ color: "#666666", fontSize:16 }}>{dataMission.description}</span>
 							</div>
 								<div>
-									<div style={{background:"#ecf4fe", marginTop:"15px", marginBottom:"15px", paddingBottom:15}}>
+									<div style={{background:"#ecf5fe", marginTop:"15px", marginBottom:"15px", paddingBottom:15}}>
 										{dataMission.missionProgress.map((obj, key) => {
 											return (
 												<div key={key}>

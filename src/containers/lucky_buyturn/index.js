@@ -103,7 +103,7 @@ class Lucky_BuyTurn extends React.Component {
 	backLucky=()=>{
 		var idLucky= localStorage.getItem("idLucky");
 		window.location.replace(
-			`${window.location.protocol}//${window.location.host}/luckydetail/`+idLucky,
+			`${window.location.protocol}//${window.location.host}/luckydetail`,
 		);
 	}
 

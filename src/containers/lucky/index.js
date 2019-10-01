@@ -15,10 +15,10 @@ class Lucky extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			limit: 12,
+			limit: 10,
 			offset: 0,
 			loadedRecords: 0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzaXDKYSA8ZFVIuBx1b99%2fmOv9d5FzFtkf0mbhmi%2fM7hiTbKsdQdtQLyfEZDr%2f8kElkYOUAd1B3keJNo1YVe0frvzxlFqzfa6vA4g5OgNSlZmpmhkT%2bEn4rrWOgaSFfrD8b53Dc2UQ%2fHb',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzcUksZ01WZJhjY1lkCJr3PGsVvjfShGrJ8vPTjq1SX6TXcgNxl%2bvlOHLBfADzM8Mlsw0mbZ%2btokvnxMeU4YFzVbkc%2f%2bbBRReKjyQNkWA1ZD1IHFUAlZrAPYAnxCdruOLw753Dc2UQ%2fHb',
 		};
 	}
 

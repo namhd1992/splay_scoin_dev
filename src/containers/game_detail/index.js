@@ -35,6 +35,8 @@ class Game_detail extends React.Component {
 			youtubeOpen: false,
 			gameArticles: [],
 			gameData: {},
+			id_game:'',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzcUksZ01WZJhjY1lkCJr3PGsVvjfShGrJ8vPTjq1SX6TXcgNxl%2bvlOHLBfADzM8Mlsw0mbZ%2btokvnxMeU4YFzVbkc%2f%2bbBRReKjyQNkWA1ZD1IHFUAlZrAPYAnxCdruOLw753Dc2UQ%2fHb',
 		};
 	}
 

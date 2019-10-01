@@ -237,7 +237,7 @@ export const buyTurn = (id, turn, spin_name, token) => {
 }
 
 
-export const history = (id, type, token) => {
+export const history = (id, token, limit, offset) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -249,7 +249,7 @@ export const history = (id, type, token) => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "lucky-spin-history?lucky_spin_id="+id+'&type_gift='+type;
+		var url = Ultilities.base_url() + "lucky-spin-history/all?lucky_spin_id="+id+"&limit=" + limit + "&offset=" + offset;
 		return axios.get(url, header).then(function (response) {
 			console.log(response.data)
 			dispatch({

@@ -11,10 +11,10 @@ import Lucky_History from '../lucky_history';
 import Lucky_Live from '../lucky_live';
 import Checkin from '../checkin';
 import Mission from '../mission';
-import MenuAppBar from '../../components/MenuAppBar';
+// import MenuAppBar from '../../components/MenuAppBar';
 import Game_detail from '../game_detail';
 import Auction from '../auction';
-import Auction_detail from '../auction_detail';
+// import Auction_detail from '../auction_detail';
 import History from '../shop_history';
 import Lucky_Rotation from '../lucky_rotation'
 
@@ -24,7 +24,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			main: null,
-			backgroundColor:'#ecf4fe',
+			backgroundColor:'#ecf5fe',
 		};
 	}
 

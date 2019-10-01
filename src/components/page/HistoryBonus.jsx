@@ -73,7 +73,7 @@ class HistoryBonusComponent extends React.Component {
 					</div>):(<div></div>)}
 					
 				</Grid>
-				<Grid item xs={12} md={12} style={{marginBottom:20}}>
+				<Grid item xs={12} md={12} style={{marginBottom:20, marginTop:20}}>
 					{(data.length>0)?(<div>
 						{data.map((obj, key) => (
 							<div key={key} style={{borderBottom:'1px solid #a6a6a6', marginBottom:20, paddingBottom:15, display:'flex'}}>

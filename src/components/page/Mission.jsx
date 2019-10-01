@@ -16,7 +16,7 @@ import Dialog, {
 import PropTypes from 'prop-types'
 import { withStyles } from "material-ui/styles/index"
 import Notification from '../../components/Notification'
-import LoginRequired from '../../components/LoginRequired'
+// import LoginRequired from '../../components/LoginRequired'
 import PopupMission from '../PopupMission'
 import '../../styles/mission.css'
 import '../../styles/imageServerError.css'
@@ -118,8 +118,8 @@ class MissionComponent extends React.Component {
 			<Grid container style={{ width: "100%", margin: "0px" }}>
 				<Grid item xs={12} md={12} >
 					<Grid container>
-						<Grid container xs={12} md={12} style={{background:'#ecf4fe', padding: 10}}>
-							<Grid item xs={12} md={12} style={{marginTop:5}}>
+						<Grid container xs={12} md={12} style={{background:'#ecf5fe'}}>
+							<Grid item xs={12} md={12} style={{marginTop:5, paddingTop: 10}}>
 								<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_nhiemvu.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a", fontSize:18}}>Nhiệm vụ</span>
 							</Grid>
 							{(data!==null)?(<Grid item xs={12} md={12}>

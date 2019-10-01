@@ -37,7 +37,7 @@ class LuckyComponent extends React.Component {
 		var w=window.innerWidth;
 		var height=0, width=0;
 		if(w>1080){
-			height=40;
+			height=45;
 			width=200;
 		}else if(w>=768){
 			height=35;
@@ -70,6 +70,10 @@ class LuckyComponent extends React.Component {
 		}
 	}
 
+	watchLivestream=(obj)=>{
+		localStorage.setItem("linkLiveStream", obj.linkLiveStream);
+	}
+
 
 	render() {
 		const {data, waiting, totalRecords, loadedRecords, server}=this.props;
@@ -77,8 +81,8 @@ class LuckyComponent extends React.Component {
 		return (data!==undefined) ? (<div className={classes.root}>
 			<Grid container spacing={12}>
 				<Grid item xs={12} md={12}>
-					<Grid item xs={12} md={12} style={{background:'#fff', border:'1px solid #d0d0d1', padding:10}}>
-						<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:40}}>
+					<Grid item xs={12} md={12} style={{background:'#fff', border:'1px solid #d0d0d1'}}>
+						<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:40, padding:10}}>
 							<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>Lật thẻ</span>
 						</Grid>
 						<Grid container spacing={12}>
@@ -124,9 +128,14 @@ class LuckyComponent extends React.Component {
 												</GridListTile>
 											
 										</div>
-										<div style={{border:'1px solid #ff0000', borderRadius:3, padding:10}}>
-											<span>Đang diễn ra livestream quay số</span><span>Xem</span>
-										</div>
+										{(obj.linkLiveStream!=="")?(<div style={{border:'2px solid #ff0000', borderRadius:4, padding:8}}>
+											<span style={{color:'red'}}>Đang diễn ra livestream quay số</span>
+											<Link to={'/luckylive'} onClick={()=>this.watchLivestream(obj)}>
+												<span style={{color:'#fff', cursor:'pointer', float:'right', backgroundColor:'red', marginTop:-8, marginRight:-9, padding:"8px 40px", borderRadius:4}}>Xem</span>
+											</Link>
+											
+										</div>):(<div></div>)}
+										
 									</Grid>
 								)
 							}
@@ -144,13 +153,13 @@ class LuckyComponent extends React.Component {
 							) : (<div></div>)}
 						</Grid>
 					</Grid>
-					{/* <Grid item xs={12}>
+					<Grid item xs={12}>
 						<div style={{textAlign:'center', marginTop:40, marginBottom:25, fontSize:14}}>
 							<div><span style={{color:'#747c89'}}>Hệ thống phát hành game VTC Mobile</span></div>
 							<div><span style={{color:'#747c89'}}>Copyright 2017 VTC Mobile. All rights reverved</span></div>
 							<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 						</div>
-					</Grid> */}
+					</Grid>
 				</Grid>
 			</Grid>
 		</div>):(<div></div>)

@@ -37,7 +37,7 @@ import '../../styles/imageServerError.css'
 
 const styles = {
 	paper: {
-		background: "#ecf4fe"
+		background: "#ecf5fe"
 	},
 };
 

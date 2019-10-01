@@ -16,7 +16,7 @@ class Lucky_Item extends React.Component {
 			openSnack: false,
 			snackVariant: "info",
 			dialogLoginOpen: false,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzcLJBKtAcAxHWOBqIXY2WHOv9d5FzFtkf3oMd3jxvY5sUqvL0C0YkfE8r1i%2bHEkZkOOUrt%2fdy7J3YNpuOeS5orOsWN8URIIP7iS%2f2qwFH4JXsuElWz4%2ffN6JGiMfLAvdFr53Dc2UQ%2fHb',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzcUksZ01WZJhjY1lkCJr3PGsVvjfShGrJ8vPTjq1SX6TXcgNxl%2bvlOHLBfADzM8Mlsw0mbZ%2btokvnxMeU4YFzVbkc%2f%2bbBRReKjyQNkWA1ZD1IHFUAlZrAPYAnxCdruOLw753Dc2UQ%2fHb',
 
 		};
 	}
@@ -60,7 +60,7 @@ class Lucky_Item extends React.Component {
 	backLucky=()=>{
 		var idLucky= localStorage.getItem("idLucky");
 		window.location.replace(
-			`${window.location.protocol}//${window.location.host}/luckydetail/`+idLucky,
+			`${window.location.protocol}//${window.location.host}/luckydetail`,
 		);
 	}
 
