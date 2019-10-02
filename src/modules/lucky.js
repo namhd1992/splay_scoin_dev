@@ -315,7 +315,7 @@ export const getRotationDetailDataUser = (token, id) => {
 	}
 }
 
-export const getTuDo = (token, id) => {
+export const getTuDo = (id, token, limit, offset) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -326,7 +326,7 @@ export const getTuDo = (token, id) => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "lucky-spin-history/tudo?lucky_spin_id=" + id;
+		var url = Ultilities.base_url() + "lucky-spin-history/tudo?lucky_spin_id=" + id+"&limit=" + limit + "&offset=" + offset;;
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_TU_DO,

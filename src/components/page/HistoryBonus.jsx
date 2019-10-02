@@ -60,8 +60,8 @@ class HistoryBonusComponent extends React.Component {
 				</Grid>
 				<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:25}}>
 					<div style={{display:'flex'}}>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{cursor:'pointer'}} onClick={this.getAllData}>Tất cả</span></div>
-						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><span style={{cursor:'pointer'}} onClick={this.getData}>Của tôi</span></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><h2 style={{cursor:'pointer', textDecoration:(isAll)?"underline":""}} onClick={this.getAllData}>Tất cả</h2></div>
+						<div style={{flex:1, float:'left', color:"#6a6a6a", textAlign:'center'}}><h2 style={{cursor:'pointer', textDecoration:(!isAll)?"underline":""}} onClick={this.getData}>Của tôi</h2></div>
 					</div>
 				</Grid>
 				<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:15}}>

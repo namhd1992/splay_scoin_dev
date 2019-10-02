@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import '../../styles/lucky.css'
 import {
-	history,
+	history,getTuDo
 } from '../../modules/lucky'
 
 import HistoryBonusComponent from '../../components/page/HistoryBonus'
@@ -15,11 +15,14 @@ class Lucky_History extends React.Component {
 		this.state = {
 			limit: 10,
 			offset: 0,
+			offsetAll:0,
+			data:[],
+			dataAll:[],
 			message: "",
 			openSnack: false,
 			snackVariant: "info",
 			dialogLoginOpen: false,
-			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzcUksZ01WZJhjY1lkCJr3PGsVvjfShGrJ8vPTjq1SX6TXcgNxl%2bvlOHLBfADzM8Mlsw0mbZ%2btokvnxMeU4YFzVbkc%2f%2bbBRReKjyQNkWA1ZD1IHFUAlZrAPYAnxCdruOLw753Dc2UQ%2fHb',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzaLPEvrH6hnDOpNcM685IBCsVvjfShGrJyfCbHHP%2fwTk2eu6TqfyzsKsjPPFATGGL8ea3oojq%2fmrIhf%2bLKkBJ7b74lUpBPkU1%2f7a1kc3I1O595Idg7np1d42qzsY9f7QAr53Dc2UQ%2fHb',
 		};
 	}
 
@@ -31,16 +34,16 @@ class Lucky_History extends React.Component {
 	}
 
 	componentDidMount() {
-		var _this = this;
-		const {scoin_token}= this.state;
-		var user = JSON.parse(localStorage.getItem("user"));
+		this.getAllData();
+	}
+
+
+	getAllData=()=>{
 		var idLucky= localStorage.getItem("idLucky");
-		// if (user !== null) {
-		// 	this.props.getDetailData(user.access_token, idLucky);
-		// } else {
-		// 	_this.setState({ dialogLoginOpen: true });
-		// }
-		this.props.history(idLucky, scoin_token, this.state.limit, this.state.offset);
+		const {scoin_token, limit, offsetAll}= this.state;
+		this.props.history(idLucky, scoin_token, this.state.limit, this.state.offsetAll).then(()=>{
+			
+		});
 	}
 
 	getParamValue=(key)=>
@@ -55,9 +58,14 @@ class Lucky_History extends React.Component {
 		}
 	}
 
+	getTuDo=()=>{
+		const {scoin_token, limit, offset}= this.state;
+		var idLucky= localStorage.getItem("idLucky");
+		this.props.getTuDo(idLucky, scoin_token,limit,offset);
+	}
+
 
 	backLucky=()=>{
-		
 		var idLucky= localStorage.getItem("idLucky");
 		window.location.replace(
 			`${window.location.protocol}//${window.location.host}/luckydetail`,
@@ -72,6 +80,7 @@ class Lucky_History extends React.Component {
 					notSelectOption={this.notSelectOption}
 					handleCloseDialogLogin={this.handleCloseDialogLogin}
 					dataHistory={this.props.dataHistory}
+					getTuDo={this.getTuDo}
 					backLucky={this.backLucky}
 					server={this.props.server}
 					waiting={this.props.waiting}
@@ -91,6 +100,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	history,
+	getTuDo,
 }, dispatch)
 
 
