@@ -36,27 +36,32 @@ class Game_detail extends React.Component {
 			gameArticles: [],
 			gameData: {},
 			id_game:'',
-			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzaLPEvrH6hnDOpNcM685IBCsVvjfShGrJyfCbHHP%2fwTk2eu6TqfyzsKsjPPFATGGL8ea3oojq%2fmrIhf%2bLKkBJ7b74lUpBPkU1%2f7a1kc3I1O595Idg7np1d42qzsY9f7QAr53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzWjwQGoxkA31C0XnTQGEP5Wv9d5FzFtkf4Ej6JdO5PdXYznQ5Q0aBg1b6duQdOd3houc4WOOzGU68NYWua%2f%2fjc%2f8u%2bpGDdHQ3BvBd9VadzEa9X5NJ40UBfadyp3wKlEdOr53Dc2UQ%2fHb',
 		};
 	}
 
 	componentWillMount(){
-		for(let i=0; i<100; i++){
-			window.clearInterval(i);
-		}
+		// var scoin_token=localStorage.getItem("scoin_token");
+		// if(scoin_token!=="" && scoin_token!==undefined){
+		// 	this.setState({scoin_token: scoin_token})
+		// }		
 	}
 
 	componentDidMount() {
 		var _this = this;
-		this.props.getDataId(330017).then(function () {
-			console.log(_this.props.data)
+		const {scoin_token}= this.state;
+		this.props.getDataId(330307, scoin_token).then(function () {
+			// console.log(_this.props.data)
 			// _this.props.getDataByGame(_this.props.data[0].id);
 			// _this.props.getMissionByGame(_this.props.data[0].id);
 			// _this.props.getArticleData(6, 0, undefined, undefined, _this.props.data[0].id).then(function () {
 			// 	_this.setState({ gameArticles: _this.props.articleData });
 			// });
-			_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch);
-			_this.setState({ gameData: _this.props.data });
+			var data=_this.props.data
+			if(data.status==="01"){
+				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch, scoin_token);
+				_this.setState({ gameData: _this.props.data.data });
+			}
 		});
 	}
 

@@ -13,47 +13,65 @@ class HistoryBonusComponent extends React.Component {
 			isAll:true,
 			isSelect:false,
 			itemSelect:'',
+			type:'',
 		};
 	}
 
 	loadMoreAction=()=>{
-		this.setState({numberShow: this.state.numberShow+15})
+		const {limit, offset}=this.props;
+		const {isAll, type}=this.state;
+		if(isAll){
+			this.props.getAllData(limit+offset)
+		}else{
+			if(type===''){
+				this.props.getTuDo(limit+offset)
+			}else if(type==='XU'){
+				this.props.getXu(limit+offset)
+			}else if(type==='GIFTCODE'){
+				this.props.getGiftcode(limit+offset)
+			}else if(type==='SCOIN_CARD'){
+				this.props.getCard(limit+offset)
+			}
+		}
+		// this.setState({numberShow: this.state.numberShow+15})
 	}
 
 	getAllData=()=>{
-		// this.props.getHistory('All')
+		this.props.getAllData(0)
 		this.setState({isAll:true})
 	}
 
 	getData=()=>{
-		// this.props.getHistory('')
+		this.props.getTuDo(0)
 		this.setState({isAll:false})
 	}
 
 	getXu=()=>{
-		this.props.getHistory('XU')
+		this.setState({type:'XU'})
+		this.props.getXu(0)
 	}
 
 	getGiftcode=()=>{
-		this.props.getHistory('GIFTCODE')
+		this.setState({type:'GIFTCODE'})
+		this.props.getGiftcode(0)
 	}
 
 	getCard=()=>{
-		this.props.getHistory('')
+		this.setState({type:'SCOIN_CARD'})
+		this.props.getCard(0)
 	}
 
 
 	render() {
-		const { dataHistory } = this.props;
+		const { data, totalRecords, offset, limit } = this.props;
 		const {isAll}= this.state;
-		var data=[];
-		var totalRecords=0;
-		if(dataHistory !==undefined && dataHistory!==null){
-			data=dataHistory.data.slice(0, this.state.numberShow);
-			totalRecords=dataHistory.data.length;
-		}
+		// var totalRecords=0;
+		// if(dataHistory !==undefined && dataHistory!==null){
+		// 	data=dataHistory.data.slice(0, this.state.numberShow);
+		// 	totalRecords=dataHistory.data.length;
+		// }
 
-		return (dataHistory !==undefined && dataHistory!==null)?(<Grid container spacing={12}>
+		return (<Grid container spacing={12}>
 			<Grid container spacing={12} style={{backgroundColor:'#fff', padding:10}}>
 				<Grid item xs={12} md={12} style={{marginTop:5, marginBottom:10}}>
 					<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_latthe.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a"}}>Lịch sử trúng thưởng</span>
@@ -87,7 +105,7 @@ class HistoryBonusComponent extends React.Component {
 					
 				</Grid>
 				<Grid item xs={12}>
-					{(totalRecords>this.state.numberShow)?(<div item xs={12} className="div_more_history" onClick={this.loadMoreAction}>
+					{(totalRecords>(offset+limit))?(<div item xs={12} className="div_more_history" onClick={this.loadMoreAction}>
 						<div style={{float:'left'}}><img style={{width:20, height:20, marginRight:5}} src="../icon_add.png" alt="icon"/></div><span style={{float:'left'}}>Xem Thêm</span>
 					</div>):(<div></div>)}
 				</Grid>
@@ -99,7 +117,7 @@ class HistoryBonusComponent extends React.Component {
 					<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 				</div>
 			</Grid>
-		</Grid>):(<div></div>)
+		</Grid>)
 	}
 }
 

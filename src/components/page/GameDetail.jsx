@@ -96,12 +96,12 @@ class GameDetailComponent extends React.Component {
 		}
 	}
 	UNSAFE_componentWillReceiveProps(nextProps){
-		if(this.props.data !== nextProps.data){
+		if(this.props.gameData !== nextProps.gameData){
 			const _this=this;
 			var arrScreenShot = [];
-			if (nextProps.data !== undefined && nextProps.data.length === 1) {
-				if (nextProps.data[0].screenShot !== null && nextProps.data[0].screenShot !== "") {
-					arrScreenShot = nextProps.data[0].screenShot.split(",");
+			if (nextProps.gameData !== undefined) {
+				if (nextProps.gameData.screenShot !== null && nextProps.gameData.screenShot !== "") {
+					arrScreenShot = nextProps.gameData.screenShot.split(",");
 				}
 			}
 			var link=arrScreenShot[0];
@@ -194,6 +194,14 @@ class GameDetailComponent extends React.Component {
 		return theloai;
 	}
 
+	isEmpty=(obj)=> {
+		for(var key in obj) {
+			if(obj.hasOwnProperty(key))
+				return false;
+		}
+		return true;
+	}
+
 	render() {
 		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
@@ -206,9 +214,10 @@ class GameDetailComponent extends React.Component {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		var deviceType = Ultilities.getMobileOperatingSystem(userAgent);
 		var arrScreenShot = [];
-		if (data !== undefined && data.length === 1) {
-			if (data[0].screenShot !== null && data[0].screenShot !== "") {
-				arrScreenShot = data[0].screenShot.split(",");
+		if (!this.isEmpty(gameData)) {
+			console.log('FFFFFFFFFFFFFF', gameData)
+			if (gameData.screenShot !== null && gameData.screenShot !== "") {
+				arrScreenShot = gameData.screenShot.split(",");
 			}
 		}
 		var articlesData = gameArticles;

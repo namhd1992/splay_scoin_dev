@@ -326,7 +326,7 @@ export const getTuDo = (id, token, limit, offset) => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "lucky-spin-history/tudo?lucky_spin_id=" + id+"&limit=" + limit + "&offset=" + offset;;
+		var url = Ultilities.base_url() + "lucky-spin-history/tudo?lucky_spin_id=" + id+"&limit=" + limit + "&offset=" + offset;
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_TU_DO,
@@ -365,7 +365,7 @@ export const getVinhDanh = (id) => {
 	}
 }
 
-export const getCodeBonus = (token, id, type) => {
+export const getCodeBonus = (id, token, type, limit, offset) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -376,7 +376,7 @@ export const getCodeBonus = (token, id, type) => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "lucky-spin-history?lucky_spin_id=" + id + '&type_gift='+type;
+		var url = Ultilities.base_url() + "lucky-spin-history?lucky_spin_id=" + id + '&type_gift='+type+"&limit=" + limit + "&offset=" + offset;
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_CODE_BONUS,

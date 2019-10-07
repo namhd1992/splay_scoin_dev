@@ -38,12 +38,12 @@ class Lucky_detail extends React.Component {
 			dialogMoreTurnOpen: false,
 			numberWidth:6,
 			numberHeight:2,
-			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzaLPEvrH6hnDOpNcM685IBCsVvjfShGrJyfCbHHP%2fwTk2eu6TqfyzsKsjPPFATGGL8ea3oojq%2fmrIhf%2bLKkBJ7b74lUpBPkU1%2f7a1kc3I1O595Idg7np1d42qzsY9f7QAr53Dc2UQ%2fHb',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzdVEp0mNyd27gT5RAC0MWEOsVvjfShGrJzMe7uhZEit%2bHIZ70XHpJPQ9i7c5A6AIWgBgoTkeOzw6ENmaN9BOridvgCQJvTbPWRwirA9PAFz2IfNNb2qZK6bRK64v76mJ2r53Dc2UQ%2fHb',
 
 		};
 	}
 	componentWillMount(){
-		var scoin_token=this.getParamValue("ud");
+		var scoin_token=localStorage.getItem("scoin_token");
 		if(scoin_token!=="" && scoin_token!==undefined){
 			this.setState({scoin_token: scoin_token})
 		}		
@@ -83,19 +83,6 @@ class Lucky_detail extends React.Component {
 		
 		});
 	}
-
-	getParamValue=(key)=>
-	{
-		var url = window.location.search.substring(1);
-		var qArray = url.split('&');
-		for (var i = 0; i < qArray.length; i++) 
-		{
-			var pArr = qArray[i].split('=');
-			if (pArr[0] === key) 
-				return pArr[1];
-		}
-	}
-
 
 	handleCloseSnack = () => {
 		this.setState({ openSnack: false });

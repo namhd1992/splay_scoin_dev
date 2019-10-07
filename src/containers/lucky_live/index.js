@@ -23,35 +23,11 @@ class Lucky_Live extends React.Component {
 	}
 
 	componentWillMount(){
-		var scoin_token=this.getParamValue("ud");
-		if(scoin_token!=="" && scoin_token!==undefined){
-			this.setState({scoin_token: scoin_token})
-		}		
+	
 	}
 
 	componentDidMount() {
-		var _this = this;
-		const {scoin_token}= this.state;
-		var user = JSON.parse(localStorage.getItem("user"));
-		var idLucky= localStorage.getItem("idLucky");
-		// if (user !== null) {
-		// 	this.props.getDetailData(user.access_token, idLucky);
-		// } else {
-		// 	_this.setState({ dialogLoginOpen: true });
-		// }
-		this.props.getDetailData(idLucky, scoin_token);
-	}
 
-	getParamValue=(key)=>
-	{
-		var url = window.location.search.substring(1);
-		var qArray = url.split('&');
-		for (var i = 0; i < qArray.length; i++) 
-		{
-			var pArr = qArray[i].split('=');
-			if (pArr[0] === key) 
-				return pArr[1];
-		}
 	}
 
 

@@ -18,13 +18,14 @@ class Lucky extends React.Component {
 			limit: 10,
 			offset: 0,
 			loadedRecords: 0,
-			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzaLPEvrH6hnDOpNcM685IBCsVvjfShGrJyfCbHHP%2fwTk2eu6TqfyzsKsjPPFATGGL8ea3oojq%2fmrIhf%2bLKkBJ7b74lUpBPkU1%2f7a1kc3I1O595Idg7np1d42qzsY9f7QAr53Dc2UQ%2fHb',
+			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzdVEp0mNyd27gT5RAC0MWEOsVvjfShGrJzMe7uhZEit%2bHIZ70XHpJPQ9i7c5A6AIWgBgoTkeOzw6ENmaN9BOridvgCQJvTbPWRwirA9PAFz2IfNNb2qZK6bRK64v76mJ2r53Dc2UQ%2fHb',
 		};
 	}
 
 	componentWillMount(){
 		var scoin_token=this.getParamValue("ud");
 		if(scoin_token!=="" && scoin_token!==undefined){
+			localStorage.setItem('scoin_token', scoin_token)
 			this.setState({scoin_token: scoin_token})
 		}		
 	}
@@ -32,6 +33,7 @@ class Lucky extends React.Component {
 	componentDidMount() {
 		var _this = this;
 		const {scoin_token}= this.state;
+		localStorage.setItem('scoin_token', scoin_token)
 		this.props.changeTitle("MAY MẮN");
 		this.props.getData(this.state.limit, this.state.offset, scoin_token).then(function () {
 			_this.setState({ loadedRecords: _this.state.limit + _this.state.offset });
