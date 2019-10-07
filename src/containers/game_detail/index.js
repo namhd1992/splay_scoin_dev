@@ -41,10 +41,10 @@ class Game_detail extends React.Component {
 	}
 
 	componentWillMount(){
-		// var scoin_token=localStorage.getItem("scoin_token");
-		// if(scoin_token!=="" && scoin_token!==undefined){
-		// 	this.setState({scoin_token: scoin_token})
-		// }		
+		var scoin_token=localStorage.getItem("scoin_token");
+		if(scoin_token!=="" && scoin_token!==undefined){
+			this.setState({scoin_token: scoin_token})
+		}		
 	}
 
 	componentDidMount() {
