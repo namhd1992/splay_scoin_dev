@@ -36,21 +36,16 @@ class Game_detail extends React.Component {
 			gameArticles: [],
 			gameData: {},
 			id_game:'',
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzWjwQGoxkA31C0XnTQGEP5Wv9d5FzFtkf4Ej6JdO5PdXYznQ5Q0aBg1b6duQdOd3houc4WOOzGU68NYWua%2f%2fjc%2f8u%2bpGDdHQ3BvBd9VadzEa9X5NJ40UBfadyp3wKlEdOr53Dc2UQ%2fHb',
 		};
 	}
 
 	componentWillMount(){
-		var scoin_token=localStorage.getItem("scoin_token");
-		if(scoin_token!=="" && scoin_token!==undefined){
-			this.setState({scoin_token: scoin_token})
-		}		
 	}
 
 	componentDidMount() {
 		var _this = this;
 		const {scoin_token}= this.state;
-		this.props.getDataId(330307, scoin_token).then(function () {
+		this.props.getDataId(330307).then(function () {
 			// console.log(_this.props.data)
 			// _this.props.getDataByGame(_this.props.data[0].id);
 			// _this.props.getMissionByGame(_this.props.data[0].id);
@@ -59,7 +54,7 @@ class Game_detail extends React.Component {
 			// });
 			var data=_this.props.data
 			if(data.status==="01"){
-				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch, scoin_token);
+				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch);
 				_this.setState({ gameData: _this.props.data.data });
 			}
 		});

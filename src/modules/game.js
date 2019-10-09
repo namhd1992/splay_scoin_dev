@@ -79,19 +79,13 @@ export const getData = (limit, offset, orderBy, searchValue, tagList) => {
   }
 }
 
-export const getDataId = (id, token) => {
-  var header = {
-    headers: {
-      "content-type": "application/json",
-      "Authorization": "bearer " + token,
-    }
-  }
+export const getDataId = (id) => {
   return dispatch => {
     dispatch({
       type: GAME_REQUEST
     })
     var url = Ultilities.base_url() + "game/detail?service_id=" + id;
-    return axios.get(url, header).then(function (response) {
+    return axios.get(url).then(function (response) {
       dispatch({
         type: GAME_DETAIL_RESPONSE,
         dataDetail: response.data

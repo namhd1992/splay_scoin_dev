@@ -215,7 +215,6 @@ class GameDetailComponent extends React.Component {
 		var deviceType = Ultilities.getMobileOperatingSystem(userAgent);
 		var arrScreenShot = [];
 		if (!this.isEmpty(gameData)) {
-			console.log('FFFFFFFFFFFFFF', gameData)
 			if (gameData.screenShot !== null && gameData.screenShot !== "") {
 				arrScreenShot = gameData.screenShot.split(",");
 			}
