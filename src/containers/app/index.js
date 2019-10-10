@@ -51,7 +51,7 @@ class App extends React.Component {
 						<Route exact path="/giftcodedetail/:id" component={Giftcode_detail} /> */}
 						{/* <Route exact path="/login" component={Login} /> */}
 						<Route exact path="/logout" component={Logout} />
-						<Route exact path="/" component={Lucky_Rotation} />
+						<Route exact path="/" component={Lucky} />
 						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
 						<Route exact path="/auction" component={Auction} />
 						<Route exact path="/history" component={History} />

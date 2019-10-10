@@ -74,6 +74,26 @@ class LuckyComponent extends React.Component {
 		localStorage.setItem("linkLiveStream", obj.linkLiveStream);
 	}
 
+	getTime=(obj)=>{
+		var now = moment(new Date()); //todays date
+		var end = moment(new Date(obj.endDate)); // another date
+		var duration = moment.duration(end.diff(now));
+		var days = Math.floor(duration.asDays());
+		var hours = Math.floor(duration.asHours());
+		var minutes = Math.floor(duration.asMinutes());
+		if (days > 0) {
+			return "Còn " + days + " ngày";
+		} else if (hours > 0) {
+			return "Còn " + hours + " giờ";
+		} else if (minutes > 0) {
+			return "Còn " + minutes + " phút";
+		}else{
+			return "";
+		}
+	}
+
+
+
 
 	render() {
 		const {data, waiting, totalRecords, loadedRecords, server}=this.props;
@@ -87,20 +107,20 @@ class LuckyComponent extends React.Component {
 						</Grid>
 						<Grid container spacing={12}>
 							{data.map((obj, key) => {
-								var now = moment(new Date()); //todays date
-								var end = moment(new Date(obj.endDate)); // another date
-								var duration = moment.duration(end.diff(now));
-								var days = Math.floor(duration.asDays());
-								var hours = Math.floor(duration.asHours());
-								var minutes = Math.floor(duration.asMinutes());
-								var time_text = "";
-								if (days > 0) {
-									time_text = "Còn " + days + " ngày";
-								} else if (hours > 0) {
-									time_text = "Còn " + hours + " giờ";
-								} else if (minutes > 0) {
-									time_text = "Còn " + minutes + " phút";
-								}
+								// var now = moment(new Date()); //todays date
+								// var end = moment(new Date(obj.endDate)); // another date
+								// var duration = moment.duration(end.diff(now));
+								// var days = Math.floor(duration.asDays());
+								// var hours = Math.floor(duration.asHours());
+								// var minutes = Math.floor(duration.asMinutes());
+								// var time_text = "";
+								// if (days > 0) {
+								// 	time_text = "Còn " + days + " ngày";
+								// } else if (hours > 0) {
+								// 	time_text = "Còn " + hours + " giờ";
+								// } else if (minutes > 0) {
+								// 	time_text = "Còn " + minutes + " phút";
+								// }
 								return (
 									<Grid key={key} item xs={12} md={12} style={{marginBottom:20}}>
 										<div className={classes.gridItem}>
@@ -118,7 +138,7 @@ class LuckyComponent extends React.Component {
 													</Link>
 													<GridListTileBar
 														style={{backgroundColor:'rgba(45, 124, 125, 0.6)', height:this.state.height, borderRadius:5}}
-														title={time_text}
+														title={this.getTime(obj)}
 														actionIcon={
 															<IconButton aria-label={`info about`} className={classes.icon} onClick={this.detailBonus}>
 															  <Help></Help>

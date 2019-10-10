@@ -38,7 +38,7 @@ class Lucky_detail extends React.Component {
 			dialogMoreTurnOpen: false,
 			numberWidth:6,
 			numberHeight:2,
-			scoin_token:'y%2bETt%2bPUG68ECJOjzjBQ7F5tq2B%2fnmMeDD%2bJNOrMG1LfRZy9SjhIzdVEp0mNyd27gT5RAC0MWEOsVvjfShGrJzMe7uhZEit%2bHIZ70XHpJPQ9i7c5A6AIWgBgoTkeOzw6ENmaN9BOridvgCQJvTbPWRwirA9PAFz2IfNNb2qZK6bRK64v76mJ2r53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzQW6IedF1MqAhm4oKQs%2f%2bLCv9d5FzFtkf0ZspWiwpWXS3UQQDmfqY%2b%2fY2e5MC%2fhuDDBszTicVPo95Bn8DyQI34AYmtwf%2bV%2f91Twrs0DvXsS7U4k0pa1aQ9NOtP1wK041P753Dc2UQ%2fHb',
 
 		};
 	}
