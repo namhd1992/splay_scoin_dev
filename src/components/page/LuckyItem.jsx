@@ -6,9 +6,8 @@ import {withMobileDialog} from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
 import { ListItem } from 'material-ui/List';
 import Notification from '../Notification';
-import LoginRequired from '../LoginRequired';
-import '../../styles/imageServerError.css';
-import '../../styles/luckyDetail.css';
+// import '../../styles/imageServerError.css';
+// import '../../styles/luckyDetail.css';
 
 
 class LuckyItemComponent extends React.Component {
@@ -62,7 +61,6 @@ class LuckyItemComponent extends React.Component {
 				{/* <button className="closeBuyTurn" onClick={this.backLucky}>
 								QUAY LẠI
 				</button> */}
-				<LoginRequired open={dialogLoginOpen}></LoginRequired>
 				<Notification message={message} variant={snackVariant} openSnack={openSnack} closeSnackHandle={this.handleCloseSnack} ></Notification>
 			</div>
 		) : (<div className="global-loading">

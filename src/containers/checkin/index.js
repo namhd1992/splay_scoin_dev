@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import '../../styles/checkin.css'
+// import '../../styles/checkin.css'
 import {
 	getData,
 	checkin

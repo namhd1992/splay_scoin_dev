@@ -1,7 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import '../../styles/lucky.css'
+// import '../../styles/lucky.css'
 import {
 	history,getTuDo, getCodeBonus
 } from '../../modules/lucky'

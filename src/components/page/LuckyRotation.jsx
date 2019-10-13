@@ -1,8 +1,7 @@
 import React from 'react'
 import Grid from 'material-ui/Grid';
-import LoginRequired from '../LoginRequired';
 import Wheel from '../../containers/lucky_rotation/Winwheel'
-import '../../styles/luckyHistory.css'
+// import '../../styles/luckyHistory.css'
 import { withRouter } from 'react-router-dom'
 
 
@@ -147,7 +146,6 @@ class LuckyRotationComponent extends React.Component {
 					<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 				</div>
 			</Grid>
-			<LoginRequired open={dialogLoginOpen}></LoginRequired>
 		</Grid>)
 	}
 }

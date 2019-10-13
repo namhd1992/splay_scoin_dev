@@ -1,7 +1,7 @@
 import React from 'react'
 import Grid from 'material-ui/Grid';
 import { Link } from 'react-router-dom';
-import '../../styles/luckyHistory.css';
+// import '../../styles/luckyHistory.css';
 
 
 class LiveStreamComponent extends React.Component {

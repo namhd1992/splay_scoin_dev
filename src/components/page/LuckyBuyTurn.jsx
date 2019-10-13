@@ -7,9 +7,8 @@ import {
 } from 'material-ui/Dialog';
 import PropTypes from 'prop-types';
 import Notification from '../../components/Notification';
-import LoginRequired from '../../components/LoginRequired';
-import '../../styles/imageServerError.css';
-import '../../styles/luckyBuyTurn.css';
+// import '../../styles/imageServerError.css';
+// import '../../styles/luckyBuyTurn.css';
 
 
 
@@ -89,13 +88,11 @@ class LuckyBuyTurnComponent extends React.Component {
 							<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
 						</div>
 					</Grid>
-					<LoginRequired open={dialogLoginOpen}></LoginRequired>
 				<Notification message={message} variant={snackVariant} openSnack={openSnack} closeSnackHandle={this.handleCloseSnack} ></Notification>
 			</div>): (<div className="global-loading">
 			{(waiting === true) ? (												
 				<CircularProgress style={{ color: "black" }} size={50} />):((server===true)?(<img className="error" alt="just alt"
 				src="../baotri.png" />):(<div style={{color:"black", fontSize:"20px"}}>Không có dữ liệu!</div>))}
-			{/* <LoginRequired open={dialogLoginOpen}></LoginRequired> */}
 		</div>)
 	}
 }

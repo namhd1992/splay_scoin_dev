@@ -2,7 +2,6 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import Grid from 'material-ui/Grid';
 import Checkbox from 'material-ui/Checkbox';
-import LoginRequired from '../../components/LoginRequired';
 import Dialog, {
 	DialogActions,
 	DialogContent,
@@ -11,7 +10,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import { withStyles } from "material-ui/styles/index"
 import { connect } from 'react-redux'
-import '../../styles/lucky.css'
+// import '../../styles/lucky.css'
 import {
 	getDetailData,
 	getRotationDetailData,
@@ -257,7 +256,6 @@ class Lucky_Rotation extends React.Component {
 				</div>
 			</DialogActions>
 		</Dialog>
-		<LoginRequired open={dialogLoginOpen}></LoginRequired>
 		</div>
 		)
 	}

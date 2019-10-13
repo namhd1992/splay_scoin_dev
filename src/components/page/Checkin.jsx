@@ -3,11 +3,10 @@ import Grid from 'material-ui/Grid'
 import { connect } from 'react-redux'
 import Hidden from 'material-ui/Hidden'
 import { CircularProgress } from 'material-ui/Progress'
-import LoginRequired from '../../components/LoginRequired'
 import Button from 'material-ui/Button'
 import List, { ListItem, ListItemText } from 'material-ui/List'
 import { withTheme } from 'material-ui/styles'
-import '../../styles/imageServerError.css'
+// import '../../styles/imageServerError.css'
 
 
 class CheckinComponent extends React.Component {
@@ -119,13 +118,11 @@ class CheckinComponent extends React.Component {
 						</Grid>
 					</Grid>
 				</Grid>
-				<LoginRequired open={dialogLoginOpen}></LoginRequired>
 			</div>
 		) : (<div className="global-loading">
 			{(server !== true) ? (												
 			<CircularProgress style={{ color: "black" }} size={50} />):(<img className="error" alt="just alt"
 			src="../baotri.png" />)}
-			<LoginRequired open={dialogLoginOpen}></LoginRequired>
 		</div>)
 	}
 }

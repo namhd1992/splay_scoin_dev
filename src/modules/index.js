@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import game from './game'
-import auction from './auction'
 import giftcode from './giftcode'
 import lucky from './lucky'
 import home from './home'
@@ -28,7 +27,6 @@ import event from './event'
 export default combineReducers({
 	routing: routerReducer,
 	game,
-	auction,
 	giftcode,
 	lucky,
 	home,

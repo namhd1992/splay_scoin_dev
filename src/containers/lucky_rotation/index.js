@@ -2,7 +2,6 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import Grid from 'material-ui/Grid';
 import Checkbox from 'material-ui/Checkbox';
-import LoginRequired from '../../components/LoginRequired';
 import Pagination from "react-js-pagination";
 import Dialog, {
 	DialogActions,

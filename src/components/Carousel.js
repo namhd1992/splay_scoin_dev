@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../styles/carousel.css'
+// import '../styles/carousel.css'
 import Slider from 'react-slick'
 import { withRouter } from 'react-router-dom'
 

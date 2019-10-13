@@ -6,7 +6,7 @@ import Dialog, {
 } from 'material-ui/Dialog'
 import Button from 'material-ui/Button'
 import { ListItemText } from 'material-ui/List'
-import '../styles/mission.css'
+// import '../styles/mission.css'
 
 
 

@@ -15,10 +15,9 @@ import Dialog, {
 import PropTypes from 'prop-types';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Notification from '../../components/Notification';
-import LoginRequired from '../../components/LoginRequired';
 import { Link } from 'react-router-dom'
-import '../../styles/imageServerError.css';
-import '../../styles/luckyDetail.css';
+// import '../../styles/imageServerError.css';
+// import '../../styles/luckyDetail.css';
 
 const styles = {
 	paper: {
@@ -319,8 +318,7 @@ class LuckyDetailComponent extends React.Component {
 						</div>
 					</DialogActions>
 				</Dialog>
-				
-				<LoginRequired open={dialogLoginOpen}></LoginRequired>
+			
 				{/* <Dialog
 					open={dialogItemOpen}
 					onClose={this.handleCloseDialogItem}
@@ -352,7 +350,6 @@ class LuckyDetailComponent extends React.Component {
 			{(waiting === true) ? (												
 				<CircularProgress style={{ color: "black" }} size={50} />):((server===true)?(<img className="error" alt="just alt"
 				src="../baotri.png" />):(<div style={{color:"black", fontSize:"20px"}}>Không có dữ liệu!</div>))}
-			{/* <LoginRequired open={dialogLoginOpen}></LoginRequired> */}
 		</div>)
 	}
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from 'material-ui/Grid'
-import '../../styles/luckyHistory.css'
+// import '../../styles/luckyHistory.css'
 import { withRouter } from 'react-router-dom'
 
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import Grid from 'material-ui/Grid'
 import { connect } from 'react-redux'
-import RightArea from '../../components/RightArea'
 import PropTypes from 'prop-types'
 import Button from 'material-ui/Button'
 import { CircularProgress } from 'material-ui/Progress'
@@ -25,15 +24,13 @@ import { withTheme } from 'material-ui/styles'
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html'
 import Notification from '../../components/Notification'
 import Lightbox from 'react-images'
-import HeadMenu from '../../components/HeadMenu'
 import moment from 'moment'
 
-import LoginRequired from '../../components/LoginRequired'
 import YouTube from 'react-youtube'
 import { withStyles } from 'material-ui/styles'
-import '../../styles/gameDetail.css'
-import '../../styles/carousel.css'
-import '../../styles/imageServerError.css'
+// import '../../styles/gameDetail.css'
+// import '../../styles/carousel.css'
+// import '../../styles/imageServerError.css'
 
 const styles = {
 	paper: {
@@ -539,7 +536,6 @@ class GameDetailComponent extends React.Component {
 								</Grid>) : (<div></div>)}
 						</Grid> */}
 						<Notification message={message} variant={snackVariant} openSnack={openSnack} closeSnackHandle={this.handleCloseSnack} ></Notification>
-						<LoginRequired open={dialogLoginOpen}></LoginRequired>
 						<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}

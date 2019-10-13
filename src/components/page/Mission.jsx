@@ -16,10 +16,12 @@ import Dialog, {
 import PropTypes from 'prop-types'
 import { withStyles } from "material-ui/styles/index"
 import Notification from '../../components/Notification'
-// import LoginRequired from '../../components/LoginRequired'
-import PopupMission from '../PopupMission'
-import '../../styles/mission.css'
-import '../../styles/imageServerError.css'
+import PopupMission from '../PopupMission';
+import '../../styles/style.css';
+import $ from 'jquery';
+import 'bootstrap';
+// import '../../styles/mission.css'
+// import '../../styles/imageServerError.css'
 
 const styles = {
 	paper: {
@@ -115,114 +117,91 @@ class MissionComponent extends React.Component {
 		const { secondary } = theme.palette;
 
 		return (<div>
-			<Grid container style={{ width: "100%", margin: "0px" }}>
-				<Grid item xs={12} md={12} >
-					<Grid container>
-						<Grid container xs={12} md={12} style={{background:'#ecf5fe'}}>
-							<Grid item xs={12} md={12} style={{marginTop:5, paddingTop: 10}}>
-								<div style={{float:'left'}}><img style={{width:24, height:24, marginRight:10}} src="../icon_nhiemvu.png" alt="icon"/></div><span style={{float:'left', fontWeight:'bold', color:"#6a6a6a", fontSize:18}}>Nhiệm vụ</span>
-							</Grid>
-							{(data!==null)?(<Grid item xs={12} md={12}>
-								<List className="mission-list-root" >
-									{data.map((obj, key) => (
-										<ListItem className="mission-item" key={key} style={{ backgroundColor: "#fff", border:"1px solid #cccccc", borderRadius: "5px", marginBottom: "10px", paddingRight: 2 }}>
-											{/* {(obj.award === "Thịt") ? ( */}
-											<div>
-												<img style={{width:40, height:40, cursor:'pointer'}} src={this.getSrcImage(obj,key)}
-													id={key}
-													onClick={() => this.showDetail(obj.description,"Chi tiết nhiệm vụ")} />
+					<div class="container py-3" style={{marginTop:55}}>
+						<div class="row">
+							<div class="col-sm-9 px-2">
+								<div class="bg-white p-3 mb-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Nhiệm vụ</span></h2>
+									<div class="card shadow-sm">
+										<div class="card-body p-3 pl-2">
+											<div class="media position-relative">
+											<img src="images/icon_diemdanh.png" alt="Điểm danh" class="mr-3 image-animated" width="48" />
+											<div class="media-body">
+												<h4 class="font13 font-weight-bold">Lật thẻ đặc biệt 1 lần</h4>
+												<span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="images/icon-xu.png" alt="icon" width="16" class="mr-1" /> +300 </span>
 											</div>
-											{(obj.award === "XU") ? (
-											<ListItemText style={{width:"60%", padding:"0 7px"}} disableTypography={true}
-												primary={(<div className="mission_title">{obj.missionName}</div>)}
-												secondary={(
-													<span className="global-thit" style={{ color: "#fe8731" }}><img alt="just alt"
-														src="../Xu.png" /> <span style={{ color: "#ff9933", fontSize:16, fontWeight:'bold' }}>+{obj.valueAward}</span> </span>)} />) : (<div></div>)}
-											{(obj.award === "TURN_SPIN") ? (
-											<ListItemText style={{width:"60%", padding:"0 7px"}} disableTypography={true}
-												primary={(<div className="mission_title">{obj.missionName}</div>)}
-												secondary={(
-													<span className="global-thit" style={{ color: "#fe8731" }}><span style={{ color: "#ff9933", fontSize:16, fontWeight:'bold' }}>+{obj.valueAward} lượt lật thẻ</span> </span>)} />) : (<div></div>)}
-											<div className="mission_action" style={{paddingLeft:this.state.paddingL}}>
-												<img style={{width:30, height:30, float:'left', marginRight:5, marginTop:2, cursor:'pointer'}} src='../icon_question.png'
-													onClick={() => this.openPopupMission(obj)} />
-												{(obj.finish && !obj.received && obj.awardAvailable !==0 && obj.missionStatus ==="active") ? (<div>
-													<button onClick={() => this.reward(obj.missionId)} className="buttonMissionReceive" variant="raised">Nhận</button>
-												</div>) : (<div></div>)}
-												{(!obj.finish && !obj.received && obj.missionStatus ==="active") ? (<div>
-													<button className="buttonGhostMission" onClick={() => this.doMission(obj.actionName, obj.objectId, obj.objectValue, obj.scoinGameId,obj.condition)}>Thực Hiện</button>
-												</div>) : (<div></div>)}
-												{(obj.finish && obj.received && obj.missionStatus ==="active") ? (
-													<Button style={{ color: "#888787", textTransform:"none", fontSize:16 }} disabled>
-														Đã Nhận
-													</Button>
-												) : (<div></div>)}
-												{(obj.finish && !obj.received && obj.awardAvailable ===0 && obj.missionStatus ==="active") ? (
-													<Button style={{ color: "#888787", textTransform:"none", fontSize:16 }} disabled>
-														Đã Hết
-													</Button>
-												) : (<div></div>)}
-												{(obj.missionStatus ==="inactive") ? (
-													<Button style={{ color: "#888787", textTransform:"none", fontSize:16 }} disabled>
-														Hết Hạn
-													</Button>
-												) : (<div></div>)}
+											<div class="position-absolute" style={{right: 8}}>
+												<span type="button" class="badge badge-pill badge-secondary" data-toggle="modal" data-target="#myModal">?</span> <button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font13"><span class="small">Thực hiện &raquo;</span></button>
 											</div>
-										</ListItem>
-									))}
-								</List>
-							</Grid>):(<div></div>)}
-							
-							{(waiting) ? (<Grid item xs={12} style={{ textAlign: "center" }}>
-							{(server !== true) ? (												
-									<CircularProgress style={{ color: "black" }} size={50} />):(<img className="error" alt="just alt"
-									src="../baotri.png" />)}
-							</Grid>) : (totalRecords > loadedRecords) ? (
-								<div item xs={12} className="div_more_mission" onClick={this.loadMoreAction}>
-									<div style={{float:'left'}}><img style={{width:20, height:20, marginRight:5}} src="../icon_add.png" alt="icon"/></div><span style={{float:'left'}}>Xem Thêm</span>
+											</div>
+										</div>
+									</div>
+									
+									<button type="button" class="btn btn-block shadow-sm my-3 border btn-hover text-uppercase text-white py-2"><span class="small">Còn 3 nhiệm vụ nữa, Nhấn xem thêm</span></button>                 
 								</div>
-							) : (<div></div>)}
-						</Grid>
-						<Grid item xs={12}>
-							<div style={{textAlign:'center', marginTop:40, marginBottom:25, fontSize:14}}>
-								<div><span style={{color:'#747c89'}}>Hệ thống phát hành game VTC Mobile</span></div>
-								<div><span style={{color:'#747c89'}}>Copyright 2017 VTC Mobile. All rights reverved</span></div>
-								<div><span style={{color:'#59d0c4'}}>Hotline 1900 1104</span></div>
+								<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										<div class="col-6 col-md-4 px-3">
+											<div class="thumb-lat-the position-relative">
+												<a href="#" title="Chơi ngay" class="text-dark">
+													<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
+													<div class="overlay">
+														<div class="text text-white small">Chơi ngay &raquo;</div>
+													</div>
+												</a>
+											</div>
+											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+										</div>
+									</div>
+									
+								</div>
 							</div>
-						</Grid>
-					</Grid>
-				</Grid>
-			</Grid>
-			<Notification message={message} variant={snackVariant} openSnack={openSnack} closeSnackHandle={this.handleCloseSnack} ></Notification>
-			<Dialog
-				fullScreen={false}
-				open={dialogDetailOpen}
-				onClose={this.handleCloseDialogDetail}
-				aria-labelledby="responsive-dialog-title"
-				classes={{ paper: classes.paper }}
-			>
-				<DialogTitle id="responsive-dialog-title"><span style={{ color: "#666666", fontWeight:'bold', fontSize:18 }}>{title_dialog}</span></DialogTitle>
-				<DialogContent>
-					<div>
-						<span style={{ color: "#666666", fontSize:16 }}>{dialogContent}</span>
+							<div class="col-sm-3 px-2">
+								<div class="bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
+									<div class="list-newest">
+										<ul>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
+										</ul>
+									</div>
+									
+								</div>
+							</div>
+						</div>   
 					</div>
-				</DialogContent>
-				<DialogActions>
-					<div>
-						<button onClick={this.handleCloseDialogDetail} className='btn_close_popup'>
-							Đóng
-		  				</button>
+					{/* <!-- The Modal Thong tin phan thuong --> */}
+					<div class="modal fade" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+						<div class="modal-header pb-0">
+							<h4 class="modal-title font13 border-title-cat font-weight-bold color-title-cat">Chi tiết nhiệm vụ</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body font13">
+							<h5 class="font13">Tham gia lật thẻ để nhận ngay 300 XU</h5>
+							<div class="bg-badge-opacity-2 p-2 my-3">
+								<div class="form-check">
+								<label class="form-check-label">
+									<input type="checkbox" class="form-check-input" value="" />0/2
+								</label>
+								</div>
+							</div>
+							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="images/icon-xu.png" alt="icon" width="16" class="mr-1" /> +300 </span></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-hover"><span class="small">Thực hiện</span></button>
+						</div>
+
+						</div>
 					</div>
-				</DialogActions>
-			</Dialog>
-			<PopupMission
-				handleClosePopupMission={this.closePopupMission}
-				openPopupMission={this.state.openPopupMission}
-				dataMission={this.state.dataMission}
-				reward={this.reward}
-				doMission={this.doMission}
-			/>
-			{/* <LoginRequired open={dialogLoginOpen} ></LoginRequired> */}
+					</div>
 		</div>
 		)
 	}

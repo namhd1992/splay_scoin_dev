@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
-import '../../styles/main.css';
+// import '../../styles/main.css';
 // import Login from '../login';
 import Logout from '../logout';
 import Lucky from '../lucky';
@@ -13,7 +13,6 @@ import Checkin from '../checkin';
 import Mission from '../mission';
 // import MenuAppBar from '../../components/MenuAppBar';
 import Game_detail from '../game_detail';
-import Auction from '../auction';
 // import Auction_detail from '../auction_detail';
 import History from '../shop_history';
 import Lucky_Rotation from '../lucky_rotation'
@@ -32,7 +31,7 @@ class App extends React.Component {
 		return (
 			<div style={{ backgroundColor: this.state.backgroundColor }}>
 				{/* <div style={{maxWidth:"1200px", margin:"auto", background: this.state.backgroundColor }}> */}
-				<div style={{maxWidth:"1200px", margin:"auto", background: this.state.backgroundColor }}>
+				<div style={{background: this.state.backgroundColor }}>
 				{/* <MenuAppBar isMobile={this.state.isMobile} pathname={document.location.pathname} compact={this.state.compact} scrolling={this.state.scrolling}
 						data={[{ url: "home", label: "home" }, { url: "about", label: "about" }]}></MenuAppBar> */}
 					<main ref={(c) => this.main = c}>
@@ -53,7 +52,6 @@ class App extends React.Component {
 						<Route exact path="/logout" component={Logout} />
 						<Route exact path="/" component={Lucky} />
 						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
-						<Route exact path="/auction" component={Auction} />
 						<Route exact path="/history" component={History} />
 						<Route exact path="/lucky" component={Lucky} />
 						<Route exact path="/gamedetail" component={Game_detail} />
