@@ -33,6 +33,8 @@ class LuckyComponent extends React.Component {
 		this.state = {
 			height:0,
 			width:0,
+			linkLiveStream:'',
+			img_bonus:'',
 		};
 	}
 
@@ -95,13 +97,33 @@ class LuckyComponent extends React.Component {
 		}
 	}
 
+	openLiveStream=(obj)=>{
+		this.setState({linkLiveStream: obj.linkLiveStream},()=>{
+			$('#myModal1').modal('show');
+		})
+	}
+
+	openBonus=(obj)=>{
+		this.setState({img_bonus: obj.image},()=>{
+			$('#myModal').modal('show');
+		})
+	}
+
+	linkToDetail=(obj)=>{
+		localStorage.setItem("idLucky", obj.id);
+		window.location.replace(
+			`${window.location.protocol}//${window.location.host}/luckydetail`,
+		);
+	}
 
 
 
 	render() {
 		const {data, waiting, totalRecords, loadedRecords, server}=this.props;
+		const {linkLiveStream, img_bonus}=this.state;
+		// console.log(data)
 		const { classes } = this.props;
-		// return (data!==undefined) ? (<div className={classes.root}>
+		// return (data.length>0) ? (<div className={classes.root}>
 		return (<div className={classes.root}>
 
 			<div class="container py-3" style={{marginTop:55}}>
@@ -109,22 +131,31 @@ class LuckyComponent extends React.Component {
 					<div class="col-sm-9 px-2">
 						<div class="bg-white p-3 mb-3">
 							<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Lật thẻ</span></h2>
-							<div class="row">
-								<div class="col-md-6 my-2 px-3">                    	
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay">
-										<img src="images/img-lat-the.png" width="100%" />
-										<div class="overlay">
-											<div class="text text-white small">Chơi ngay &raquo;</div>
+							{(data.length>0)?(<div class="row">
+								{data.map((obj, key) => {
+									return (<div class="col-md-6 my-2 px-3" key={key}>                     	
+										<div class="thumb-lat-the position-relative">
+											<span style={{cursor:"pointer"}} onClick={()=>this.linkToDetail(obj)}>
+												<img src={obj.image} width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</span>
+											<div class="position-absolute a1-title small">
+												<span class="badge bg-badge p-1 text-dark border-radius-none">{this.getTime(obj)}</span>
+												{(obj.linkLiveStream!=="")?(<span class="badge bg-badge p-1 border-radius-none"><img src="../spin.gif" width="7" /> <span style={{cursor: "pointer"}} class="text-dark" onClick={()=>this.openLiveStream(obj)}>Quay số</span></span>):(<div></div>)}
+												
+											</div>                 
+											<div class="position-absolute icon-thongtinphanthuong px-2 py-0 bg-badge small"><span style={{cursor: "pointer"}} class="text-dark" onClick={()=>this.openBonus(obj)}>?</span></div>
 										</div>
-										</a>
-										<div class="position-absolute a1-title small"><span class="badge bg-badge p-1 text-dark border-radius-none">Còn 234 ngày</span></div>                 
-										<div class="position-absolute icon-thongtinphanthuong px-2 py-0 bg-badge small"><a href="#myModal" title="Phần thưởng" class="text-dark" data-toggle="modal">?</a></div>
-									</div>
-									
-								</div>
-								<button type="button" class="btn btn-block shadow-sm m-3 border btn-hover text-uppercase text-white py-2"><span class="small">Còn 3 game khác, Nhấn xem thêm</span></button>  
-							</div>
+										
+									</div>)
+									}
+								)}
+								{(totalRecords > loadedRecords)?(<button type="button" class="btn btn-block shadow-sm m-3 border btn-hover text-uppercase text-white py-2"><span class="small">Còn {totalRecords-loadedRecords} game khác, Nhấn xem thêm</span></button>):(<div></div>)}
+								
+							</div>):(<div></div>)}
+							
 						</div>
 						<div class="mb-3 bg-white p-3">
 							<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
@@ -149,12 +180,12 @@ class LuckyComponent extends React.Component {
 							<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
 							<div class="list-newest">
 								<ul>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
-									<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
+									<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
 								</ul>
 							</div>
 							
@@ -172,7 +203,7 @@ class LuckyComponent extends React.Component {
 					</div>
 					<div class="modal-body font13">
 						<h3 class="text-center font16 font-weight-bold py-3">Thông tin lật thẻ Scoin</h3>
-						<p class="text-center"><img src="images/img-lat-the-2.PNG" width="100%" /><br /><span class="font-italic">Cộng trực tiếp vào ví Scoin</span></p>
+						<p class="text-center"><img src={img_bonus} width="100%" /><br /><span class="font-italic">Cộng trực tiếp vào ví Scoin</span></p>
 						<h5 class="font-weight-bold font13">Cơ cấu giải thưởng</h5>
 						<ol class="pl-3">
 							<li>10tr Scoin - 3000 giải</li>
@@ -192,6 +223,27 @@ class LuckyComponent extends React.Component {
 					</div>
 				</div>
 			</div>
+			
+			{/* LiveStream */}
+			<div class="modal fade" id="myModal1">
+			<div class="modal-dialog">
+					<div class="modal-content">
+					<div class="modal-header pb-0">
+						<h4 class="modal-title font13 border-title-cat font-weight-bold color-title-cat">Xem LiveStream</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body font13">
+						<div class="facebook-responsive">
+							<iframe src={linkLiveStream} width="560" height="315" style={{border:'none', overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+						</div>     
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-hover" data-dismiss="modal"><span class="small">Đóng</span></button>
+					</div>
+
+					</div>
+				</div>
+				</div>
 		</div>)
 	}
 }

@@ -20,7 +20,7 @@ class Mission extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			limit: 12,
+			limit: 10,
 			offset: 0,
 			dialogDetailOpen: false,
 			dialogContent: "",
@@ -30,7 +30,7 @@ class Mission extends React.Component {
 			dialogLoginOpen: false,
 			title_dialog:"",
 			snackVariant: "info",
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzUjdNogA2x8ZgYX6HWQl6Zmv9d5FzFtkf4Aqa1iRlwwxiO%2b1mJvtnJpgtcDAxxnptvuWTW26jzFmxntMaQD99gTf9MkI8k7dxEy1ENH90utf%2b%2bXiSywn6WTPHJ1Ev6U6yr53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzSf7LJ8Vg38UrMWFhk4sh6av9d5FzFtkf2SyGjHtvubUBLTyyX0M9JQ7qLdHGLlvIq2XvN%2fOVsJWF6HmxMgzU2AcNgcoxMUicMr94GgK9dHUgcCKboq%2fqlg4h2ZWU0TEV753Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){

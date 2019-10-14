@@ -37,6 +37,7 @@ class MissionComponent extends React.Component {
 			openPopupMission:false,
 			height:0,
 			paddingL:0,
+			dataMission:{},
 		};
 	}
 
@@ -63,11 +64,11 @@ class MissionComponent extends React.Component {
 	}
 
 	openPopupMission =(obj)=>{
-		this.setState({openPopupMission:true, dataMission:obj});
+		this.setState({dataMission:obj},()=>{
+			$('#myModal').modal('show');
+		});
 	}
-	closePopupMission =()=>{
-		this.setState({openPopupMission:false});
-	}
+
 	
 	handleCloseSnack=()=>{
 		this.props.handleCloseSnack();
@@ -115,6 +116,7 @@ class MissionComponent extends React.Component {
 		const { theme } = this.props;
 		const { classes } = this.props;
 		const { secondary } = theme.palette;
+		const {dataMission}=this.state;
 
 		return (<div>
 					<div class="container py-3" style={{marginTop:55}}>
@@ -122,22 +124,27 @@ class MissionComponent extends React.Component {
 							<div class="col-sm-9 px-2">
 								<div class="bg-white p-3 mb-3">
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Nhiệm vụ</span></h2>
-									<div class="card shadow-sm">
+									{(data.length>0)?(<div>
+									{data.map((obj, key) => {
+										return ( <div class="card shadow-sm" key={key}>
 										<div class="card-body p-3 pl-2">
 											<div class="media position-relative">
-											<img src="images/icon_diemdanh.png" alt="Điểm danh" class="mr-3 image-animated" width="48" />
+											<img src="../icon_diemdanh_active.png" alt="Điểm danh" class="mr-3 image-animated" width="48" />
 											<div class="media-body">
-												<h4 class="font13 font-weight-bold">Lật thẻ đặc biệt 1 lần</h4>
-												<span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="images/icon-xu.png" alt="icon" width="16" class="mr-1" /> +300 </span>
+												<h4 class="font13 font-weight-bold">{obj.missionName}</h4>
+												<span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
 											</div>
 											<div class="position-absolute" style={{right: 8}}>
-												<span type="button" class="badge badge-pill badge-secondary" data-toggle="modal" data-target="#myModal">?</span> <button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font13"><span class="small">Thực hiện &raquo;</span></button>
+												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span> <button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font13"><span class="small">Thực hiện &raquo;</span></button>
 											</div>
 											</div>
 										</div>
-									</div>
-									
-									<button type="button" class="btn btn-block shadow-sm my-3 border btn-hover text-uppercase text-white py-2"><span class="small">Còn 3 nhiệm vụ nữa, Nhấn xem thêm</span></button>                 
+									</div>)
+										}
+									)}
+									{(totalRecords > loadedRecords)?(<button type="button" class="btn btn-block shadow-sm m-3 border btn-hover text-uppercase text-white py-2"><span class="small">Còn {totalRecords-loadedRecords} game khác, Nhấn xem thêm</span></button>):(<div></div>)}
+
+									</div>):(<div></div>)}               
 								</div>
 								<div class="mb-3 bg-white p-3">
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
@@ -162,12 +169,12 @@ class MissionComponent extends React.Component {
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
 									<div class="list-newest">
 										<ul>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
 										</ul>
 									</div>
 									
@@ -184,17 +191,30 @@ class MissionComponent extends React.Component {
 							<h4 class="modal-title font13 border-title-cat font-weight-bold color-title-cat">Chi tiết nhiệm vụ</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
-						<div class="modal-body font13">
-							<h5 class="font13">Tham gia lật thẻ để nhận ngay 300 XU</h5>
+						{(JSON.stringify(dataMission) !== '{}')?(<div class="modal-body font13">
+							<h5 class="font13">{dataMission.description}</h5>
 							<div class="bg-badge-opacity-2 p-2 my-3">
 								<div class="form-check">
-								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="" />0/2
-								</label>
+								{dataMission.missionProgress.map((obj, key) => {
+									return (
+										<div key={key}>
+											{(obj.isFinish) ? (
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
+												</label>
+											):(<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
+												</label>
+											)}
+										</div>
+									)
+									
+								})}
 								</div>
 							</div>
-							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="images/icon-xu.png" alt="icon" width="16" class="mr-1" /> +300 </span></p>
-						</div>
+							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{dataMission.valueAward} </span></p>
+						</div>):(<div></div>)}
+						
 						<div class="modal-footer">
 							<button type="button" class="btn btn-hover"><span class="small">Thực hiện</span></button>
 						</div>

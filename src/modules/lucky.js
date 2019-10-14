@@ -114,7 +114,7 @@ export const getData = (limit, offset, token) => {
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_RESPONSE,
-				data: response.data.data,
+				data: response.data,
 				totalRecords: response.data.totalRecords
 			})
 		}).catch(function (error) {

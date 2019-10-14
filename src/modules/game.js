@@ -6,6 +6,7 @@ export const GAME_RESPONSE = 'game/GAME_RESPONSE'
 export const GAME_DETAIL_RESPONSE = 'game/GAME_DETAIL_RESPONSE'
 export const GAME_RESPONSE_RATING = 'game/GAME_RESPONSE_RATING'
 export const GAME_RESPONSE_MORE = 'game/GAME_RESPONSE_MORE'
+export const ALL_GAME_RESPONSE = 'game/ALL_GAME_RESPONSE'
 
 const initialState = {
   data: [],
@@ -45,6 +46,12 @@ export default (state = initialState, action) => {
         totalRecords: action.totalRecords,
         waiting: false
       }
+      case ALL_GAME_RESPONSE:
+        return {
+          ...state,
+          allGame: action.data,
+          waiting: false
+        }
     default:
       return state
   }
@@ -88,6 +95,25 @@ export const getDataId = (id) => {
     return axios.get(url).then(function (response) {
       dispatch({
         type: GAME_DETAIL_RESPONSE,
+        dataDetail: response.data
+      })
+    }).catch(function (error) {
+      dispatch({
+				type: SERVER_ERROR
+			})
+    })
+  }
+}
+
+export const getAllGame = () => {
+  return dispatch => {
+    dispatch({
+      type: GAME_REQUEST
+    })
+    var url = Ultilities.base_url() + "game/all";
+    return axios.get(url).then(function (response) {
+      dispatch({
+        type: ALL_GAME_RESPONSE,
         dataDetail: response.data
       })
     }).catch(function (error) {
@@ -152,3 +178,5 @@ export const getMoreData = (limit, offset, orderBy, searchValue, tagList) => {
     })
   }
 }
+
+

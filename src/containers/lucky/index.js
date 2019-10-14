@@ -5,6 +5,10 @@ import {
 	getData,
 	getMoreData
 } from '../../modules/lucky'
+
+import {
+	getAllGame
+} from '../../modules/game'
 import {
 	changeTitle
 } from '../../modules/global'
@@ -18,7 +22,8 @@ class Lucky extends React.Component {
 			limit: 10,
 			offset: 0,
 			loadedRecords: 0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzQW6IedF1MqAhm4oKQs%2f%2bLCv9d5FzFtkf0ZspWiwpWXS3UQQDmfqY%2b%2fY2e5MC%2fhuDDBszTicVPo95Bn8DyQI34AYmtwf%2bV%2f91Twrs0DvXsS7U4k0pa1aQ9NOtP1wK041P753Dc2UQ%2fHb',
+			data:[],
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzRZE9%2bBq8he8XxC0XRgCSIqv9d5FzFtkfyfU7Ud90Xf45m%2bx1pj41P%2f9J0%2bddD75eq%2fbK9PL6acMkbIcl8nx6obrjDyuBHOit6XxPIBNO%2fTsIbSr%2bshmiFYLClSCVgEE0b53Dc2UQ%2fHb',
 		};
 	}
 
@@ -36,7 +41,18 @@ class Lucky extends React.Component {
 		localStorage.setItem('scoin_token', scoin_token)
 		this.props.changeTitle("MAY MẮN");
 		this.props.getData(this.state.limit, this.state.offset, scoin_token).then(function () {
-			_this.setState({ loadedRecords: _this.state.limit + _this.state.offset });
+			// console.log(_this.props.data)
+			const data=_this.props.data;
+			if(data.status==="01"){
+				_this.setState({ loadedRecords: _this.state.limit + _this.state.offset, data:data.data });
+			}
+		});
+		this.props.getAllGame().then(function () {
+			// console.log(_this.props.data)
+			const data=_this.props.data;
+			if(data.status==="01"){
+				_this.setState({ loadedRecords: _this.state.limit + _this.state.offset, data:data.data });
+			}
 		});
 	}
 
@@ -68,7 +84,7 @@ class Lucky extends React.Component {
 			<div>
 				<LuckyComponent
 					loadMoreAction={this.loadMoreAction}
-					data={this.props.data}
+					data={this.state.data}
 					waiting={this.props.waiting}
 					totalRecords={this.props.totalRecords}
 					loadedRecords={this.state.loadedRecords}
@@ -81,6 +97,7 @@ class Lucky extends React.Component {
 
 const mapStateToProps = state => ({
 	data: state.lucky.data,
+	allGame: state.game.allGame,
 	waiting: state.lucky.waiting,
 	totalRecords: state.lucky.totalRecords,
 	server:state.server.serverError
@@ -89,6 +106,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
 	getData,
 	getMoreData,
+	getAllGame,
 	changeTitle
 }, dispatch)
 

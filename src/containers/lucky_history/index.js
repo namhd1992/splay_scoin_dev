@@ -21,7 +21,7 @@ class Lucky_History extends React.Component {
 			openSnack: false,
 			snackVariant: "info",
 			dialogLoginOpen: false,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzQW6IedF1MqAhm4oKQs%2f%2bLCv9d5FzFtkf0ZspWiwpWXS3UQQDmfqY%2b%2fY2e5MC%2fhuDDBszTicVPo95Bn8DyQI34AYmtwf%2bV%2f91Twrs0DvXsS7U4k0pa1aQ9NOtP1wK041P753Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzRZE9%2bBq8he8XxC0XRgCSIqv9d5FzFtkfyfU7Ud90Xf45m%2bx1pj41P%2f9J0%2bddD75eq%2fbK9PL6acMkbIcl8nx6obrjDyuBHOit6XxPIBNO%2fTsIbSr%2bshmiFYLClSCVgEE0b53Dc2UQ%2fHb',
 		};
 	}
 
