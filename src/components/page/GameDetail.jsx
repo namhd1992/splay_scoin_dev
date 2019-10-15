@@ -255,372 +255,167 @@ class GameDetailComponent extends React.Component {
 				}
 			]
 		};
-		return (gameData.tagsList !==undefined) ? (
-			<div style={{ marginTop: "8px", borderRadius: "5px", overflow: "hidden", margin: "auto" }}>
-				<Grid container style={{
-					margin: "0px",
-					width: "100%",
-				}}>
-					<Grid item xs={12} md={12}>
-						<Grid container style={{
-							margin: "0px",
-							width: "100%",
-							backgroundImage: "url(" + gameData.bigImage + ")",
-							backgroundSize: "100% auto",
-							backgroundPosition: "center top",
-							backgroundRepeat: "no-repeat"
-						}}
-							justify="center">
-							<Grid item xs={12} style={{ paddingTop: "20%" }}>
-							</Grid>
-							<Grid item xs={12}
-								style={{ background: "linear-gradient(180deg,transparent,rgba(231, 241, 253,0) 5%,rgba(231, 241, 253,.8) 20%,#fff 50%,#fff)" }}>
-								<ListItem style={{ padding: "5px", maxWidth: "1100px", margin: "auto" }}>
-									<img alt="game icon" style={{ width: "72px" }} src={gameData.defaultImage} />
-									<Hidden xsDown>
-										<ListItemText style={{ textAlign: "left", padding: "10px" }} secondary={(
-											<span style={{color:'#6b6b6b'}}> {gameData.downloadTurns + " Lượt tải"}<br /><span
-												onClick={this.openRatingDialog}><Rating point={gameData.pointReview}></Rating></span>
-												<span style={{
-															marginLeft:"20px",
-															fontSize:"11px",
-															border: "1px solid #6b6b6b",
-															padding:"1px 2px",
-															borderRadius: "5px"}}>
-															<label style={{color:"#6b6b6b"}}>{this.getTheLoai(gameData)}</label>
-													</span></span>)}
-											primary={(<span style={{ color: '#6b6b6b' }}><b>{gameData.name}</b></span>)} />
-									</Hidden>
-									<Hidden smUp>
-										<ListItemText style={{ textAlign: "right", padding: "0px" }} secondary={(
-											<span> {gameData.downloadTurns + " Lượt tải"}<br />
-												<span onClick={this.openRatingDialog}>
-													<Rating
-															point={gameData.pointReview}>
-													</Rating>
-													<span style={{
-															float:"right",
-															fontSize:"11px",
-															border: "1px solid #23c9b6",
-															padding:"1px 2px",
-															borderRadius: "20px"}}>
-															<label style={{color:"#23c9b6"}}>{this.getTheLoai(gameData)}</label>
-													</span>
-												</span>
-											</span>)} primary={(
-															<span style={{ color: primary.main }}><b>{gameData.name}</b></span>)} 
-										/>
-									</Hidden>
-									<Hidden xsDown>
-										<div style={{ textAlign: "center", display: "grid", paddingTop:15 }}>
-											<a className="game-button-wrap" target="_blank"
-												href={(deviceType === "ios") ? gameData.urlDownloadIos : gameData.urlDownloadAndroid}>
-												<Button
-													variant="raised"
-													style={{
-														borderRadius: "5px",
-														background: "#33cbcc",
-														color: "#fff",
-														padding: "7px 10px",
-														fontSize: "0.8em",
-														whiteSpace: "nowrap",
-														minHeight: "auto",
-														clear: "both"
-													}}
-												>Chơi</Button></a>
-											<a className="game-button-wrap" href={gameData.fanpageFB} style={{ clear: "both", marginTop:5 }}>
-												<Button style={{ color: "#fe8731", borderRadius:"5px" }}>Fanpage</Button>
-											</a>
-										</div>
-									</Hidden>
-								</ListItem>
-							</Grid>
-							<Grid item xs={12} style={{ backgroundColor: "#fff"}}>
-								<Hidden smUp>
-									<div style={{ textAlign: "center", display: "grid" }}>
-										<a className="game-button-wrap" target="_blank"
-											href={(deviceType === "ios") ? gameData.urlDownloadIos : gameData.urlDownloadAndroid}><Button
-												variant="raised" style={{
-													borderRadius: "5px",
-													background: "#33cbcc",
-													color: "#fff",
-													padding: "10px",
-													fontSize: "0.8em",
-													whiteSpace: "nowrap",
-													minHeight: "auto",
-													width: "100%",
-													margin: "auto"
-												}}>Chơi</Button></a>
-										<a className="game-button-wrap" href={gameData.fanpageFB}>
-											<Button style={{ color: "#fe8731", borderRadius:"5px" }}>Fanpage</Button>
-										</a>
-									</div>
-								</Hidden>
-							</Grid>
-						</Grid>
-						
-						<Grid container style={{
-							width: "100%",
-							backgroundColor: "#fff",
-							borderRadius: "5px",
-							margin: "8px 0px 0px 0px",
-							color: "#6b6b6b"
-						}}>
-							<Grid item xs={12} style={{margin:"15px 10px"}}>
-								<span style={{ fontSize: "1.2em", fontWeight:'bold'}}>Chi tiết</span>
-							</Grid>
-							<Grid item xs={12} style={{
-								width: "100%",
-								overflow: "hidden",
-								padding:"0px 30px"
-							}}>
-								<Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
-									{arrScreenShot.map((obj, key) => (
-										<div key={key} style={{}}>
-											<div onClick={() => this.openLightBox(key)} style={{
-												backgroundImage: "url(" + obj + ")",
-												backgroundRepeat: "no-repeat",
-												backgroundPosition: "center",
-												backgroundSize: "contain",
-												with: "100%",
-												height:this.state.height,
-												margin:this.state.margin,
-												paddingBottom: this.state.paddingBottom
-											}}>
-											</div>
-										</div>
-									))}
-								</Slider>
-							</Grid>
-							<Grid item xs={12}>
-								{(showMore) ? (
-									<div style={{ padding: "10px" }}
-										dangerouslySetInnerHTML={{ __html: gameData.description }}>
-									</div>
-								) : (<div style={{ position: "relative", padding: "10px" }}>
-									<HTMLEllipsis
-										unsafeHTML={gameData.description}
-										maxLine='5'
-										ellipsis='...'
-										basedOn='letters'
-									/>
-									<a style={{
-										color: secondary.main,
-										textAlign: "center",
-										width: "100%",
-										display: "block",
-										position: "absolute",
-										paddingTop: "60px",
-										marginTop: "-80px",
-										background: "linear-gradient(to top, rgba(35, 43, 54,1) 0%,rgba(35, 43, 54,0.5) 50%,rgba(35, 43, 54,0) 100%)"
-									}} onClick={() => this.readMore()}>Xem thêm</a>
-								</div>
-									)}
-							</Grid>
-						</Grid>
-						{(youtubeData !== undefined && youtubeData.length > 0) ? (
-							<Grid container style={{
-								width: "100%",
-								backgroundColor: "#fff",
-								borderRadius: "5px",
-								margin: "8px 0px 0px 0px",
-								overflow: "hidden",
-								padding: "8px",
-								color:'#6b6b6b'
-							}}>
-								<Grid item xs={12}>
-									<Grid container className="game-giftcode-root">
-										<Grid item xs={12}>
-											<span style={{ fontSize: "1.2em"}}>Videos</span>
-										</Grid>
-										<Grid item xs={12}>
-											<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-												<div style={{ display: "flex" }}>
-													{youtubeData.map((obj, key) => {
-														if (obj.id.kind !== "youtube#channel") {
-															return (
-																<div
-																	key={key}
-																	onClick={() => this.dialogYoutubeOpen(obj.id.videoId)}
-																	style={{ padding: "8px", cursor: "pointer", position: "relative", width: "180px", paddingTop: "3px", paddingBottom: "3px" }}>
-																	<Grid container spacing={8} style={{ margin: "0px", width: "100%" }}>
-																		<Grid item xs={12} style={{ padding: "0px" }}>
-																			<div style={{
-																				backgroundImage: "url(" + obj.snippet.thumbnails.medium.url + ")",
-																				backgroundSize: "cover",
-																				backgroundPostition: "center middle",
-																				height: "90px",
-																				width: "140px",
-																				textAlign: "center",
-																				paddingTop: "8px"
-																			}}><PlayArrow style={{ color: secondary.main, margin: "auto", width: "72px", height: "72px" }}></PlayArrow></div>
-																		</Grid>
-																		<Grid item xs={12} style={{ padding: "0px", fontSize: "0.8em" }}>
-																			{obj.snippet.title}
-																		</Grid>
-																	</Grid>
-																</div>)
-														} else {
-															return (<div></div>)
-														}
-													})}
+		return (<div>	
+					<div class="container py-3" style={{marginTop:55}}>
+						<div class="row">
+							<div class="col-sm-9 px-2">
+								
+								<div class="bg-white mb-3 content">
+									<div class="detail-bannergame position-relative overflow-hidden">
+										<img src="images/banner-game/thien-dia-chi-ton.png" class="overflow-hidden" width="100%" />
+										<div class="row mx-0 position-absolute w-100 sum-game pt-5">
+											<div class="col-md-10 pb-2">
+												<div class="media px-1">
+												<img src="images/thumb/thien-dia.png" alt="Thiên địa chí tôn" class="mr-3" style={{width:60}} />
+												<div class="media-body mt-2">
+													<h4 class="font13 font-weight-bold">Thiên địa chí tôn <span class="btn-tag-event font-weight-normal">Nhập vai</span></h4>
+													<p class="font13 text-secondary">Hơn 10 triệu lượt tải</p>
+												</div>
 												</div>
 											</div>
-										</Grid>
-									</Grid>
-								</Grid>
-							</Grid>
-						) : (<div></div>)}
-						<Grid container style={{ padding: "8px", width: "100%", backgroundColor: "#fff", margin: "8px 0px 0px 0px", borderRadius: "5px", color: "#6b6b6b" }}>
-							<Grid item xs={12}>
-								<span style={{ fontSize: "1.2em" }}>Phân loại</span>
-							</Grid>
-							<Grid item xs={12} style={{marginTop:15}}>
-								{gameData.tagsList.map((obj, key) => {
-									return (
-											<div key={key} style={{
-												border: "solid 1px #6b6b6b",
-												display: "inline-block",
-												padding: "2px 3px",
-												marginRight: "5px",
-												borderRadius: "5px",
-												fontSize: "0.8em",
-												color: "#6b6b6b"
-											}}>{obj.name}</div>
-									)
-								})}
-							</Grid>
-						</Grid>
-						{/* <Grid container style={{
-							width: "100%",
-							backgroundColor: "#232b36",
-							borderRadius: "5px",
-							margin: "8px 0px 0px 0px",
-							overflow: "hidden"
-						}}>
-							{(dataGiftcode.length > 0) ? (
-								<Grid item xs={12}>
-									<Grid container className="game-giftcode-root">
-										<Grid item xs={12}>
-											<span style={{ fontSize: "1.2em", color: "#fff", padding: "8px" }}>Giftcode</span>
-										</Grid>
-										{dataGiftcode.map((obj, key) => (
-											<Grid key={key} item xs={12}>
-												<Link to={"/giftcodedetail/" + obj.giftcodeEvent.id} style={{ textDecoration: "none" }}>
-													<ListItem key={key} style={{ padding: "8px", borderBottom: "solid 1px #333" }}>
-														<ListItemText
-															disableTypography={true}
-															primary={(<h4 style={{ color: secondary.main, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: "400" }}
-																className="giftcode-item-name">{obj.title}</h4>)}
-															secondary={(<span
-																style={{ color: "#fff" }}>{"Còn lại " + (obj.giftcodeEvent.numberGiftcode - obj.giftcodeEvent.numberGiftcodeLost)}</span>)} />
-														<div>
-															<Button style={{
-																borderRadius: "20px",
-																background: "linear-gradient(90deg,#ff5f27,#ff9019)",
-																color: "#fff",
-																padding: "10px",
-																fontSize: "0.8em",
-																whiteSpace: "nowrap",
-																minWidth: "auto",
-																minHeight: "auto",
-															}}>
-																Nhận
-                          </Button>
-														</div>
-													</ListItem>
-												</Link>
-											</Grid>
-										))}
-									</Grid>
-								</Grid>) : (<div></div>)}
-						</Grid> */}
-						<Notification message={message} variant={snackVariant} openSnack={openSnack} closeSnackHandle={this.handleCloseSnack} ></Notification>
-						<Dialog
-							fullScreen={fullScreen}
-							open={youtubeOpen}
-							onClose={this.dialogYoutubeClose}
-							aria-labelledby="responsive-dialog-title"
-							fullWidth={true}
-							classes={{ paper: classes.paper }}
-						>
-							<DialogContent>
-								<YouTube
-									videoId={videoId}
-									opts={{
-										width: '100%',
-										playerVars: {
-											autoplay: 1
-										}
-									}}
-								/>
-							</DialogContent>
-							<DialogActions>
-								<div>
-									<Button onClick={this.dialogYoutubeClose} style={{ color: "#6b6b6b", borderRadius: "5px" }}>
-										Đóng
-              </Button>
+											<div id="btnPlay" class="col-md-2">
+												<button type="button" class="btn btn-sm btn-block border-0 shadow-sm mx-1 border btn-hover text-uppercase text-white py-1"><span class="small">Chơi ngay</span></button><br />
+												<button type="button" class="btn btn-sm btn-block btn-link mx-1 py-1">Fanpage</button> 
+											</div>
+										</div>
+								
+									</div>
 								</div>
-							</DialogActions>
-						</Dialog>
-						<Dialog
-							open={dialogRatingOpen}
-							onClose={this.dialogRatingClose}
-							aria-labelledby="responsive-dialog-title"
-							classes={{ paper: classes.paper }}
-						>
-							<DialogTitle id="responsive-dialog-title" ><span style={{ color: "#6b6b6b" }}>Đánh giá</span></DialogTitle>
-							<DialogContent>
-								<span onClick={() => this.changePointSubmit(1)}>{(pointSubmit < 1) ? (
-									<StarBorder style={{ color: "#6b6b6b" }}></StarBorder>) : (<Star style={{ color: "#6b6b6b" }}></Star>)}</span>
-								<span onClick={() => this.changePointSubmit(2)}>{(pointSubmit < 2) ? (
-									<StarBorder style={{ color: "#6b6b6b" }}></StarBorder>) : (<Star style={{ color: "#6b6b6b" }}></Star>)}</span>
-								<span onClick={() => this.changePointSubmit(3)}>{(pointSubmit < 3) ? (
-									<StarBorder style={{ color: "#6b6b6b" }}></StarBorder>) : (<Star style={{ color: "#6b6b6b" }}></Star>)}</span>
-								<span onClick={() => this.changePointSubmit(4)}>{(pointSubmit < 4) ? (
-									<StarBorder style={{ color: "#6b6b6b" }}></StarBorder>) : (<Star style={{ color: "#6b6b6b" }}></Star>)}</span>
-								<span onClick={() => this.changePointSubmit(5)}>{(pointSubmit < 5) ? (
-									<StarBorder style={{ color: "#6b6b6b" }}></StarBorder>) : (<Star style={{ color: "#6b6b6b" }}></Star>)}</span>
-							</DialogContent>
-							<DialogActions>
-								<div>
-									<Button onClick={this.dialogRatingClose} style={{ color: "#6b6b6b", borderRadius: "5px" }}>
-										Hủy bỏ
-              </Button>
-									<Button onClick={this.ratingAction}
-										style={{
-											borderRadius: "5px",
-											background: "#33cbcc",
-											color: "#fff",
-											padding: "7px 10px",
-											fontSize: "0.8em",
-											whiteSpace: "nowrap",
-											minWidth: "auto",
-											minHeight: "auto"
-										}}
-									>
-										Xác nhận
-              </Button>
+								<div class="bg-white p-3 mb-3 font13">
+									<h2 class="font13 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
+									<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
+									{/* <!-- Indicators --> */}
+									<ul class="carousel-indicators">
+										<li data-target="#demo" data-slide-to="0" class="active"></li>
+										<li data-target="#demo" data-slide-to="1"></li>
+										<li data-target="#demo" data-slide-to="2"></li>
+									</ul>    
+									{/* <!-- Wrapper for slides --> */}
+									<div class="carousel-inner">
+										<div class="carousel-item active">
+											<div class="row">
+											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+											</div>
+										</div>
+										<div class="carousel-item">
+											<div class="row">
+											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+											</div>
+										</div>
+										<div class="carousel-item">
+											<div class="row">
+											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+											</div>
+										</div>
+									</div> 
+									{/* <!-- Left and right controls --> */}
+									<a class="carousel-control-prev" href="#demo" data-slide="prev">
+										<span class="carousel-control-prev-icon"></span>
+									</a>
+									<a class="carousel-control-next" href="#demo" data-slide="next">
+										<span class="carousel-control-next-icon"></span>
+									</a>
+									</div>
+									<p>
+										Chào mừng bạn gia nhập thế giới game đa màu sắc, đầy đủ tính năng nhất từ trước đến nay của cả 3 thể loại game kiếp hiệp, võ lâm và tiên hiệp. Game Mobile 2019 duy nhất “PK không do lực chiến” mà dựa vào kỹ năng và sự tính toán của người chơi.  </p>
+
+					<p>1. Làm giàu không khó - Giao dịch tự do không lo thu phế: 
+					Lần đầu tiên trong lịch sử Game Nhap Vai, giao dịch tự do được Nhà Phát Hành khuyến khích, tất cả đều vì lợi ích và mong muốn của game thủ.
+					Săn đồ ảo – Kiếm tiền thật, những món đồ bạn mất công cày cuốc có thể giao dịch tự do trong game không lo mất phí. </p>
+
+					<p>2. Săn Boss liên server - Anh em đoàn kết cân hết các server:
+					Game có nhiều chế độ Boss: Boss Cá Nhân, Boss Thế Giới, Phó Bản Boss, Boss Bang Hội . . . với khoảng 70 con Boss khác nhau. Đặc biệt nhất là hệ thống săn Boss liên server đặc sắc chưa từng thấy trước đó với tính năng PK liên server chiến trường khốc liệt giữa các cụm server với nhau để giành quyền săn Boss.
+									</p>
 								</div>
-							</DialogActions>
-						</Dialog>
-						{((arrImages !== undefined) && (
-							<Lightbox
-								images={arrImages}
-								currentImage={lightBoxIndex}
-								isOpen={lightBoxOpen}
-								onClickNext={this.goToLightBoxNext}
-								onClickPrev={this.goToLightBoxPrev}
-								onClose={this.closeLightBox}
-							/>
-						))}
-					</Grid>
-				</Grid>
-			</div>
-		) : (<div className="global-loading" style={{ backgroundColor: "transparent", marginTop: "8px" }}>
-		{(server !== true) ? (												
-			<CircularProgress style={{ color: "#fff" }} size={50} />):(<img className="error" alt="just alt"
-			src="../baotri.png" />)}
+								<div class="bg-white p-3 mb-3 font13">
+									<h2 class="font13 color-title-cat font-weight-bold pb-2">Video</h2>
+									<div class="row">
+										<div class="col-6 col-md-4 px-3">
+											<div class="thumb-lat-the position-relative">
+												<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+										</div>
+									</div>
+								</div>
+								<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										<div class="col-6 col-md-4 px-3">
+											<div class="thumb-lat-the position-relative">
+												<a href="#" title="Chơi ngay" class="text-dark">
+													<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
+													<div class="overlay">
+														<div class="text text-white small">Chơi ngay &raquo;</div>
+													</div>
+												</a>
+											</div>
+											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-sm-3 px-2">
+								<div class="bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
+									<div class="list-newest">
+										<ul>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
+											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
+										</ul>
+									</div>                
+								</div>
+								<div class="bg-white p-3 mt-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Hot </span></h2>
+									<div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+									</div>
+									<div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+									</div>
+									<div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+									</div>
+									
+								</div>
+								<div class="bg-white p-3 mt-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tin tức </span></h2>
+									<ul class="list-unstyled">
+										<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class=" btn-tag-news">Tin tức</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
+										<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class="btn-tag-event">Sự kiện</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
+									</ul>
+									
+									
+								</div>
+								
+							</div>
+						</div>   
+					</div>
+					<div class="container-fluid">
+						<p class="text-center font13">Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
+						</p>
+					</div>
+
 		</div>)
 	}
 }

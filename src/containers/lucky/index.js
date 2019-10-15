@@ -23,7 +23,7 @@ class Lucky extends React.Component {
 			offset: 0,
 			loadedRecords: 0,
 			data:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzRZE9%2bBq8he8XxC0XRgCSIqv9d5FzFtkfyfU7Ud90Xf45m%2bx1pj41P%2f9J0%2bddD75eq%2fbK9PL6acMkbIcl8nx6obrjDyuBHOit6XxPIBNO%2fTsIbSr%2bshmiFYLClSCVgEE0b53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzTX1qw5Zzx051XCVG3WDHaiv9d5FzFtkf0iZzGnW3kxYtOAaQRqItgVg8lF4LU25qqWX11zMJV5m%2byXnFt6xTHi8vygpLto476lX7Z6FHpY1jmYPgDCzyB%2buFEhIGqRgJL53Dc2UQ%2fHb',
 		};
 	}
 

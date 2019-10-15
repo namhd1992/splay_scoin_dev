@@ -176,7 +176,7 @@ class LuckyDetailComponent extends React.Component {
 		const {dataDetail, dataProfile,message,cardWidth,cardHeight,flippedArr,collapse,cardArr,
 			highLightCard,openSnack,snackVariant,dialogLoginOpen,dialogItemOpen,fontSize,dialogMoreTurnOpen,server,waiting, numberWidth,
 			numberHeight}=this.props;	
-			// console.log('AAAAAAA', cardArr)	
+			console.log('AAAAAAA', cardWidth,'BBBBB',cardHeight,numberWidth,numberHeight)	
 		const { classes } = this.props;
 		const { theme } = this.props;
 		const { secondary } = theme.palette;
@@ -201,7 +201,7 @@ class LuckyDetailComponent extends React.Component {
 										</div>
 										{(cardArr.length>0)?(<div style={{ margin: "auto", width: (cardWidth * numberWidth) + "px", height: (cardHeight * numberHeight) + "px", position: "relative" }}>
 											
-											{/* {cardArr.map((obj, key) => {
+											{cardArr.map((obj, key) => {
 												var top = "0px";
 												var left = "0px";
 												if (!collapse) {
@@ -247,7 +247,7 @@ class LuckyDetailComponent extends React.Component {
 														</div>
 													</ReactCardFlip>
 												</div>)}
-											)} */}
+											)}
 									</div>):(<div></div>)}
 										
 									</div>
@@ -255,7 +255,7 @@ class LuckyDetailComponent extends React.Component {
 									<button type="button" class="btn btn-light font13 py-2"><img src="../icon-ticket.png" width="24" class="py-2" /> <br />Còn <span class="font-weight-bold text-warning">10</span> lượt chơi</button>
 									<button type="button" class="btn btn-light font13 py-2 mx-1" data-toggle="modal" data-target="#myModal"><img src="../icon-gift-box.png" width="24" class="py-2" /><br />Xem  phần thưởng</button>
 									<button type="button" class="btn btn-light font13 py-2 mr-1" data-toggle="modal" data-target="#myModal1"><img src="../icon-add.png" width="24" class="py-2" /> <br />Mua Lượt  ngay</button>
-									<button type="button" class="btn btn-light font13 py-2"><img src="../icon-history.png" width="24" class="py-2" /> <br />Xem  lịch sử</button>
+									<button type="button" class="btn btn-light font13 py-2" onClick={this.showHistory}><img src="../icon-history.png" width="24" class="py-2" /> <br />Xem  lịch sử</button>
 									</div>
 									<div class="card mt-2">
 									<div class="card-body font13">
@@ -401,6 +401,7 @@ class LuckyDetailComponent extends React.Component {
 				<p class="text-center font13">Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
 				</p>
 			</div>
+			<ReactResizeDetector handleWidth={true} handleHeight={true} onResize={this.onResize} />
 
 			{/* <!-- The Modal Thong tin phan thuong --> */}
 			<div class="modal fade" id="myModal">

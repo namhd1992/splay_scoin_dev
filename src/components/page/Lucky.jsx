@@ -67,14 +67,6 @@ class LuckyComponent extends React.Component {
 		console.log('ABV')
 	}
 
-	linkGame=(obj)=>{
-		if(obj.type==="LAT_THE"){
-			return '/luckydetail'
-		}else if(obj.type==="VONG_QUAY"){
-			return '/luckyrotation'
-		}
-	}
-
 	watchLivestream=(obj)=>{
 		localStorage.setItem("linkLiveStream", obj.linkLiveStream);
 	}
@@ -111,9 +103,15 @@ class LuckyComponent extends React.Component {
 
 	linkToDetail=(obj)=>{
 		localStorage.setItem("idLucky", obj.id);
-		window.location.replace(
-			`${window.location.protocol}//${window.location.host}/luckydetail`,
-		);
+		if(obj.type==="LAT_THE"){
+			window.location.replace(
+				`${window.location.protocol}//${window.location.host}/luckydetail`,
+			);
+		}else if(obj.type==="VONG_QUAY"){
+			window.location.replace(
+				`${window.location.protocol}//${window.location.host}/luckyrotation`,
+			);
+		}
 	}
 
 
