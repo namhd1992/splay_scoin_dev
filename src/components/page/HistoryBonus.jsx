@@ -21,19 +21,19 @@ class HistoryBonusComponent extends React.Component {
 	}
 
 	loadMoreAction=()=>{
-		const {limit, offset}=this.props;
+		const {offset}=this.props;
 		const {isAll, type}=this.state;
 		if(isAll){
-			this.props.getAllData(limit+offset)
+			this.props.getAllData(offset)
 		}else{
 			if(type===''){
-				this.props.getTuDo(limit+offset)
+				this.props.getTuDo(offset)
 			}else if(type==='XU'){
-				this.props.getXu(limit+offset)
+				this.props.getXu(offset)
 			}else if(type==='GIFTCODE'){
-				this.props.getGiftcode(limit+offset)
+				this.props.getGiftcode(offset)
 			}else if(type==='SCOIN_CARD'){
-				this.props.getCard(limit+offset)
+				this.props.getCard(offset)
 			}
 		}
 		// this.setState({numberShow: this.state.numberShow+15})
@@ -84,10 +84,10 @@ class HistoryBonusComponent extends React.Component {
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Lịch sử trúng thưởng</span></h2>
 									<ul class="nav nav-tabs nav-justified m-3">
 										<li class="nav-item">
-											<a class="nav-link active text-secondary font13 m-1" data-toggle="tab" href="#all" onClick={this.getAllData}>Tất cả</a>
+											<a className="nav-link active text-secondary font13 m-1" data-toggle="tab" href="#all" onClick={this.getAllData}>Tất cả</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link text-secondary font13 m-1" data-toggle="tab" href="#my" onClick={this.getData}>Của tôi</a>
+											<a className="nav-link text-secondary font13 m-1" data-toggle="tab" href="#my" onClick={this.getData}>Của tôi</a>
 										</li>
 									</ul>
 
@@ -116,8 +116,8 @@ class HistoryBonusComponent extends React.Component {
 											</table>
 										</div>
 									</div>
+									{(totalRecords>offset)?(<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-2 my-2" onClick={this.loadMoreAction}><span class="small">Xem thêm, còn nhiều lắm</span></button>  ):(<div></div>)}
 									
-									<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-2 my-2" data-toggle="modal" data-target="#myModal"><span class="small">Xem thêm, còn nhiều lắm</span></button>  
 								</div>
 								<div class="mb-3 bg-white p-3">
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
@@ -142,12 +142,12 @@ class HistoryBonusComponent extends React.Component {
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
 									<div class="list-newest">
 										<ul>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
+											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
 										</ul>
 									</div>                
 								</div>

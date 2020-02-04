@@ -114,7 +114,7 @@ export const getAllGame = () => {
     return axios.get(url).then(function (response) {
       dispatch({
         type: ALL_GAME_RESPONSE,
-        dataDetail: response.data
+        data: response.data
       })
     }).catch(function (error) {
       dispatch({

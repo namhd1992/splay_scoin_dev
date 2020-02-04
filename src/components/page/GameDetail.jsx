@@ -24,7 +24,8 @@ import { withTheme } from 'material-ui/styles'
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html'
 import Notification from '../../components/Notification'
 import Lightbox from 'react-images'
-import moment from 'moment'
+import moment from 'moment';
+import '../../styles/style.css';
 
 import YouTube from 'react-youtube'
 import { withStyles } from 'material-ui/styles'
@@ -200,7 +201,7 @@ class GameDetailComponent extends React.Component {
 	}
 
 	render() {
-		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,
+		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 
 		const { classes } = this.props;
@@ -255,168 +256,389 @@ class GameDetailComponent extends React.Component {
 				}
 			]
 		};
-		return (<div>	
+		return (gameData!==undefined)?(<div>	
 					<div class="container py-3" style={{marginTop:55}}>
-						<div class="row">
-							<div class="col-sm-9 px-2">
-								
-								<div class="bg-white mb-3 content">
-									<div class="detail-bannergame position-relative overflow-hidden">
-										<img src="images/banner-game/thien-dia-chi-ton.png" class="overflow-hidden" width="100%" />
-										<div class="row mx-0 position-absolute w-100 sum-game pt-5">
-											<div class="col-md-10 pb-2">
-												<div class="media px-1">
-												<img src="images/thumb/thien-dia.png" alt="Thiên địa chí tôn" class="mr-3" style={{width:60}} />
-												<div class="media-body mt-2">
-													<h4 class="font13 font-weight-bold">Thiên địa chí tôn <span class="btn-tag-event font-weight-normal">Nhập vai</span></h4>
-													<p class="font13 text-secondary">Hơn 10 triệu lượt tải</p>
-												</div>
-												</div>
+					<div class="row">
+						<div class="col-sm-9 px-2">
+							<div class="bg-white mb-3 content">
+								<div class="detail-bannergame position-relative overflow-hidden">
+									<img src={gameData.bigImage} class="overflow-hidden" width="100%" />
+									<div class="row mx-0 position-absolute w-100 sum-game pt-5">
+										<div class="col-9 pb-2">
+											<div class="media px-1">
+											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3" style={{width:60}} />
+											<div class="media-body mt-2">
+												<h4 class="font13 font-weight-bold">{gameData.name}&nbsp;&nbsp;<span class="btn-tag-event font-weight-normal"> {this.getTheLoai(gameData)} </span></h4>
+												<p class="font13 text-secondary">{gameData.downloadTurns + " Lượt tải"}</p>
 											</div>
-											<div id="btnPlay" class="col-md-2">
-												<button type="button" class="btn btn-sm btn-block border-0 shadow-sm mx-1 border btn-hover text-uppercase text-white py-1"><span class="small">Chơi ngay</span></button><br />
-												<button type="button" class="btn btn-sm btn-block btn-link mx-1 py-1">Fanpage</button> 
 											</div>
 										</div>
-								
-									</div>
-								</div>
-								<div class="bg-white p-3 mb-3 font13">
-									<h2 class="font13 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
-									<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
-									{/* <!-- Indicators --> */}
-									<ul class="carousel-indicators">
-										<li data-target="#demo" data-slide-to="0" class="active"></li>
-										<li data-target="#demo" data-slide-to="1"></li>
-										<li data-target="#demo" data-slide-to="2"></li>
-									</ul>    
-									{/* <!-- Wrapper for slides --> */}
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<div class="row">
-											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-											</div>
-										</div>
-										<div class="carousel-item">
-											<div class="row">
-											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-											</div>
-										</div>
-										<div class="carousel-item">
-											<div class="row">
-											<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-											<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-											</div>
-										</div>
-									</div> 
-									{/* <!-- Left and right controls --> */}
-									<a class="carousel-control-prev" href="#demo" data-slide="prev">
-										<span class="carousel-control-prev-icon"></span>
-									</a>
-									<a class="carousel-control-next" href="#demo" data-slide="next">
-										<span class="carousel-control-next-icon"></span>
-									</a>
-									</div>
-									<p>
-										Chào mừng bạn gia nhập thế giới game đa màu sắc, đầy đủ tính năng nhất từ trước đến nay của cả 3 thể loại game kiếp hiệp, võ lâm và tiên hiệp. Game Mobile 2019 duy nhất “PK không do lực chiến” mà dựa vào kỹ năng và sự tính toán của người chơi.  </p>
-
-					<p>1. Làm giàu không khó - Giao dịch tự do không lo thu phế: 
-					Lần đầu tiên trong lịch sử Game Nhap Vai, giao dịch tự do được Nhà Phát Hành khuyến khích, tất cả đều vì lợi ích và mong muốn của game thủ.
-					Săn đồ ảo – Kiếm tiền thật, những món đồ bạn mất công cày cuốc có thể giao dịch tự do trong game không lo mất phí. </p>
-
-					<p>2. Săn Boss liên server - Anh em đoàn kết cân hết các server:
-					Game có nhiều chế độ Boss: Boss Cá Nhân, Boss Thế Giới, Phó Bản Boss, Boss Bang Hội . . . với khoảng 70 con Boss khác nhau. Đặc biệt nhất là hệ thống săn Boss liên server đặc sắc chưa từng thấy trước đó với tính năng PK liên server chiến trường khốc liệt giữa các cụm server với nhau để giành quyền săn Boss.
-									</p>
-								</div>
-								<div class="bg-white p-3 mb-3 font13">
-									<h2 class="font13 color-title-cat font-weight-bold pb-2">Video</h2>
-									<div class="row">
-										<div class="col-6 col-md-4 px-3">
-											<div class="thumb-lat-the position-relative">
-												<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											</div>
-											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+										<div id="btnPlay" class="col-3 text-center box-social pt-4">
+											{/* <!-- <button type="button" class="btn btn-sm btn-block border-0 shadow-sm mx-1 border btn-hover text-uppercase text-white py-1"><span class="small">Chơi ngay</span></button>
+											<button type="button" class="btn btn-sm btn-block btn-link mx-1 py-1">Fanpage</button> --> */}
+											<a href={gameData.fanpageFB} title="Fanpage" style={{paddingRight:5}}><img src="../fb-fanpage.png" width="32" alt="Fanpage" /></a>
+											<a href="#" title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" /></a>
+											<a href="#" title="Support"><img src="../support.png" width="32" alt="Support" /></a>
 										</div>
 									</div>
+									<div class="md-box-social md-mobile">                           
+										<a href={gameData.fanpageFB} title="Fanpage" style={{paddingRight:5}}><img src="../fb-fanpage.png" width="32" alt="Fanpage" class="py-1" /></a>
+										<a href="#" title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" class="py-1" /></a>
+										<a href="#" title="Support"><img src="../support.png" width="32" alt="Support" class="py-1" /></a>
+									</div>
+							
 								</div>
-								<div class="mb-3 bg-white p-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
-									<div class="row">
-										<div class="col-6 col-md-4 px-3">
-											<div class="thumb-lat-the position-relative">
-												<a href="#" title="Chơi ngay" class="text-dark">
-													<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-													<div class="overlay">
-														<div class="text text-white small">Chơi ngay &raquo;</div>
+							</div>
+							<div class="mb-3 font13 btn-md-mobile">            	
+								<button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button>
+								<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-2"><span class="small">Nạp thẻ</span></button>
+							</div>
+							<div class="bg-white p-3 mb-3 font13">
+								<h2 class="font13 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
+								<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
+								{/* <ul class="carousel-indicators">
+									<li data-target="#demo" data-slide-to="0" class="active"></li>
+									<li data-target="#demo" data-slide-to="1"></li>
+									<li data-target="#demo" data-slide-to="2"></li>
+								</ul>    
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="row">
+										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="row">
+										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="row">
+										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
+										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
+										</div>
+									</div>
+								</div> 
+								<a class="carousel-control-prev" href="#demo" data-slide="prev">
+									<span class="carousel-control-prev-icon"></span>
+								</a>
+								<a class="carousel-control-next" href="#demo" data-slide="next">
+									<span class="carousel-control-next-icon"></span>
+								</a> */}
+									<Grid item xs={12} style={{
+									width: "100%",
+									overflow: "hidden",
+									padding:"0px 30px"
+									}}>
+										<Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
+											{arrScreenShot.map((obj, key) => (
+												<div key={key} style={{}}>
+													<div onClick={() => this.openLightBox(key)} style={{
+														backgroundImage: "url(" + obj + ")",
+														backgroundRepeat: "no-repeat",
+														backgroundPosition: "center",
+														backgroundSize: "contain",
+														with: "100%",
+														height:this.state.height,
+														margin:this.state.margin,
+														paddingBottom: this.state.paddingBottom
+													}}>
 													</div>
-												</a>
-											</div>
-											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+												</div>
+											))}
+										</Slider>
+									</Grid>
+								</div>
+								<div>
+									{(showMore) ? (
+										<div style={{ padding: "10px", lineHeight:'20px' }}
+											dangerouslySetInnerHTML={{ __html: gameData.description }}>
 										</div>
+									) : (<div style={{ position: "relative", padding: "10px" }}>
+										<HTMLEllipsis
+											unsafeHTML={gameData.description}
+											maxLine='5'
+											ellipsis='...'
+											basedOn='letters'
+											style={{lineHeight:"20px"}}
+										/>
+										<a style={{
+											color: secondary.main,
+											textAlign: "center",
+											width: "100%",
+											display: "block",
+											position: "absolute",
+											paddingTop: "60px",
+											marginTop: "-80px",
+											background: "linear-gradient(to top, rgba(35, 43, 54,1) 0%,rgba(35, 43, 54,0.5) 50%,rgba(35, 43, 54,0) 100%)"
+										}} onClick={() => this.readMore()}>Xem thêm</a>
 									</div>
-									
+										)}
 								</div>
 							</div>
-							<div class="col-sm-3 px-2">
-								<div class="bg-white p-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
-									<div class="list-newest">
-										<ul>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
-											<li class="py-2"><img src="images/icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
-										</ul>
-									</div>                
-								</div>
-								<div class="bg-white p-3 mt-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Hot </span></h2>
-									<div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
+							<div class="bg-white p-3 mb-3 font13">
+								<h2 class="font13 color-title-cat font-weight-bold pb-2">Video</h2>
+								{/* <div class="row">
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
 									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/8-EOzzeKOKs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
 									</div>
-									<div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/qCXcO89BoKg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
 									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
 									</div>
-									<div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
 									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
 									</div>
+								</div> */}
+								{(youtubeData !== undefined && youtubeData.length > 0) ? (
+									<Grid container style={{
+										width: "100%",
+										borderRadius: "5px",
+										margin: "8px 0px 0px 0px",
+										overflow: "hidden",
+										padding: "8px"
+									}}>
+										<Grid item xs={12}>
+											<Grid container className="game-giftcode-root">
+												<Grid item xs={12}>
+													<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+														<div style={{ display: "flex" }}>
+															{youtubeData.map((obj, key) => {
+																if (obj.id.kind !== "youtube#channel") {
+																	return (
+																		<div
+																			key={key}
+																			onClick={() => this.dialogYoutubeOpen(obj.id.videoId)}
+																			style={{ padding: "8px", cursor: "pointer", position: "relative", width: "180px", paddingTop: "3px", paddingBottom: "3px" }}>
+																			<Grid container spacing={8} style={{ margin: "0px", width: "100%" }}>
+																				<Grid item xs={12} style={{ padding: "0px" }}>
+																					<div style={{
+																						backgroundImage: "url(" + obj.snippet.thumbnails.medium.url + ")",
+																						backgroundSize: "cover",
+																						backgroundPostition: "center middle",
+																						height: "90px",
+																						width: "140px",
+																						textAlign: "center",
+																						paddingTop: "8px"
+																					}}><PlayArrow style={{ color: secondary.main, margin: "auto", width: "72px", height: "72px" }}></PlayArrow></div>
+																				</Grid>
+																				<Grid item xs={12} style={{ padding: "0px", color: 'black', fontSize: "0.9em", lineHeight:'13px' }}>
+																					{obj.snippet.title}
+																				</Grid>
+																			</Grid>
+																		</div>)
+																} else {
+																	return (<div></div>)
+																}
+															})}
+														</div>
+													</div>
+												</Grid>
+											</Grid>
+										</Grid>
+									</Grid>
+								) : (<div></div>)}
+							</div>
+							<div class="mb-3 bg-white p-3">
+								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+								<div class="row">
+									{gameCare.map((obj, key)=>{
+										return (
+											<div class="col-6 col-md-4 px-3" key={key}>
+												<div class="thumb-lat-the position-relative">
+													<a href="#" title="Chơi ngay" class="text-dark">
+														<img src={obj.bigImage} width="100%" />
+														<div class="overlay">
+															<div class="text text-white small">Chơi ngay &raquo;</div>
+														</div>
+													</a>
+												</div>
+												<h3 class="font13 py-2"><a href={obj.website} title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+											</div>
+										)
+									})}
 									
-								</div>
-								<div class="bg-white p-3 mt-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tin tức </span></h2>
-									<ul class="list-unstyled">
-										<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class=" btn-tag-news">Tin tức</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
-										<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class="btn-tag-event">Sự kiện</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
-									</ul>
-									
-									
+									{/* <div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<a href="#" title="Chơi ngay" class="text-dark">
+												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</a>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
+									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<a href="#" title="Chơi ngay" class="text-dark">
+												<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</a>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<a href="#" title="Chơi ngay" class="text-dark">
+												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</a>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
+									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<a href="#" title="Chơi ngay" class="text-dark">
+												<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</a>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
+									</div>
+									<div class="col-6 col-md-4 px-3">
+										<div class="thumb-lat-the position-relative">
+											<a href="#" title="Chơi ngay" class="text-dark">
+												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
+												<div class="overlay">
+													<div class="text text-white small">Chơi ngay &raquo;</div>
+												</div>
+											</a>
+										</div>
+										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
+									</div> */}
 								</div>
 								
 							</div>
-						</div>   
-					</div>
-					<div class="container-fluid">
-						<p class="text-center font13">Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
-						</p>
-					</div>
+						</div>
+						<div class="col-sm-3 px-2">
+							<div class="bg-white p-3">
+								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button>
+								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button>
+								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button>
+								<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp thẻ</span></button>                
+							</div>
+							<div class="bg-white p-3 mt-3">
+								<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmakiemhiepduyen.vn%2F&tabs=timeline&width=240&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274" width="240" height="250" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+								
+							</div>
+							
+							<div class="bg-white p-3 mt-3">
+								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
+								{gameMoi.map((obj, key)=>{
+										return (
+											<div class="media border-bottom py-2 my-1">
+												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
+												<div class="media-body">
+													<h4 class="font13 font-weight-bold">{obj.name}</h4>
+													<p class="small">{obj.downloadTurns} lượt tải</p>
+												</div>
+											</div>
+										)
+								})}
+								{/* <div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+								</div>
+								<div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+								</div>
+								<div class="media border-bottom py-2 my-1">
+									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
+									<div class="media-body">
+										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
+										<p class="small">Hơn 1tr lượt tải</p>
+									</div>
+								</div> */}
+								
+							</div>
+							{/* <div class="bg-white p-3 mt-3">
+								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tin tức </span></h2>
+								<ul class="list-unstyled">
+									<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class=" btn-tag-news">Tin tức</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
+									<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class="btn-tag-event">Sự kiện</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
+								</ul>
+								
+								
+							</div> */}
+							
+						</div>
+					</div>   
+				</div>
+				<div class="container-fluid">
+					<p class="text-center font13" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
+					</p>
+				</div>
+				<Dialog
+							fullScreen={fullScreen}
+							open={youtubeOpen}
+							onClose={this.dialogYoutubeClose}
+							aria-labelledby="responsive-dialog-title"
+							fullWidth={true}
+							classes={{ paper: classes.paper }}
+						>
+							<DialogContent>
+								<YouTube
+									videoId={videoId}
+									opts={{
+										width: '100%',
+										playerVars: {
+											autoplay: 1
+										}
+									}}
+								/>
+							</DialogContent>
+							<DialogActions>
+								<div>
+									<Button onClick={this.dialogYoutubeClose} style={{ color: "#888787", borderRadius: "20px" }}>
+										Đóng
+              </Button>
+								</div>
+							</DialogActions>
+						</Dialog>
 
-		</div>)
+		</div>):(<div></div>)
 	}
 }
 

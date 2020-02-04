@@ -2,6 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
+	getAllGame,
 	getDataId,
 	getData,
 	rating
@@ -34,6 +35,8 @@ class Game_detail extends React.Component {
 			lightBoxIndex: 0,
 			youtubeOpen: false,
 			gameArticles: [],
+			gameMoi:[],
+			gameCare:[],
 			gameData: {},
 			id_game:'',
 		};
@@ -45,13 +48,19 @@ class Game_detail extends React.Component {
 	componentDidMount() {
 		var _this = this;
 		const {scoin_token}= this.state;
+		this.props.getAllGame().then(function () {
+			var data=_this.props.allGame
+			
+			if(data.status==="01"){
+				var games=data.data.filter(v=>v.scoinGameId!==330307)
+				var news=games.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
+				var gameMoi=news.slice(0, 3)
+				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
+				var gameCare=care.slice(0, 6)
+				_this.setState({gameMoi:gameMoi, gameCare:gameCare})
+			}
+		});
 		this.props.getDataId(330307).then(function () {
-			// console.log(_this.props.data)
-			// _this.props.getDataByGame(_this.props.data[0].id);
-			// _this.props.getMissionByGame(_this.props.data[0].id);
-			// _this.props.getArticleData(6, 0, undefined, undefined, _this.props.data[0].id).then(function () {
-			// 	_this.setState({ gameArticles: _this.props.articleData });
-			// });
 			var data=_this.props.data
 			if(data.status==="01"){
 				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch);
@@ -177,6 +186,8 @@ class Game_detail extends React.Component {
 					youtubeOpen={this.state.youtubeOpen}
 					gameArticles={this.state.gameArticles}
 					gameData={this.state.gameData}
+					gameMoi={this.state.gameMoi}
+					gameCare={this.state.gameCare}
 				/>
 
 			</div>
@@ -184,18 +195,21 @@ class Game_detail extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	data: state.game.dataDetail,
-	dataRating: state.game.dataRating,
-	dataMission: state.mission.dataMission,
-	waiting: state.game.waiting,
-	dataGiftcode: state.giftcode.data,
-	articleData: state.article.data,
-	articleWaiting: state.article.waiting,
-	youtubeData: state.youtubeApi.data,
-	youtubeWaiting: state.youtubeApi.waiting,
-	server:state.server.serverError
-})
+const mapStateToProps = state => {
+	return {
+		data: state.game.dataDetail,
+		allGame: state.game.allGame,
+		dataRating: state.game.dataRating,
+		dataMission: state.mission.dataMission,
+		waiting: state.game.waiting,
+		dataGiftcode: state.giftcode.data,
+		articleData: state.article.data,
+		articleWaiting: state.article.waiting,
+		youtubeData: state.youtubeApi.data,
+		youtubeWaiting: state.youtubeApi.waiting,
+		server:state.server.serverError
+	}
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	getDataId,
@@ -206,6 +220,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	getArticleData,
 	getMissionByGame,
 	getYoutubeData,
+	getAllGame,
 }, dispatch)
 
 

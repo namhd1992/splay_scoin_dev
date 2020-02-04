@@ -21,7 +21,7 @@ class Lucky_History extends React.Component {
 			openSnack: false,
 			snackVariant: "info",
 			dialogLoginOpen: false,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzTX1qw5Zzx051XCVG3WDHaiv9d5FzFtkf0iZzGnW3kxYtOAaQRqItgVg8lF4LU25qqWX11zMJV5m%2byXnFt6xTHi8vygpLto476lX7Z6FHpY1jmYPgDCzyB%2buFEhIGqRgJL53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzfuDZfGFbSDrdGlKZ9kS%2bLuv9d5FzFtkfwhSQMA3R2YuoTUSecNuOn6iQFPFpXyYXRSK3V5vvxMqn9VO%2fYRnrmlMLwTWn11wlDtXidULLqJjqNB%2bOlbFqV8P4T%2bT1ZoR5b53Dc2UQ%2fHb',
 		};
 	}
 
@@ -44,7 +44,7 @@ class Lucky_History extends React.Component {
 			this.props.history(idLucky, scoin_token, this.state.limit, offset).then(()=>{
 				var data=this.props.dataHistory;
 				if(data.status==="01"){
-					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset})
+					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset+limit})
 				}
 			});
 		})
@@ -58,7 +58,7 @@ class Lucky_History extends React.Component {
 			this.props.getTuDo(idLucky, scoin_token,limit,offset).then(()=>{
 				var dataTuDo=this.props.dataTuDo;
 				if(dataTuDo.status==="01"){
-					this.setState({data:dataTuDo.data, totalRecords: data.totalRecords, offset:offset})
+					this.setState({data:dataTuDo.data, totalRecords: data.totalRecords, offset:offset+limit})
 				}
 			});
 		})
@@ -71,7 +71,7 @@ class Lucky_History extends React.Component {
 			this.props.getCodeBonus(idLucky, scoin_token, 'XU', limit , offset).then(()=>{
 				var data=this.props.dataCodeBonus;
 				if(data.status==="01"){
-					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset})
+					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset+limit})
 				}
 			})
 		})
@@ -84,7 +84,7 @@ class Lucky_History extends React.Component {
 			this.props.getCodeBonus(idLucky, scoin_token,'GIFTCODE', limit , offset).then(()=>{
 				var data=this.props.dataCodeBonus;
 				if(data.status==="01"){
-					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset})
+					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset+limit})
 				}
 			})
 		})
@@ -97,7 +97,7 @@ class Lucky_History extends React.Component {
 			this.props.getCodeBonus(idLucky, scoin_token,'SCOIN_CARD', limit , offset).then(()=>{
 				var data=this.props.dataCodeBonus;
 				if(data.status==="01"){
-					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset})
+					this.setState({data:data.data, totalRecords: data.totalRecords, offset:offset+limit})
 				}
 			})
 		})

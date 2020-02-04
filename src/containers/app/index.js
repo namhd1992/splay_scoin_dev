@@ -2,20 +2,20 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 // import '../../styles/main.css';
 // import Login from '../login';
-import Logout from '../logout';
-import Lucky from '../lucky';
-import Lucky_detail from '../lucky_detail';
-import Lucky_Item from '../lucky_item';
-import Lucky_BuyTurn from '../lucky_buyturn';
-import Lucky_History from '../lucky_history';
-import Lucky_Live from '../lucky_live';
-import Checkin from '../checkin';
+// import Logout from '../logout';
+// import Lucky from '../lucky';
+// import Lucky_detail from '../lucky_detail';
+// import Lucky_Item from '../lucky_item';
+// import Lucky_BuyTurn from '../lucky_buyturn';
+// import Lucky_History from '../lucky_history';
+// import Lucky_Live from '../lucky_live';
+// import Checkin from '../checkin';
 import Mission from '../mission';
 // import MenuAppBar from '../../components/MenuAppBar';
 import Game_detail from '../game_detail';
 // import Auction_detail from '../auction_detail';
 import History from '../shop_history';
-import Lucky_Rotation from '../lucky_rotation'
+// import Lucky_Rotation from '../lucky_rotation'
 
 class App extends React.Component {
 
@@ -49,11 +49,11 @@ class App extends React.Component {
 						<Route exact path="/giftcode" component={Giftcode} />
 						<Route exact path="/giftcodedetail/:id" component={Giftcode_detail} /> */}
 						{/* <Route exact path="/login" component={Login} /> */}
-						<Route exact path="/logout" component={Logout} />
-						<Route exact path="/" component={Lucky} />
-						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
-						<Route exact path="/history" component={History} />
-						<Route exact path="/lucky" component={Lucky} />
+						{/* <Route exact path="/logout" component={Logout} /> */}
+						<Route exact path="/" component={Game_detail} />
+						{/* <Route exact path="/luckyrotation" component={Lucky_Rotation} /> */}
+						{/* <Route exact path="/history" component={History} /> */}
+						{/* <Route exact path="/lucky" component={Lucky} /> */}
 						<Route exact path="/gamedetail" component={Game_detail} />
 						{/* <Route exact path="/help" component={Help} />
 						<Route exact path="/dieu-khoan" component={Dieukhoan} />
@@ -63,12 +63,12 @@ class App extends React.Component {
 						<Route exact path="/profile" component={Profile} />    
 						<Route exact path="/article" component={Article} />
 						<Route exact path="/article_detail/:id" component={Article_detail} /> */}
-						<Route exact path="/checkin" component={Checkin} />
-						<Route exact path="/luckydetail" component={Lucky_detail} />
+						{/* <Route exact path="/checkin" component={Checkin} /> */}
+						{/* <Route exact path="/luckydetail" component={Lucky_detail} />
 						<Route exact path="/luckyitembonus" component={Lucky_Item} />
 						<Route exact path="/luckyhistory" component={Lucky_History} />
 						<Route exact path="/luckybuyturn" component={Lucky_BuyTurn} />
-						<Route exact path="/luckylive" component={Lucky_Live} />
+						<Route exact path="/luckylive" component={Lucky_Live} /> */}
 						{/* <Route exact path="/giftcodeplugin" component={Giftcode_plugin} />
 						<Route exact path="/giftcodepluginlogin" component={Giftcode_plugin_login} />
 						<Route exact path="/phonecard" component={Phone_card} />

@@ -175,8 +175,7 @@ class LuckyDetailComponent extends React.Component {
 	render() {
 		const {dataDetail, dataProfile,message,cardWidth,cardHeight,flippedArr,collapse,cardArr,
 			highLightCard,openSnack,snackVariant,dialogLoginOpen,dialogItemOpen,fontSize,dialogMoreTurnOpen,server,waiting, numberWidth,
-			numberHeight}=this.props;	
-			console.log('AAAAAAA', cardWidth,'BBBBB',cardHeight,numberWidth,numberHeight)	
+			numberHeight}=this.props;		
 		const { classes } = this.props;
 		const { theme } = this.props;
 		const { secondary } = theme.palette;
@@ -208,7 +207,7 @@ class LuckyDetailComponent extends React.Component {
 													left = (key % numberWidth) * cardWidth + "px";
 													top = (Math.floor(key / numberWidth)) * cardHeight + "px"
 												}
-												return (<div key={key} className="lucky-card lucky-card-collapse"
+												return (<div key={key} class="lucky-card lucky-card-collapse"
 													style={{
 														transition: "0.5s",
 														WebkitTransition: "0.5s",
@@ -216,7 +215,7 @@ class LuckyDetailComponent extends React.Component {
 														width: cardWidth,
 														height: cardHeight + "px",
 														left: left,
-														top: top
+														top: top,
 													}}>
 													<ReactCardFlip style={{ height: '100%' }} isFlipped={flippedArr.find(x => x.id === obj.id).status}>
 														<div key={this.state.div1} style={{
@@ -286,61 +285,6 @@ class LuckyDetailComponent extends React.Component {
 									</div>
 									<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
 								</div>
-								<div class="col-6 col-md-4 px-3">
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay" class="text-dark">
-											<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-											<div class="overlay">
-												<div class="text text-white small">Chơi ngay &raquo;</div>
-											</div>
-										</a>
-									</div>
-									<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-								</div>
-								<div class="col-6 col-md-4 px-3">
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay" class="text-dark">
-											<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-											<div class="overlay">
-												<div class="text text-white small">Chơi ngay &raquo;</div>
-											</div>
-										</a>
-									</div>
-									<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-								</div>
-								<div class="col-6 col-md-4 px-3">
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay" class="text-dark">
-											<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-											<div class="overlay">
-												<div class="text text-white small">Chơi ngay &raquo;</div>
-											</div>
-										</a>
-									</div>
-									<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-								</div>
-								<div class="col-6 col-md-4 px-3">
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay" class="text-dark">
-											<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-											<div class="overlay">
-												<div class="text text-white small">Chơi ngay &raquo;</div>
-											</div>
-										</a>
-									</div>
-									<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-								</div>
-								<div class="col-6 col-md-4 px-3">
-									<div class="thumb-lat-the position-relative">
-										<a href="#" title="Chơi ngay" class="text-dark">
-											<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-											<div class="overlay">
-												<div class="text text-white small">Chơi ngay &raquo;</div>
-											</div>
-										</a>
-									</div>
-									<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-								</div>
 							</div>
 							
 						</div>
@@ -368,21 +312,6 @@ class LuckyDetailComponent extends React.Component {
 								<p class="small">Hơn 1tr lượt tải</p>
 							</div>
 							</div>
-							<div class="media border-bottom py-2 my-1">
-							<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-							<div class="media-body">
-								<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-								<p class="small">Hơn 1tr lượt tải</p>
-							</div>
-							</div>
-							<div class="media border-bottom py-2 my-1">
-							<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-							<div class="media-body">
-								<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-								<p class="small">Hơn 1tr lượt tải</p>
-							</div>
-							</div>
-							
 						</div>
 						<div class="bg-white p-3 mt-3">
 							<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tin tức </span></h2>
