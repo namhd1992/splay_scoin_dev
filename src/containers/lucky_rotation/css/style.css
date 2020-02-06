@@ -111,7 +111,6 @@ a.btn-dv:hover {color: #ffd102;}
 	list-style: decimal inside;
 }
 
-
 .glow {
 	-webkit-animation: glow 1s ease-in-out infinite alternate;
 	-moz-animation: glow 1s ease-in-out infinite alternate;
@@ -142,11 +141,12 @@ a.btn-dv:hover {color: #ffd102;}
 	  position:absolute;
   }
 
- @media (min-width: 1200px){
-	.container_game {
-		max-width: 1140px !important;
+  @media (min-width: 1200px) {
+	.container {
+	  max-width: 1140px !important;
 	}
- }
+  }
+  
 
 
 @media (max-width: 1024px) {
