@@ -15,7 +15,8 @@ import {
 } from '../../modules/global'
 import { getData as getArticleData } from '../../modules/article'
 import { getData as getYoutubeData } from '../../modules/youtubeApi'
-import {getMissionByGame} from '../../modules/mission'
+import {getMissionByGame} from '../../modules/mission';
+import Ultilities from '../../Ultilities/global'
 
 import GameDetailComponent from '../../components/page/GameDetail'
 class Game_detail extends React.Component {
@@ -44,6 +45,8 @@ class Game_detail extends React.Component {
 	}
 
 	componentWillMount(){
+		var id = this.getParamValue("service_id");
+		this.setState({id_game:id})
 	}
 
 	componentDidMount() {
@@ -51,6 +54,19 @@ class Game_detail extends React.Component {
 		this.getData(id_game)
 		
 	}
+
+	getParamValue=(key)=>
+	{
+		var url = window.location.search.substring(1);
+		var qArray = url.split('&');
+		for (var i = 0; i < qArray.length; i++) 
+		{
+			var pArr = qArray[i].split('=');
+			if (pArr[0] === key) 
+				return pArr[1];
+		}
+	}
+
 
 	getData=(id_game)=>{
 		var _this = this;

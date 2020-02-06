@@ -109,7 +109,7 @@ class MissionComponent extends React.Component {
 		
 	}
 	getDataGame=(obj)=>{
-		console.log(obj)
+		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
 	}
 
 

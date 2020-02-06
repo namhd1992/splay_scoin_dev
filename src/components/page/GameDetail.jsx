@@ -261,7 +261,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div class="container py-3" style={{marginTop:55}}>
+					<div class="py-3" style={{marginTop:55}}>
 					<div class="row">
 						<div class="col-sm-9 px-2">
 							<div class="bg-white mb-3 content">
@@ -413,7 +413,7 @@ class GameDetailComponent extends React.Component {
 														<img src={obj.bigImage} width="100%" />
 													</a>
 												</div>
-												<h3 class="font13 py-2"><a href={obj.website} title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+												<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 											</div>
 										)
 									})}

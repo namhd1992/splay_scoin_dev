@@ -54,7 +54,7 @@ class App extends React.Component {
 						{/* <Route exact path="/luckyrotation" component={Lucky_Rotation} /> */}
 						{/* <Route exact path="/history" component={History} /> */}
 						{/* <Route exact path="/lucky" component={Lucky} /> */}
-						<Route exact path="/gamedetail" component={Game_detail} />
+						<Route exact path="/gamedetail/" component={Game_detail} />
 						{/* <Route exact path="/help" component={Help} />
 						<Route exact path="/dieu-khoan" component={Dieukhoan} />
 						<Route exact path="/vip" component={Vip} /> */}
