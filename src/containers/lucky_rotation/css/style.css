@@ -142,6 +142,13 @@ a.btn-dv:hover {color: #ffd102;}
 	  position:absolute;
   }
 
+ @media (min-width: 1200px){
+	.container_game {
+		max-width: 1140px !important;
+	}
+ }
+
+
 @media (max-width: 1024px) {
 	.btn-quay {bottom: 13%; right: 3%;}
 	.content-inner-p1 {background-size: 90%; background-position: 50% 37%;}
