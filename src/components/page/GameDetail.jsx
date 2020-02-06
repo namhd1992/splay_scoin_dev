@@ -261,7 +261,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div class="container-fluid py-3" style={{marginTop:55}}>
+					<div class="container py-3" style={{marginTop:55}}>
 					<div class="row">
 						<div class="col-sm-9 px-2">
 							<div class="bg-white mb-3 content">
@@ -455,7 +455,7 @@ class GameDetailComponent extends React.Component {
 						</div>
 					</div>   
 				</div>
-				<div class="container-fluid">
+				<div class="container">
 					<p class="text-center font13" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
 					</p>
 				</div>
