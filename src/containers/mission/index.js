@@ -8,6 +8,10 @@ import {
 } from '../../modules/mission'
 
 import {
+	getAllGame
+} from '../../modules/game'
+
+import {
 	checkin
 } from '../../modules/checkin'
 import {
@@ -30,7 +34,9 @@ class Mission extends React.Component {
 			dialogLoginOpen: false,
 			title_dialog:"",
 			snackVariant: "info",
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeTd029tRUEkLfRZy9SjhIzSf7LJ8Vg38UrMWFhk4sh6av9d5FzFtkf2SyGjHtvubUBLTyyX0M9JQ7qLdHGLlvIq2XvN%2fOVsJWF6HmxMgzU2AcNgcoxMUicMr94GgK9dHUgcCKboq%2fqlg4h2ZWU0TEV753Dc2UQ%2fHb',
+			gameMoi:[],
+			gameCare:[],
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z5Q8MbdATYfxjYuFne3Nfxyv9d5FzFtkf5kVX7YjaQN0PQEsv1l99WFLl6A9l3UU9gQ4fsD1hxMHn1Or4vKL5ksJetCpbsD%2b4lN6Wa0Ahaml5ZLPgqqb33HsmrRJhQPmhr53Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
@@ -54,8 +60,19 @@ class Mission extends React.Component {
 		// }
 
 		this.props.getData(this.state.limit, this.state.offset,scoin_token).then(function () {
-			// _this.props.changeTitle("NHIỆM VỤ");
 			_this.setState({ loadedRecords: _this.state.limit + _this.state.offset });
+		});
+
+		this.props.getAllGame().then(function () {
+			var data=_this.props.allGame
+			console.log(data)
+			if(data.status==="01"){
+				var news=data.data.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
+				var gameMoi=news.slice(0, 3)
+				var care=data.data.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
+				var gameCare=care.slice(0, 6)
+				_this.setState({gameMoi:gameMoi, gameCare:gameCare})
+			}
 		});
 	}
 
@@ -131,8 +148,9 @@ class Mission extends React.Component {
 		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		this.props.finishData(id, scoin_token).then(function (response) {
+			const data=_this.props.dataFinish;
 			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
-			if(_this.props.status==="03"){
+			if(data.data.status==="03"){
 				_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
 			}
 		}).catch(function (err) {
@@ -176,6 +194,8 @@ class Mission extends React.Component {
 					openSnack={this.state.openSnack}
 					dialogLoginOpen={this.state.dialogLoginOpen}
 					snackVariant={this.state.snackVariant}
+					gameCare={this.state.gameCare}
+					gameMoi={this.state.gameMoi}
 				/>
 
 			</div>
@@ -190,7 +210,8 @@ const mapStateToProps = state => ({
 	waiting: state.mission.waiting,
 	status: state.mission.status,
 	message_server: state.mission.message_server,
-	server:state.server.serverError
+	server:state.server.serverError,
+	allGame: state.game.allGame,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -198,7 +219,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	finishData,
 	checkin,
 	getMoreData,
-	changeTitle
+	changeTitle,
+	getAllGame
 }, dispatch)
 
 export default connect(

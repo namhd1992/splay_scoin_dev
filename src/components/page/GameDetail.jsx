@@ -118,6 +118,10 @@ class GameDetailComponent extends React.Component {
 		}
 	}
 
+	getDataGame=(obj)=>{
+		this.props.getData(obj.scoinGameId);
+	}
+
 	goToLightBoxPrev=()=>{
 		this.props.goToLightBoxPrev();
 	}
@@ -296,37 +300,6 @@ class GameDetailComponent extends React.Component {
 							<div class="bg-white p-3 mb-3 font13">
 								<h2 class="font13 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
-								{/* <ul class="carousel-indicators">
-									<li data-target="#demo" data-slide-to="0" class="active"></li>
-									<li data-target="#demo" data-slide-to="1"></li>
-									<li data-target="#demo" data-slide-to="2"></li>
-								</ul>    
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<div class="row">
-										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row">
-										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row">
-										<div class="col-6"><a href="#" title="Alice 3D"><img src="images/banner-game/thai-co-than-vuong.jpg" width="100%"  alt="Alice 3D" /></a></div>
-										<div class="col-6"><a href="#" title="AU Love"><img src="images/banner-game/thien-dia-chi-ton.png" width="100%"  alt="AU Love" /></a></div>
-										</div>
-									</div>
-								</div> 
-								<a class="carousel-control-prev" href="#demo" data-slide="prev">
-									<span class="carousel-control-prev-icon"></span>
-								</a>
-								<a class="carousel-control-next" href="#demo" data-slide="next">
-									<span class="carousel-control-next-icon"></span>
-								</a> */}
 									<Grid item xs={12} style={{
 									width: "100%",
 									overflow: "hidden",
@@ -380,44 +353,6 @@ class GameDetailComponent extends React.Component {
 							</div>
 							<div class="bg-white p-3 mb-3 font13">
 								<h2 class="font13 color-title-cat font-weight-bold pb-2">Video</h2>
-								{/* <div class="row">
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/8-EOzzeKOKs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/qCXcO89BoKg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<iframe width="100%" src="https://www.youtube.com/embed/j-Y18C9NU6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div>
-								</div> */}
 								{(youtubeData !== undefined && youtubeData.length > 0) ? (
 									<Grid container style={{
 										width: "100%",
@@ -472,13 +407,10 @@ class GameDetailComponent extends React.Component {
 								<div class="row">
 									{gameCare.map((obj, key)=>{
 										return (
-											<div class="col-6 col-md-4 px-3" key={key}>
+											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												<div class="thumb-lat-the position-relative">
-													<a href="#" title="Chơi ngay" class="text-dark">
+													<a class="text-dark">
 														<img src={obj.bigImage} width="100%" />
-														<div class="overlay">
-															<div class="text text-white small">Chơi ngay &raquo;</div>
-														</div>
 													</a>
 												</div>
 												<h3 class="font13 py-2"><a href={obj.website} title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
@@ -486,74 +418,20 @@ class GameDetailComponent extends React.Component {
 										)
 									})}
 									
-									{/* <div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<a href="#" title="Chơi ngay" class="text-dark">
-												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-												<div class="overlay">
-													<div class="text text-white small">Chơi ngay &raquo;</div>
-												</div>
-											</a>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<a href="#" title="Chơi ngay" class="text-dark">
-												<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-												<div class="overlay">
-													<div class="text text-white small">Chơi ngay &raquo;</div>
-												</div>
-											</a>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<a href="#" title="Chơi ngay" class="text-dark">
-												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-												<div class="overlay">
-													<div class="text text-white small">Chơi ngay &raquo;</div>
-												</div>
-											</a>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<a href="#" title="Chơi ngay" class="text-dark">
-												<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-												<div class="overlay">
-													<div class="text text-white small">Chơi ngay &raquo;</div>
-												</div>
-											</a>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-									</div>
-									<div class="col-6 col-md-4 px-3">
-										<div class="thumb-lat-the position-relative">
-											<a href="#" title="Chơi ngay" class="text-dark">
-												<img src="images/banner-game/thien-dia-chi-ton.png" width="100%" />
-												<div class="overlay">
-													<div class="text text-white small">Chơi ngay &raquo;</div>
-												</div>
-											</a>
-										</div>
-										<h3 class="font13 py-2"><a href="#" title="Thiên địa chí tôn" class="text-dark">Thiên địa chí tôn</a></h3>
-									</div> */}
+									
 								</div>
 								
 							</div>
 						</div>
 						<div class="col-sm-3 px-2">
 							<div class="bg-white p-3">
-								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button>
-								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button>
-								<button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button>
-								<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp thẻ</span></button>                
+								<a href={gameData.urlDownloadIos}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.urlDownloadAndroid}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.website}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
+								<a href="https://scoin.vn/nap-game" target="_blank"><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp thẻ</span></button></a>                
 							</div>
 							<div class="bg-white p-3 mt-3">
-								<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmakiemhiepduyen.vn%2F&tabs=timeline&width=240&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274" width="240" height="250" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width=240&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width="240" height="250" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 								
 							</div>
 							
@@ -561,7 +439,7 @@ class GameDetailComponent extends React.Component {
 								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
-											<div class="media border-bottom py-2 my-1">
+											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
 												<div class="media-body">
 													<h4 class="font13 font-weight-bold">{obj.name}</h4>
@@ -570,38 +448,9 @@ class GameDetailComponent extends React.Component {
 											</div>
 										)
 								})}
-								{/* <div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
-									</div>
-								</div>
-								<div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
-									</div>
-								</div>
-								<div class="media border-bottom py-2 my-1">
-									<img src="images/thumb/kiem-the-truyen-ky.png" alt="Kiếm thế" class="mr-3" style={{width:60}} />
-									<div class="media-body">
-										<h4 class="font13 font-weight-bold">Kiếm thế <img src="images/hot.gif" width="48"/></h4>
-										<p class="small">Hơn 1tr lượt tải</p>
-									</div>
-								</div> */}
+								
 								
 							</div>
-							{/* <div class="bg-white p-3 mt-3">
-								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tin tức </span></h2>
-								<ul class="list-unstyled">
-									<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class=" btn-tag-news">Tin tức</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
-									<li class="border-bottom py-2"><a href="#" title="" class="text-dark text-decoration-none small"><span class="btn-tag-event">Sự kiện</span> [HOT]Cuồng Ma ra chuỗi sự kiện chào mừng Server 1000 <span class="text-muted">- 30/05/2019</span></a></li>
-								</ul>
-								
-								
-							</div> */}
 							
 						</div>
 					</div>   

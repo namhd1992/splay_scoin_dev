@@ -74,15 +74,15 @@ class MissionComponent extends React.Component {
 		this.props.handleCloseSnack();
 	}
 	
-	reward=(id)=>{
-		this.props.reward(id);
+	reward=(obj)=>{
+		this.props.reward(obj.missionId);
 	}
 	
-	doMission=(action, id, value, scoinGameId,condition)=>{
-		if(condition===false){
+	doMission=(obj)=>{
+		if(obj.condition===false){
 			this.props.showDetail("Rất tiếc bạn không đủ điều kiện nhận thưởng.", "");
 		}else{
-			this.props.doMission(action, id, value, scoinGameId);
+			this.props.doMission(obj.actionName, obj.missionId, obj.objectValue, obj.scoinGameId);
 		}
 	}
 	
@@ -108,11 +108,15 @@ class MissionComponent extends React.Component {
 		return src;
 		
 	}
+	getDataGame=(obj)=>{
+		console.log(obj)
+	}
+
 
 
 	render() {
 		const {data,totalRecords, waiting,dialogDetailOpen,dialogContent,loadedRecords
-		, message,openSnack,dialogLoginOpen,snackVariant,server,title_dialog}=this.props;
+		, message,openSnack,dialogLoginOpen,snackVariant,server,title_dialog, gameCare}=this.props;
 		const { theme } = this.props;
 		const { classes } = this.props;
 		const { secondary } = theme.palette;
@@ -135,7 +139,15 @@ class MissionComponent extends React.Component {
 												<span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
 											</div>
 											<div class="position-absolute" style={{right: 8}}>
-												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span> <button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font13"><span class="small">Thực hiện &raquo;</span></button>
+												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
+												{(!obj.finish)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font12" onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>):(
+													<div style={{display:'inline-block'}}>
+														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm btn-animated font12" onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12" style={{backgroundColor:'gray'}}><span class="small">Đã nhận</span></button>
+														)}
+													</div>
+												)}
+												
 											</div>
 											</div>
 										</div>
@@ -149,17 +161,19 @@ class MissionComponent extends React.Component {
 								<div class="mb-3 bg-white p-3">
 									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 									<div class="row">
-										<div class="col-6 col-md-4 px-3">
-											<div class="thumb-lat-the position-relative">
-												<a href="#" title="Chơi ngay" class="text-dark">
-													<img src="images/banner-game/thai-co-than-vuong.jpg" width="100%" />
-													<div class="overlay">
-														<div class="text text-white small">Chơi ngay &raquo;</div>
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
+													<div class="thumb-lat-the position-relative">
+														<a class="text-dark">
+															<img src={obj.bigImage} width="100%" />
+														</a>
 													</div>
-												</a>
-											</div>
-											<h3 class="font13 py-2"><a href="#" title="Thái cổ thần vương" class="text-dark">Thái cổ thần vương</a></h3>
-										</div>
+													<h3 class="font13 py-2"><a href={obj.website} title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+												</div>
+											)
+										})}
+									
 									</div>
 									
 								</div>
@@ -216,7 +230,14 @@ class MissionComponent extends React.Component {
 						</div>):(<div></div>)}
 						
 						<div class="modal-footer">
-							<button type="button" class="btn btn-hover"><span class="small">Thực hiện</span></button>
+									{(!dataMission.finish)?(<button type="button" class="btn btn-hover" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
+										<div style={{display:'inline-block'}}>
+											{(!dataMission.received)?(<button type="button" class="btn btn-hover" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
+												<button type="button" class="btn" style={{backgroundColor:'gray'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
+											)}
+										</div>
+									)}
+							{/* <button type="button" class="btn btn-hover"><span class="small">Thực hiện</span></button> */}
 						</div>
 
 						</div>

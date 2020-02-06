@@ -38,7 +38,8 @@ class Game_detail extends React.Component {
 			gameMoi:[],
 			gameCare:[],
 			gameData: {},
-			id_game:'',
+			id_game:330307,
+			games:[],
 		};
 	}
 
@@ -46,21 +47,25 @@ class Game_detail extends React.Component {
 	}
 
 	componentDidMount() {
+		const {id_game}= this.state;
+		this.getData(id_game)
+		
+	}
+
+	getData=(id_game)=>{
 		var _this = this;
-		const {scoin_token}= this.state;
 		this.props.getAllGame().then(function () {
 			var data=_this.props.allGame
-			
 			if(data.status==="01"){
-				var games=data.data.filter(v=>v.scoinGameId!==330307)
+				var games=data.data.filter(v=>v.scoinGameId!==id_game)
 				var news=games.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
 				var gameMoi=news.slice(0, 3)
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				var gameCare=care.slice(0, 6)
-				_this.setState({gameMoi:gameMoi, gameCare:gameCare})
+				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games})
 			}
 		});
-		this.props.getDataId(330307).then(function () {
+		this.props.getDataId(id_game).then(function () {
 			var data=_this.props.data
 			if(data.status==="01"){
 				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch);
@@ -166,6 +171,7 @@ class Game_detail extends React.Component {
 					dialogLoginOpen={this.dialogLoginOpen}
 					handleCloseSnack={this.handleCloseSnack}
 					readMore={this.readMore}
+					getData={this.getData}
 
 					data={this.props.data}
 					server={this.props.server}
