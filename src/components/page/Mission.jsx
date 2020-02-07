@@ -169,7 +169,7 @@ class MissionComponent extends React.Component {
 										{gameCare.map((obj, key)=>{
 											return (
 												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
-													<a href={()=>this.getDataGame(obj)} target="_parent">
+													<a href={this.getDataGame(obj)} target="_parent">
 														<div class="thumb-lat-the position-relative">
 															<a class="text-dark">
 																<img src={obj.bigImage} width="100%" />
