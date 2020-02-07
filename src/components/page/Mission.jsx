@@ -171,7 +171,7 @@ class MissionComponent extends React.Component {
 															<img src={obj.bigImage} width="100%" />
 														</a>
 													</div>
-													<h3 class="font13 py-2"><a href={obj.website} title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 												</div>
 											)
 										})}
