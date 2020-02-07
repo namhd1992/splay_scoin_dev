@@ -73,7 +73,7 @@ class Game_detail extends React.Component {
 		this.props.getAllGame().then(function () {
 			var data=_this.props.allGame
 			if(data.status==="01"){
-				var games=data.data.filter(v=>v.scoinGameId!==id_game)
+				var games=data.data.filter(v=>v.scoinGameId!==+id_game)
 				var news=games.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
 				var gameMoi=news.slice(0, 3)
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
