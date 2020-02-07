@@ -58,6 +58,7 @@ class Game_detail extends React.Component {
 
 	getParamValue=(key)=>{
 		var url = window.location.search.substring(1);
+		console.log(window.location.href)
 		console.log('BBBBB',url)
 		var qArray = url.split('&');
 		for (var i = 0; i < qArray.length; i++) 
