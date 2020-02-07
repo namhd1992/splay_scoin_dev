@@ -109,11 +109,7 @@ class MissionComponent extends React.Component {
 		
 	}
 	getDataGame=(obj)=>{
-		// top.window.location.href=`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`=
-		// top.window.location.href=`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`
-		// http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D330307
-		// window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
-		return `http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`;
+		return `http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.scoinGameId}`;
 
 	}
 

@@ -46,7 +46,6 @@ class Game_detail extends React.Component {
 
 	componentWillMount(){
 		var id = this.getParamValue("service_id");
-		console.log('AAAAAAAAA', id)
 		this.setState({id_game:id})
 	}
 
@@ -58,8 +57,6 @@ class Game_detail extends React.Component {
 
 	getParamValue=(key)=>{
 		var url = window.location.search.substring(1);
-		console.log(window.location.href)
-		console.log('BBBBB',url)
 		var qArray = url.split('&');
 		for (var i = 0; i < qArray.length; i++) 
 		{
