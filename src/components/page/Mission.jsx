@@ -112,7 +112,9 @@ class MissionComponent extends React.Component {
 		// window.top.location.href(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`);
 		// top.window.location.href=`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`
 		// http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D330307
-		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
+		// window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
+		return `http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`;
+
 	}
 
 
@@ -167,12 +169,14 @@ class MissionComponent extends React.Component {
 										{gameCare.map((obj, key)=>{
 											return (
 												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
-													<div class="thumb-lat-the position-relative">
-														<a class="text-dark" onClick={()=>this.getDataGame(obj)}>
-															<img src={obj.bigImage} width="100%" />
-														</a>
-													</div>
-													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													<a onClick={()=>this.getDataGame(obj)}>
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
 												</div>
 											)
 										})}
