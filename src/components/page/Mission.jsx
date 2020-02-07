@@ -109,9 +109,9 @@ class MissionComponent extends React.Component {
 		
 	}
 	getDataGame=(obj)=>{
-		top.window.location.href=`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`
+		// top.window.location.href=`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`
 		// http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D330307
-		// window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
+		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail?service_id=${obj.scoinGameId}`)
 	}
 
 
@@ -165,9 +165,9 @@ class MissionComponent extends React.Component {
 									<div class="row">
 										{gameCare.map((obj, key)=>{
 											return (
-												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
 													<div class="thumb-lat-the position-relative">
-														<a class="text-dark">
+														<a class="text-dark" onClick={()=>this.getDataGame(obj)}>
 															<img src={obj.bigImage} width="100%" />
 														</a>
 													</div>
