@@ -180,6 +180,126 @@ class MissionComponent extends React.Component {
 									</div>
 									
 								</div>
+								<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									
+								</div>
+								<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									
+								</div>
+								<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									<div class="mb-3 bg-white p-3">
+									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<div class="row">
+										{gameCare.map((obj, key)=>{
+											return (
+												<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} >
+													<a href={this.getDataGame(obj)} target="_parent">
+														<div class="thumb-lat-the position-relative">
+															<a class="text-dark">
+																<img src={obj.bigImage} width="100%" />
+															</a>
+														</div>
+														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													</a>
+												</div>
+											)
+										})}
+									
+									</div>
+									
+								</div>
 							</div>
 							<div class="col-sm-3 px-2">
 								<div class="bg-white p-3">
