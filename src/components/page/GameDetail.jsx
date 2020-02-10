@@ -57,6 +57,8 @@ class GameDetailComponent extends React.Component {
 			margin:"",
 			compact: false,
 			showButtonPlay: false,
+			lightBoxOpen: false,
+			lightBoxIndex: 0,
 			marginTop:'',
 		}
 	}
@@ -261,7 +263,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div class="py-3" style={{marginTop:55}}>
+					<div class="py-3 container" style={{marginTop:55}}>
 					<div class="row">
 						<div class="col-sm-9 px-2">
 							<div class="bg-white mb-3 content">
@@ -338,7 +340,7 @@ class GameDetailComponent extends React.Component {
 											style={{lineHeight:"20px"}}
 										/>
 										<a style={{
-											color: secondary.main,
+											color: '#fff',
 											textAlign: "center",
 											width: "100%",
 											display: "block",
@@ -425,9 +427,9 @@ class GameDetailComponent extends React.Component {
 						</div>
 						<div class="col-sm-3 px-2">
 							<div class="bg-white p-3">
-								<a href={gameData.urlDownloadIos}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button></a>
-								<a href={gameData.urlDownloadAndroid}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
-								<a href={gameData.website}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border"><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.urlDownloadIos}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.urlDownloadAndroid}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.website}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
 								<a href="https://scoin.vn/nap-game" target="_blank"><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp thẻ</span></button></a>                
 							</div>
 							<div class="bg-white p-3 mt-3">
@@ -486,6 +488,16 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</DialogActions>
 						</Dialog>
+						{((arrImages !== undefined) && (
+							<Lightbox
+								images={arrImages}
+								currentImage={lightBoxIndex}
+								isOpen={lightBoxOpen}
+								onClickNext={this.goToLightBoxNext}
+								onClickPrev={this.goToLightBoxPrev}
+								onClose={this.closeLightBox}
+							/>
+						))}
 
 		</div>):(<div></div>)
 	}
