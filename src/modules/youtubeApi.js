@@ -30,7 +30,7 @@ export const getData = (channel_id, search_key) => {
 		dispatch({
 			type: YOUTUBE_REQUEST
 		})
-		var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBvKkN8lxCegk98cgdWgKKvDOr6Vg4Zvmk&part=snippet&maxResults=5";
+		var url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDDgnxJ8-JURubjfKnXtxK7KqNoF36rtXY&part=snippet&maxResults=5";
 		if (channel_id !== undefined) {
 			url += "&channelId=" + channel_id;
 		}
@@ -43,7 +43,6 @@ export const getData = (channel_id, search_key) => {
 				data: response.data.items
 			})
 		}).catch(function (error) {
-			console.log(error);
 			dispatch({
 				type: YOUTUBE_RESPONSE,
 				data: []

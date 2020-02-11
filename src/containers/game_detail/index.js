@@ -83,7 +83,7 @@ class Game_detail extends React.Component {
 		this.props.getDataId(+id_game).then(function () {
 			var data=_this.props.data
 			if(data.status==="01"){
-				_this.props.getYoutubeData(_this.props.data.youtubeChannelId, _this.props.data.youtubeDefaultSearch);
+				_this.props.getYoutubeData(data.data.youtubeChannelId, data.data.youtubeDefaultSearch);
 				_this.setState({ gameData: _this.props.data.data });
 			}
 		});
