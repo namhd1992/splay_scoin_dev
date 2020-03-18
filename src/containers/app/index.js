@@ -15,7 +15,8 @@ import Mission from '../mission';
 import Game_detail from '../game_detail';
 // import Auction_detail from '../auction_detail';
 import History from '../shop_history';
-// import Lucky_Rotation from '../lucky_rotation'
+import Lucky_Rotation from '../lucky_rotation'
+import San_Kho_Bau from '../san_kho_bau'
 
 class App extends React.Component {
 
@@ -51,7 +52,8 @@ class App extends React.Component {
 						{/* <Route exact path="/login" component={Login} /> */}
 						{/* <Route exact path="/logout" component={Logout} /> */}
 						<Route exact path="/" component={Game_detail} />
-						{/* <Route exact path="/luckyrotation" component={Lucky_Rotation} /> */}
+						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
+						<Route exact path="/san-kho-bau" component={San_Kho_Bau} />
 						{/* <Route exact path="/history" component={History} /> */}
 						{/* <Route exact path="/lucky" component={Lucky} /> */}
 						<Route exact path="/gamedetail/" component={Game_detail} />

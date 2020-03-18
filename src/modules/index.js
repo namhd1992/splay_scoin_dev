@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux'
 import game from './game'
 import giftcode from './giftcode'
 import lucky from './lucky'
+import sankhobau from './sankhobau'
 import home from './home'
 import help from './help'
 import vip from './vip'
@@ -29,6 +30,7 @@ export default combineReducers({
 	game,
 	giftcode,
 	lucky,
+	sankhobau,
 	home,
 	help,
 	vip,
