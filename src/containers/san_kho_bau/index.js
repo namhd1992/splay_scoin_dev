@@ -28,6 +28,7 @@ import banner_slider_3 from './images/banner-slider-3.png'
 import bg_acc from './images/bg-acc.png'
 import bg_bang_vinh_danh from './images/bg-bang-vinh-danh.png'
 import bg_cloud from './images/bg-cloud.png';
+import slide from './images/slide.gif'
 // import bg_float_left from './images/bg-float-left.gif';
 import bg_float_right from './images/bg-float-right.png';
 import bg_footer from './images/bg-footer.png';
@@ -462,33 +463,11 @@ class San_Kho_Bau extends React.Component {
 							</tr>
 						</table>
 					</div>
-					<div id="demo" class="carousel slide box-slider" data-ride="carousel">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src={banner_slider_1} class="img-fluid" />
-								<div class="carousel-caption carousel-fix">
-									<p>Chìa khóa còn lại: {turnsFree ? turnsFree.toLocaleString() :0} <img src={key_yellow_icon}  width="20"/></p>
-								</div>   
-							</div>
-							<div class="carousel-item">
-								<img src={banner_slider_2} class="img-fluid" />
-								<div class="carousel-caption carousel-fix">
-									<p>Chìa khóa còn lại: {turnsFree ? turnsFree.toLocaleString() :0} <img src={key_yellow_icon} width="20"/></p>
-								</div>   
-							</div>
-							<div class="carousel-item ">
-								<img src={banner_slider_3} class="img-fluid" />
-								<div class="carousel-caption carousel-fix">
-									<p>Chìa khóa còn lại: {turnsFree ? turnsFree.toLocaleString() :0} <img src={key_yellow_icon} width="20"/></p>
-								</div>   
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#demo" data-slide="prev">
-							<span class="carousel-control-prev-icon"></span>
-						</a>
-						<a class="carousel-control-next" href="#demo" data-slide="next">
-							<span class="carousel-control-next-icon"></span>
-						</a>
+					<div id="demo" class="box-slider">
+						<img src={slide} class="img-fluid" />
+						<div>
+							<p style={{textAlign:'center', color:'#fff'}}>Chìa khóa còn lại: {turnsFree ? turnsFree.toLocaleString() :0} <img src={key_yellow_icon}  width="20"/></p>
+						</div>   
 					</div>
 					<div class="button-group mx-auto">
 						<p class="text-center row mx-0">

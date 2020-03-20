@@ -43,7 +43,7 @@ body {background-color: #f5e4b9;}
 .font16 {font-size: 16px;}
 .font14 {font-size: 14px;}
 .h6 {color: #775338}
-.box-slider {position: absolute; top: 24%; left: 18%; width: 630px; height: 300px;}
+.box-slider {position: absolute; top: 37%; left: 18%; width: 630px; height: 300px;}
 .button-group {position: absolute; top: 65%; left: 0; right:0; max-width: 505px;}
 .float-left {position:fixed; left:0; top: 20%; background:url(../images/bg-float-left.png) no-repeat; width: 84px; height: 347px; z-index: 999}
 .text-float-left li a {width: 70px; height: 70px; display:block; margin-left: 10px;}
@@ -225,8 +225,7 @@ h2.font-iCielPantonBlack {font-size: 22px;}
 .box-time .h6 {font-size: 2vw; padding-top: 3px !important}
 .tbl-boxtime td {padding: .35rem .75rem; width: 25%; height:100%}
 .tbl-boxtime td.cell-timer-p1.display-5 {padding: .4rem .6rem; width: 25%; height:110%}
-.box-slider {padding-top: 0; top: 12% !important; width: 85%; left: 10%}
-.box-slider .carousel-caption {top: 55%; font-size: 14px}
+.box-slider {padding-top: 0; top: 6% !important; width: 70%; left: 11%}
 .box-slider .carousel-caption img {width: 24px}
 .button-group {top: 47%;}
 .header {height: 850px}
@@ -239,7 +238,7 @@ h2.font-iCielPantonBlack {font-size: 22px;}
 
 @media (max-width: 380px) {
 .header {height: 800px}
-.box-slider {top: 26%;}
+.box-slider {top: 20%;}
 .button-group {top: 45%;}
 }
 @media (max-width: 320px) {
