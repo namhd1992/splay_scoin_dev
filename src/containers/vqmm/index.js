@@ -57,7 +57,6 @@ import spin from './images/spin.gif';
 import $ from 'jquery';
 import 'bootstrap';
 
-import data from './data'
 const styles = {
 	paper: {
 		background: "#fff",
