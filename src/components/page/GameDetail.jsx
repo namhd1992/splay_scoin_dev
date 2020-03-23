@@ -300,7 +300,7 @@ class GameDetailComponent extends React.Component {
 								<button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-2"><span class="small">Nạp thẻ</span></button>
 							</div>
 							<div class="bg-white p-3 mb-3 font13">
-								<h2 class="font13 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
+								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
 									<Grid item xs={12} style={{
 									width: "100%",
@@ -337,7 +337,7 @@ class GameDetailComponent extends React.Component {
 											maxLine='5'
 											ellipsis='...'
 											basedOn='letters'
-											style={{lineHeight:"20px"}}
+											style={{lineHeight:"20px", fontSize:14}}
 										/>
 										<a style={{
 											color: '#fff',
@@ -354,7 +354,7 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</div>
 							<div class="bg-white p-3 mb-3 font13">
-								<h2 class="font13 color-title-cat font-weight-bold pb-2">Video</h2>
+								<h2 class="font16 color-title-cat font-weight-bold pb-2">Video</h2>
 								{(youtubeData !== undefined && youtubeData.length > 0) ? (
 									<Grid container style={{
 										width: "100%",
@@ -405,7 +405,7 @@ class GameDetailComponent extends React.Component {
 								) : (<div></div>)}
 							</div>
 							<div class="mb-3 bg-white p-3">
-								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 								<div class="row">
 									{gameCare.map((obj, key)=>{
 										return (
@@ -438,7 +438,7 @@ class GameDetailComponent extends React.Component {
 							</div>
 							
 							<div class="bg-white p-3 mt-3">
-								<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
+								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
 											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>

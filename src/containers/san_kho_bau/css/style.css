@@ -7,15 +7,16 @@ src:
 font-weight:normal;
 font-style:normal;
 }
-@font-face {
+/* @font-face {
 font-family: 'iCielPantonLight';
 src:
 	url('../fonts/iCielPanton-Light.otf')format('opentype');
 font-weight:normal;
 font-style:normal;
-}
+} */
 
-* {font-family: iCielPantonLight;}
+/* * {font-family: iCielPantonLight;} */
+.san-kho-bau {font-family: 'iCielPantonLight';}
 html {scroll-behavior: smooth;}
 body {background-color: #f5e4b9;}
 .header {background-image:url(../images/bg-header.png); background-position: top center; background-repeat: repeat-x; height: 1311px}

@@ -128,7 +128,7 @@ class MissionComponent extends React.Component {
 						<div class="row">
 							<div class="col-sm-9 px-2">
 								<div class="bg-white p-3 mb-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Nhiệm vụ</span></h2>
+									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Nhiệm vụ</span></h2>
 									{(data.length>0)?(<div>
 									{data.map((obj, key) => {
 										return ( <div class="card shadow-sm" key={key}>
@@ -136,8 +136,8 @@ class MissionComponent extends React.Component {
 											<div class="media position-relative">
 											<img src="../icon_diemdanh_active.png" alt="Điểm danh" class="mr-3 image-animated" width="48" />
 											<div class="media-body">
-												<h4 class="font13 font-weight-bold">{obj.missionName}</h4>
-												<span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
+												<h4 class="font14 font-weight-bold">{obj.missionName}</h4>
+												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
 											</div>
 											<div class="position-absolute" style={{right: 8}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
@@ -160,7 +160,7 @@ class MissionComponent extends React.Component {
 									</div>):(<div></div>)}               
 								</div>
 								<div class="mb-3 bg-white p-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
+									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 									<div class="row">
 										{gameCare.map((obj, key)=>{
 											return (
@@ -171,7 +171,7 @@ class MissionComponent extends React.Component {
 																<img src={obj.bigImage} width="100%" />
 															</a>
 														</div>
-														<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+														<h3 class="font14 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 													</a>
 												</div>
 											)
@@ -183,8 +183,8 @@ class MissionComponent extends React.Component {
 							</div>
 							<div class="col-sm-3 px-2">
 								<div class="bg-white p-3">
-									<h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
-									<div class="list-newest">
+									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
+									<div class="font14 list-newest">
 										<ul>
 											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
 											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>

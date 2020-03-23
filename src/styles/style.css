@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-body {font-family: Tahoma, Verdana, Arial;}
+body {font-family: Tahoma, Verdana, Arial !important;}
 .font13 {font-size: 13px;}
 .font16 {font-size: 16px;}
 .color-title-cat {color:#616a78}

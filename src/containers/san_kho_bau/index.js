@@ -739,7 +739,7 @@ class San_Kho_Bau extends React.Component {
 			activeRuong, activeHistory, activeBonus, activeVinhDanh, limit, countCodeBonus, countRuong, countKey, countVinhDanh, listHistory, listCodeBonus, listRuong, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, user}=this.state;
 		const { classes } = this.props;
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
-		return (<div style={{backgroundColor:'#f5e4b9'}}>
+		return (<div className='san-kho-bau' style={{backgroundColor:'#f5e4b9'}}>
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div id="top" class="container-fluid header">
 				<div class="container position-relative h-100 w-100">
