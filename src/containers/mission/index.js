@@ -36,7 +36,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z5Q8MbdATYfxjYuFne3Nfxyv9d5FzFtkf5kVX7YjaQN0PQEsv1l99WFLl6A9l3UU9gQ4fsD1hxMHn1Or4vKL5ksJetCpbsD%2b4lN6Wa0Ahaml5ZLPgqqb33HsmrRJhQPmhr53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8ZyGWNYYuprrvCkq5nETWDhqv9d5FzFtkf3Bcs%2f1uegUyyukpxSMjpA08sQ4MqkT84MtE6Bjkpa3T%2fwk1XhldMzy9yIa3GPxa865c8OFFUMITEB3ol2qWNv5OtP1wK041P753Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){

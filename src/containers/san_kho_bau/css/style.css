@@ -51,7 +51,7 @@ body {background-color: #f5e4b9;}
 .text-float-right li a {width: 70px; height: 90px; display:block; margin-left: 10px;}
 h2.font-iCielPantonBlack {line-height: 1.8;}
 .thele {position: relative; margin-top: -200px;}
-.step-thele {background:url(../images/bg-the-le.png) no-repeat; width: 1000px; height: 402px;}
+.step-thele {width: 1000px;}
 .step-bg {background:url(../images/bg-step.png) no-repeat; width: 270px; height: 67px; line-height: 67px}
 .step-thele .bg-the-le-mobile {width: 100%; height: auto; opacity:0; display: none;}
 .bang-quy-doi {width: 50%;}
@@ -74,6 +74,13 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 .alert-giaithuong {color:#155724 !important; background-color:#f7f0e7 !important; border-color:#775338 !important;}
 .header-giaithuong {margin: -60px 0 0 140px}
 .d-pc-none {display: none;}
+.thele_3{
+	padding: 10px 100px;
+}
+
+.nav-pills .nav-link.active {background-color:#800000 !important}
+.pop-custom a.nav-link {color: #800000}.nav-pills .nav-link.active {background-color:#800000;}
+.pop-custom a.nav-link {color: #800000}
 #button {
 	display: inline-block;
 	background-color: #FF9800;
@@ -146,6 +153,9 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 @media (min-width: 1280px) {
 .box-account {right: 9%;}
 .box-slider {left: 18%;}
+.thele_3{
+	padding: 10px 80px;
+}
 }
 @media (max-width: 1200px) {
 .box-account {right: 1%;}
@@ -158,9 +168,12 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 .box-time {left: 25%;}
 .logo {position: absolute; top: 2.5%;}
 .box-thele {width: 100%; height: auto; overflow:inherit}
-.step-thele {background:url(../images/bg-the-le-mobile.png); background-size: 100% auto; width:100%; height: auto}
+.step-thele { background-size: 100% auto; width:100%; height: auto}
 .step-thele .card-deck {display: none}
 .step-thele .bg-the-le-mobile {display: block;}
+.thele_3{
+	padding: 10px 30px;
+}
 }
 
 @media (max-width: 740px) {
@@ -179,6 +192,9 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 .alert-giaithuong {line-height: 30px;}
 .d-pc-none {display: block;}
 .alert-giaithuong .col-md-3.pt-3 {padding-top: 0 !important}
+.thele_3{
+	padding: 10px 20px;
+}
 }
 @media (max-width: 576px) {
 .box-time {left: 50%; top: 9%; width: 300px; transform: translate(-50%, 0);}
@@ -191,6 +207,9 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 .button-group {width: 100%;}
 .box-slider {width: 100%; left:0; height:auto; padding-top: 40% !important; top:35% !important}
 .noti-tudo {top: 53%; left: 10%; padding: 4px 9px !important;}
+.thele_3{
+	padding: 10px 10px;
+}
 }
 @media (max-width: 480px) {
 .box-bang-vinh-danh {width: 100%; height: 100%;}

@@ -22,13 +22,12 @@ import {
 
 import arrow_down from './images/arrow-down.png'
 import backtotop from './images/backtotop.png'
-import banner_slider_1 from './images/banner-slider-1.png'
+import slide from './images/slide.gif'
 import banner_slider_2 from './images/banner-slider-2.png'
 import banner_slider_3 from './images/banner-slider-3.png'
 import bg_acc from './images/bg-acc.png'
 import bg_bang_vinh_danh from './images/bg-bang-vinh-danh.png'
 import bg_cloud from './images/bg-cloud.png';
-import slide from './images/slide.gif'
 // import bg_float_left from './images/bg-float-left.gif';
 import bg_float_right from './images/bg-float-right.png';
 import bg_footer from './images/bg-footer.png';
@@ -100,11 +99,11 @@ class San_Kho_Bau extends React.Component {
 			minute:'00', 
 			second:'00',
 			itemBonus:{},
+			type_item: 'highlights',
 			
 			activeVinhDanh:1,
 			listVinhDanh:[],
 			countVinhDanh:0,
-			dataVinhDanh:[],
 
 			activeKey:1,
 			listKey:[],
@@ -121,6 +120,7 @@ class San_Kho_Bau extends React.Component {
 			dataTuDo:[],
 			dataCodeBonus:[],	
 			listHistory:[],
+			textAuto: true,
 			
 			listCountBonus:[],
 			width:0,
@@ -146,15 +146,57 @@ class San_Kho_Bau extends React.Component {
 			turnsBuyInfo:[],
 			soinValue:0,
 			hideNav:false,
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z6iBfunW1PVvVxWBKRqjuumv9d5FzFtkf6w7YlTnFHK3oS2IfJvSu5WQDnTlpMFwSp2iAXYDqQKXQKq9hMJHmdMvVqqpjH%2fOwCYV2Wy1MpupKTncq4HqanjsmrRJhQPmhr53Dc2UQ%2fHb',
+
 		};
 	}
 	componentWillMount(){
+		var scoin_token=this.getParamValue("ud");
+		if(scoin_token!=="" && scoin_token!==undefined){
+			this.setState({scoin_token: scoin_token})
+		}		
 		window.removeEventListener('scroll', this.handleScroll);
 		this.resize()
 	}
 
 	componentDidMount(){
-		this.getVinhDanh(1);
+		const {scoin_token} =this.state;
+		// var user = JSON.parse(localStorage.getItem("user"));
+		if (scoin_token !== '') {
+			this.props.getRotationDetailDataUser(scoin_token, 1).then(()=>{
+				var data=this.props.dataRotationWithUser;
+				if(data!==undefined){
+					if(data.status==='01'){
+						this.getStatus(data.data.luckySpin);
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), turnsBuyInfo:data.data.userTurnSpin.turnsBuyInfo, isLogin:true})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
+					}
+				}else{
+					// $('#myModal12').modal('show');
+					this.setState({server_err:true})
+				}
+				
+			});
+		} else {
+			this.props.getRotationDetailData(1).then(()=>{
+				var data=this.props.dataRotation;
+				if(data!==undefined){
+					if(data.status==='01'){
+						this.getStatus(data.data.luckySpin);
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false})
+					}else{
+						$('#myModal11').modal('show');
+						this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
+					}
+				}else{
+					// $('#myModal12').modal('show');
+					this.setState({server_err:true})
+				}
+			});
+		}
+		this.getDataVinhDanh('highlights',1);
 		window.addEventListener('scroll', this.handleScroll);
 		$("#demo").carousel({interval: 3000});
 	}
@@ -162,6 +204,18 @@ class San_Kho_Bau extends React.Component {
 	componentWillUnmount() {
 		// clearInterval(this.state.intervalId);
 		this.setState({ auto : !this.state.auto});
+	}
+
+	getParamValue=(key)=>
+	{
+		var url = window.location.search.substring(1);
+		var qArray = url.split('&');
+		for (var i = 0; i < qArray.length; i++) 
+		{
+			var pArr = qArray[i].split('=');
+			if (pArr[0] === key) 
+				return pArr[1];
+		}
 	}
 
 	resize() {
@@ -175,6 +229,24 @@ class San_Kho_Bau extends React.Component {
 
 	onResize=()=>{
 		this.resize()
+	}
+
+	getStatus=(luckySpin)=>{
+		var start=luckySpin.startDate;
+		var end=luckySpin.endDate;
+		var time=Date.now();
+
+		if (time < start) {
+			this.timeRemain(start)
+			this.setState({ status_sukien: 'Sự kiện chưa diễn ra.', message_status:"Sự kiện chưa diễn ra.", start:true});
+		}
+		if (time > start && time < end) {
+			this.timeRemain(end)
+			this.setState({ status_sukien: "Sự kiện đang diễn ra còn", live:true});
+		}
+		if (time > end) {
+			this.setState({ status_sukien: "Sự kiện đã kết thúc.", message_status:"Sự kiện đã kết thúc.", finish:true});
+		}
 	}
 
 	handleScroll = (event) => {
@@ -211,20 +283,165 @@ class San_Kho_Bau extends React.Component {
 		// );
 	}
 
+	start=()=>{
+		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, auto, type_item, scoin_token}=this.state;
+		var _this = this;
+		// var user = JSON.parse(localStorage.getItem("user"));
+		var time=Date.now();
+		if (scoin_token !== '') {
+			if(turnsFree>0){
+				this.props.pickCard(scoin_token, luckySpin.id).then(()=>{
+					var data=_this.props.dataPick;
+					var list=this.state.data_auto;
+					
+					if(data!==undefined){
+						if(data.status ==="01"){
+							if(auto){
+								var elem = document.getElementById('auto');
+								list.push(data.data.description);
+								this.getDetailData()
+								_this.setState({data_auto: list});
+								elem.scrollTop = elem.scrollHeight;
+								if(data.data.type!=="ACTION"){
+									this.setState({noti_tudo:true})
+									this.getDataVinhDanh(type_item, 1);	
+								}
+							}else{
+								$('#Khobau').modal('show');
+								setTimeout(() => {
+									if(data.data.type!=="ACTION"){
+										$('#myModal4').modal('show');
+										this.setState({noti_tudo:true})
+										this.getDataVinhDanh(type_item, 1);
+									}else{
+										$('#myModal7').modal('show');
+									}
+									this.getDetailData();
+									$('#Khobau').modal('hide');
+									_this.setState({itemBonus: data.data});
+								}, 1700);
+								
+							}	
+							
+						}else if(data.status ==="04"){
+							$('#myModal13').modal('show');
+						}else if(data.status ==="07"){
+								this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
+								$('#myModal8').modal('show');
+							})
+						}else if(data.status ==="10"){
+							this.setState({message_status:"Bạn cần xác nhận số ĐT để chơi.", xacthuc:true},()=>{
+								$('#myModal8').modal('show');
+							})
+						}else{
+							$('#myModal11').modal('show');
+							this.setState({message_error:'Sự kiện đang có lỗi. Vui lòng tải lại trang.'})
+						}
+					}else{
+						$('#myModal12').modal('show');
+						this.setState({server_err:true})
+					}
+				})
+				
+			}else{
+				$('#myModal6').modal('show');
+			}
+		} else {
+			$('#myModal5').modal('show');
+		}
+	}
+
 	btnStart=()=>{
-		this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
-			$('#myModal8').modal('show');
-		})
+		const {server_err, start, finish}=this.state;
+		if(server_err){
+			$('#myModal12').modal('show');
+		}else{
+			if(start){
+				this.setState({message_status:"Sự kiện chưa diễn ra."},()=>{
+					$('#myModal8').modal('show');
+				})
+			}else if(finish){
+				this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
+					$('#myModal8').modal('show');
+				})
+			}else{
+				this.setState({data_auto:[], closeAuto:true},()=>{
+					this.start();
+				})
+			}
+		}
 	}
 
 
 	autoOpen=()=>{
-		this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
-			$('#myModal8').modal('show');
-		})
+		const {turnsFree, luckySpin, server_err, start, finish, scoin_token}=this.state;
+		// var user = JSON.parse(localStorage.getItem("user"));
+		var time=Date.now();
+		if(server_err){
+			$('#myModal12').modal('show');
+		}else{
+			if (scoin_token !== '') {
+				if(start){
+					this.setState({message_status:"Sự kiện chưa diễn ra."},()=>{
+						$('#myModal8').modal('show');
+					})
+				}else if(finish){
+					this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
+						$('#myModal8').modal('show');
+					})
+				}else{
+					if(turnsFree>0){
+						$('#Khobau').modal('show');
+						setTimeout(() => {
+							$('#myModal9').modal('show');
+							this.setState({auto:true},()=>{
+								this.start()
+							});
+							$('#Khobau').modal('hide');
+						}, 1700);
+						
+					}else{
+						$('#myModal6').modal('show');
+					}
+				}
+			} else {
+				$('#myModal5').modal('show');
+			}
+		}	
 	}
 
 
+	getDetailData=()=>{
+		const {auto, luckySpin, scoin_token}=this.state;
+		// var user = JSON.parse(localStorage.getItem("user"));
+		this.props.getRotationDetailDataUser(scoin_token, luckySpin.id).then(()=>{
+			var data=this.props.dataRotationWithUser;
+			if(data!==undefined){
+				var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
+				if(data.status==='01'){
+					if(turnsFree>0){
+						if(auto){
+							var timeout =setTimeout(() => {
+								this.start();
+							}, 2000);
+							this.setState({timeout: timeout});	
+						}
+					}else{
+						this.setState({textAuto:false})
+					}
+					this.setState({turnsFree:turnsFree, turnsBuyInfo:data.data.userTurnSpin.turnsBuyInfo})
+				}else if(data.status ==="04"){
+					$('#myModal13').modal('show');
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Lỗi hệ thống. Vui lòng thử lại.'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+	}
 
 
 	timeRemain=(times)=>{
@@ -258,84 +475,172 @@ class San_Kho_Bau extends React.Component {
 		$('#myModal1').modal('hide');
 	}
 
-	showModalTuDo=()=>{
-		var user = JSON.parse(localStorage.getItem("user"));
-		if (user !== null) {
-			this.getDataTuDo(user);
-			$('#myModal4').modal('hide');
-			$('#myModal2').modal('show');
-		}else {
-			$('#myModal5').modal('show');
-		}
-	}
+	// showModalTuDo=()=>{
+	// 	var user = JSON.parse(localStorage.getItem("user"));
+	// 	if (user !== null) {
+	// 		this.getDataTuDo(user);
+	// 		$('#myModal4').modal('hide');
+	// 		$('#myModal2').modal('show');
+	// 	}else {
+	// 		$('#myModal5').modal('show');
+	// 	}
+	// }
 
 
 
 
 	showModalCodeBonus=(pageNumber)=>{
-		this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
-			$('#myModal8').modal('show');
+		const {scoin_token}=this.state
+		// var user = JSON.parse(localStorage.getItem("user"));
+		// console.log(user)
+		if(scoin_token !== ''){
+			this.getBonus(pageNumber)
+			$('#myModal4').modal('hide');
+		}else {
+			$('#myModal5').modal('show');
+		}
+	}
+
+	getBonus=(pageNumber)=>{
+		const {luckySpin, limit, scoin_token}=this.state;
+		this.props.getTuDo(scoin_token, luckySpin.id, limit, (pageNumber-1)).then(()=>{
+			var data=this.props.dataTuDo;
+			if(data!==undefined){
+				if(data.status==='01'){
+					$('#LichSu').modal('show');
+					this.setState({listCodeBonus:data.data, countCodeBonus:data.totalRecords, noti_tudo:false})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+	}
+
+
+
+	getRuong=(pageNumber)=>{
+		const {luckySpin, limit, scoin_token}=this.state;
+		// var offsetTuDo=(pageNumber-1)*limit;
+		this.props.getHistoryTuDo(scoin_token, luckySpin.id, limit, (pageNumber-1)).then(()=>{
+			var data=this.props.dataHistoryTuDo;
+			if(data!==undefined){
+				if(data.status==='01'){
+					this.setState({listRuong:data.data, countRuong: data.totalRecords})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+	}
+
+	getKey=(pageNumber)=>{
+		const {luckySpin, limit, scoin_token}=this.state;
+		// var offsetTuDo=(pageNumber-1)*limit;
+		this.props.getKeys(scoin_token, luckySpin.id, limit, (pageNumber-1)).then(()=>{
+			var data=this.props.dataListKey;
+			if(data!==undefined){
+				if(data.status==='01'){
+					this.setState({listKey:data.data, countKey: data.totalRecords})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+	}
+
+	getDataVinhDanh=(type_item, pageNumber)=>{
+		this.setState({type_item:type_item},()=>{
+			this.getVinhDanh(pageNumber);
 		})
-	}
-
-	getBonus=(user, pageNumber)=>{
-		
-	}
-
-
-
-	getRuong=(user, pageNumber)=>{
-		
-	}
-
-	getKey=(user, pageNumber)=>{
-	
 	}
 
 	getVinhDanh=(pageNumber)=>{
-		// const {limit}=this.state;
-		// this.props.getVinhDanh(120, 10, (pageNumber-1)).then(()=>{
-		// 	var data=this.props.dataVinhDanh;
-		// 	if(data!==undefined){
-		// 		var n=10-data.data.length;
-		// 		var listEmpty=[];
-		// 		for (let i = 0; i < n; i++) {
-		// 			let obj={date: '...', description: null, itemName: '...', userName: '...'}
-		// 			listEmpty.push(obj);
-		// 		}
-		// 		var listData=data.data.concat(listEmpty)
-		// 		if(data.status==='01'){	
-		// 			this.setState({listVinhDanh:listData, countVinhDanh: Math.ceil(data.totalRecords/10)*10})
-		// 		}else{
-		// 			$('#myModal11').modal('show');
-		// 			this.setState({message_error:'Không lấy được dữ liệu bảng vinh danh.'})
-		// 		}
-		// 	}else{
-		// 		$('#myModal12').modal('show');
-		// 		this.setState({server_err:true})
-		// 	}
-		// });
-		// va
-		// var n=10-data.data.length;
-		// 		var listEmpty=[];
-		// 		for (let i = 0; i < n; i++) {
-		// 			let obj={date: '...', description: null, itemName: '...', userName: '...'}
-		// 			listEmpty.push(obj);
-		// 		}
-		// 		var listData=data.data.concat(listEmpty)
-		// this.setState({dataVinhDanh:data, countVinhDanh:data.length, listVinhDanh:data.slice(0, 10)})
+		const {limit, luckySpin, type_item}=this.state;
+		this.props.getVinhDanh(1, 10, (pageNumber-1), type_item).then(()=>{
+			var data=this.props.dataVinhDanh;
+			if(data!==undefined){
+				
+				if(data.status==='01'){	
+					var n=10-data.data.length;
+					var listEmpty=[];
+					for (let i = 0; i < n; i++) {
+						let obj={date: '...', description: null, itemName: '...', userName: '...', phone: '...'}
+						listEmpty.push(obj);
+					}
+					var listData=data.data.concat(listEmpty)
+					this.setState({listVinhDanh:listData, countVinhDanh: Math.ceil(data.totalRecords/10)*10})
+				}else if(data.status==='03'){
+					var listEmpty=[];
+					for (let i = 0; i < 10; i++) {
+						let obj={date: '...', description: null, itemName: '...', userName: '...', phone: '...'}
+						listEmpty.push(obj);
+					}
+					this.setState({listVinhDanh:listEmpty, countVinhDanh: 10})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Không lấy được dữ liệu bảng vinh danh.'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
 	}
 
+
+
 	openGiaiThuong=()=>{
-		this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
-			$('#myModal8').modal('show');
-		})
+		// var offsetTuDo=(pageNumber-1)*limit;
+		this.props.getCountBonus().then(()=>{
+			
+			var data=this.props.dataCountBonus;
+			if(data!==undefined){
+				if(data.status==='01'){
+					$('#GiaiThuong').modal('show');
+					this.setState({listCountBonus:data.data})
+				}else{
+					$('#myModal11').modal('show');
+					this.setState({message_error:'Chưa tải được dữ liệu. Vui lòng thử lại'})
+				}
+			}else{
+				$('#myModal12').modal('show');
+				this.setState({server_err:true})
+			}
+		});
+		
 	}
 
 	openThemLuot=()=>{
-		this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
-			$('#myModal8').modal('show');
-		})
+		const {start, finish, scoin_token}=this.state;
+		// var user = JSON.parse(localStorage.getItem("user"));
+		if (scoin_token !== null) {
+			if(start){
+				this.setState({message_status:"Sự kiện chưa diễn ra."},()=>{
+					$('#myModal8').modal('show');
+				})
+				
+			}else if(finish){
+				this.setState({message_status:"Sự kiện đã kết thúc."},()=>{
+					$('#myModal8').modal('show');
+				})
+			}else{
+				$('#ThemLuot').modal('show');
+			}
+		}else {
+			$('#myModal5').modal('show');
+		}
 	}
 
 	closePopupAuto=()=>{
@@ -366,30 +671,31 @@ class San_Kho_Bau extends React.Component {
 
 
 	handlePageChangeRuong=(pageNumber)=> {
-		var user = JSON.parse(localStorage.getItem("user"));
+		// var user = JSON.parse(localStorage.getItem("user"));
 		this.setState({activeRuong: pageNumber},()=>{
-			this.getRuong(user, pageNumber)
+			this.getRuong(pageNumber)
 		})
 	}
 
 	handlePageChangeKey=(pageNumber)=> {
-		var user = JSON.parse(localStorage.getItem("user"));
+		// var user = JSON.parse(localStorage.getItem("user"));
 		this.setState({activeKey: pageNumber},()=>{
-			this.getKey(user, pageNumber)
+			this.getKey(pageNumber)
 		})
 	}
 
 	handlePageChangeCodeBonus=(pageNumber)=> {
-		var user = JSON.parse(localStorage.getItem("user"));
+		// var user = JSON.parse(localStorage.getItem("user"));
 		this.setState({activeBonus: pageNumber},()=>{
-			this.getBonus(user, pageNumber)
+			this.getBonus(pageNumber)
 		})
 	}
 
 	handlePageChangeVinhDanh=(pageNumber)=> {
-		const {dataVinhDanh}=this.state;
-		var newPosition=(pageNumber-1)*10
-		this.setState({activeVinhDanh: pageNumber, listVinhDanh: dataVinhDanh.slice(newPosition, newPosition+10)});
+		const {type_item}=this.state;
+		this.setState({activeVinhDanh: pageNumber},()=>{
+			this.getDataVinhDanh(type_item, pageNumber)
+		})
 	}
 
 	openTabNapScoin=(url)=> {
@@ -429,7 +735,7 @@ class San_Kho_Bau extends React.Component {
 
 
 	render() {
-		const {soinValue,listCountBonus, listKey, activeKey, turnsBuyInfo,status_sukien, xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, message_status, data_auto,message_error,
+		const {textAuto, soinValue,listCountBonus, listKey, activeKey, turnsBuyInfo,status_sukien, xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, message_status, data_auto,message_error,
 			activeRuong, activeHistory, activeBonus, activeVinhDanh, limit, countCodeBonus, countRuong, countKey, countVinhDanh, listHistory, listCodeBonus, listRuong, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, user}=this.state;
 		const { classes } = this.props;
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
@@ -437,14 +743,14 @@ class San_Kho_Bau extends React.Component {
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div id="top" class="container-fluid header">
 				<div class="container position-relative h-100 w-100">
-				{(isLogin)?(<ul class="box-account nav font-iCielPantonLight">
+				{/* {(isLogin)?(<ul class="box-account nav font-iCielPantonLight">
 		<li class="bg-acc nav-item text-center"><a class="d-block pt-03 text-orange" href="#" title={this.titleName(userTurnSpin.currName)}><span class="text-white">Xin chào</span> {this.getUsername(userTurnSpin.currName)}</a></li>
 						<li class="bg-acc nav-item text-center" onClick={this.logoutAction}><a class="d-block pt-03 font-italic text-orange" href="#" title="Đăng xuất">Đăng Xuất</a></li>
 						
 						
 					</ul>):(<ul class="box-account nav font-iCielPantonLight justify-content-end">
 							<li class="bg-acc nav-item text-center" onClick={this.loginAction}><a class="d-block pt-03 font-italic text-orange" href="#" title="Đăng xuất">Đăng Nhập</a></li>
-					</ul>)}
+					</ul>)} */}
 					<div id="logo" class="logo"><img src={logo} class="img-fluid" /></div>
 					<div class="table-responsive box-time">
 						<h2 class="font-iCielPantonBlack text-brown-shadow">{status_sukien}</h2>
@@ -500,130 +806,216 @@ class San_Kho_Bau extends React.Component {
 				
 				<div class="content-thele text-center mx-auto pt-4">
 					<h4 class="font18 font-iCielPantonLight font-weight-bold">I. Đối tượng tham gia</h4>
-					<p>Khách hàng có tài khoản Scoin. Nếu chưa có, đăng ký <a href="https://scoin.vn/" title="Đăng ký" target="_blank">tại đây</a>. <br /> Thời gian SK diễn ra từ 10:00 ngày 20.12.2019 - hết ngày 20.01.2020.</p>
-					<h4 class="font18 font-iCielPantonLight font-weight-bold">II. Cách tham gia:</h4>
+					<ul className='thele_3' style={{listStyle:'none'}}>
+						<li>&#9679;  Tất cả game thủ có tài khoản Scoin. Nếu chưa có <a href="https://scoin.vn/" title="Đăng ký" target="_blank">Đăng ký tại đây</a>. </li>
+						<li>&#9679;  Thời gian SK diễn ra từ 10:00 ngày 19.03 - hết ngày 18.04.2020. Sau khi kết thúc, số chìa khóa sẽ được xóa khỏi hệ thống.</li>
+					</ul>
+					<h4 class="font18 font-iCielPantonLight font-weight-bold">II. Cách nhận chìa khóa mở rương báu:</h4>
 					<div class="box-thele">
 						<div class="step-thele mx-auto">
-							<img src={bg_the_le_mobile} class="img-fluid bg-the-le-mobile" />
-							<div class="card-deck mx-auto pt-5">
-							<div class="card ml-4 bg-transparent border-0">
-								<div class="card-body text-center">
-									<h4><img src={img_step1} class="img-fluid" alt="Bước 1" /></h4>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow pt-3 font18">Nạp Game từ ví Scoin</p>
-									<p class="py-2"><img src={arrow_down} alt="" /></p>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow font18">Nhận chìa khóa mở rương báu</p>
-									<p class="card-text">Hoặc dùng thẻ Scoin mua <br />(giới hạn lượt/ngày)</p>
-								</div>
-							</div>
-							<div class="card mx-0 bg-transparent border-0">
-								<div class="card-body text-center">
-									<h4><img src={img_step2} class="img-fluid" alt="Bước 2" /></h4>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow pt-3 font18">Truy cập trang sự kiện <br /><a title="Kho báu Scoin" class="font-iCielPantonBlack text-brown-shadow">www.khobauscoin.splay.vn</a></p>
-									<p class="py-2"><img src={arrow_down} alt="" /></p>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow font18">Mở rương báu Scoin</p>
-								</div>
-							</div>
-							<div class="card mr-4 bg-transparent border-0">
-								<div class="card-body text-center">
-									<h4><img src={img_step3} class="img-fluid"  alt="Bước 3" /></h4>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow pt-3 font18">Nhận thưởng Scoin</p>
-									<p class="py-2"><img src={arrow_down} alt="" /></p>
-									<p class="card-text font-iCielPantonBlack text-brown-shadow font18">Ví <a class="font-iCielPantonBlack text-brown-shadow" href="https://scoin.vn/" title="Scoin" target="_blank">www.scoin.vn</a></p>
-								</div>
-							</div>         
+							<p>Nạp thẻ Scoin/ thẻ Scoin vào các game do VTC Mobile phát hành.</p>
+							<ul style={{listStyle:'none'}}>
+								<li class="font-iCielPantonBlack text-brown">&#9679;  Mỗi 1 Scoin bạn nạp vào game từ Thẻ Scoin sẽ nhận được 2 Điểm</li>
+								<li class="font-iCielPantonBlack text-brown">&#9679;  Mỗi 1 Scoin bạn nạp vào game từ ví Scoin sẽ nhận được 1 Điểm.</li>
+								<li class="font-iCielPantonBlack text-brown">&#9679;  Mỗi 100.000 Điểm bạn nhận được 01 Chìa khóa được hệ thống tự động quy đổi.</li>
+							</ul>
+							<div style={{border:'1px solid', padding:10, margin: 10}}>
+								<p style={{marginBottom:5}}>Số điểm đã tích lũy: {turnsBuyInfo.accumulationPoint ? turnsBuyInfo.accumulationPoint.toLocaleString() : 0} Điểm</p>
+								<p class="font-iCielPantonBlack text-brown" style={{fontWeight:'bold'}}>Cần nạp thêm tối thiểu <span class="text-red font-iCielPantonBlack" style={{color:'red'}}> {turnsBuyInfo.cardBalanceRounding ? turnsBuyInfo.cardBalanceRounding.toLocaleString(): 0} Scoin từ thẻ Scoin</span> hoặc <span class="font-iCielPantonBlack" style={{color:'red'}}>{turnsBuyInfo.scoinBalanceRounding ? turnsBuyInfo.scoinBalanceRounding.toLocaleString(): 0} Scoin từ ví </span>  để nhận 01 Chìa khóa miễn phí!</p>
+								<p><a href="#" title="Thêm chìa khóa" class="font-iCielPantonLight font16" data-toggle="modal" onClick={this.openThemLuot}>Thêm Chìa khóa <img src={key_yellow_icon} width="20" class="img-fluid" /></a></p>
 							</div>
 						</div>
 					</div>
-					<h4 class="font18 font-iCielPantonLight font-weight-bold pt-3">Bảng quy đổi chìa khóa</h4>
-					<h4 class="font16 font-iCielPantonLight pt-2">Cách 1: Nạp Game từ ví Scoin (không giới hạn số lần nạp) <br /><span class="font-iCielPantonBlack font16">Nạp ví Scoin -> Game: cứ 50.000 Scoin sẽ nhận 1 Chìa khóa mở rương báu</span></h4>
-					<h4 class="font16 font-iCielPantonLight font-weight-bold pt-3">Cách 2: Dùng thẻ Scoin mua trực tiếp Chìa khóa <br />Mỗi tài khoản Scoin chỉ được mua 10 Chìa khóa/ngày</h4>
-					<p class="font-iCielPantonBlack font16">Thẻ Scoin 10k > 1 Chìa khóa <br />
-					Thẻ Scoin 20k > 2 Chìa khóa <br />
-					Thẻ Scoin 50k > 5 Chìa khóa</p>
-					<p><a href="#" title="Thêm chìa khóa" class="font-iCielPantonLight font16" data-toggle="modal" onClick={this.openThemLuot}>Thêm chìa khóa <img src={key_yellow_icon} width="20" class="img-fluid" /></a></p>
+					<h4 class="font18 font-iCielPantonLight font-weight-bold pt-3">III. Cơ cấu Giải thưởng</h4>
+					<ul className='thele_3' style={{listStyle:'none'}}>
+						<li>&#9679;  Tổng số giải đặc biệt - rương báu 5 triệu Scoin: 30 giải. Mỗi ngày 01 giải. Các giải này sẽ được cộng dồn cho ngày tiếp theo, nếu không có người trúng giải ở ngày trước đó.</li>
+						<li>&#9679;  Ngoài các giải đặc biệt, còn có rất nhiều giải Scoin khác. Tất cả giải thưởng sẽ được cộng trực tiếp vào tài khoản của game thủ.</li>
+					</ul>
+					
         			<p id="VinhDanh"><a href="#" title="Xem kho báu" data-toggle="modal" onClick={this.openGiaiThuong}><img src={btn_xem_kho_bau} width="150" class="img-fluid seeBonus" /></a></p>
 					
 				</div>
 			</div>
 			{/* End p2 */}
 
-
 			<div class="container-fluid bang-vinh-danh-mobile mt-5">
-				<h2 class="font-iCielPantonBlack text-brown-shadow text-uppercase text-center"><img src={header_bang_vinh_danh} class="img-fluid" alt="Bảng vinh danh" /></h2>
-				<div class="table-responsive">
-					<table class="table mx-auto tbl-bang-vinh-danh-mobile">
-						<thead class="font18 font-iCielPantonLight font-weight-bold">
-							<tr>
-								<th><p class="card-text font-iCielPantonBlack text-brown-shadow font18">Tên/Giải thưởng/Thời gian trúng</p></th>
-							</tr>
-						</thead>
-						<tbody>
-							{listVinhDanh.map((obj, key) => (
-								<tr key={key}>
-									{(obj.itemName!=='...')?(<td><strong>{obj.userName}</strong> <br />{obj.itemName} <img src={ruong_icons} width={20} height={20}/><br />{obj.date}</td>):(
-										<td><strong>{obj.userName}</strong> <br />{obj.itemName} <br />{obj.date}</td>
-									)}
-									
-								</tr>
-							))}
-						</tbody>
-					</table>
-					<ul class="pagination justify-content-center pag-custom mt-4">
-						<Pagination
-							activePage={activeVinhDanh}
-							itemsCountPerPage={10}
-							totalItemsCount={countVinhDanh}
-							pageRangeDisplayed={numberPage}
-							lastPageText={'Trang cuối'}
-							firstPageText={'Trang đầu'}
-							itemClass={"page-item"}
-							linkClass={"page-link"}
-							onChange={(v) => this.handlePageChangeVinhDanh(v)}
-						/>
-					</ul> 
-				</div>
-			</div>
-			
-			<div class="container-fluid bang-vinh-danh">
-				<div class="container pt-5 box-bang-vinh-danh">
-					<div class="mt-5 bg-bang-vinh-danh mx-auto">
-						<table class="table table-borderless tbl-bang-vinh-danh">
-							<thead>
+				<h2 class="font-iCielPantonBlack text-brown-shadow text-uppercase text-center">Bảng Vinh Danh</h2>
+				<ul class="nav nav-pills nav-justified pop-custom">
+				<li class="nav-item">
+					<a class="nav-link active px-2" data-toggle="tab" href="#doithuong" onClick={()=>this.getDataVinhDanh('highlights',1)}>Giải đặc biệt</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link px-2" data-toggle="tab" href="#mochu" onClick={()=>this.getDataVinhDanh('',1)}>Giải khác</a>
+				</li>
+				</ul> 
+				<div class="tab-content">
+					<div class="tab-pane container active" id="doithuong">
+						<div class="table-responsive pt-3">
+							<table class="table mx-auto tbl-bang-vinh-danh-mobile">
+								<thead class="font18 font-iCielPantonLight font-weight-bold">
 								<tr>
-									<th><p class="font-iCielPantonBlack text-brown-shadow font18">Tên</p></th>
-									<th><p class="font-iCielPantonBlack text-brown-shadow font18">Giải thưởng</p></th>
-									<th><p class="font-iCielPantonBlack text-brown-shadow font18">Thời gian trúng</p></th>
+									<th><p class="card-text font-iCielPantonBlack text-brown-shadow font18">Tên tài khoản/Số ĐT/Thời gian trúng</p></th>
 								</tr>
-							</thead>
-							<tbody>
-								{listVinhDanh.map((obj, key) => (
-									<tr key={key}>
-										<td className="border-right-0">{obj.userName}</td>
-										{(obj.itemName!=='...')?(<td className="border-left-0 border-right-0">{obj.itemName} <img src={ruong_icons} width={25} height={25} /></td>):(
-											<td className="border-left-0 border-right-0">{obj.itemName}</td>
-										)}
-										
-										<td className="border-left-0">{obj.date}</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>  
-					<ul class="pagination justify-content-center pag-custom mt-4">
-						<Pagination
-							activePage={activeVinhDanh}
-							itemsCountPerPage={10}
-							totalItemsCount={countVinhDanh}
-							pageRangeDisplayed={numberPage}
-							lastPageText={'Trang cuối'}
-							firstPageText={'Trang đầu'}
-							itemClass={"page-item"}
-							linkClass={"page-link"}
-							onChange={(v) => this.handlePageChangeVinhDanh(v)}
-						/>
-					</ul>   	
+								</thead>
+								<tbody>
+									{listVinhDanh.map((obj, key) => (
+											<tr key={key}>
+												{(obj.itemName!=='...')?(<td><strong>{obj.userName}</strong><br />{obj.phone}<br />{obj.date}</td>):(
+													<td><strong>{obj.userName}</strong> <br />{obj.phone}<br />{obj.date}</td>
+												)}
+												
+											</tr>
+										))}
+								</tbody>
+							</table>
+							<ul class="pagination justify-content-center pag-custom mt-4">
+							<Pagination
+								activePage={activeVinhDanh}
+								itemsCountPerPage={10}
+								totalItemsCount={countVinhDanh}
+								pageRangeDisplayed={numberPage}
+								lastPageText={'Trang cuối'}
+								firstPageText={'Trang đầu'}
+								itemClass={"page-item"}
+								linkClass={"page-link"}
+								onChange={(v) => this.handlePageChangeVinhDanh(v)}
+							/>
+						</ul> 
+						</div>
+					</div>
+					<div class="tab-pane container" id="mochu">
+						<div class="table-responsive pt-3">
+							<table class="table mx-auto tbl-bang-vinh-danh-mobile">
+								<thead class="font18 font-iCielPantonLight font-weight-bold">
+								<tr>
+									<th><p class="card-text font-iCielPantonBlack text-brown-shadow font18">Tên tài khoản/Giải thưởng/Thời gian trúng</p></th>
+								</tr>
+								</thead>
+								<tbody>
+									{listVinhDanh.map((obj, key) => (
+										<tr key={key}>
+											{(obj.itemName!=='...')?(<td><strong>{obj.userName}</strong> <br />{obj.itemName} <img src={ruong_icons} width={20} height={20}/><br />{obj.date}</td>):(
+												<td><strong>{obj.userName}</strong> <br />{obj.itemName} <br />{obj.date}</td>
+											)}
+											
+										</tr>
+									))}
+								</tbody>
+							</table>
+							<ul class="pagination justify-content-center pag-custom mt-4">
+								<Pagination
+									activePage={activeVinhDanh}
+									itemsCountPerPage={10}
+									totalItemsCount={countVinhDanh}
+									pageRangeDisplayed={numberPage}
+									lastPageText={'Trang cuối'}
+									firstPageText={'Trang đầu'}
+									itemClass={"page-item"}
+									linkClass={"page-link"}
+									onChange={(v) => this.handlePageChangeVinhDanh(v)}
+								/>
+							</ul> 
+						</div>
+					</div>
 				</div>
-			</div>
+				
+				
+				</div>
+					<div class="container-fluid bang-vinh-danh">
+						<div class="container pt-5 box-bang-vinh-danh">
+							<div class="mt-5 bg-bang-vinh-danh mx-auto">
+								<div class="tbl-bang-vinh-danh">
+									<ul class="nav nav-pills nav-justified pop-custom">
+										<li class="nav-item">
+											<a class="nav-link active px-2" data-toggle="tab" href="#doithuong1" onClick={()=>this.getDataVinhDanh('highlights',1)}>Giải đặc biệt</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link px-2" data-toggle="tab" href="#mochu1" onClick={()=>this.getDataVinhDanh('',1)}>Giải khác</a>
+										</li>
+									</ul> 
+									<div class="tab-content">
+									<div class="tab-pane container active" id="doithuong1">
+										<div class="pt-3">        
+											<table class="table table-borderless">
+												<thead>
+												<tr>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Tên tài khoản</p></th>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Số ĐT</p></th>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Thời gian trúng</p></th>
+												</tr>
+												</thead>
+												<tbody>
+													{listVinhDanh.map((obj, key) => (
+															<tr key={key}>
+																<td className="border-right-0">{obj.userName}</td>
+																<td className="border-right-0">{obj.phone}</td>
+																<td className="border-left-0">{obj.date}</td>
+															</tr>
+														))}
+												</tbody>
+											</table>
+													
+											<ul class="pagination justify-content-center pag-custom mt-4">
+												<Pagination
+													activePage={activeVinhDanh}
+													itemsCountPerPage={10}
+													totalItemsCount={countVinhDanh}
+													pageRangeDisplayed={numberPage}
+													lastPageText={'Trang cuối'}
+													firstPageText={'Trang đầu'}
+													itemClass={"page-item"}
+													linkClass={"page-link"}
+													onChange={(v) => this.handlePageChangeVinhDanh(v)}
+												/>
+											</ul>   	
+											</div>
+										</div>
+										<div class="tab-pane container fade" id="mochu1">
+											<div class="pt-3">        
+											<table class="table table-borderless">
+												<thead>
+												<tr>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Tên tài khoản</p></th>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Giải thưởng</p></th>
+													<th class="pb-0"><p class="font-iCielPantonBlack text-brown-shadow font18 mb-0">Thời gian trúng</p></th>
+												</tr>
+												</thead>
+												<tbody>
+													{listVinhDanh.map((obj, key) => (
+															<tr key={key}>
+																<td className="border-right-0">{obj.userName}</td>
+																{(obj.itemName!=='...')?(<td className="border-left-0 border-right-0">{obj.itemName} <img src={ruong_icons} width={25} height={25} /></td>):(
+																	<td className="border-left-0 border-right-0">{obj.itemName}</td>
+																)}
+																
+																<td className="border-left-0">{obj.date}</td>
+															</tr>
+														))}
+												</tbody>
+											</table>
+													
+											<ul class="pagination justify-content-center pag-custom mt-4">
+												<Pagination
+													activePage={activeVinhDanh}
+													itemsCountPerPage={10}
+													totalItemsCount={countVinhDanh}
+													pageRangeDisplayed={numberPage}
+													lastPageText={'Trang cuối'}
+													firstPageText={'Trang đầu'}
+													itemClass={"page-item"}
+													linkClass={"page-link"}
+													onChange={(v) => this.handlePageChangeVinhDanh(v)}
+												/>
+											</ul>   	
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>    	
+						</div>
+					</div>
+
 
 
 			<div class="container-fluid footer text-center">
@@ -653,7 +1045,7 @@ class San_Kho_Bau extends React.Component {
 						<button type="button" class="close" data-dismiss="modal"><img src={close_icon} class="img-fluid" /></button>
 					</div>
 					<div class="modal-body font16">
-						<p class="d-pc-none mt-n3">&rarr; Trả thẳng vào Ví Scoin của khách hàng</p>
+						{/* <p class="d-pc-none mt-n3">&rarr; Trả thẳng vào Ví Scoin của khách hàng</p> */}
 
 						{listCountBonus.map((obj, key) => (
 							<div class="alert alert-giaithuong row mx-0 py-0 pl-0 mb-2" key={key}>
@@ -687,16 +1079,17 @@ class San_Kho_Bau extends React.Component {
 						<div class="modal-body font16">
 							<div class="w-75 mx-auto">
 								<p class="font-iCielPantonBlack text-brown pt-5">Bạn muốn nhận thêm Chìa khóa mở rương báu Scoin?</p>
-								<p class="font-iCielPantonBlack text-brown">Nạp game từ ví Scoin được tặng Chìa khóa:
-						Cứ 50.000 Scoin sẽ nhận 1 Chìa khóa mở rương báu</p>
-								<p style={{color:'red'}}>(không giới hạn giá trị nạp & số lần nạp)</p>
+								<ul>
+									<li class="font-iCielPantonBlack text-brown">Mỗi 1 Scoin bạn nạp vào game từ Thẻ Scoin sẽ nhận được 2 Điểm</li>
+									<li class="font-iCielPantonBlack text-brown">Mỗi 1 Scoin bạn nạp vào game từ ví Scoin sẽ nhận được 1 Điểm.</li>
+									<li class="font-iCielPantonBlack text-brown">Mỗi 100.000 Điểm bạn nhận được 01 Chìa khóa được hệ thống tự động quy đổi.</li>
+								</ul>				
+								<p class="font-iCielPantonBlack text-brown">(không giới hạn giá trị nạp & số lần nạp)</p>
 								<div class="alert alert-giaithuong">
-									<p class="font-iCielPantonBlack text-brown">Scoin đã nạp từ ví vào Game: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.scoinTopupWallet ? turnsBuyInfo.scoinTopupWallet.toLocaleString() : 0} Scoin</span></p>
-									<p class="font-iCielPantonBlack text-brown">Chìa khóa đã nhận: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.turnTopupWallet ? turnsBuyInfo.turnTopupWallet.toLocaleString() : 0} Chìa khóa</span> <img src={key_yellow_icon} width="20" class="img-fluid" /></p>
-									<p class="font-iCielPantonBlack text-brown">Nạp thêm <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.scoinBalanceRounding ? turnsBuyInfo.scoinBalanceRounding.toLocaleString(): 0} Scoin</span> từ ví -> Game để nhận <span class="text-dark font-iCielPantonBlack">1 Chìa khóa</span> <img src={key_yellow_icon} width="20" class="img-fluid" /></p>
+									<p class="font-iCielPantonBlack text-brown">Số điểm đã tích lũy: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.accumulationPoint ? turnsBuyInfo.accumulationPoint.toLocaleString() : 0} Điểm</span></p>	
+									<p class="font-iCielPantonBlack text-brown" style={{fontWeight:'bold'}}>Cần nạp thêm tối thiểu <span class="text-red font-iCielPantonBlack" style={{color:'red'}}> {turnsBuyInfo.cardBalanceRounding ? turnsBuyInfo.cardBalanceRounding.toLocaleString(): 0} Scoin từ thẻ Scoin</span> hoặc <span class="font-iCielPantonBlack" style={{color:'red'}}>{turnsBuyInfo.scoinBalanceRounding ? turnsBuyInfo.scoinBalanceRounding.toLocaleString(): 0} Scoin từ ví </span>  để nhận 01 Chìa khóa miễn phí!</p>
 								</div>
 								<p class="text-center w-75 mx-auto mt-4 mb-0"><a href="https://scoin.vn/nap-game" title="Nạp Game" target="_blank"><img src={btn_nap_game} class="img-fluid napGame" /></a></p>
-								<p class="text-center w-75 mx-auto mt-2"><a href="" title="Mua chìa khóa dùng thẻ Scoin" data-toggle="modal" data-target="#MuaChiaKhoa"><img src={btn_mua_chia_khoa} class="img-fluid buyKey" /></a></p>
 							</div>
 						</div>	  
 					</div>
@@ -746,17 +1139,17 @@ class San_Kho_Bau extends React.Component {
 					<div class="modal-body">
 						<h2 class="font-iCielPantonBlack text-brown-shadow text-uppercase text-center pb-0">Lịch Sử</h2>
 						<div class="">
-							<ul class="nav nav-pills justify-content-between pag-custom">
-							<li class="nav-item">
-								<a class="nav-link active font16 px-2" data-toggle="tab" href="#TGiaiThuong" onClick={this.getBonus}>Giải thưởng</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font16 px-2" data-toggle="tab" href="#TMoRuong" onClick={()=>this.getRuong(user,activeRuong)}>Mở Rương</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link font16 px-2" data-toggle="tab" href="#TNhanChiaKhoa" onClick={()=>this.getKey(user,activeKey)}>Nhận chìa khóa</a>
-							</li>
-							</ul>            
+							<ul class="nav nav-pills nav-justified pop-custom">
+								<li class="nav-item">
+									<a class="nav-link active font16 px-2" data-toggle="tab" href="#TGiaiThuong" onClick={this.getBonus}>Giải thưởng</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font16 px-2" data-toggle="tab" href="#TMoRuong" onClick={()=>this.getRuong(activeRuong)}>Mở Rương</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link font16 px-2" data-toggle="tab" href="#TNhanChiaKhoa" onClick={()=>this.getKey(activeKey)}>Nhận chìa khóa</a>
+								</li>
+							</ul>
 							<div class="tab-content">
 							<div class="tab-pane container active" id="TGiaiThuong">
 								<div class="d-pc-none pt-3">
@@ -1017,16 +1410,17 @@ class San_Kho_Bau extends React.Component {
 					<div class="modal-body font16">
 						<div class="w-75 mx-auto">
 							<h3 class="font-iCielPantonBlack text-brown pt-5">HẾT CHÌA KHÓA</h3>
-							<p class="font-iCielPantonBlack text-brown">Nạp game từ ví Scoin được tặng Chìa khóa:
-					Cứ 50.000 Scoin sẽ nhận 1 Chìa khóa mở rương báu</p>
-							<p style={{color:'red'}}>(không giới hạn giá trị nạp & số lần nạp)</p>
+							<ul>
+								<li class="font-iCielPantonBlack text-brown">Mỗi 1 Scoin bạn nạp vào game từ Thẻ Scoin sẽ nhận được 2 Điểm</li>
+								<li class="font-iCielPantonBlack text-brown">Mỗi 1 Scoin bạn nạp vào game từ ví Scoin sẽ nhận được 1 Điểm.</li>
+								<li class="font-iCielPantonBlack text-brown">Mỗi 100.000 Điểm bạn nhận được 01 Chìa khóa được hệ thống tự động quy đổi.</li>
+							</ul>				
+							<p class="font-iCielPantonBlack text-brown">(không giới hạn giá trị nạp & số lần nạp)</p>
 							<div class="alert alert-giaithuong">
-							    <p class="font-iCielPantonBlack text-brown">Scoin đã nạp từ ví vào Game: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.scoinTopupWallet ? turnsBuyInfo.scoinTopupWallet.toLocaleString() : 0} Scoin</span></p>
-							    <p class="font-iCielPantonBlack text-brown">Chìa khóa đã nhận: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.turnTopupWallet ? turnsBuyInfo.turnTopupWallet.toLocaleString() : 0} Chìa khóa</span> <img src={key_yellow_icon} width="20" class="img-fluid" /></p>
-								<p class="font-iCielPantonBlack text-brown">Nạp thêm <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.scoinBalanceRounding ? turnsBuyInfo.scoinBalanceRounding.toLocaleString(): 0} Scoin</span> từ ví -> Game để nhận <span class="text-dark font-iCielPantonBlack">1 Chìa khóa</span> <img src={key_yellow_icon} width="20" class="img-fluid" /></p>
+								<p class="font-iCielPantonBlack text-brown">Số điểm đã tích lũy: <span class="text-dark font-iCielPantonBlack">{turnsBuyInfo.accumulationPoint ? turnsBuyInfo.accumulationPoint.toLocaleString() : 0} Điểm</span></p>	
+								<p class="font-iCielPantonBlack text-brown" style={{fontWeight:'bold'}}>Cần nạp thêm tối thiểu <span class="text-red font-iCielPantonBlack" style={{color:'red'}}> {turnsBuyInfo.cardBalanceRounding ? turnsBuyInfo.cardBalanceRounding.toLocaleString(): 0} Scoin từ thẻ Scoin</span> hoặc <span class="font-iCielPantonBlack" style={{color:'red'}}>{turnsBuyInfo.scoinBalanceRounding ? turnsBuyInfo.scoinBalanceRounding.toLocaleString(): 0} Scoin từ ví </span>  để nhận 01 Chìa khóa miễn phí!</p>
 							</div>
-							<p class="text-center w-75 mx-auto mt-4 mb-0"><a href="https://scoin.vn/nap-game" title="Nạp Game" target="_blank"><img src={btn_nap_game} class="img-fluid" /></a></p>
-							<p class="text-center w-75 mx-auto mt-2"><a href="" title="Mua chìa khóa dùng thẻ Scoin" data-toggle="modal" data-target="#MuaChiaKhoa"><img src={btn_mua_chia_khoa} class="img-fluid" /></a></p>
+							<p class="text-center w-75 mx-auto mt-4 mb-0"><a href="https://scoin.vn/nap-game" title="Nạp Game" target="_blank"><img src={btn_nap_game} class="img-fluid napGame" /></a></p>
 						</div>
 					</div>	  
 					</div>
@@ -1116,7 +1510,10 @@ class San_Kho_Bau extends React.Component {
 						
 						</div>
 						<p className="text-thele">Vào <code style={{color:'red'}}><label style={{cursor:'pointer'}} onClick={()=>this.showModalCodeBonus(1)}>Lịch sử</label></code> để xem chi tiết.</p>
-						<p className="text-thele text-center"><code style={{color:'red'}} className="font-iCielPantonBlack">Đang mở tự động <span className="spinner-grow spinner-grow-sm"></span></code></p>
+						{(textAuto)?(<p className="text-thele text-center"><code style={{color:'red'}} className="font-iCielPantonBlack">Đang mở tự động <span className="spinner-grow spinner-grow-sm"></span></code></p>):(
+							<p className="text-thele text-center font-iCielPantonBlack" style={{color:'red'}}>Đã dùng hết Chìa khóa</p>
+						)}
+						
 						
 					</div>
 

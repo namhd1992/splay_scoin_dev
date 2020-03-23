@@ -289,7 +289,7 @@ export const getCountBonus = () => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "anonymous/lucky-spin-history/gift-quantity-exist?lucky_spin_id=" + 120;
+		var url = Ultilities.base_url() + "anonymous/lucky-spin-history/gift-quantity-exist?lucky_spin_id=" + 1;
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_COUNT_BONUS,
@@ -431,7 +431,7 @@ export const getHistoryTuDo = (token, id, limit, offset) => {
 }
 
 
-export const getVinhDanh = (id, limit, offset) => {
+export const getVinhDanh = (id, limit, offset, type_item) => {
 	var header = {
 		headers: {
 			"Content-Type": "application/json",
@@ -442,7 +442,7 @@ export const getVinhDanh = (id, limit, offset) => {
 		dispatch({
 			type: LUCKY_REQUEST
 		})
-		var url = Ultilities.base_url() + "anonymous/lucky-spin-history/all?lucky_spin_id=" + id + "&limit=" + limit + "&offset=" + offset;
+		var url = Ultilities.base_url() + "anonymous/lucky-spin-history/all?lucky_spin_id=" + id + "&limit=" + limit + "&offset=" + offset + "&type_item=" +  type_item;
 		return axios.get(url, header).then(function (response) {
 			dispatch({
 				type: LUCKY_VINH_DANH,
