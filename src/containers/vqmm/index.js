@@ -146,7 +146,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	componentDidMount(){
-		const {img_width, img_height}=this.state;
+		const {img_width, img_height, scoin_token}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		// this.timeShowLive();
 		if (scoin_token !== '') {
@@ -367,7 +367,7 @@ class Vong_Quay_May_Man extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished}=this.state;
+		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished, scoin_token}=this.state;
 		var _this = this;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var time=Date.now();
@@ -523,7 +523,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	getDetailData=()=>{
-		const {auto}=this.state;
+		const {auto, scoin_token}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		this.props.getRotationDetailDataUser(scoin_token, 119).then(()=>{
 			var data=this.props.dataRotationWithUser;
@@ -619,6 +619,7 @@ class Vong_Quay_May_Man extends React.Component {
 	}
 
 	showModalTuDo=()=>{
+		const {scoin_token}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		if (scoin_token !== '') {
 			this.getDataTuDo();
