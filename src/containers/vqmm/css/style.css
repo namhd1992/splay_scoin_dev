@@ -9,7 +9,7 @@ src:
 font-weight:normal;
 font-style:normal;
 }
-.div-vqmm {font-family: 'mijasultra' !important;}
+.div-vqmm {font-family: 'helvetica' !important; margin-top: 50px;}
 html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png);  background-position: top center; background-repeat: no-repeat;}
 .content-inner-p1 {height: 1100px; width: 100%; position: relative; background-image:url(../images/bg1a.png) ; background-position: center 270px; background-repeat: no-repeat; overflow: hidden}

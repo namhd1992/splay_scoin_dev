@@ -914,7 +914,7 @@ class Vong_Quay_May_Man extends React.Component {
 						</div>
 					</div>
 				</div>
-				<h2 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" />Bảng vinh danh</h2>
+				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span style={{fontSize:45}}>BẢNG VINH DANH</span></h5>
 				<div className="table-responsive mt-4">
 					<table className="table table-borderless tbl-bvd mx-auto text-center">
 						<thead>
