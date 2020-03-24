@@ -130,14 +130,17 @@ class Vong_Quay_May_Man extends React.Component {
 			isLive:false,
 			user:{},
 			xacthuc:false,
+			idLucky:0,
 			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8ZyGWNYYuprrvCkq5nETWDhqv9d5FzFtkf3Bcs%2f1uegUyyukpxSMjpA08sQ4MqkT84MtE6Bjkpa3T%2fwk1XhldMzy9yIa3GPxa865c8OFFUMITEB3ol2qWNv5OtP1wK041P753Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
 		var scoin_token=this.getParamValue("ud");
 		if(scoin_token!=="" && scoin_token!==undefined){
-			this.setState({scoin_token: scoin_token})
+			this.setState({scoin_token: scoin_token, idLucky:this.props.match.params.id})
 		}		
+		console.log(this.props.match.params.id)
+		this.setState({idLucky:this.props.match.params.id})
 		this.onResize()
 		window.removeEventListener('scroll', this.handleScroll);
 	}
@@ -145,11 +148,11 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	componentDidMount(){
-		const {img_width, img_height, scoin_token}=this.state;
+		const {img_width, img_height, scoin_token, idLucky}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		// this.timeShowLive();
 		if (scoin_token !== '') {
-			this.props.getRotationDetailDataUser(scoin_token, 119).then(()=>{
+			this.props.getRotationDetailDataUser(scoin_token, idLucky).then(()=>{
 				var data=this.props.dataRotationWithUser;
 				if(data!==undefined){
 					if(data.status==='01'){
@@ -177,7 +180,7 @@ class Vong_Quay_May_Man extends React.Component {
 				
 			});
 		} else {
-			this.props.getRotationDetailData(119).then(()=>{
+			this.props.getRotationDetailData(idLucky).then(()=>{
 				var data=this.props.dataRotation;
 				if(data!==undefined){
 					if(data.status==='01'){
@@ -282,8 +285,8 @@ class Vong_Quay_May_Man extends React.Component {
 	}
 
 	getVinhDanh=(pageNumber)=>{
-		const {limit}=this.state;
-		this.props.getVinhDanh(119, limit, (pageNumber-1)).then(()=>{
+		const {limit, idLucky}=this.state;
+		this.props.getVinhDanh(idLucky, limit, (pageNumber-1)).then(()=>{
 			var data=this.props.dataVinhDanh;
 			if(data!==undefined){
 				if(data.status==='01'){	
@@ -522,9 +525,9 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	getDetailData=()=>{
-		const {auto, scoin_token}=this.state;
+		const {auto, scoin_token, idLucky}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
-		this.props.getRotationDetailDataUser(scoin_token, 119).then(()=>{
+		this.props.getRotationDetailDataUser(scoin_token, idLucky).then(()=>{
 			var data=this.props.dataRotationWithUser;
 			if(data!==undefined){
 				var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
@@ -980,7 +983,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 			<div className="container-fluid footer">
 				<p className="text-center"><img src={logo_splay} width="100" alt="" /> <img src={logo_scoin} width="150" hspace="10" alt="" /></p>
-				<p className="text-center"><span className="text-uppercase">CÔNG TY CỔ PHẦN VTC DỊCH VỤ DI ĐỘNG</span> <br />VTC Mobile - Thành viên của Tổng Công ty Truyền thông đa phương tiện Việt Nam VTC <br /> Tầng 11, tòa nhà VTC Online, số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội.
+				<p className="text-center" style={{color:'black'}}><span className="text-uppercase">CÔNG TY CỔ PHẦN VTC DỊCH VỤ DI ĐỘNG</span> <br />VTC Mobile - Thành viên của Tổng Công ty Truyền thông đa phương tiện Việt Nam VTC <br /> Tầng 11, tòa nhà VTC Online, số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội.
 <br />Tel: (84-4).39877470 <br />Fax: (84-4).39877210<br /> <a href="mailto:vtcmobile@vtc.vn">vtcmobile@vtc.vn</a>
 	</p>
 			</div>
