@@ -863,7 +863,7 @@ class Vong_Quay_May_Man extends React.Component {
 					</div> */}
 					<div className="btn-quay">
 						{/* <h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5> */}
-						<h5 className="text-center">Còn: {turnsFree} Xu</h5>
+						<h5 className="text-center">Còn: {turnsFree ? turnsFree.toLocaleString() : 0} Xu</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
