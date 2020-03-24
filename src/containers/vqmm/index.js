@@ -131,7 +131,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8ZyGWNYYuprrvCkq5nETWDhqv9d5FzFtkf3Bcs%2f1uegUyyukpxSMjpA08sQ4MqkT84MtE6Bjkpa3T%2fwk1XhldMzy9yIa3GPxa865c8OFFUMITEB3ol2qWNv5OtP1wK041P753Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z53C48OzG6oRFmO3Cv8R6vqv9d5FzFtkf6UxQcmVkVtOWpPXCpkrEe7CxNp3np571rZMGi9r1kmg7uIRAuzF1PonWU%2f60BDapS%2fY6gpQMP8hdYRLH6M3P4SSKAD2fDcEKL53Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
@@ -168,7 +168,7 @@ class Vong_Quay_May_Man extends React.Component {
 						// }
 						this.getStatus(data.data.luckySpin);
 						// this.timeShowLive(data.data.luckySpin.endDate);
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:true, linkLiveStream:data.data.luckySpin.linkLiveStream})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:true, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
@@ -195,7 +195,7 @@ class Vong_Quay_May_Man extends React.Component {
 						// }
 						this.getStatus(data.data.luckySpin);
 						// this.timeShowLive(data.data.luckySpin.endDate);
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:(data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy), isLogin:false, linkLiveStream:data.data.luckySpin.linkLiveStream})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:false, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
@@ -530,7 +530,7 @@ class Vong_Quay_May_Man extends React.Component {
 		this.props.getRotationDetailDataUser(scoin_token, idLucky).then(()=>{
 			var data=this.props.dataRotationWithUser;
 			if(data!==undefined){
-				var turnsFree=data.data.userTurnSpin.turnsFree+data.data.userTurnSpin.turnsBuy;
+				var turnsFree=data.data.userTurnSpin.xu;
 				if(data.status==='01'){
 					if(turnsFree>0){
 						if(auto){
@@ -799,7 +799,8 @@ class Vong_Quay_May_Man extends React.Component {
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
-		return (<div>
+		return (
+		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div className="container-fluid page1">
 				<div className="content-inner-p1">
@@ -861,7 +862,8 @@ class Vong_Quay_May_Man extends React.Component {
 						
 					</div> */}
 					<div className="btn-quay">
-						<h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5>
+						{/* <h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5> */}
+						<h5 className="text-center">Còn: {turnsFree} Xu</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
