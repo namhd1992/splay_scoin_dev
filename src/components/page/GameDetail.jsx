@@ -60,7 +60,12 @@ class GameDetailComponent extends React.Component {
 			lightBoxOpen: false,
 			lightBoxIndex: 0,
 			marginTop:'',
+			iframeWidth:230,
+			iframeHeight:250,
 		}
+	}
+	componentWillMount(){
+		this.onResize();
 	}
 
 	componentWillUnmount() {
@@ -79,6 +84,17 @@ class GameDetailComponent extends React.Component {
 			this.setState({ marginTop: '-30px' });
 		}
 		window.addEventListener('scroll', this.handleScroll);
+	}
+
+	onResize=()=>{
+		if (window.innerWidth <= 600) {
+			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400});
+			return;
+		}
+		if (window.innerWidth > 1024) {
+			this.setState({ iframeWidth: 265, iframeHeight:400});
+			return;
+		}
 	}
 
 	handleScroll = (event) => {
@@ -211,7 +227,7 @@ class GameDetailComponent extends React.Component {
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 
 		const { classes } = this.props;
-
+		const {iframeWidth, iframeHeight}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -426,18 +442,18 @@ class GameDetailComponent extends React.Component {
 							</div>
 						</div>
 						<div class="col-sm-3 px-2">
-							<div class="bg-white p-3">
+							<div class="bg-white download">
 								<a href={gameData.urlDownloadIos}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.urlDownloadAndroid}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.website}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
 								<a href="https://scoin.vn/nap-game" target="_blank"><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp thẻ</span></button></a>                
 							</div>
-							<div class="bg-white p-3 mt-3">
-								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width=240&height=250&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width="240" height="250" style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+							<div class="bg-white mt-3">
+								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 								
 							</div>
 							
-							<div class="bg-white p-3 mt-3">
+							<div class="bg-white mt-3">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (

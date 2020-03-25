@@ -204,7 +204,9 @@ a.btn-dv:hover {color: #ffd102;}
 	.mstt h2 {position: relative; margin: 0 auto;}
 }
 @media (max-width: 640px) {
-	
+	.download{
+		display: none;
+	}
 	.content-inner-p1 {background-position: center bottom; height: 1000px; background-size: 150%;}
 	.btn-thamgiangay {position: absolute; bottom: 40px;}
 	.position-absolute-p1 {position:fixed; left:1%; top: 20%; background:url(../images/bg-btn-float-right.png) no-repeat; background-size: 100%; width: 40px;}
