@@ -150,6 +150,12 @@ a.btn-dv:hover {color: #ffd102;}
     width:100%;
     position:absolute;
 }
+
+.modal-header .close {
+	padding: 0px !important;
+	margin: 0px !important;
+  }
+
 @media (max-width: 1200px) {
 
 	.page2 {background-position: 35% 10%; background-size: 160%;}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import Pagination from "react-js-pagination";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import './css/style.css';
 import {
@@ -131,7 +132,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z53C48OzG6oRFmO3Cv8R6vqv9d5FzFtkf6UxQcmVkVtOWpPXCpkrEe7CxNp3np571rZMGi9r1kmg7uIRAuzF1PonWU%2f60BDapS%2fY6gpQMP8hdYRLH6M3P4SSKAD2fDcEKL53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z6iUEiX7Q36V93BJGB3O9hyv9d5FzFtkf4%2bfx0Hd%2f1kfEZmW%2fvminPoMuKBb7sTifVa3XsLKggTSV1xwHFmi7EUXMFa8GKvwIc5bkyiDleGyczjNnWMlPHBY4HAcP14%2bdr53Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
@@ -817,10 +818,10 @@ class Vong_Quay_May_Man extends React.Component {
 									<td className="cell-timer-p1 display-5 text-center">{second}</td>
 								</tr>
 								<tr>
-									<td align="center" className="p-0 h6">Ngày</td>
-									<td align="center" className="p-0 h6">Giờ</td>
-									<td align="center" className="p-0 h6">Phút</td>
-									<td align="center" className="p-0 h6">Giây</td>
+									<td align="center" className="p-0 h6" style={{color:'#fff'}}>Ngày</td>
+									<td align="center" className="p-0 h6" style={{color:'#fff'}}>Giờ</td>
+									<td align="center" className="p-0 h6" style={{color:'#fff'}}>Phút</td>
+									<td align="center" className="p-0 h6" style={{color:'#fff'}}>Giây</td>
 								</tr>
 							</table>
 							{(finished)?(<div className="alert alert-danger text-center">
@@ -834,7 +835,7 @@ class Vong_Quay_May_Man extends React.Component {
 					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1">
 						<ul className="nav flex-column menu-left-p1">
-							<li className="pt-6"><a href="https://scoin.vn/nap-game" title="Nạp Scoin" target="_blank">Nạp Game</a></li>
+							<li className="pt-6"><a href="https://scoin.vn/nap-game" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
 							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
@@ -875,7 +876,6 @@ class Vong_Quay_May_Man extends React.Component {
 				<div className="menu-right-vqmm">
 					<ul className="nav flex-column">
 						<li className="pt-6"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
-						<li className="pt-5a"><a style={{color:"#fff", cursor:'pointer'}} title="Mã dự thưởng" onClick={this.showModalCodeBonus}>Mã dự thưởng</a>{notification_mdt}</li>
 					</ul>
 				</div>
 			</div>
@@ -962,14 +962,10 @@ class Vong_Quay_May_Man extends React.Component {
 				<div className="w-100 justify-content-center text-center pt-5">
 					<ul className="nav nav-pills nav-justified">
 						<li className="nav-item">
-						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://daily.scoin.vn/huong-dan-mua-the/" title="Hướng dẫn mua thẻ scoin" target="_blank">Hướng dẫn mua thẻ scoin</a>
+						<a className="nav-link btn-dv text-uppercase text-nowrap"><Link to={"/nhiem-vu"} target="_blank" style={{color:"#fff", textDecoration:'none'}}>Hoàn thành nhiệm vụ nhận Xu</Link></a>
 						</li>
 						<li className="nav-item">
 						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://www.facebook.com/scoinvtcmobile/" title="Nhận thông báo sk" target="_blank">Nhận thông báo sk</a>
-						</li>
-						<li className="nav-item">
-						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://scoin.vn/nap-game" title="Nạp scoin" target="_blank">Nạp Game</a>
-						{/* <a className="nav-link btn-dv text-uppercase text-nowrap" href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp scoin" target="_blank">Nạp Game</a> */}
 						</li>
 						<li className="nav-item">
 						<a className="nav-link btn-dv text-uppercase text-nowrap" href="tel:19001104" title="Hotline hỗ trợ">HOT LINE: 19001104</a>
@@ -1015,7 +1011,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* The Modal Thể lệ */}
-			<div className="modal fade" id="myModal1">
+			<div className="modal fade" id="myModal1" style={{zIndex:10000}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1028,99 +1024,21 @@ class Vong_Quay_May_Man extends React.Component {
 					{/* <!-- Modal body --> */}
 					<div class="modal-body">
 						<h3 class="text-red">I. Đối tượng tham gia</h3>
-						<p class="text-thele pl-3"> &bull; Khách hàng có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="https://scoin.vn/" title="Đăng ký" target="_blank">tại đây</a></code>. <br />
-						&bull; Khách hàng cần xác thực số ĐT tại đây nếu chưa thực hiện <code><a class="text-primary" href="https://scoin.vn/cap-nhat-sdt" title="Xác Thực" target="_blank">tại đây</a></code>. <br />
-						{/* &bull; Nạp game dùng thẻ Scoin mệnh giá tối thiểu 50k trong thời gian từ 0h 28/10 - 23:59 03/11. */}
-						<code class="h5">&bull; Dùng thẻ Scoin nạp trực tiếp vào game</code> trong thời gian từ 0h 28/10 - 23:59 03/11 để được tặng lượt chơi</p>
+						<p class="text-thele pl-3"> &bull; Tất cả game thủ có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="https://scoin.vn/" title="Đăng ký" target="_blank">tại đây</a></code>. <br />
+						 &bull; Game thủ dùng Xu để chơi Vong quay may mắn. Xu có thể nhận được sau khi hoàn thành các nhiệm vụ của Scoin <code><Link to={"/nhiem-vu"} target="_blank" style={{color:"#007bff"}}>tại đây</Link></code>.</p>
 						<h3 class="text-red">II. Cách thức tham gia sự kiện</h3>
-						<div class="row">
-						<div class="col-4 bg-orange py-2 text-center border border-white rounded-lg"><button type="button" class="btn btn-primary d-block mx-auto mb-3">Bước 1</button><p class="text-dark">Nạp game(thẻ Scoin)</p> <p class="font-weight-bold text-success my-1">&nabla;</p> <p class="text-dark">Nhận lượt chơi</p></div> 
-						<div class="col-4 bg-orange py-2 text-center border border-white rounded-lg"><button type="button" class="btn btn-info d-block mx-auto mb-3">Bước 2</button><p class="text-dark">Chơi vòng quay </p> <p class="font-weight-bold text-success my-1">&nabla;</p> <p class="text-dark">Nhận mã dự thưởng</p></div> 
-						<div class="col-4 bg-orange py-2 text-center border border-white rounded-lg"><button type="button" class="btn btn-success d-block mx-auto mb-3">Bước 3</button><p class="text-dark">So KQ Mã dự thưởng <br /> 19:00 04/11</p></div> 
-						</div>
-						<p class="text-thele pt-3 pl-3">  &bull; Bước 1:  Nạp game bất kỳ, <code class="h5">chọn thẻ cào> thẻ Scoin mệnh giá tối thiểu 50k.</code> <br />
-						&bull; Bước 2: Nhận lượt quay miễn phí, tương ứng với thẻ Scoin nạp thành công:</p>
-						<div class="table-responsive">
-						<table class="table table-bordered text-center text-thele">
-							<thead>
-								<tr>
-									<th colspan="4">Nạp thẻ Scoin vào game</th> 
-								</tr>
-								<tr>
-									<th>STT</th>
-									<th>Mệnh giá thẻ Scoin (VNĐ)</th>
-									<th>Số lượt quay chuẩn</th>
-									<th>Số lượt quay (đã cộng)</th>
-								</tr>
-							</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>50.000</td>
-								<td>1</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>100.000</td>
-								<td>2</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>200.000</td>
-								<td>4</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>300.000</td>
-								<td>6</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>500.000</td>
-								<td>10</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>1.000.000</td>
-								<td>22</td>
-								<td>10%</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>2.000.000</td>
-								<td>44</td>
-								<td>10%</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>5.000.000</td>
-								<td>120</td>
-								<td>20%</td>
-							</tr>
-						</tbody>
-						</table>
-						</div>
-						<p class="text-thele pt-3 pl-3"> &bull; Bước 3: Chơi vòng quay tại link: <a style={{color:'#0066ff', textDecoration:'underline'}}>www.vongquayt10.splay.vn</a> để nhận Mã dự thưởng (Cần đăng nhập bằng tài khoản Scoin để chơi). <br></br>
-						&bull; Bước 4: Mã dự thưởng dùng để đối chiếu với KQ Mã dự thưởng ngày 04/11/2019 để xác định trúng thưởng: <strong>1 điện thoại iPhone 11 Pro Max 256GB</strong></p>
+						<p class="text-thele pt-3 pl-3">  &bull; Bước 1:  Truy cập trang Nhiệm vụ của Scoin tại đường dẫn. <br />
+						&bull; Bước 2: Hoàn thành các nhiệm vụ để nhận Xu. <br />
+						&bull; Bước 3: Dùng Xu để chơi Vòng Quay May Mắn và nhận các phần thưởng ngẫu nhiên.</p>
+						
 						<h3 class="text-red">III. Các giải thưởng</h3>
-						<p class="text-thele pl-3"> &bull; Scoin sẽ được cộng trực tiếp vào ví Scoin của khách hàng.<br></br>
-						&bull; Thẻ Scoin: sẽ được lưu trữ trong Tủ đồ sự kiện. Khách hàng có thể xem và sử dụng trực tiếp để nạp điện thoại hoặc nạp vào các game của VTC Mobile.<br></br>
-						&bull; Mã dự thưởng: lưu trữ trong mục Mã dự thưởng. Khách hàng có thể tra cứu dễ dàng.<br></br>
-						&bull; Giải đặc biệt - iPhone 11 Pro Max: Sau khi KQ Mã dự thưởng ngày 04/11/2019 được công bố, BTC sẽ cập nhật thông tin của khách hàng trúng thưởng trong Bảng vinh danh. Khách hàng trúng giải liên hệ Hotline 1900 1104 để được hướng dẫn nhận thưởng.
+						<p class="text-thele pl-3"> &bull; Các giải Xu sẽ được công trực tiếp vào ví Xu.<br></br>
+						&bull; Giải hiện vật đặc biệt: 1 iPhone Pro Max sẽ được trao trực tiếp tại trụ sở Công ty VTC Mobile<br></br>
 						</p>
 
 						<h3 class="text-red">IV. Thời gian trao thưởng</h3>
-						<p class="text-thele pl-3"> &bull; Công ty cổ phần VTC Dịch vụ di động sẽ trao giải thưởng cho khách hàng chậm nhất sau 15 ngày làm việc kể từ khi kết thúc sự kiện.</p>
-						<p class="text-thele pl-3"><code>Lưu ý:</code> <br />&bull; Khi đến nhận giải thưởng, khách hàng cần đem theo giấy tờ tùy thân (CMND/ CCCD/ Hộ chiếu còn hiệu lực. Theo khoản 6, điều 3, chương 1 của Luật thuế thu nhập cá nhân, những người may mắn trúng giải thưởng hiện vật có giá trị kinh tế cao có nghĩa vụ nộp thuế theo quy định của Nhà nước. Thông tin chi tiết xem <code><a class="text-primary" href="https://www.mof.gov.vn/webcenter/portal/mttpltc/r/m/pchtrphlu/pchtrthtu/pchtrthtu_chitiet?dDocName=BTC260955&dID=31536&_afrLoop=73261410332298795#!%40%40%3F_afrLoop%3D73261410332298795%26centerWidth%3D100%2525%26dDocName%3DBTC260955%26dID%3D31536%26leftWidth%3D0%2525%26rightWidth%3D0%2525%26showFooter%3Dfalse%26showHeader%3Dfalse%26_adf.ctrl-state%3D1a8d3rpn02_4" title="tại đây" target="_blank">tại đây</a></code>.<br></br>
-						&bull; Trong tất cả các trường hợp, quyết định của Công ty cổ phần VTC Dịch vụ di động là quyết định cuối cùng. Mọi trường hợp gian lận hoặc không trung thực sẽ bị xử lý theo pháp luật.
-
-
-						</p>
+						<p class="text-thele pl-3"> &bull; Các giải Xu được cộng ngay khi game thủ trúng thưởng.</p>
+						<p class="text-thele pl-3">&bull; Giải hiện vật sẽ được trao cho game thủ chậm nhất sau 15 ngày làm việc kể từ khi kết thúc sự kiện.</p>
 
 						</div>
 
@@ -1381,9 +1299,9 @@ class Vong_Quay_May_Man extends React.Component {
 					{/* <!-- Modal body --> */}
 					<div className="modal-body">
 						<div className="table-responsive mt-2">              
-							<h5 className="text-thele lead text-center">Bạn đã hết lượt quay!</h5>
-							<p className="text-thele lead text-center">Hãy nạp Scoin để nhận thêm lượt chơi Vòng quay tháng 10.</p>
-							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('https://scoin.vn/nap-game')}>Nạp Game</button>
+							<h5 className="text-thele lead text-center">Không đủ Xu!</h5>
+							<p className="text-thele lead text-center">Hãy hoàn thành các nhiệm vụ Scoin để nhận thêm Xu.</p>
+							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4"><Link to={"/nhiem-vu"} target="_blank">Nhiệm Vụ</Link></button>
 							{/* <button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/nap-vao-game?GameId=330287')}>Nạp Game</button> */}
 						</div>       
 					</div>

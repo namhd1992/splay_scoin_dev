@@ -62,7 +62,7 @@ class App extends React.Component {
 						{/* <Route exact path="/help" component={Help} />
 						<Route exact path="/dieu-khoan" component={Dieukhoan} />
 						<Route exact path="/vip" component={Vip} /> */}
-						<Route exact path="/mission" component={Mission} />
+						<Route exact path="/nhiem-vu" component={Mission} />
 						{/* <Route exact path="/inbox" component={Inbox} />
 						<Route exact path="/profile" component={Profile} />    
 						<Route exact path="/article" component={Article} />
