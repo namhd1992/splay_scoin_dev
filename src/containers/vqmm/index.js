@@ -881,40 +881,8 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 			{/* End p2 */}
 
-			<div className="container jumbotron">
-				{/* <div class="bg-ketquaquayso">
-					<h2 class="d-block text-center text-white text-kqqs display-6 mb-0" style={{fontSize:'2vw'}}>KQ Mã dự thưởng</h2>
-					<h4 class="text-center text-white" style={{fontSize:'1.5vw'}}>Tự động cập nhật sau 19:00 ngày 01/11/2019</h4>
-					<div class="row px-5">
-						<div class="col-6 align-content-center text-center pl-3">
-							<h2 class="text-center pt-4 color-kqqs" style={{fontSize:'2vw'}}>GIẢI ĐẶC BIỆT <br />iPhone 11 Pro Max</h2>
-							<img src={iphone_11_pro_max} width="60%" class="img-fluid text-center" />
-						</div>
-						<div class="col-6 mstt">
-							<h2 class="text-center color-kqqs" style={{fontSize:'2vw'}}>Mã số trúng thưởng<br /> 
-							<label class="form-control form-control form-control-sm bg-secondary" style={{height:50}} /></h2>
-							
-						</div>
-					</div>
-				</div> */}
-				<div class="bg-ketquaquayso">
-					<h2 class="d-block text-center text-kqqs mb-0 bg-title-mdt">KQ Mã dự thưởng</h2>
-					<h4 class="text-center text-white">Tự động cập nhật sau livestream lúc 19:00 ngày 04/11/2019</h4>
-					<div class="row px-5">
-						<div class="col-md-6 align-content-center text-center pl-3">
-							<h2 class="text-center pt-4 color-kqqs title-giaidacbiet">GIẢI ĐẶC BIỆT <br />iPhone 11 Pro Max</h2>
-							<img src={iphone_11_pro_max} width="70%" class="img-fluid text-center bg-img-giaithuong" />
-						</div>
-						<div class="col-md-6 mstt">
-						<h2 class="text-center color-kqqs title-giaidacbiet">Mã số trúng thưởng<br /> <span class="badge badge-secondary p-3" style={{width: 120, height: 50, fontSize:24}}>2135</span><br />
-						
-						<button class="btn btn-dv" onClick={this.showPopupLiveStream}><h5 class="glow mb-0 small"><img src={spin} width="24" class="pr-1" alt=""/> Xem livestream </h5></button>
-						</h2>
-							
-						</div>
-					</div>
-				</div>
-				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span style={{fontSize:45}}>BẢNG VINH DANH</span></h5>
+			<div className="container jumbotron">			
+				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span className="txt-bvd">BẢNG VINH DANH</span></h5>
 				<div className="table-responsive mt-4">
 					<table className="table table-borderless tbl-bvd mx-auto text-center">
 						<thead>

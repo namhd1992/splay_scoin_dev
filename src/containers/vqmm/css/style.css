@@ -155,6 +155,9 @@ a.btn-dv:hover {color: #ffd102;}
 	padding: 0px !important;
 	margin: 0px !important;
   }
+.txt-bvd{
+	font-size: 45px;
+}
 
 @media (max-width: 1200px) {
 
@@ -208,6 +211,9 @@ a.btn-dv:hover {color: #ffd102;}
 	.bg-ketquaquayso h4.text-white {color:#333 !important;}
 	.bg-img-giaithuong {background:url(../images/bg-giaidacbiet.png) center no-repeat; background-size: 100%; margin: 0 auto; padding: 40px 10px}
 	.mstt h2 {position: relative; margin: 0 auto;}
+	.txt-bvd{
+		font-size: 40px;
+	}
 }
 @media (max-width: 640px) {
 	.download{
@@ -278,6 +284,9 @@ a.btn-dv:hover {color: #ffd102;}
 	.text-popup-phanthuong {font-size: 11px}
 	.noti-mdt {top: 45%; right: 15%;}
 	.noti-tudo {top: 13%; right: 15%;}
+	.txt-bvd{
+		font-size: 25px;
+	}
 	 /* .mstt {width: 75%;} */
 	 /* .bg-ketquaquayso {height: 250px;} */
 }
