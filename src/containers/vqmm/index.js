@@ -132,7 +132,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtOKplZsukRyS%2bYoaKCK2ZGJYe8r7tzPVUKv9d5FzFtkf%2fEcOup%2biuOnFkZWTwX4HCwsXuXERZzZlOq52BkHd%2b0wOWnaXlUQ%2bj1ZdGwfV30wT83SygWn0FgGKVCtBBaAzlb1FL8QF2L6q753Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtOKplZsukRyS0mT00CTGGCvhG4YQlNwNumv9d5FzFtkf9a5mnkPQFCGuHMWP08hdUbAyK%2bS21Yf8NUz74XyHITUgVvnItgbdG0ZDQJ3TTBYZEoFrG5pNb3LBOuTB6bP%2bA8ZO%2bcYbjTV5r53Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
@@ -430,6 +430,7 @@ class Vong_Quay_May_Man extends React.Component {
 										$('#myModal8').modal('show');
 									})
 								}else{
+									console.log('AAAAAAAAAAAAAAAAAA')
 									$('#myModal11').modal('show');
 									this.setState({message_error:'Vòng quay đang có lỗi. Vui lòng tải lại trang.'})
 								}
@@ -966,13 +967,13 @@ class Vong_Quay_May_Man extends React.Component {
 					</div>
 
 					{/* <!-- Modal body --> */}
-					<div class="modal-body w-100 giaithuong-pc">
-						<img src={img_giaithuong_1} class="w-100" />
-						<img src={img_giaithuong_2} class="w-100" />
+					<div class="modal-body w-100 giaithuong-pc" style={{textAlign:'center'}} >
+						<img src={img_giaithuong_1} class="w-90" />
+						<img src={img_giaithuong_2} class="w-90" />
 					</div>
-					<div class="modal-body w-100 giaithuong-mobile">
-						<img src={img_giaithuong_1m} class="w-100" />
-						<img src={img_giaithuong_2m} class="w-100" />
+					<div class="modal-body w-100 giaithuong-mobile" style={{textAlign:'center'}}>
+						<img src={img_giaithuong_1m} class="w-90" />
+						<img src={img_giaithuong_2m} class="w-90" />
 					</div>
 					</div>
 				</div>
@@ -992,8 +993,8 @@ class Vong_Quay_May_Man extends React.Component {
 					{/* <!-- Modal body --> */}
 					<div class="modal-body">
 						<h3 class="text-red">I. Đối tượng tham gia</h3>
-						<p class="text-thele pl-3"> &bull; Tất cả game thủ có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="https://scoin.vn/" title="Đăng ký" target="_blank">tại đây</a></code>. <br />
-						 &bull; Game thủ dùng Xu để chơi Vong quay may mắn. Xu có thể nhận được sau khi hoàn thành các nhiệm vụ của Scoin <code><Link to={"/nhiem-vu"} target="_blank" style={{color:"#007bff"}}>tại đây</Link></code>.</p>
+						<p class="text-thele pl-3"> &bull; Tất cả game thủ có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="https://scoin.vn/" title="Đăng ký" target="_blank" style={{fontFamily:'helvetica'}}>tại đây</a></code>. <br />
+						 &bull; Game thủ dùng Xu để chơi Vong quay may mắn. Xu có thể nhận được sau khi hoàn thành các nhiệm vụ của Scoin <code><Link to={"/nhiem-vu"} target="_blank" style={{color:"#007bff", fontFamily:'helvetica'}}>tại đây</Link></code>.</p>
 						<h3 class="text-red">II. Cách thức tham gia sự kiện</h3>
 						<p class="text-thele pt-3 pl-3">  &bull; Bước 1:  Truy cập trang Nhiệm vụ của Scoin tại đường dẫn. <br />
 						&bull; Bước 2: Hoàn thành các nhiệm vụ để nhận Xu. <br />
@@ -1211,7 +1212,7 @@ class Vong_Quay_May_Man extends React.Component {
 										<p className="small pt-2 mb-2 text-center">(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p></div>):(
 											<div>
 											<div className="text-chucmung text-center" style={{marginTop:70}}>
-											<span>Bạn vừa nhận được <span style={{color:'red'}}>{itemBonus.value} Scoin</span></span>
+											<span>{itemBonus.winningTitle}</span>
 										</div>
 										<p className="small pt-2 mb-2 text-center">(Phần thưởng đã được cộng vào ví Scoin)</p>
 										</div>
@@ -1320,7 +1321,7 @@ class Vong_Quay_May_Man extends React.Component {
 								))}
 							</ol> 
 							
-							<p className="text-thele">Vào <code><label onClick={this.showModalTuDo}>Tủ đồ</label></code> hoặc <code><label onClick={this.showModalCodeBonus}>Mã dự thưởng</label></code> để xem chi tiết.</p>
+							<p className="text-thele">Vào <code><label onClick={this.showModalTuDo}>Tủ đồ</label></code> để xem chi tiết.</p>
 							<p className="text-thele text-center"><code>Đang quay tự động <span className="spinner-grow spinner-grow-sm"></span></code></p>
 						</div>
 						
