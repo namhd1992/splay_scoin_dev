@@ -146,7 +146,7 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
   .xacNhan:hover{
 	opacity: 0.7;
   }
-  .noti-tudo {top: 53%; left: 10%; padding: 7px 12px !important;}
+  /* .noti-tudo {top: 53%; left: 10%; padding: 7px 12px !important;} */
 
 
 .carousel-fix{bottom: 0px !important; padding-bottom: 0px !important;}
@@ -207,7 +207,7 @@ h2.font-iCielPantonBlack {line-height: 1.8;}
 .logo {position: absolute; top: 3%;}
 .button-group {width: 100%;}
 .box-slider {width: 100%; left:0; height:auto; padding-top: 40% !important; top:35% !important}
-.noti-tudo {top: 53%; left: 10%; padding: 4px 9px !important;}
+/* .noti-tudo {top: 53%; left: 10%; padding: 4px 9px !important;} */
 .thele_3{
 	padding: 10px 10px;
 }
@@ -249,7 +249,7 @@ h2.font-iCielPantonBlack {font-size: 22px;}
 .box-slider .carousel-caption img {width: 24px}
 .button-group {top: 47%;}
 .header {height: 850px}
-.noti-tudo {top: 53%; left: 10%; padding: 4px 9px !important;}
+/* .noti-tudo {top: 53%; left: 10%; padding: 4px 9px !important;} */
 }
 /* @media (max-width: 360px) {
 .logo {position: absolute; top: 3.4%;}

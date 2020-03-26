@@ -19,7 +19,7 @@ html {scroll-behavior: smooth;}
 .cell-timer-p1 {background:url(../images/bg-time.png) 4px center no-repeat; width: 64px; height:64px; vertical-align:middle !important; line-height:0 !important; padding-left: 2px;}
 .display-5 {font-size: 2.6rem;}
 .display-6 {font-size: 2.6rem;}
-.btn-thamgiangay {position: absolute; bottom: 20px; display: block; left: 50%; transform: translate(-50%, 0); padding-bottom: 140px;}
+.btn-thamgiangay {position: absolute; bottom: 20px; display: block; left: 50%; transform: translate(-50%, 0); padding-bottom: 140px; text-align: center;}
 .position-absolute-p1 {position:fixed; left:0; top: 15%; background:url(../images/bg-btn-float-right.png) no-repeat; width: 84px; height: 420px; z-index: 9999}
 .menu-left-p1 li {width: 60px; margin: 0 auto; display: block; text-align: center}
 .menu-left-p1 li a {color:#FFFFFF; font-size: 20px; line-height:0; padding-top:20px;}
@@ -51,7 +51,7 @@ html {scroll-behavior: smooth;}
 }
 .custom-control-label:before {width: 1.2rem; height: 1.2rem; background-color:#d4cff3;}
 .custom-control-label:after {width: 1.2rem; height: 1.2rem;}
-.menu-right-vqmm {position: absolute; right: 1%; bottom: 20%; background:url(../images/menu-right-p2.png) no-repeat; width: 90px; height: 264px;}
+.menu-right-vqmm {position: absolute; right: 1%; bottom: 20%; background:url(../images/menu-right-p2.png) no-repeat; width: 90px; height: 175px;}
 .menu-right-vqmm li {width: 60px; margin: 10px auto; display: block; text-align: center}
 .menu-right-vqmm li a {color:#FFFFFF; font-size: 20px; line-height:0; padding-top:20px;}
 .container.jumbotron {background-color:#fff;}
@@ -75,7 +75,7 @@ html {scroll-behavior: smooth;}
 .pag-custom .page-item.active .page-link {background-color: #b30101; border-color: #b30101;}
 .btn-dv {background-color: #b30101 !important; border-color: #b30101 !important; border-radius: 4px !important; color:#FFFFFF !important; margin: 10px 1px}
 a.btn-dv:hover {color: #ffd102;}
-.footer {background:url(../images/bg-footer.jpg) center bottom no-repeat; color:#fff; padding: 60px 0; line-height: 20px}
+.footer {background:url(../images/bg-footer.jpg) center bottom no-repeat; color:#fff; padding: 40px 0; line-height: 20px; font-size: 14px;}
 .popup-phanthuong h4 {text-align: center; margin-top: -30px; width: 180px;}
 .popup-phanthuong .close {position: absolute; top: -10px; right: -10px; opacity: 1;}
 .popup-phanthuong .close:not(:disabled):not(.disabled):hover {opacity: 1;}
@@ -100,8 +100,10 @@ a.btn-dv:hover {color: #ffd102;}
 .text-chucmung img {width: 115px}
 #myModal4 .popup-phanthuong { background-color: transparent; border: none;}
 #myModal4 .close {position: absolute; top: 5%; right: 20%; opacity: 1; z-index: 99;}
-.noti-mdt {top: 52%; right: 15%;}
-.noti-tudo {top: 15%; right: 15%;}
+.noti-tudo {top: 23%; right: 15%;}
+.txt-tudo{
+	padding-top: 65px;
+}
 .bg-step {width: 50px; height: 50px; line-height: 50px; background-color:#FFFFFF; margin: 0 auto}
 .list-group-flush .list-group-item {display: list-item; padding-left: 30px;}
 .list-group.list-group-flush{
@@ -158,6 +160,7 @@ a.btn-dv:hover {color: #ffd102;}
 .txt-bvd{
 	font-size: 45px;
 }
+
 
 @media (max-width: 1200px) {
 
@@ -251,6 +254,13 @@ a.btn-dv:hover {color: #ffd102;}
 	.text-kqqs {padding-top: 0px;}
 	.giaithuong-mobile {display: block;}
 	.giaithuong-pc {display: none;}
+	.txt-tudo{
+		padding-top: 70px;
+	}
+	.footer{
+		padding: 10px;
+		font-size: 13px;
+	}
 }
 @media (max-width: 480px) {
 	.content-inner-p1 {background-position: center bottom; height: 660px; background-size: 150%;}
@@ -282,8 +292,7 @@ a.btn-dv:hover {color: #ffd102;}
 	.container.jumbotron {margin-top:0;}
 	#myModal4 .close {position: absolute; top: 7%; right: 7%; opacity: 1; z-index: 99;}
 	.text-popup-phanthuong {font-size: 11px}
-	.noti-mdt {top: 45%; right: 15%;}
-	.noti-tudo {top: 13%; right: 15%;}
+	.noti-tudo {top: 23%; right: 15%;}
 	.txt-bvd{
 		font-size: 25px;
 	}

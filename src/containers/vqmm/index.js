@@ -132,7 +132,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z6iUEiX7Q36V93BJGB3O9hyv9d5FzFtkf4%2bfx0Hd%2f1kfEZmW%2fvminPoMuKBb7sTifVa3XsLKggTSV1xwHFmi7EUXMFa8GKvwIc5bkyiDleGyczjNnWMlPHBY4HAcP14%2bdr53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtOKplZsukRyS%2bYoaKCK2ZGJYe8r7tzPVUKv9d5FzFtkf%2fEcOup%2biuOnFkZWTwX4HCwsXuXERZzZlOq52BkHd%2b0wOWnaXlUQ%2bj1ZdGwfV30wT83SygWn0FgGKVCtBBaAzlb1FL8QF2L6q753Dc2UQ%2fHb',
 		};
 	}
 	componentWillMount(){
@@ -387,27 +387,27 @@ class Vong_Quay_May_Man extends React.Component {
 							var list=this.state.data_auto;
 							if(data!==undefined){
 								if(data.status ==="01"){
-									if(data.data.item.type==="LUCKY_NUMBER"){
+									if(data.data.type==="LUCKY_NUMBER"){
 										this.setState({code:true})
 										setTimeout(()=>{
 											this.setState({noti_mdt:true})
 										},2000)
 									}else{
-										if(data.data.item.type!=="ACTION"){
+										if(data.data.type!=="ACTION"){
 											setTimeout(()=>{
 												this.setState({noti_tudo:true})
 											},2000)
 											this.getVinhDanh(1);	
 										}
-										if(data.data.item.type==="SCOIN_CARD"){
+										if(data.data.type==="SCOIN_CARD"){
 											this.setState({scoinCard:true})
 										}
 										this.setState({code:false})
 										
 									}
-									list.push(data.data.item.name);
+									list.push(data.data.name);
 									var pos=1;
-									if(data.data.item.type==="SCOIN"){
+									if(data.data.type==="SCOIN"){
 										pos=9;
 									}else{
 										var id=_this.props.dataPick.data.id;
@@ -418,7 +418,7 @@ class Vong_Quay_May_Man extends React.Component {
 									if(!isSpin && closeAuto){
 										this.startSpin(pos+1);
 									}	
-									_this.setState({itemBonus: data.data.item, data_auto: list, closeAuto:true});
+									_this.setState({itemBonus: data.data, data_auto: list, closeAuto:true});
 								}else if(data.status ==="04"){
 									$('#myModal13').modal('show');
 								}else if(data.status ==="07"){
@@ -832,8 +832,8 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="200" className="img-fluid" /></a></p>
-					<div className="position-absolute-p1">
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="300" className="img-fluid" /></a></p>
+					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="https://scoin.vn/nap-game" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
 							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
@@ -875,7 +875,7 @@ class Vong_Quay_May_Man extends React.Component {
 				
 				<div className="menu-right-vqmm">
 					<ul className="nav flex-column">
-						<li className="pt-6"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
+						<li className="txt-tudo"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
 					</ul>
 				</div>
 			</div>
@@ -949,7 +949,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 			<div className="container-fluid footer">
 				<p className="text-center"><img src={logo_splay} width="100" alt="" /> <img src={logo_scoin} width="150" hspace="10" alt="" /></p>
-				<p className="text-center" style={{color:'black'}}><span className="text-uppercase">CÔNG TY CỔ PHẦN VTC DỊCH VỤ DI ĐỘNG</span> <br />VTC Mobile - Thành viên của Tổng Công ty Truyền thông đa phương tiện Việt Nam VTC <br /> Tầng 11, tòa nhà VTC Online, số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội.
+				<p className="text-center footer-vqmm" style={{color:'black'}}><span className="text-uppercase">CÔNG TY CỔ PHẦN VTC DỊCH VỤ DI ĐỘNG</span> <br />VTC Mobile - Thành viên của Tổng Công ty Truyền thông đa phương tiện Việt Nam VTC <br /> Tầng 11, tòa nhà VTC Online, số 18 Tam Trinh, phường Minh Khai, quận Hai Bà Trưng, Hà Nội.
 <br />Tel: (84-4).39877470 <br />Fax: (84-4).39877210<br /> <a href="mailto:vtcmobile@vtc.vn">vtcmobile@vtc.vn</a>
 	</p>
 			</div>
