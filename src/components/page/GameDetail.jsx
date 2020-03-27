@@ -306,7 +306,7 @@ class GameDetailComponent extends React.Component {
 									<div class="md-box-social md-mobile">                           
 										<a href={gameData.fanpageFB} title="Fanpage" style={{paddingRight:5}}><img src="../fb-fanpage.png" width="32" alt="Fanpage" class="py-1" /></a>
 										<a href="#" title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" class="py-1" /></a>
-										<a href="#" title="Support"><img src="../support.png" width="32" alt="Support" class="py-1" /></a>
+										<a title="Support" href="tel:19001104"><img src="../support.png" width="32" alt="Support" class="py-1" /></a>
 									</div>
 							
 								</div>
