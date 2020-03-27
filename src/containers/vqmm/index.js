@@ -1276,7 +1276,7 @@ class Vong_Quay_May_Man extends React.Component {
 							<h5 className="text-thele lead text-center">Không đủ Xu!</h5>
 							<p className="text-thele lead text-center">Hãy hoàn thành các nhiệm vụ Scoin để nhận thêm Xu.</p>
 							{/* <button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4"><Link to={"/nhiem-vu"} target="_blank">Nhiệm Vụ</Link></button> */}
-							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/choi-game?GameId=5')}>Nạp Game</button>
+							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/choi-game?GameId=5')}>Nhiệm Vụ</button>
 						</div>       
 					</div>
 
