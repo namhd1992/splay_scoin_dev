@@ -132,7 +132,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtOKplZsukRyS0mT00CTGGCvhG4YQlNwNumv9d5FzFtkf9a5mnkPQFCGuHMWP08hdUbAyK%2bS21Yf8NUz74XyHITUgVvnItgbdG0ZDQJ3TTBYZEoFrG5pNb3LBOuTB6bP%2bA8ZO%2bcYbjTV5r53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtN0b2UtVW8Xhmgtsqg4zxddzORW2Hcq9ZSwVmWTs8FIj%2fxn0BwYMA3D25kLeBZL1WsOAFk8%2biMrn4yXSPfirVg4CewsAjzKgUjU6gQ%2b2Z69FZrhs9HXS5wbO0JujzdXatknDxxHCtqaoiTxhzDdkGEr',
 		};
 	}
 	componentWillMount(){
@@ -370,7 +370,7 @@ class Vong_Quay_May_Man extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished, scoin_token}=this.state;
+		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished, scoin_token, auto}=this.state;
 		var _this = this;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var time=Date.now();
@@ -387,6 +387,11 @@ class Vong_Quay_May_Man extends React.Component {
 							var list=this.state.data_auto;
 							if(data!==undefined){
 								if(data.status ==="01"){
+									if(auto){
+										var elem = document.getElementById('auto');
+										elem.scrollTop = elem.scrollHeight;
+										console.log('AAAAAAAAAAA', elem)
+									}
 									if(data.data.type==="LUCKY_NUMBER"){
 										this.setState({code:true})
 										setTimeout(()=>{
@@ -836,7 +841,7 @@ class Vong_Quay_May_Man extends React.Component {
 					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="300" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
-							<li className="pt-6"><a href="https://scoin.vn/nap-game" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
+							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
 							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
@@ -931,7 +936,7 @@ class Vong_Quay_May_Man extends React.Component {
 				<div className="w-100 justify-content-center text-center pt-5">
 					<ul className="nav nav-pills nav-justified">
 						<li className="nav-item">
-						<a className="nav-link btn-dv text-uppercase text-nowrap"><Link to={"/nhiem-vu"} target="_blank" style={{color:"#fff", textDecoration:'none'}}>Hoàn thành nhiệm vụ nhận Xu</Link></a>
+						<a className="nav-link btn-dv text-uppercase text-nowrap" href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Đăng ký" target="_blank">Hoàn thành nhiệm vụ nhận Xu</a>
 						</li>
 						<li className="nav-item">
 						<a className="nav-link btn-dv text-uppercase text-nowrap" href="https://www.facebook.com/scoinvtcmobile/" title="Nhận thông báo sk" target="_blank">Nhận thông báo sk</a>
@@ -993,8 +998,8 @@ class Vong_Quay_May_Man extends React.Component {
 					{/* <!-- Modal body --> */}
 					<div class="modal-body">
 						<h3 class="text-red">I. Đối tượng tham gia</h3>
-						<p class="text-thele pl-3"> &bull; Tất cả game thủ có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="https://scoin.vn/" title="Đăng ký" target="_blank" style={{fontFamily:'helvetica'}}>tại đây</a></code>. <br />
-						 &bull; Game thủ dùng Xu để chơi Vong quay may mắn. Xu có thể nhận được sau khi hoàn thành các nhiệm vụ của Scoin <code><Link to={"/nhiem-vu"} target="_blank" style={{color:"#007bff", fontFamily:'helvetica'}}>tại đây</Link></code>.</p>
+						<p class="text-thele pl-3"> &bull; Tất cả game thủ có tài khoản Scoin. Nếu chưa có, đăng ký <code><a class="text-primary" href="http://sandbox.scoin.vn/" title="Đăng ký" target="_blank" style={{fontFamily:'helvetica'}}>tại đây</a></code>. <br />
+						 &bull; Game thủ dùng Xu để chơi Vong quay may mắn. Xu có thể nhận được sau khi hoàn thành các nhiệm vụ của Scoin <code><a class="text-primary" href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Đăng ký" target="_blank" style={{fontFamily:'helvetica'}}>tại đây</a></code>.</p>
 						<h3 class="text-red">II. Cách thức tham gia sự kiện</h3>
 						<p class="text-thele pt-3 pl-3">  &bull; Bước 1:  Truy cập trang Nhiệm vụ của Scoin tại đường dẫn. <br />
 						&bull; Bước 2: Hoàn thành các nhiệm vụ để nhận Xu. <br />
@@ -1270,8 +1275,8 @@ class Vong_Quay_May_Man extends React.Component {
 						<div className="table-responsive mt-2">              
 							<h5 className="text-thele lead text-center">Không đủ Xu!</h5>
 							<p className="text-thele lead text-center">Hãy hoàn thành các nhiệm vụ Scoin để nhận thêm Xu.</p>
-							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4"><Link to={"/nhiem-vu"} target="_blank">Nhiệm Vụ</Link></button>
-							{/* <button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/nap-vao-game?GameId=330287')}>Nạp Game</button> */}
+							{/* <button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4"><Link to={"/nhiem-vu"} target="_blank">Nhiệm Vụ</Link></button> */}
+							<button type="button" className="btn btn-xacnhan text-white btn-block text-center py-4" onClick={()=>this.openTabNapScoin('http://sandbox.scoin.vn/choi-game?GameId=5')}>Nạp Game</button>
 						</div>       
 					</div>
 
@@ -1313,7 +1318,7 @@ class Vong_Quay_May_Man extends React.Component {
 					</div>
 
 					<div className="modal-body">
-						<div className="table-responsive mt-2">
+						<div id="auto" className="table-responsive mt-2">
 							<h3 className="text-purple text-center">Kết quả quay tự động</h3>
 							<ol className="list-group list-group-flush">
 								{data_auto.map((obj, key) => (
