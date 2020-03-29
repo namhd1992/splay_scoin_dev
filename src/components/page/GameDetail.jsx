@@ -299,13 +299,13 @@ class GameDetailComponent extends React.Component {
 											{/* <!-- <button type="button" class="btn btn-sm btn-block border-0 shadow-sm mx-1 border btn-hover text-uppercase text-white py-1"><span class="small">Chơi ngay</span></button>
 											<button type="button" class="btn btn-sm btn-block btn-link mx-1 py-1">Fanpage</button> --> */}
 											<a href={gameData.fanpageFB} title="Fanpage" style={{paddingRight:5}}><img src="../fb-fanpage.png" width="32" alt="Fanpage" /></a>
-											<a href="#" title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" /></a>
+											<a href={gameData.groupFB} title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" /></a>
 											<a href="tel:19001104" title="Support"><img src="../support.png" width="32" alt="Support" /></a>
 										</div>
 									</div>
 									<div class="md-box-social md-mobile">                           
 										<a href={gameData.fanpageFB} title="Fanpage" style={{paddingRight:5}}><img src="../fb-fanpage.png" width="32" alt="Fanpage" class="py-1" /></a>
-										<a href="#" title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" class="py-1" /></a>
+										<a href={gameData.groupFB} title="Group" style={{paddingRight:5}}><img src="../fb-group.png" width="32" alt="Group" class="py-1" /></a>
 										<a title="Support" href="tel:19001104"><img src="../support.png" width="32" alt="Support" class="py-1" /></a>
 									</div>
 							
