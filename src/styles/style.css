@@ -64,19 +64,18 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
 .md-mobile {display:none}
 .btn-md-mobile { display: none}
 
-.btn-animated  {-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+.btn-animated  {-webkit-animation-name: example;
+  -webkit-animation-duration: 1s;
   animation-name: example;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;}
-/* Safari 4.0 - 8.0 */
+
 @-webkit-keyframes example {
   from {background-color: #616a78;}
   to {background-color: #ec971f;}
 }
 
-/* Standard syntax */
 @keyframes example {
   from {background-color: #616a78;}
   to {background-color: #ec971f;}

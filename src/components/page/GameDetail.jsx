@@ -356,14 +356,15 @@ class GameDetailComponent extends React.Component {
 											style={{lineHeight:"20px", fontSize:14}}
 										/>
 										<a style={{
-											color: '#fff',
+											color: '#00cc00',
 											textAlign: "center",
 											width: "100%",
 											display: "block",
 											position: "absolute",
-											paddingTop: "60px",
-											marginTop: "-80px",
-											background: "linear-gradient(to top, rgba(35, 43, 54,1) 0%,rgba(35, 43, 54,0.5) 50%,rgba(35, 43, 54,0) 100%)"
+											paddingTop: "20px",
+											marginTop: "-40px",
+											background: "linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.6), rgba(255,255,255,.9), rgba(255,255,255,1))"
+											
 										}} onClick={() => this.readMore()}>Xem thêm</a>
 									</div>
 										)}
@@ -442,7 +443,7 @@ class GameDetailComponent extends React.Component {
 							</div>
 						</div>
 						<div class="col-sm-3 px-2">
-							<div class="bg-white download">
+							<div class="download">
 								<a href={gameData.urlDownloadIos}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-iOS.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.urlDownloadAndroid}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.website}  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
