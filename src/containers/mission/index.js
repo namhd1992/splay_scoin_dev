@@ -38,7 +38,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRf3siZlaV1H8Z1qP7R3sBl6sf7XEL7gTVKB%2fKYkoSMFZZPjVXA7cFMdZDqg%2bzAhVWW0uOdHpZEk%2fsEllP9bAdU6c%2fmHuRus1EuHv2exiFkWYtWRFr%2fPp4RE5y8czW4Bf0Srj%2fof91g8j',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRRu%2bX1KbxlunAigcx3NCdJ6sf7XEL7gTVFLQQFustq00XQfhZz1forDFNKV4YBgglmr8FqL9qQHzfv8osMvrTV%2fvzab%2bYZ1EwAQYdcpqRX5HR5mflkqWX8m9mFgLCEIl2Crj%2fof91g8j',
 		};
 	}
 	componentWillMount(){
@@ -132,11 +132,20 @@ class Mission extends React.Component {
 		
 	}
 
-	shareFacebook=()=>{
+	shareFacebook=(obj)=>{
 		var _this=this;
+		const {scoin_token}= this.state;
 		setTimeout(() => {
-			_this.setState({isShare:true});
-		}, 1000);
+			this.props.finishShareLink(obj.missionId, scoin_token).then(function (response) {
+				const data=_this.props.dataFinishShareLink;
+				_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+				if(data.data.status==="03"){
+					_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
+				}
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}, 2000);
 
 	}
 
@@ -161,7 +170,7 @@ class Mission extends React.Component {
 				this.card();
 				break;
 			case 6:
-				this.shareFacebook();
+				this.shareFacebook(obj);
 				break;
 			default:
 				break;
@@ -172,27 +181,21 @@ class Mission extends React.Component {
 		var _this = this;
 		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
-		if(obj.actionId==='6'){
-			this.props.finishShareLink(obj.missionId, scoin_token).then(function (response) {
-				const data=_this.props.dataFinishShareLink;
-				_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
-				if(data.data.status==="03"){
-					_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
-				}
-			}).catch(function (err) {
-				console.log(err);
-			});
-		}else{
-			this.props.finishData(obj.missionId, scoin_token).then(function (response) {
-				const data=_this.props.dataFinish;
-				_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
-				if(data.data.status==="03"){
-					_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
-				}
-			}).catch(function (err) {
-				console.log(err);
-			});
-		}
+		// if(obj.actionId==='6'){
+			
+		// }else{
+			
+		// }
+		this.props.finishData(obj.missionId, scoin_token).then(function (response) {
+			const data=_this.props.dataFinish;
+			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+			if(data.data.status==="03"){
+				_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
+			}
+		}).catch(function (err) {
+			console.log(err);
+		});
+
 	}
 
 	handleCloseSnack = () => {

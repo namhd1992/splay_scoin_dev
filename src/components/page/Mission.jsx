@@ -156,11 +156,9 @@ class MissionComponent extends React.Component {
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
-														{(isShare)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
-															<FacebookShareButton url={obj.linkToShare}>
+														<FacebookShareButton url={obj.linkToShare}>
 															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
 											</FacebookShareButton>
-														)}
 														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
 												</div>):(
 													<div style={{display:'inline-block'}}>
