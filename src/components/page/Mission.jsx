@@ -79,15 +79,20 @@ class MissionComponent extends React.Component {
 	}
 	
 	reward=(obj)=>{
-		this.props.reward(obj.missionId);
+		this.props.reward(obj);
 	}
 	
 	doMission=(obj)=>{
 		if(obj.condition===false){
-			this.props.showDetail("Rất tiếc bạn không đủ điều kiện nhận thưởng.", "");
+			// this.props.showDetail("Rất tiếc bạn không đủ điều kiện nhận thưởng.", "");
+			$('#notification').modal('show');
 		}else{
-			this.props.doMission(obj.actionName, obj.missionId, obj.objectValue, obj.scoinGameId);
+			this.props.doMission(obj);
 		}
+	}
+
+	closeNotification=()=>{
+		$('#notification').modal('hide');
 	}
 	
 	loadMoreAction=()=>{
@@ -145,7 +150,13 @@ class MissionComponent extends React.Component {
 											</div>
 											<div class="position-absolute" style={{right: 8}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
-												{(!obj.finish)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>):(
+												{(!obj.finish)?(<div style={{display:'inline-block'}}>
+													{(obj.actionId==='6')?(<div><FacebookShareButton
+												url={obj.linkToShare}
+											>
+												<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
+											</FacebookShareButton></div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
+												</div>):(
 													<div style={{display:'inline-block'}}>
 														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
 															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12" style={{backgroundColor:'gray'}}><span class="small">Đã nhận</span></button>
@@ -258,12 +269,15 @@ class MissionComponent extends React.Component {
 							</div>
 							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{dataMission.valueAward} </span></p>
 						</div>):(<div></div>)}
+
+
+						
 						
 						<div class="modal-footer">
-									{(!dataMission.finish)?(<button type="button" class="btn btn-hover" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
+									{(!dataMission.finish)?(<button type="button" class="btn btn-hover text-white" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
 										<div style={{display:'inline-block'}}>
-											{(!dataMission.received)?(<button type="button" class="btn btn-hover" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
-												<button type="button" class="btn" style={{backgroundColor:'gray'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
+											{(!dataMission.received)?(<button type="button" class="btn btn-hover text-white" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
+												<button type="button" class="btn text-white" style={{backgroundColor:'gray'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
 											)}
 										</div>
 									)}
@@ -273,6 +287,46 @@ class MissionComponent extends React.Component {
 						</div>
 					</div>
 					</div>
+
+
+					{/* <!-- The Modal Thong báo --> */}
+					<div class="modal fade" id="notification">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+						<div>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<h4 class="modal-title font15 font-weight-bold color-title-cat" style={{textAlign:'center'}}>Thông báo</h4>
+						<p style={{textAlign:'center', marginTop:10}}>Rất tiếc bạn không đủ điều kiện nhận thưởng.</p>
+
+						<div style={{textAlign:'right', padding:'5px 50px 10px 0px'}}>
+							<button type="button" class="btn btn-hover text-white" style={{padding:'5px 25px'}} onClick={this.closeNotification}><span class="small">OK</span></button>
+						</div>
+
+						</div>
+					</div>
+					</div>
+
+					<Dialog
+							fullScreen={false}
+							open={dialogDetailOpen}
+							onClose={this.props.handleCloseDialogDetail}
+							aria-labelledby="responsive-dialog-title"
+							classes={{ paper: classes.paper }}
+						>
+							<DialogTitle id="responsive-dialog-title"><span style={{ color: secondary.main }}>{title_dialog}</span></DialogTitle>
+							<DialogContent>
+								<div style={{ color: "#fff" }}>
+									{dialogContent}
+								</div>
+							</DialogContent>
+							<DialogActions>
+								<div>
+									<Button onClick={this.props.handleCloseDialogDetail} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
+								</div>
+				</DialogActions>
+			</Dialog>
 		</div>
 		)
 	}

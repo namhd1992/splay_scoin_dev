@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import {
 	getData,
 	getMoreData,
-	finishData
+	finishData,
+	finishShareLink
 } from '../../modules/mission'
 
 import {
@@ -36,7 +37,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRS0n5J2zAXdKjSqaP1ko%2b4Ksf7XEL7gTVCNuc3Rh91fDtuw4OsWdhOWkXEU9vBBxZVdeQAbxExjMDaHcem1gpucX22XJvuqAn38%2fn7t4QwMfRL7YZbihi9tJizZ74yCjMSrj%2fof91g8j',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRVhK6DapIkIhKJuIEsCkCOqsf7XEL7gTVPYjumCD5zfy6ZHG3Sm5UnS%2b9qz1ql3fwVKxW0MBdGDWW8YFYeW3fTW3qY3zQuuVCTw1olB%2bhqhKamW8jpdNeyMA%2bDmPe5A1eyrj%2fof91g8j',
 		};
 	}
 	componentWillMount(){
@@ -102,6 +103,11 @@ class Mission extends React.Component {
 		});
 	}
 
+	luckySpin=()=>{
+		
+	}
+
+
 	checkin=()=>{
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var _this=this;
@@ -111,51 +117,79 @@ class Mission extends React.Component {
 		});
 	}
 
-	doMission = (action, id, value, scoinGameId) => {
-		switch (+action) {
+	loginGame=(obj)=>{
+		console.log('AAAAAAAAA')
+		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+	}
+
+	firstLoginGame=(obj)=>{
+		console.log('AAAAAAAAA')
+		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+	}
+
+	card=()=>{
+		
+	}
+
+	shareFacebook=()=>{
+
+	}
+
+
+	
+	doMission = (obj) => {
+		console.log(obj)
+		switch (+obj.actionId) {
 			case 1:
-				window.location.href = '/lucky';
+				this.luckySpin();
 				break;
 			case 2:
 				this.checkin();
 				break;
 			case 3:
-				window.location.href = '/auctiondetail/' + id;
+				this.loginGame(obj);
 				break;
 			case 4:
-				window.location.href = '/giftcodedetail/' + id;
+				this.firstLoginGame(obj);
 				break;
 			case 5:
-				window.location.href = '/gamedetail/' + scoinGameId;
+				this.card();
 				break;
-			case 8:
-				window.location.href = '/gamedetail/' + scoinGameId;
-				break;
-			case 9:
-				window.location.href = '/gamedetail/' + scoinGameId;
-				break;
-			case 10:
-				window.location.href = '/gamedetail/' + scoinGameId;
+			case 6:
+				this.shareFacebook();
 				break;
 			default:
-				window.location.assign(value);
 				break;
 		}
 	}
 
-	reward = (id) => {
+	reward = (obj) => {
 		var _this = this;
 		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
-		this.props.finishData(id, scoin_token).then(function (response) {
-			const data=_this.props.dataFinish;
-			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
-			if(data.data.status==="03"){
-				_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
-			}
-		}).catch(function (err) {
-			console.log(err);
-		});
+		if(obj.actionId==='6'){
+			setTimeout(() => {
+				this.props.finishShareLink(obj.missionId, scoin_token).then(function (response) {
+					const data=_this.props.dataFinishShareLink;
+					_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+					if(data.data.status==="03"){
+						_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
+					}
+				}).catch(function (err) {
+					console.log(err);
+				});
+			}, 1000);
+		}else{
+			this.props.finishData(obj.missionId, scoin_token).then(function (response) {
+				const data=_this.props.dataFinish;
+				_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+				if(data.data.status==="03"){
+					_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
+				}
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
 	}
 
 	handleCloseSnack = () => {
@@ -206,6 +240,7 @@ class Mission extends React.Component {
 const mapStateToProps = state => ({
 	data: state.mission.data,
 	dataFinish: state.mission.dataFinish,
+	dataFinishShareLink:state.mission.dataFinishShareLink,
 	totalRecords: state.mission.totalRecords,
 	waiting: state.mission.waiting,
 	status: state.mission.status,
@@ -220,7 +255,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	checkin,
 	getMoreData,
 	changeTitle,
-	getAllGame
+	getAllGame,
+	finishShareLink
 }, dispatch)
 
 export default connect(

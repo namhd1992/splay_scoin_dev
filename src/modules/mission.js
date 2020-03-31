@@ -4,6 +4,7 @@ import {SERVER_ERROR} from './server'
 export const MISSION_REQUEST = 'mission/MISSION_REQUEST'
 export const MISSION_RESPONSE = 'mission/MISSION_RESPONSE'
 export const MISSION_FINISH = 'mission/MISSION_FINISH'
+export const MISSION_FINISH_SHARE_LINK='mission/MISSION_FINISH_SHARE_LINK'
 export const MISSION_RESPONSE_MORE = 'mission/MISSION_RESPONSE_MORE'
 export const MISSION_RESPONSE_BY_ID_GAME='mission/MISSION_RESPONSE_BY_ID_GAME'
 export const MISSION_RESPONSE_INFO='mission/MISSION_RESPONSE_INFO'
@@ -34,6 +35,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         dataFinish: action.data,
+        status:action.status,
+        message_server:action.message_server
+      }
+    case MISSION_FINISH_SHARE_LINK:
+      return {
+        ...state,
+        dataFinishShareLink: action.data,
         status:action.status,
         message_server:action.message_server
       }
@@ -96,6 +104,33 @@ export const finishData = (id, token) => {
     return axios.get(url, header).then(function (response) {
       dispatch({
         type: MISSION_FINISH,
+        data: response,
+        status:response.data.status,
+        message_server:response.data.message
+      })
+    }).catch(function (error) {
+      dispatch({
+				type: SERVER_ERROR
+			})
+    })
+  }
+}
+
+export const finishShareLink = (id, token) => {
+  var header = {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "bearer " + token,
+    }
+  }
+  return dispatch => {
+    dispatch({
+      type: MISSION_REQUEST
+    })
+    var url = Ultilities.base_url() + "mission/action?mission_id=" + id;
+    return axios.get(url, header).then(function (response) {
+      dispatch({
+        type: MISSION_FINISH_SHARE_LINK,
         data: response,
         status:response.data.status,
         message_server:response.data.message
