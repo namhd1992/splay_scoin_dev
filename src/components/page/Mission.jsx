@@ -253,7 +253,8 @@ class MissionComponent extends React.Component {
 						</div>
 						{(JSON.stringify(dataMission) !== '{}')?(<div class="modal-body font13">
 							<h5 class="font13">{dataMission.description}</h5>
-							<div class="bg-badge-opacity-2 p-2 my-3">
+							{(dataMission.missionProgress.length<5)?(
+								<div class="bg-badge-opacity-2 p-2 my-3">
 								<div class="form-check">
 								{dataMission.missionProgress.map((obj, key) => {
 									return (
@@ -272,7 +273,31 @@ class MissionComponent extends React.Component {
 								})}
 								</div>
 							</div>
-							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{dataMission.valueAward} </span></p>
+							):(
+								<div class="bg-badge-opacity-2 p-2 my-3" style={{float:'left'}}>
+								<div class="form-check">
+								{dataMission.missionProgress.map((obj, key) => {
+									return (
+										<div key={key} style={{float:'left', marginRight: 70}}>
+											{(obj.isFinish) ? (
+												<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="" disabled/>1/1
+												</label>
+											):(<label class="form-check-label">
+													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
+												</label>
+											)}
+										</div>
+									)
+									
+								})}
+								</div>
+							</div>
+							)}
+							
+							<div>
+							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{dataMission.valueAward} </span></p>
+								</div>
 						</div>):(<div></div>)}
 
 
