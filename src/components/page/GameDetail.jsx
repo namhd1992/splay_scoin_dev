@@ -474,9 +474,10 @@ class GameDetailComponent extends React.Component {
 						</div>
 					</div>   
 				</div>
-				<div class="container">
-					<p class="text-center font13" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br /> Copyright ©2019 VTC Mobile. All rights reserved <br /> <a href="tel:19001104" class="text-dark">1900 1104</a>
-					</p>
+				<div class="container font13">
+					<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
+					<p class="text-center">Hệ thống phát hành game VTC Mobile <br />
+				Copyright 2017 VTC Mobile. All rights reserved </p>
 				</div>
 				<Dialog
 							fullScreen={fullScreen}
