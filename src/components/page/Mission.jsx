@@ -73,6 +73,10 @@ class MissionComponent extends React.Component {
 		});
 	}
 
+	closePopupMission=()=>{
+		$('#myModal').modal('toggle');
+	}
+
 	
 	handleCloseSnack=()=>{
 		this.props.handleCloseSnack();
@@ -126,7 +130,7 @@ class MissionComponent extends React.Component {
 
 	render() {
 		const {data,totalRecords, waiting,dialogDetailOpen,dialogContent,loadedRecords
-		, message,openSnack,dialogLoginOpen,snackVariant,server,title_dialog, gameCare, gameMoi}=this.props;
+		, message,openSnack,dialogLoginOpen,snackVariant,server,title_dialog, gameCare, gameMoi, isShare}=this.props;
 		const { theme } = this.props;
 		const { classes } = this.props;
 		const { secondary } = theme.palette;
@@ -151,11 +155,13 @@ class MissionComponent extends React.Component {
 											<div class="position-absolute" style={{right: 8}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
-													{(obj.actionId==='6')?(<div><FacebookShareButton
-												url={obj.linkToShare}
-											>
-												<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
-											</FacebookShareButton></div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
+													{(obj.actionId==='6')?(<div>
+														{(isShare)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
+															<FacebookShareButton url={obj.linkToShare}>
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
+											</FacebookShareButton>
+														)}
+														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
 												</div>):(
 													<div style={{display:'inline-block'}}>
 														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
@@ -249,7 +255,7 @@ class MissionComponent extends React.Component {
 
 						<div class="modal-header pb-0">
 							<h4 class="modal-title font13 border-title-cat font-weight-bold color-title-cat">Chi tiết nhiệm vụ</h4>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<button type="button" class="close" onClick={this.closePopupMission}>&times;</button>
 						</div>
 						{(JSON.stringify(dataMission) !== '{}')?(<div class="modal-body font13">
 							<h5 class="font13">{dataMission.description}</h5>
@@ -261,7 +267,7 @@ class MissionComponent extends React.Component {
 										<div key={key}>
 											{(obj.isFinish) ? (
 												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled/>1/1
+													<input type="checkbox" class="form-check-input" value="" disabled checked={obj.isFinish}/>1/1
 												</label>
 											):(<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
@@ -281,7 +287,7 @@ class MissionComponent extends React.Component {
 										<div key={key} style={{float:'left', marginRight: 70}}>
 											{(obj.isFinish) ? (
 												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled/>1/1
+													<input type="checkbox" class="form-check-input" value="" disabled checked={obj.isFinish}/>1/1
 												</label>
 											):(<label class="form-check-label">
 													<input type="checkbox" class="form-check-input" value="" disabled/>0/1

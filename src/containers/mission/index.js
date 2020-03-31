@@ -27,6 +27,7 @@ class Mission extends React.Component {
 		this.state = {
 			limit: 10,
 			offset: 0,
+			isShare:false,
 			dialogDetailOpen: false,
 			dialogContent: "",
 			loadedRecords: 0,
@@ -37,7 +38,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRYkOZ7fpWRQ0tN8p5LxJK3usf7XEL7gTVNcYqYorV%2bNUhwFRnlEEHKF8UN%2bvtp2c6v55NIabhkPDd8iU%2fgwf4VwwKb%2bc62e4IAYJjFm1h7XemhuvRml%2batKT919MILCOcirj%2fof91g8j',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRf3siZlaV1H8Z1qP7R3sBl6sf7XEL7gTVKB%2fKYkoSMFZZPjVXA7cFMdZDqg%2bzAhVWW0uOdHpZEk%2fsEllP9bAdU6c%2fmHuRus1EuHv2exiFkWYtWRFr%2fPp4RE5y8czW4Bf0Srj%2fof91g8j',
 		};
 	}
 	componentWillMount(){
@@ -132,6 +133,10 @@ class Mission extends React.Component {
 	}
 
 	shareFacebook=()=>{
+		var _this=this;
+		setTimeout(() => {
+			_this.setState({isShare:true});
+		}, 1000);
 
 	}
 
@@ -168,17 +173,15 @@ class Mission extends React.Component {
 		const {scoin_token}= this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		if(obj.actionId==='6'){
-			setTimeout(() => {
-				this.props.finishShareLink(obj.missionId, scoin_token).then(function (response) {
-					const data=_this.props.dataFinishShareLink;
-					_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
-					if(data.data.status==="03"){
-						_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
-					}
-				}).catch(function (err) {
-					console.log(err);
-				});
-			}, 1000);
+			this.props.finishShareLink(obj.missionId, scoin_token).then(function (response) {
+				const data=_this.props.dataFinishShareLink;
+				_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+				if(data.data.status==="03"){
+					_this.setState({ dialogDetailOpen: true, dialogContent: _this.props.message_server, title_dialog:"Error"});
+				}
+			}).catch(function (err) {
+				console.log(err);
+			});
 		}else{
 			this.props.finishData(obj.missionId, scoin_token).then(function (response) {
 				const data=_this.props.dataFinish;
@@ -230,6 +233,7 @@ class Mission extends React.Component {
 					snackVariant={this.state.snackVariant}
 					gameCare={this.state.gameCare}
 					gameMoi={this.state.gameMoi}
+					isShare={this.state.isShare}
 				/>
 
 			</div>
