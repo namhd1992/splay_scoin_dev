@@ -152,7 +152,7 @@ class MissionComponent extends React.Component {
 												<h4 class="font14 font-weight-bold">{obj.missionName}</h4>
 												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
 											</div>
-											<div class="position-absolute" style={{right: 8}}>
+											<div class="position-absolute action_mission" style={{right: 8}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
@@ -243,7 +243,7 @@ class MissionComponent extends React.Component {
 					</div>
 					<div class="container font13">
 						<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
-						<p class="text-center">Hệ thống phát hành game VTC Mobile <br />
+						<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 					Copyright 2017 VTC Mobile. All rights reserved </p>
 					</div>
 					{/* <!-- The Modal Thong tin phan thuong --> */}
@@ -265,10 +265,10 @@ class MissionComponent extends React.Component {
 										<div key={key}>
 											{(obj.isFinish) ? (
 												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled checked={obj.isFinish}/>1/1
+													<img src="../check_mission.png" width="20" class="py-2" /> 1/1
 												</label>
 											):(<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
+													<img src="../uncheck_mission.png" width="20" class="py-2" /> 0/1
 												</label>
 											)}
 										</div>
@@ -285,10 +285,10 @@ class MissionComponent extends React.Component {
 										<div key={key} style={{float:'left', marginRight: 70}}>
 											{(obj.isFinish) ? (
 												<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled checked={obj.isFinish}/>1/1
+													<img src="../check_mission.png" width="20" class="py-2" /> 1/1
 												</label>
 											):(<label class="form-check-label">
-													<input type="checkbox" class="form-check-input" value="" disabled/>0/1
+													<img src="../uncheck_mission.png" width="20" class="py-2" /> 0/1
 												</label>
 											)}
 										</div>
@@ -308,10 +308,10 @@ class MissionComponent extends React.Component {
 						
 						
 						<div class="modal-footer">
-									{(!dataMission.finish)?(<button type="button" class="btn btn-hover text-white" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
+									{(!dataMission.finish)?(<button type="button" class="btn btn-hover text-white text-uppercase" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
 										<div style={{display:'inline-block'}}>
-											{(!dataMission.received)?(<button type="button" class="btn btn-hover text-white" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
-												<button type="button" class="btn text-white" style={{backgroundColor:'gray'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
+											{(!dataMission.received)?(<button type="button" class="btn btn-hover text-white text-uppercase" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
+												<button type="button" class="btn text-white text-uppercase" style={{backgroundColor:'gray', padding:'3px 10px'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
 											)}
 										</div>
 									)}
@@ -351,7 +351,7 @@ class MissionComponent extends React.Component {
 						>
 							<DialogTitle id="responsive-dialog-title"><span style={{ color: secondary.main }}>{title_dialog}</span></DialogTitle>
 							<DialogContent>
-								<div style={{ color: "#fff" }}>
+								<div>
 									{dialogContent}
 								</div>
 							</DialogContent>

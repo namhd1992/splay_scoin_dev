@@ -49,6 +49,7 @@ body {font-family: Tahoma, Verdana, Arial !important;}
 }
 .btn-hover span {z-index: 100;position: relative;}
 
+
 .new { position: absolute; right: 8px; top: 8px; display: inline-block; background: #ff0000; width: 32px; height: 19px; line-height: 19px; margin-left: 5px; color: #fff; font-size: 10px; text-transform: uppercase; text-align: center; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; animation: movedownb 0.7s cubic-bezier(0, 0, 0.34, 0.76) 0.1s both infinite; -moz-animation: movedownb 0.7s cubic-bezier(0, 0, 0.34, 0.76) 0.1s both infinite; -webkit-animation: movedownb 0.7s cubic-bezier(0, 0, 0.34, 0.76) 0.1s both infinite; }
 .new:before, .new:after { position: absolute; right: -5px; content: ""; width: 0; height: 0; border-style: solid; }
 .new:before { top: 0; border-width: 8px 5px 0 5px; border-color: #ff0000 transparent transparent transparent; }
@@ -355,6 +356,9 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
 }
 
 @media (max-width: 576px) {
+  .action_mission{
+    margin-top: 10px;
+  }
   .a1-latthe {margin-bottom: 0 !important;}
   /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {

@@ -38,7 +38,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMevKH3I8y5%2fuhzabnn%2fzQnRRu%2bX1KbxlunAigcx3NCdJ6sf7XEL7gTVFLQQFustq00XQfhZz1forDFNKV4YBgglmr8FqL9qQHzfv8osMvrTV%2fvzab%2bYZ1EwAQYdcpqRX5HR5mflkqWX8m9mFgLCEIl2Crj%2fof91g8j',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeZr7iGie6vTzsxSojwoAKu7KCD7o37kcBnjdlbvIbc9js4b06xkIUVNhynHUHKe4oie8VuVsu55BnYxSVdOqtn8bOoet14VXcs2%2bJ7PkDkbNF%2f0DEoiA4PnEuvEPyeKbtT9IfBAk9vGDFJZNS3lp7cg%3d%3d',
 		};
 	}
 	componentWillMount(){
@@ -105,7 +105,7 @@ class Mission extends React.Component {
 	}
 
 	luckySpin=()=>{
-		
+		window.location.assign(`http://sandbox.scoin.vn/choi-game?GameId=4`)
 	}
 
 
@@ -115,16 +115,15 @@ class Mission extends React.Component {
 		const {scoin_token}= this.state;
 		this.props.checkin(scoin_token).then(function () {
 			_this.props.getData(_this.state.limit, _this.state.offset, scoin_token);
+			_this.setState({ dialogDetailOpen: true, dialogContent: 'Điểm danh thành công', title_dialog:"Điểm Danh"});
 		});
 	}
 
 	loginGame=(obj)=>{
-		console.log('AAAAAAAAA')
 		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 
 	firstLoginGame=(obj)=>{
-		console.log('AAAAAAAAA')
 		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 

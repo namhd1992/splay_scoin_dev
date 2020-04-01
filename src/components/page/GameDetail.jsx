@@ -202,6 +202,7 @@ class GameDetailComponent extends React.Component {
 
 	getTheLoai=(obj)=>{
 		var tagsList=obj.tagsList;
+		console.log(tagsList)
 		var theloai="";
 		if (tagsList !== undefined) {
 			for(var i=0; i<tagsList.length;i++){
@@ -234,9 +235,13 @@ class GameDetailComponent extends React.Component {
 		var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		var deviceType = Ultilities.getMobileOperatingSystem(userAgent);
 		var arrScreenShot = [];
+		var tagsList = [];
 		if (!this.isEmpty(gameData)) {
 			if (gameData.screenShot !== null && gameData.screenShot !== "") {
 				arrScreenShot = gameData.screenShot.split(",");
+			}
+			if (gameData.tagsList!==null){
+				tagsList=gameData.tagsList;
 			}
 		}
 		var articlesData = gameArticles;
@@ -290,7 +295,10 @@ class GameDetailComponent extends React.Component {
 											<div class="media px-1">
 											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3" style={{width:60}} />
 											<div class="media-body mt-2">
-												<h4 class="font13 font-weight-bold">{gameData.name}&nbsp;&nbsp;<span class="btn-tag-event font-weight-normal"> {this.getTheLoai(gameData)} </span></h4>
+												<h4 class="font13 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
+												{tagsList.map((obj, key)=>{
+													return <span class="btn-tag-event font-weight-normal"> {obj.name} </span>
+												})}
 												<p class="font13 text-secondary">{gameData.downloadTurns + " Lượt tải"}</p>
 											</div>
 											</div>
@@ -476,7 +484,7 @@ class GameDetailComponent extends React.Component {
 				</div>
 				<div class="container font13">
 					<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
-					<p class="text-center">Hệ thống phát hành game VTC Mobile <br />
+					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright 2017 VTC Mobile. All rights reserved </p>
 				</div>
 				<Dialog
