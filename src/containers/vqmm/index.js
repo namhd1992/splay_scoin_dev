@@ -320,17 +320,20 @@ class Vong_Quay_May_Man extends React.Component {
 			this.setState({ img_status: sukiendangdienra});
 		}
 		if (time > end) {
-			if(time< 1572868800000){
-				this.setState({ img_status: livestream});
-				this.timeRemain(1572868800000)
-				$('#myModal13').modal('show');
-			}else if(luckySpin.linkLiveStream!=="" && time < 1572872400000){
-				this.setState({ img_status: livestream});
+			// if(time< 1572868800000){
+			// 	this.setState({ img_status: livestream});
+			// 	this.timeRemain(1572868800000)
+			// 	$('#myModal13').modal('show');
+			// }else if(luckySpin.linkLiveStream!=="" && time < 1572872400000){
+			// 	this.setState({ img_status: livestream});
+			// 	$('#myModal14').modal('show');
+			// }else{
+			// 	this.setState({ img_status: ketthuc, message_status:"Sự kiện đã kết thúc."});
+			// 	$('#myModal14').modal('show');
+			// }
+
+			this.setState({ img_status: ketthuc, message_status:"Sự kiện đã kết thúc."});
 				$('#myModal14').modal('show');
-			}else{
-				this.setState({ img_status: ketthuc, message_status:"Sự kiện đã kết thúc."});
-				$('#myModal14').modal('show');
-			}
 			
 		}
 	}
@@ -425,7 +428,7 @@ class Vong_Quay_May_Man extends React.Component {
 									}	
 									_this.setState({itemBonus: data.data, data_auto: list, closeAuto:true});
 								}else if(data.status ==="04"){
-									$('#myModal13').modal('show');
+									// $('#myModal13').modal('show');
 								}else if(data.status ==="07"){
 										this.setState({message_status:"Sự kiện chưa diễn ra hoặc đã kết thúc."},()=>{
 										$('#myModal8').modal('show');
@@ -449,7 +452,7 @@ class Vong_Quay_May_Man extends React.Component {
 						$('#myModal6').modal('show');
 					}
 				}else{
-					$('#myModal13').modal('show');
+					// $('#myModal13').modal('show');
 				}
 			} else {
 				$('#myModal5').modal('show');
@@ -838,7 +841,7 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="300" className="img-fluid" /></a></p>
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="400" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
@@ -874,7 +877,7 @@ class Vong_Quay_May_Man extends React.Component {
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
 							<input type="checkbox" className="custom-control-input" id="customCheck" name="autospin" />
-							<label className="custom-control-label" for="customCheck" onClick={this.handleChange}>Chọn quay tự động</label>
+							<label className="custom-control-label" for="customCheck" onClick={this.handleChange}>Quay tự động</label>
 						</div>
 					</div>   
 				</div>
@@ -1467,17 +1470,14 @@ class Vong_Quay_May_Man extends React.Component {
 					</div>
 				</div>
 
-				<div className="modal fade" id="myModal13">
+				{/* <div className="modal fade" id="myModal13">
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 
-						{/* <!-- Modal Header --> */}
 						<div className="modal-header border-bottom-0">
 							<h4 className="modal-title w-100 text-center"><img src={img_thongbao} alt="" /></h4>
 							<button type="button" className="close" data-dismiss="modal"><img src={btn_close} alt="Đóng" /></button>
 						</div>
-
-						{/* <!-- Modal body --> */}
 						<div className="modal-body">
 							<div className="table-responsive mt-2"> 
 								<h3 class="text-center text-red">Livestream chưa diễn ra.</h3>          
@@ -1491,9 +1491,9 @@ class Vong_Quay_May_Man extends React.Component {
 
 						</div>
 					</div>
-				</div>
+				</div> */}
 
-				<div className="modal fade" id="myModal14">
+				{/* <div className="modal fade" id="myModal14">
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 
@@ -1510,7 +1510,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 						</div>
 					</div>
-				</div>
+				</div> */}
 				{/* <div class="modal fade" id="myModal8">
 					<div class="modal-dialog">
 						<div class="modal-content popup-phanthuong">

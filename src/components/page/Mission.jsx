@@ -231,7 +231,7 @@ class MissionComponent extends React.Component {
 													<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
 													<div class="media-body">
 														<h4 class="font13 font-weight-bold">{obj.name}</h4>
-														<p class="small">{obj.downloadTurns} lượt tải</p>
+														<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
 													</div>
 												</div>
 											)
