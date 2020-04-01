@@ -300,7 +300,7 @@ class MissionComponent extends React.Component {
 							)}
 							
 							<div>
-							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {dataMission.valueAward} </span></p>
+							<p><strong>Giải thưởng</strong>  <span class="font13 text-dark p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {dataMission.valueAward} </span></p>
 								</div>
 						</div>):(<div></div>)}
 

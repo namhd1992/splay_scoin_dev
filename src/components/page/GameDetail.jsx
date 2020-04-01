@@ -332,8 +332,8 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</div>
 							<div class="mb-3 font13 btn-md-mobile">
-								<div>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
-								<div>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
 							<div class="bg-white p-3 mb-3 font13">
