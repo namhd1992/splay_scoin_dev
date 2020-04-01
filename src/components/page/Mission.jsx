@@ -252,11 +252,11 @@ class MissionComponent extends React.Component {
 						<div class="modal-content">
 
 						<div class="modal-header pb-0">
-							<h4 class="modal-title font13 border-title-cat font-weight-bold color-title-cat">Chi tiết nhiệm vụ</h4>
+							<h4 class="modal-title font16 border-title-cat font-weight-bold color-title-cat">Chi tiết nhiệm vụ</h4>
 							<button type="button" class="close" onClick={this.closePopupMission}>&times;</button>
 						</div>
 						{(JSON.stringify(dataMission) !== '{}')?(<div class="modal-body font13">
-							<h5 class="font13">{dataMission.description}</h5>
+							<h5 class="font14">{dataMission.description}</h5>
 							{(dataMission.missionProgress.length<5)?(
 								<div class="bg-badge-opacity-2 p-2 my-3">
 								<div class="form-check">

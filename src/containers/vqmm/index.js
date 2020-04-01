@@ -841,7 +841,7 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="400" className="img-fluid" /></a></p>
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="500" className="img-fluid" /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
