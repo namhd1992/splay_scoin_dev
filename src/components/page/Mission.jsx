@@ -150,7 +150,7 @@ class MissionComponent extends React.Component {
 											<img src="../icon_diemdanh_active.png" alt="Điểm danh" class="mr-3" width="48" />
 											<div class="media-body">
 												<h4 class="font14 font-weight-bold">{obj.missionName}</h4>
-												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{obj.valueAward} </span>
+												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {obj.valueAward} </span>
 											</div>
 											<div class="position-absolute action_mission" style={{right: 8}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
@@ -300,7 +300,7 @@ class MissionComponent extends React.Component {
 							)}
 							
 							<div>
-							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> +{dataMission.valueAward} </span></p>
+							<p><strong>Giải thưởng</strong>  <span class="font13 badge text-dark p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {dataMission.valueAward} </span></p>
 								</div>
 						</div>):(<div></div>)}
 
