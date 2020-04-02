@@ -85,6 +85,7 @@ class Vong_Quay_May_Man extends React.Component {
 			luckySpin:{},
 			userTurnSpin:{},
 			turnsFree:0,
+			pricePerTurn:0,
 			isLogin:false,
 			day:'00',
 			hour:'00', 
@@ -169,7 +170,7 @@ class Vong_Quay_May_Man extends React.Component {
 						// }
 						this.getStatus(data.data.luckySpin);
 						// this.timeShowLive(data.data.luckySpin.endDate);
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:true, linkLiveStream:data.data.luckySpin.linkLiveStream})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin,pricePerTurn:data.data.luckySpin.pricePerTurn, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:true, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu người dùng. Vui lòng tải lại trang.'})
@@ -196,7 +197,7 @@ class Vong_Quay_May_Man extends React.Component {
 						// }
 						this.getStatus(data.data.luckySpin);
 						// this.timeShowLive(data.data.luckySpin.endDate);
-						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:false, linkLiveStream:data.data.luckySpin.linkLiveStream})
+						this.setState({userTurnSpin:data.data.userTurnSpin, itemOfSpin:data.data.itemOfSpin, pricePerTurn:data.data.luckySpin.pricePerTurn, luckySpin:data.data.luckySpin, turnsFree:data.data.userTurnSpin.xu, isLogin:false, linkLiveStream:data.data.luckySpin.linkLiveStream})
 					}else{
 						$('#myModal11').modal('show');
 						this.setState({message_error:'Không lấy được dữ liệu.  Vui lòng tải lại trang.'})
@@ -373,7 +374,7 @@ class Vong_Quay_May_Man extends React.Component {
 	}
 
 	start=()=>{
-		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished, scoin_token, auto}=this.state;
+		const {turnsFree, itemOfSpin, luckySpin, isSpin, closeAuto, finished, scoin_token, auto, pricePerTurn}=this.state;
 		var _this = this;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		var time=Date.now();
@@ -384,7 +385,7 @@ class Vong_Quay_May_Man extends React.Component {
 		}else{
 			if (scoin_token !== '') {
 				if(!finished){
-					if(turnsFree>0){
+					if(turnsFree>pricePerTurn){
 						this.props.pickCard(scoin_token, luckySpin.id).then(()=>{
 							var data=_this.props.dataPick;
 							var list=this.state.data_auto;
@@ -525,8 +526,8 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	autoRotation=()=>{
-		const {turnsFree, luckySpin}=this.state;
-		if(turnsFree>0){
+		const {turnsFree, luckySpin,pricePerTurn}=this.state;
+		if(turnsFree>pricePerTurn){
 			this.getDetailData();
 		}else{
 			clearInterval(this.state.intervalId);
@@ -535,14 +536,14 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 	getDetailData=()=>{
-		const {auto, scoin_token, idLucky}=this.state;
+		const {auto, scoin_token, idLucky, pricePerTurn}=this.state;
 		// var user = JSON.parse(localStorage.getItem("user"));
 		this.props.getRotationDetailDataUser(scoin_token, idLucky).then(()=>{
 			var data=this.props.dataRotationWithUser;
 			if(data!==undefined){
 				var turnsFree=data.data.userTurnSpin.xu;
 				if(data.status==='01'){
-					if(turnsFree>0){
+					if(turnsFree>pricePerTurn){
 						if(auto){
 							this.start();
 						}
@@ -893,7 +894,7 @@ class Vong_Quay_May_Man extends React.Component {
 			<div className="container jumbotron">			
 				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span className="txt-bvd">BẢNG VINH DANH</span></h5>
 				<div className="table-responsive mt-4">
-					<table className="table table-borderless tbl-bvd mx-auto text-center">
+					{/* <table className="table table-borderless tbl-bvd mx-auto text-center">
 						<thead>
 						<tr className="text-uppercase title-bvd">
 							<th></th>
@@ -921,7 +922,7 @@ class Vong_Quay_May_Man extends React.Component {
 								</tr>
 							))}
 						</tbody>
-					</table>
+					</table> */}
 					<div className="pagination justify-content-center pag-custom">
 						<Pagination
 							activePage={activeVinhDanh}
