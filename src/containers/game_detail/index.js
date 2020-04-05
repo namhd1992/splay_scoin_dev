@@ -98,7 +98,6 @@ class Game_detail extends React.Component {
 			result.push(element);
 			items.pop();
 		}
-		console.log(result)
 		return result;
 	}
 

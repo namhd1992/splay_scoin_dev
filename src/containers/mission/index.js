@@ -72,7 +72,8 @@ class Mission extends React.Component {
 				var news=data.data.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
 				var gameMoi=news.slice(0, 5)
 				var care=data.data.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
-				var gameCare=care.slice(0, 6)
+				// var gameCare=care.slice(0, 6)
+				var gameCare=_this.random_item(games)
 				_this.setState({gameMoi:gameMoi, gameCare:gameCare})
 			}
 		});
@@ -88,6 +89,17 @@ class Mission extends React.Component {
 			if (pArr[0] === key) 
 				return pArr[1];
 		}
+	}
+
+	random_item=(items)=>{
+		var result=[];
+		var new_items=[];
+		for (let i = 0; i < 6; i++) {
+			const element = items[Math.floor(Math.random()*items.length)];
+			result.push(element);
+			items.pop();
+		}
+		return result;
 	}
 
 

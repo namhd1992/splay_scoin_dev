@@ -375,6 +375,7 @@ class GameDetailComponent extends React.Component {
 											</div>
 											<a style={{
 													color: '#00cc00',
+													cursor:'pointer',
 													textAlign: "center",
 													width: "100%",
 													display: "block",
@@ -395,6 +396,7 @@ class GameDetailComponent extends React.Component {
 										/>
 										<a style={{
 											color: '#00cc00',
+											cursor:'pointer',
 											textAlign: "center",
 											width: "100%",
 											display: "block",
