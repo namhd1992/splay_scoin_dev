@@ -74,9 +74,10 @@ class Game_detail extends React.Component {
 			if(data.status==="01"){
 				var games=data.data.filter(v=>v.scoinGameId!==+id_game)
 				var news=games.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
-				var gameMoi=news.slice(0, 3)
+				var gameMoi=news.slice(0, 5)
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
-				var gameCare=care.slice(0, 6)
+				// var gameCare=care.slice(0, 6)
+				var gameCare=_this.random_item(games)
 				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games})
 			}
 		});
@@ -89,8 +90,24 @@ class Game_detail extends React.Component {
 		});
 	}
 
+	random_item=(items)=>{
+		var result=[];
+		var new_items=[];
+		for (let i = 0; i < 6; i++) {
+			const element = items[Math.floor(Math.random()*items.length)];
+			result.push(element);
+			items.pop();
+		}
+		console.log(result)
+		return result;
+	}
+
 	readMore = () => {
 		this.setState({ showMore: true });
+	}
+
+	compact=()=>{
+		this.setState({ showMore: false });
 	}
 
 	handleCloseSnack = () => {
@@ -186,6 +203,7 @@ class Game_detail extends React.Component {
 					dialogLoginOpen={this.dialogLoginOpen}
 					handleCloseSnack={this.handleCloseSnack}
 					readMore={this.readMore}
+					compact={this.compact}
 					getData={this.getData}
 
 					data={this.props.data}

@@ -70,7 +70,7 @@ class Mission extends React.Component {
 			console.log(data)
 			if(data.status==="01"){
 				var news=data.data.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
-				var gameMoi=news.slice(0, 3)
+				var gameMoi=news.slice(0, 5)
 				var care=data.data.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				var gameCare=care.slice(0, 6)
 				_this.setState({gameMoi:gameMoi, gameCare:gameCare})

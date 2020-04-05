@@ -153,7 +153,7 @@ class MissionComponent extends React.Component {
 												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {obj.valueAward} </span>
 											</div>
 											<div class="position-absolute action_mission" style={{right: 8}}>
-												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary" onClick={()=>this.openPopupMission(obj)}>?</span>
+												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary font15" onClick={()=>this.openPopupMission(obj)}>i</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
 														<FacebookShareButton url={obj.linkToShare}>

@@ -212,6 +212,10 @@ class GameDetailComponent extends React.Component {
 		this.props.readMore();
 	}
 
+	compact=()=>{
+		this.props.compact();
+	}
+
 	getTheLoai=(obj)=>{
 		var tagsList=obj.tagsList;
 		console.log(tagsList)
@@ -365,8 +369,21 @@ class GameDetailComponent extends React.Component {
 								</div>
 								<div>
 									{(showMore) ? (
-										<div style={{ padding: "10px", lineHeight:'20px' }}
-											dangerouslySetInnerHTML={{ __html: gameData.description }}>
+										<div>
+											<div style={{ padding: "10px", lineHeight:'20px' }}
+												dangerouslySetInnerHTML={{ __html: gameData.description }}>
+											</div>
+											<a style={{
+													color: '#00cc00',
+													textAlign: "center",
+													width: "100%",
+													display: "block",
+													position: "absolute",
+													paddingTop: "20px",
+													marginTop: "-40px",
+													background: "linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.6), rgba(255,255,255,.9), rgba(255,255,255,1))"
+													
+												}} onClick={() => this.compact()}>Thu gọn</a>
 										</div>
 									) : (<div style={{ position: "relative", padding: "10px" }}>
 										<HTMLEllipsis
@@ -425,7 +442,7 @@ class GameDetailComponent extends React.Component {
 																						paddingTop: "8px"
 																					}}><PlayArrow style={{ color: secondary.main, margin: "auto", width: "72px", height: "72px" }}></PlayArrow></div>
 																				</Grid>
-																				<Grid item xs={12} style={{ padding: "0px", color: 'black', fontSize: "0.9em", lineHeight:'13px' }}>
+																				<Grid item xs={12} style={{ padding: "0px", color: 'black', fontSize: "0.9em", lineHeight:'13px', marginTop:8 }}>
 																					{obj.snippet.title}
 																				</Grid>
 																			</Grid>

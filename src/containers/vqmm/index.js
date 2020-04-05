@@ -290,6 +290,7 @@ class Vong_Quay_May_Man extends React.Component {
 		const {limit, idLucky}=this.state;
 		this.props.getVinhDanh(idLucky, limit, (pageNumber-1)).then(()=>{
 			var data=this.props.dataVinhDanh;
+			console.log(data)
 			if(data!==undefined){
 				if(data.status==='01'){	
 					this.setState({listVinhDanh:data.data, countVinhDanh:data.totalRecords})
@@ -842,7 +843,7 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="500" className="img-fluid" /></a></p>
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="500" style={{maxWidth:"150%"}} /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
@@ -911,7 +912,7 @@ class Vong_Quay_May_Man extends React.Component {
 							<td>20:00:00 04-11-2019</td>
 						</tr>
 						</tbody>
-					</table>
+					</table> */}
 					<table className="table table-bordered tbl-bvd mx-auto text-center">            
 						<tbody className="top100">
 							{listVinhDanh.map((obj, key) => (
@@ -922,7 +923,7 @@ class Vong_Quay_May_Man extends React.Component {
 								</tr>
 							))}
 						</tbody>
-					</table> */}
+					</table>
 					<div className="pagination justify-content-center pag-custom">
 						<Pagination
 							activePage={activeVinhDanh}
