@@ -73,7 +73,7 @@ class Mission extends React.Component {
 				var gameMoi=news.slice(0, 5)
 				var care=data.data.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				// var gameCare=care.slice(0, 6)
-				var gameCare=_this.random_item(games)
+				var gameCare=_this.random_item(data.data)
 				_this.setState({gameMoi:gameMoi, gameCare:gameCare})
 			}
 		});

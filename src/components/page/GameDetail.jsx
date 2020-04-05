@@ -71,12 +71,15 @@ class GameDetailComponent extends React.Component {
 		}
 	}
 	componentWillMount(){
+		var d = new Date();
+		var n = d.getFullYear();
 		if (isIOS) {
 			this.setState({device:'isIOS'})
 		}
 		if (isAndroid) {
 			this.setState({device:'isAndroid'})
 		}
+		this.setState({year:n})
 		this.onResize();
 	}
 
@@ -244,7 +247,7 @@ class GameDetailComponent extends React.Component {
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight}=this.state;
+		const {iframeWidth, iframeHeight, year}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -517,7 +520,7 @@ class GameDetailComponent extends React.Component {
 				<div class="container font13">
 					<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
-				Copyright 2017 VTC Mobile. All rights reserved </p>
+				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
 				<Dialog
 							fullScreen={fullScreen}

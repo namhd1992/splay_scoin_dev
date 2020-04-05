@@ -46,6 +46,8 @@ class MissionComponent extends React.Component {
 	}
 
 	componentWillMount(){
+		var d = new Date();
+		var n = d.getFullYear();
 		var w=window.innerWidth;
 		var padding_l=0;
 		if(w>1080){
@@ -55,7 +57,7 @@ class MissionComponent extends React.Component {
 		}else{
 			padding_l=0;
 		}
-		this.setState({paddingL:padding_l});
+		this.setState({paddingL:padding_l, year:n});
 	}
 
 
@@ -134,7 +136,7 @@ class MissionComponent extends React.Component {
 		const { theme } = this.props;
 		const { classes } = this.props;
 		const { secondary } = theme.palette;
-		const {dataMission}=this.state;
+		const {dataMission, year}=this.state;
 
 		return (<div>
 					<div class="container py-3" style={{marginTop:55}}>
@@ -244,7 +246,7 @@ class MissionComponent extends React.Component {
 					<div class="container font13">
 						<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
 						<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
-					Copyright 2017 VTC Mobile. All rights reserved </p>
+					Copyright {year} VTC Mobile. All rights reserved </p>
 					</div>
 					{/* <!-- The Modal Thong tin phan thuong --> */}
 					<div class="modal fade" id="myModal">
