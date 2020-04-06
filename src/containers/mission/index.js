@@ -38,7 +38,7 @@ class Mission extends React.Component {
 			snackVariant: "info",
 			gameMoi:[],
 			gameCare:[],
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeZr7iGie6vTyVE%2fMdbYrt5YJOneQy1gg478JalKuzqj2wVmWTs8FIjy%2bTiPnTaa%2foNuHrcI0J45uZmekcspyp3MwQVhrTmx7WT9Ifws6AVUVgVJBfAuZhAdL9TCLSvXJwKVgNczTGcPzG8sqNfLsH7CTxhzDdkGEr',
+			scoin_token:'H1PuNJ%2bcoqoAlCi2T%2bfYIl5tq2B%2fnmMelgJpLv1eAL4CbYwiY8YsM1hPhMrfyRyDmSfbyEZdNavZoa6ufMee6pK0I4INJxQfmSoUUua8dWBzP8W9IgWCphWCcYgG9j2%2fyTwqi0sCY70DpO%2fbQWwu%2f9G8mvlus9QaaRljmrQSemsnDxxHCtqaoiTxhzDdkGEr',
 		};
 	}
 	componentWillMount(){
@@ -97,7 +97,7 @@ class Mission extends React.Component {
 		for (let i = 0; i < 6; i++) {
 			const element = items[Math.floor(Math.random()*items.length)];
 			result.push(element);
-			items.pop();
+			items.splice(items.indexOf(element), 1);
 		}
 		return result;
 	}

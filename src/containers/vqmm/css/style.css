@@ -223,7 +223,7 @@ a.btn-dv:hover {color: #ffd102;}
 		display: none;
 	}
 	.content-inner-p1 {background-position: center bottom; height: 1000px; background-size: 150%;}
-	.btn-thamgiangay {position: absolute; bottom: 40px;}
+	.btn-thamgiangay {position: absolute; bottom: 40px;left: 44%;}
 	.position-absolute-p1 {position:fixed; left:1%; top: 20%; background:url(../images/bg-btn-float-right.png) no-repeat; background-size: 100%; width: 40px;}
 	.menu-left-p1 li {width: 40px; margin: 0 auto; display: block; text-align: center}
 	.menu-left-p1 li a {color:#FFFFFF; font-size: 11px;}
@@ -300,6 +300,7 @@ a.btn-dv:hover {color: #ffd102;}
 	 /* .bg-ketquaquayso {height: 250px;} */
 }
 @media (max-width: 380px) {
+	.btn-thamgiangay {left: 43%;}
 	.content-inner-p1 {background-position: center bottom; height: 620px; background-size: 160%;}
 	.vqmm {position: absolute; top: 15%; left: 18%; width: 300px}
 	.page2 {background-position: 35% 10%; background-size: 180%;}

@@ -96,7 +96,7 @@ class Game_detail extends React.Component {
 		for (let i = 0; i < 6; i++) {
 			const element = items[Math.floor(Math.random()*items.length)];
 			result.push(element);
-			items.pop();
+			items.splice(items.indexOf(element), 1);
 		}
 		return result;
 	}

@@ -147,25 +147,25 @@ class MissionComponent extends React.Component {
 									{(data.length>0)?(<div>
 									{data.map((obj, key) => {
 										return ( <div class="card shadow-sm" key={key}>
-										<div class="card-body p-3 pl-2">
+										<div class="card-body" style={{padding:'15px 0px'}}>
 											<div class="media position-relative">
 											<img src="../icon_diemdanh_active.png" alt="Điểm danh" class="mr-3" width="48" />
 											<div class="media-body">
 												<h4 class="font14 font-weight-bold">{obj.missionName}</h4>
 												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {obj.valueAward} </span>
 											</div>
-											<div class="position-absolute action_mission" style={{right: 8}}>
+											<div class="position-absolute action_mission" style={{right: -5}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary font15" onClick={()=>this.openPopupMission(obj)}>i</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
 														<FacebookShareButton url={obj.linkToShare}>
-															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
 											</FacebookShareButton>
-														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
+														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
 												</div>):(
 													<div style={{display:'inline-block'}}>
-														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
-															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12" style={{backgroundColor:'gray'}}><span class="small">Đã nhận</span></button>
+														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12" style={{backgroundColor:'gray', width:110}}><span class="small">Đã nhận</span></button>
 														)}
 													</div>
 												)}
@@ -310,10 +310,10 @@ class MissionComponent extends React.Component {
 						
 						
 						<div class="modal-footer">
-									{(!dataMission.finish)?(<button type="button" class="btn btn-hover text-white text-uppercase" onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
+									{(!dataMission.finish)?(<button type="button" class="btn btn-hover text-white text-uppercase" style={{ width:110}} onClick={()=>this.doMission(dataMission)}><span class="small">Thực hiện</span></button>):(
 										<div style={{display:'inline-block'}}>
-											{(!dataMission.received)?(<button type="button" class="btn btn-hover text-white text-uppercase" onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
-												<button type="button" class="btn text-white text-uppercase" style={{backgroundColor:'gray', padding:'3px 10px'}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
+											{(!dataMission.received)?(<button type="button" class="btn btn-hover text-white text-uppercase" style={{ width:110}} onClick={()=>this.reward(dataMission)}><span class="small">Nhận thưởng</span></button>):(
+												<button type="button" class="btn text-white text-uppercase" style={{backgroundColor:'gray', padding:'3px 10px',  width:110}}><span class="small" style={{color:'#fff'}}>Đã nhận</span></button>
 											)}
 										</div>
 									)}
