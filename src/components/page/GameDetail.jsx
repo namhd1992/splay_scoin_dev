@@ -339,11 +339,11 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</div>
 							<div class="mb-3 font13 btn-md-mobile">
-								<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
-								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-light py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
-							<div class="bg-white p-3 mb-3 font13">
+							<div class="bg-white p-3 mb-3 font13 text-justify">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
 									<Grid item xs={12} style={{
@@ -505,7 +505,7 @@ class GameDetailComponent extends React.Component {
 								
 							</div>
 							
-							<div class="bg-white mt-3">
+							<div class="bg-white pt-3 pl-3">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
