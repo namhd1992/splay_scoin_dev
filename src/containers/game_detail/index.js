@@ -78,7 +78,7 @@ class Game_detail extends React.Component {
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				// var gameCare=care.slice(0, 6)
 				var gameCare=_this.random_item(games)
-				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games})
+				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games, showMore: false})
 			}
 		});
 		this.props.getDataId(+id_game).then(function () {

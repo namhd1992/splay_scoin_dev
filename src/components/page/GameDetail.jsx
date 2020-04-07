@@ -303,7 +303,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div class="py-3 container" style={{marginTop:55}}>
+					<div id="top" class="py-3 container" style={{marginTop:55}}>
 					<div class="row">
 						<div class="col-sm-9 px-2">
 							<div class="bg-white mb-3 content">
@@ -312,9 +312,9 @@ class GameDetailComponent extends React.Component {
 									<div class="row mx-0 position-absolute w-100 sum-game pt-3">
 										<div class="col-md-9 pb-2">
 											<div class="media px-1">
-											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3" style={{width:60}} />
+											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
 											<div class="media-body mt-2">
-												<h4 class="font13 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
+												<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
 												{tagsList.map((obj, key)=>{
 													return <span class="btn-tag-event font-weight-normal"> {obj.name} </span>
 												})}
@@ -432,6 +432,7 @@ class GameDetailComponent extends React.Component {
 																if (obj.id.kind !== "youtube#channel") {
 																	return (
 																		<div
+																			class="thumb-lat-the position-relative"
 																			key={key}
 																			onClick={() => this.dialogYoutubeOpen(obj.id.videoId)}
 																			style={{ padding: "8px", cursor: "pointer", position: "relative", width: "180px", paddingTop: "3px", paddingBottom: "3px" }}>
@@ -451,6 +452,8 @@ class GameDetailComponent extends React.Component {
 																					{obj.snippet.title}
 																				</Grid>
 																			</Grid>
+																			<div class="overlay">
+																			</div>
 																		</div>)
 																} else {
 																	return (<div></div>)
@@ -469,13 +472,18 @@ class GameDetailComponent extends React.Component {
 								<div class="row">
 									{gameCare.map((obj, key)=>{
 										return (
+											
 											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
+												<a href="#top">
 												<div class="thumb-lat-the position-relative">
 													<a class="text-dark">
 														<img src={obj.bigImage} width="100%" />
 													</a>
+													<div class="overlay">
+													</div>
 												</div>
 												<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+												</a>
 											</div>
 										)
 									})}
@@ -498,7 +506,7 @@ class GameDetailComponent extends React.Component {
 							</div>
 							
 							<div class="bg-white mt-3">
-								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
+								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
 											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>

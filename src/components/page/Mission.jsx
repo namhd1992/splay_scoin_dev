@@ -199,6 +199,8 @@ class MissionComponent extends React.Component {
 															<a class="text-dark">
 																<img src={obj.bigImage} width="100%" />
 															</a>
+															<div class="overlay">
+															</div>
 														</div>
 														<h3 class="font14 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 													</a>
