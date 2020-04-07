@@ -311,7 +311,7 @@ class GameDetailComponent extends React.Component {
 									<img src={gameData.bigImage} class="overflow-hidden" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-3">
 										<div class="col-md-9 pb-2">
-											<div class="media px-1">
+											<div class="media px-1 pt-04">
 											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
 											<div class="media-body mt-2">
 												<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
