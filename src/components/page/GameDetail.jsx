@@ -505,7 +505,7 @@ class GameDetailComponent extends React.Component {
 								
 							</div>
 							
-							<div class="bg-white pt-3 pl-3">
+							<div class="bg-white pt-3 pl-3 mt-3">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
