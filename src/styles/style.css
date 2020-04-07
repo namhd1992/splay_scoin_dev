@@ -350,6 +350,17 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
   }
 }
 
+.img-hover {	
+  opacity: 1;
+  width: 100%;
+  height: auto;
+  transition: .1s ease;
+  backface-visibility: hidden;
+}
+.con-hover:hover .img-hover {
+filter: contrast(150%);
+}
+
 .btn-downgame {
 	content: '';
 	  position: absolute;
@@ -363,8 +374,8 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
     position:relative;
     display:block;
     overflow:hidden;
-    background:#007bff;
-	border:2px solid #FFFFFF;
+    background:#007bff !important;
+	border:2px solid #FFFFFF !important;
 /*    background:-webkit-gradient(linear,left top,left bottom,color-stop(#60a9f6,0),color-stop(#2577cf,1));
     background:-webkit-linear-gradient(top, #60a9f6 0%, #2577cf 100%);
     background:-moz-linear-gradient(top, #60a9f6 0%, #2577cf 100%);
