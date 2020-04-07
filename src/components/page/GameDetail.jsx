@@ -310,8 +310,8 @@ class GameDetailComponent extends React.Component {
 								<div class="detail-bannergame position-relative overflow-hidden">
 									<img src={gameData.bigImage} class="overflow-hidden" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-3">
-										<div class="col-md-9 pb-2">
-											<div class="media px-1 pt-04">
+										<div class="col-md-9">
+											<div class="media px-1">
 											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
 											<div class="media-body mt-2">
 												<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
@@ -480,6 +480,7 @@ class GameDetailComponent extends React.Component {
 														<img src={obj.bigImage} width="100%" />
 													</a>
 													<div class="overlay">
+														<div class="text text-white small">Chơi ngay &raquo;</div>
 													</div>
 												</div>
 												<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
@@ -509,13 +510,17 @@ class GameDetailComponent extends React.Component {
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
+											<a href="#top" style={{color:'black'}}>
 											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
+												
 												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
 												<div class="media-body">
 													<h4 class="font13 font-weight-bold">{obj.name}</h4>
 													<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
 												</div>
+												
 											</div>
+											</a>
 										)
 								})}
 								
