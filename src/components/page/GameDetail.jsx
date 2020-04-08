@@ -140,7 +140,7 @@ class GameDetailComponent extends React.Component {
 				var img = new Image();
 				img.onload = function() {
 					if(this.width>this.height){
-						_this.setState({numberImgDestop:3, numberImgTablet: 2, numberImgMoble: 1, height:"200px", margin:"0px 2px"})
+						_this.setState({numberImgDestop:3, numberImgTablet: 2, numberImgMoble: 1, height:"150px", margin:"0px 2px"})
 					}else{
 						_this.setState({numberImgDestop:5, numberImgTablet: 4, numberImgMoble: 3, paddingBottom:"160%"})	
 					}
@@ -309,7 +309,7 @@ class GameDetailComponent extends React.Component {
 							<div class="bg-white mb-3 content">
 								<div class="detail-bannergame position-relative overflow-hidden">
 									<img src={gameData.bigImage} class="overflow-hidden" width="100%" />
-									<div class="row mx-0 position-absolute w-100 sum-game pt-3">
+									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
 										<div class="col-md-9">
 											<div class="media px-1">
 											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
@@ -318,7 +318,7 @@ class GameDetailComponent extends React.Component {
 												{tagsList.map((obj, key)=>{
 													return <span class="btn-tag-event font-weight-normal"> {obj.name} </span>
 												})}
-												<p class="font13 text-secondary pt-2">{gameData.downloadTurns ? gameData.downloadTurns.toLocaleString() : 0} Lượt tải</p>
+												<p class="font13 text-secondary pt-2 mb-1">{gameData.downloadTurns ? gameData.downloadTurns.toLocaleString() : 0} Lượt tải</p>
 											</div>
 											</div>
 										</div>
@@ -339,8 +339,13 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</div>
 							<div class="mb-3 font13 btn-md-mobile">
-								<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								{(gameData.gameType==='MOBILE')?(<div>
+									<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
 								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								</div>):(
+									<a href={gameData.webgameUrl} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Chơi Ngay</span></button></a>
+								)}
+								
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
 							<div class="bg-white p-3 mb-3 font13 text-justify">
@@ -496,9 +501,12 @@ class GameDetailComponent extends React.Component {
 						</div>
 						<div class="col-sm-3 px-2">
 							<div class="download">
-								<a href={gameData.urlDownloadIos}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-ios.png" alt="" width="24" /></span></button></a>
+								{(gameData.gameType==="MOBILE")?(<div><a href={gameData.urlDownloadIos}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-ios.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.urlDownloadAndroid}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
-								<a href={gameData.website}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a>
+								<a href={gameData.urlDownloadPC}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a></div>):(
+									<a href={gameData.webgameUrl}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Chơi Ngay</span></button></a>
+								)}
+								
 								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp Game</span></button></a>                
 							</div>
 							<div class="bg-white mt-3" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
