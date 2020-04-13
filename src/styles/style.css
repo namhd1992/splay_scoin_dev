@@ -429,6 +429,8 @@ filter: contrast(150%);
 #btnPlay {z-index: 9999;}
 .btn-link {background-color: #FFFFFF;}
 .btn-md-mobile { display: block}
+.thumb-lat-the:hover .overlay {opacity: 0;}
+
 }
 
 @media (min-width: 768px) {

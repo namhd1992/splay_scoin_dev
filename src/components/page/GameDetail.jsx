@@ -418,9 +418,9 @@ class GameDetailComponent extends React.Component {
 										)}
 								</div>
 							</div>
-							<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
+							{(youtubeData !== undefined && youtubeData.length > 0) ? (
+							<div class="bg-white p-3 mb-3 font13">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Video</h2>
-								{(youtubeData !== undefined && youtubeData.length > 0) ? (
 									<Grid container style={{
 										width: "100%",
 										borderRadius: "5px",
@@ -453,7 +453,7 @@ class GameDetailComponent extends React.Component {
 																						paddingTop: "8px"
 																					}}><PlayArrow style={{ color: secondary.main, margin: "auto", width: "72px", height: "72px" }}></PlayArrow></div>
 																				</Grid>
-																				<Grid item xs={12} style={{ padding: "0px", color: 'black', fontSize: "0.9em", lineHeight:'13px', marginTop:8 }}>
+																				<Grid item xs={12} style={{ padding: "0px", color: 'black', fontSize: "0.9em", lineHeight:'13px', marginTop:8, fontFamily:'Tahoma, Verdana, Arial' }}>
 																					{obj.snippet.title}
 																				</Grid>
 																			</Grid>
@@ -469,9 +469,9 @@ class GameDetailComponent extends React.Component {
 												</Grid>
 											</Grid>
 										</Grid>
-									</Grid>
-								) : (<div></div>)}
-							</div>
+									</Grid></div>
+								) : (<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}></div>)}
+							
 							<div class="mb-3 bg-white p-3">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 								<div class="row">
@@ -543,6 +543,7 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
+				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" /></a></div>
 				<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}
@@ -580,6 +581,172 @@ class GameDetailComponent extends React.Component {
 								onClose={this.closeLightBox}
 							/>
 						))}
+		<div class="modal p-0" id="bxhmodal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				{/* <!-- Modal body --> */}
+				<div class="modal-body py-2 px-1">
+					{/* <!-- Nav tabs --> */}
+					<ul class="nav nav-tabs nav-justified">
+					<li class="nav-item">
+						<a class="nav-link active text-danger font-weight-bold" data-toggle="tab" href="#bxh">BXH</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#thele">Thể lệ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#phucloi">Phúc lợi</a>
+					</li>
+					<li class="">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</li>
+					</ul>
+					
+					{/* <!-- Tab panes --> */}
+					<div class="tab-content">
+					<div class="tab-pane active" id="bxh">
+						{/* <!-- Nav pills --> */}
+						<ul class="nav nav-pills nav-justified mt-3">
+						<li class="nav-item">
+							<a class="nav-link text-secondary active small" data-toggle="pill" href="#tuantruongnua">Tuần trước nữa</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc">Tuần trước</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay">Tuần này</a>
+						</li>
+						</ul>
+						
+						{/* <!-- Tab panes --> */}
+						<div class="tab-content">
+						<div class="tab-pane active" id="tuantruongnua">
+							<table class="table table-striped text-center mt-3 small">
+								<thead>
+								<tr>
+									<th>Top</th>
+									<th>Tên NV</th>
+									<th>Rank</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>Jo đẹp trai</td>
+									<td>S-Kim cương <span class="badge badge-pill badge-danger">&nbsp;</span></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Maya</td>
+									<td>Kim cương <span class="badge badge-pill badge-danger">&nbsp;</span></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Raul</td>
+									<td>Vàng <span class="badge badge-pill badge-warning">&nbsp;</span></td>
+								</tr>
+								</tbody>
+							</table>
+							<h6 class="text-left"><span class="badge badge-pill badge-info">#</span> Thứ hạng của bạn</h6>
+							<table class="table table-striped text-center mt-3 small">
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>Jo đẹp trai</td>
+									<td>S-Kim cương <span class="badge badge-pill badge-danger">&nbsp;</span></td>
+								</tr>
+								<tr>
+									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
+									<td><button type="button" class="btn btn-info btn-sm">Xem chi tiết &rarr;</button></td>
+								</tr>
+								</tbody>
+							</table>
+							
+						</div>
+						<div class="tab-pane fade" id="tuantruoc">...</div>
+						<div class="tab-pane fade" id="tuannay">...</div>
+						</div>          
+					</div>
+					<div class="tab-pane fade" id="thele"><p class="mt-3">Thể lệ</p></div>
+					<div class="tab-pane fade" id="phucloi">
+						<h6 class="text-center mt-3">Rank tuần trước</h6>
+						{/* <!-- Nav pills --> */}
+						<ul class="nav nav-pills nav-justified">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="pill" href="#tuan0"><span class="badge badge-pill badge-danger" style={{width: 30, height: 30}}>&nbsp;</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#tuan1"><span class="badge badge-pill badge-warning" style={{width: 30, height: 30}}>&nbsp;</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#tuan2"><span class="badge badge-pill badge-primary" style={{width: 30, height: 30}}>&nbsp;</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#tuan3"><span class="badge badge-pill badge-info" style={{width: 30, height: 30}}>&nbsp;</span></a>
+						</li>
+						</ul>
+						{/* <!-- Tab panes --> */}
+						<div class="tab-content">
+						<div class="tab-pane active" id="tuan0">
+							<h6 class="text-center mt-3">Quà nhận được <br /><span class="text-danger small">Hết hạn sau: 6 ngày 5h 43p 10s</span></h6>
+							<div class="row pt-3">
+							{/* <div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>
+							<div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>                     */}
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tuan1">
+							<h6 class="text-center mt-3 text-danger small">Xếp hạng của bạn trong chu kỳ trước không thuộc Rank này</h6>
+							<div class="row pt-3">
+							{/* <div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>
+							<div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>                     */}
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tuan2">
+							<h6 class="text-center mt-3 text-danger small">Xếp hạng của bạn trong chu kỳ trước không thuộc Rank này</h6>
+							<div class="row pt-3">
+							{/* <div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>
+							<div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>                     */}
+							</div>
+						</div>
+						<div class="tab-pane fade" id="tuan3">
+							<h6 class="text-center mt-3 text-danger small">Xếp hạng của bạn trong chu kỳ trước không thuộc Rank này</h6>
+							<div class="row pt-3">
+							{/* <div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>
+							<div class="col-3 pr-1 pl-3 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/kiem-the-truyen-ky.png" width="60" height="60" alt="Kiếm thế truyền kỳ"><h4 class="small pt-2">Rương KNB</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/long-ky-nguyen.png" width="60" height="60" alt="Long kỷ nguyên"><h4 class="small pt-2">Rương đồ thời trang</h4></a></div>
+							<div class="col-3 px-0 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/thien-ma-quyet.png" width="60" height="60" alt="Thiên ma quyết"><h4 class="small pt-2">Bình máu cỡ lớn</h4></a></div>
+							<div class="col-3 pr-3 pl-1 text-center"><a class="text-secondary" href="#" title=""><img src="images/thumb/vo-hon-chien.png" width="60" height="60" alt="Võ hồn chiến"><h4 class="small pt-2">1000 đá hồn thạch</h4></a></div>                     */}
+							</div>
+						</div>
+						</div>  
+					</div>
+					</div>
+				</div>
+
+				</div>
+			</div>
+			</div>
 
 		</div>):(<div></div>)
 	}
