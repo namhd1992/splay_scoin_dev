@@ -377,7 +377,7 @@ class GameDetailComponent extends React.Component {
 								</div>
 								<div>
 									{(showMore) ? (
-										<div>
+										<div style={{ position: "relative", padding: "10px" }}>
 											<div style={{ padding: "10px", lineHeight:'20px' }}
 												dangerouslySetInnerHTML={{ __html: gameData.description }}>
 											</div>
