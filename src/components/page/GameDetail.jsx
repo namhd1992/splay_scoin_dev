@@ -68,6 +68,7 @@ class GameDetailComponent extends React.Component {
 			iframeWidth:230,
 			iframeHeight:250,
 			device:'',
+			widthImage:1024
 		}
 	}
 	componentWillMount(){
@@ -103,7 +104,7 @@ class GameDetailComponent extends React.Component {
 
 	onResize=()=>{
 		if (window.innerWidth <= 600) {
-			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400});
+			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400, widthImage:215});
 			return;
 		}
 		if (window.innerWidth > 1024) {
@@ -247,7 +248,7 @@ class GameDetailComponent extends React.Component {
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight, year}=this.state;
+		const {iframeWidth, iframeHeight, year, widthImage}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -484,11 +485,11 @@ class GameDetailComponent extends React.Component {
 													<a class="text-dark">
 														<img src={obj.bigImage} width="100%" />
 													</a>
+													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 													<div class="overlay">
 														<div class="text text-white small">Chơi ngay &raquo;</div>
 													</div>
 												</div>
-												<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
 												</a>
 											</div>
 										)
@@ -526,7 +527,6 @@ class GameDetailComponent extends React.Component {
 													<h4 class="font13 font-weight-bold">{obj.name}</h4>
 													<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
 												</div>
-												
 											</div>
 											</a>
 										)
@@ -576,6 +576,7 @@ class GameDetailComponent extends React.Component {
 								images={arrImages}
 								currentImage={lightBoxIndex}
 								isOpen={lightBoxOpen}
+								width={widthImage}
 								onClickNext={this.goToLightBoxNext}
 								onClickPrev={this.goToLightBoxPrev}
 								onClose={this.closeLightBox}

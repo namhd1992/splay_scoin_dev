@@ -67,6 +67,9 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
 .sum-game {left: 0; bottom: 0; background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.9), rgba(255,255,255,1), rgba(255,255,255,1));}
 .md-mobile {display:none}
 .btn-md-mobile { display: none}
+.btn-action-mission{
+  width: 110px;
+}
 
 .btn-animated  {-webkit-animation-name: example;
   -webkit-animation-duration: 1s;
@@ -391,7 +394,7 @@ filter: contrast(150%);
     -o-transition:all 0.2s linear;
     transition:all 0.2s linear;
 }
-.btn-downgame:hover
+/* .btn-downgame:hover
 {
 	-webkit-transform:scale(1.01);
     -moz-transform:scale(1.01);
@@ -399,7 +402,7 @@ filter: contrast(150%);
     -o-transform:scale(1.01);
     transform:scale(1.01);
 	filter: invert(.1);
-}
+} */
 
 
 /*end success check*/
@@ -410,6 +413,12 @@ filter: contrast(150%);
 }
 
 @media (max-width: 576px) {
+  .txt-action{
+    font-size: 10px !important;
+  }
+  .btn-action-mission{
+    width: 100px;
+  }
   .action_mission{
     margin-top: 10px;
   }

@@ -159,13 +159,13 @@ class MissionComponent extends React.Component {
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
 														<FacebookShareButton url={obj.linkToShare}>
-															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12 btn-action-mission" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small txt-action">Thực hiện</span></button>
 											</FacebookShareButton>
-														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.doMission(obj)}><span class="small">Thực hiện</span></button>)}
+														</div>):(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12 btn-action-mission" style={{backgroundColor:"#ec971f"}} onClick={()=>this.doMission(obj)}><span class="small txt-action">Thực hiện</span></button>)}
 												</div>):(
 													<div style={{display:'inline-block'}}>
-														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12" style={{backgroundColor:"#ec971f",  width:110}} onClick={()=>this.reward(obj)}><span class="small">Nhận thưởng</span></button>):(
-															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12" style={{backgroundColor:'gray', width:110}}><span class="small">Đã nhận</span></button>
+														{(!obj.received)?(<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 shadow-sm font12 btn-action-mission btn-action-mission" style={{backgroundColor:"#ec971f"}} onClick={()=>this.reward(obj)}><span class="small txt-action">Nhận thưởng</span></button>):(
+															<button type="button" class="btn m-2 border text-uppercase text-white py-1 px-2 font12 btn-action-mission" style={{backgroundColor:'gray'}}><span class="small txt-action">Đã nhận</span></button>
 														)}
 													</div>
 												)}
