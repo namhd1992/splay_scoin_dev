@@ -276,7 +276,7 @@ class GameDetailComponent extends React.Component {
 			infinite: true,
 			speed: 500,
 			slidesToShow: this.state.numberImgDestop,
-			slidesToScroll: 1,
+			slidesToScroll: 5,
 			autoplay: false,
 			autoplaySpeed: 2000,
 			responsive: [
@@ -284,21 +284,21 @@ class GameDetailComponent extends React.Component {
 					breakpoint: 1080,
 					settings: {
 						slidesToShow: this.state.numberImgDestop,
-						slidesToScroll: 1,
+						slidesToScroll: 5,
 					}
 				},
 				{
 					breakpoint: 768,
 					settings: {
 						slidesToShow: this.state.numberImgTablet,
-						slidesToScroll: 1
+						slidesToScroll: 3
 					}
 				},
 				{
 					breakpoint: 520,
 					settings: {
 						slidesToShow: this.state.numberImgMoble,
-						slidesToScroll: 1
+						slidesToScroll: 3
 					}
 				}
 			]
@@ -485,7 +485,7 @@ class GameDetailComponent extends React.Component {
 													<a class="text-dark">
 														<img src={obj.bigImage} width="100%" />
 													</a>
-													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
 													<div class="overlay">
 														<div class="text text-white small">Chơi ngay &raquo;</div>
 													</div>
@@ -519,7 +519,7 @@ class GameDetailComponent extends React.Component {
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
-											<a href="#top" style={{color:'black'}}>
+											<a href="#top" style={{color:'black'}} class='a_game'>
 											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												
 												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />

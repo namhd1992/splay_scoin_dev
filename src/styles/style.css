@@ -413,6 +413,9 @@ filter: contrast(150%);
 }
 
 @media (max-width: 576px) {
+  .a_game{
+    text-decoration: none;
+  }
   .txt-action{
     font-size: 10px !important;
   }
