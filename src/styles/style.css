@@ -413,7 +413,7 @@ filter: contrast(150%);
 }
 
 @media (max-width: 576px) {
-  .a_game{
+  .a_game:hover{
     text-decoration: none;
   }
   .txt-action{
