@@ -30,6 +30,7 @@ import '../../styles/style.css';
 import {
 	isAndroid,
 	isIOS,
+	isMobile
   } from "react-device-detect";
 
 import YouTube from 'react-youtube'
@@ -68,7 +69,8 @@ class GameDetailComponent extends React.Component {
 			iframeWidth:230,
 			iframeHeight:250,
 			device:'',
-			widthImage:1024
+			widthImage:1024,
+			widthScreenShot:200,
 		}
 	}
 	componentWillMount(){
@@ -104,11 +106,11 @@ class GameDetailComponent extends React.Component {
 
 	onResize=()=>{
 		if (window.innerWidth <= 600) {
-			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400, widthImage:215});
+			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400, widthImage:215, widthScreenShot:100});
 			return;
 		}
 		if (window.innerWidth > 1024) {
-			this.setState({ iframeWidth: 265, iframeHeight:400});
+			this.setState({ iframeWidth: 265, iframeHeight:400, widthScreenShot:200});
 			return;
 		}
 	}
@@ -140,12 +142,21 @@ class GameDetailComponent extends React.Component {
 			if(link!=="" && link !== undefined){
 				var img = new Image();
 				img.onload = function() {
-					if(this.width>this.height){
-						_this.setState({numberImgDestop:3, numberImgTablet: 2, numberImgMoble: 1, height:"150px", margin:"0px 2px"})
+					if(isMobile){
+						if(this.width>this.height){
+							// _this.setState({numberImgDestop:3, numberImgTablet: 2, numberImgMoble: 1, height:"150px", margin:"0px 2px", widthScreenShot:widthScreenShot*1.5})
+							_this.setState({widthScreenShot:200, heightScreenShot:100})
+						}else{
+							_this.setState({widthScreenShot:100, heightScreenShot:200})	
+						}
 					}else{
-						_this.setState({numberImgDestop:5, numberImgTablet: 4, numberImgMoble: 3, paddingBottom:"160%"})	
+						if(this.width>this.height){
+							_this.setState({widthScreenShot:400, heightScreenShot:200})
+						}else{
+							_this.setState({widthScreenShot:200, heightScreenShot:400})	
+						}
 					}
-					// _this.setState({width:this.width, height: this.height})
+					
 				}
 				img.src = link.replace("=download","");
 			}	
@@ -248,7 +259,7 @@ class GameDetailComponent extends React.Component {
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight, year, widthImage}=this.state;
+		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -351,13 +362,13 @@ class GameDetailComponent extends React.Component {
 							</div>
 							<div class="bg-white p-3 mb-3 font13 text-justify">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
-								<div id="demo" class="carousel slide pb-3" data-ride="carousel" data-touch="true" data-wrap="true">
+								<div id="demo" class="carousel slide pb-" data-ride="carousel" data-touch="true" data-wrap="true">
 									<Grid item xs={12} style={{
 									width: "100%",
 									overflow: "hidden",
-									padding:"0px 30px"
+									padding:"0px 10px"
 									}}>
-										<Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
+										{/* <Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
 											{arrScreenShot.map((obj, key) => (
 												<div key={key} style={{}}>
 													<div onClick={() => this.openLightBox(key)} style={{
@@ -373,7 +384,27 @@ class GameDetailComponent extends React.Component {
 													</div>
 												</div>
 											))}
-										</Slider>
+										</Slider> */}
+										<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+											<div style={{ display: "flex" }}>
+											{arrScreenShot.map((obj, key) => (
+												<div key={key} style={{marginRight:5}}>
+													<div onClick={() => this.openLightBox(key)} style={{
+														backgroundImage: "url(" + obj + ")",
+														backgroundRepeat: "no-repeat",
+														backgroundPosition: "center",
+														backgroundSize: "contain",
+														with: "100%",
+														width: widthScreenShot,
+														height:heightScreenShot,
+														margin:this.state.margin,
+														paddingBottom: this.state.paddingBottom
+													}}>
+													</div>
+												</div>
+											))}
+											</div>
+										</div>
 									</Grid>
 								</div>
 								<div>
