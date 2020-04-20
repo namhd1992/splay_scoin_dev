@@ -254,6 +254,10 @@ class GameDetailComponent extends React.Component {
 		return true;
 	}
 
+	showBXH=()=>{
+		
+	}
+
 	render() {
 		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
@@ -574,7 +578,7 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
-				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" /></a></div>
+				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={this.showBXH} /></a></div>
 				<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}

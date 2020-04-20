@@ -5,7 +5,9 @@ import {
 	getAllGame,
 	getDataId,
 	getData,
-	rating
+	rating,
+	getDataBXH,
+	getDataRanking
 } from '../../modules/game'
 import {
 	getDataByGame
@@ -41,11 +43,16 @@ class Game_detail extends React.Component {
 			gameData: {},
 			id_game:330307,
 			games:[],
+			scoin_token:'H1PuNJ%2bcoqoAlCi2T%2bfYIl5tq2B%2fnmMetHqFf9kFejj31n4%2f6mx5%2bIwIjFBC0yq17APaC1tNLRMOlMYb9QwS4sMCVx7EMmSVz238FqRr%2biJyBfJ7aUkASsnHxNxFc1CjJ%2fcLXnOx%2b%2fNKBPetyZWI0pwwdU183T7wFXEPMnXpOM0tbZUVNKygNyrj%2fof91g8j',
 		};
 	}
 
 	componentWillMount(){
 		var id = this.getParamValue("service_id");
+		var scoin_token=this.getParamValue("ud");
+		if(scoin_token!=="" && scoin_token!==undefined){
+			this.setState({scoin_token: scoin_token})
+		}		
 		this.setState({id_game:id})
 	}
 
@@ -181,6 +188,13 @@ class Game_detail extends React.Component {
 		this.setState({ lightBoxIndex: this.state.lightBoxIndex - 1 });
 	}
 	
+	getDataBXH=()=>{
+
+	}
+
+	getDataRanking=()=>{
+
+	}
 
 	render() {
 		
@@ -204,6 +218,8 @@ class Game_detail extends React.Component {
 					readMore={this.readMore}
 					compact={this.compact}
 					getData={this.getData}
+					getDataBXH={this.getDataBXH}
+					getDataRanking={this.getDataRanking}
 
 					data={this.props.data}
 					server={this.props.server}
@@ -236,6 +252,8 @@ class Game_detail extends React.Component {
 const mapStateToProps = state => {
 	return {
 		data: state.game.dataDetail,
+		data_bxh: state.game.data_bxh,
+		data_ranking: state.game.data_ranking,
 		allGame: state.game.allGame,
 		dataRating: state.game.dataRating,
 		dataMission: state.mission.dataMission,
@@ -259,6 +277,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	getMissionByGame,
 	getYoutubeData,
 	getAllGame,
+	getDataBXH,
+	getDataRanking,
 }, dispatch)
 
 

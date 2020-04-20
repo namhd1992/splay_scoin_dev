@@ -7,6 +7,8 @@ export const GAME_DETAIL_RESPONSE = 'game/GAME_DETAIL_RESPONSE'
 export const GAME_RESPONSE_RATING = 'game/GAME_RESPONSE_RATING'
 export const GAME_RESPONSE_MORE = 'game/GAME_RESPONSE_MORE'
 export const ALL_GAME_RESPONSE = 'game/ALL_GAME_RESPONSE'
+export const DATA_BXH = 'game/DATA_BXH'
+export const DATA_RANKING='game/DATA_RANKING'
 
 const initialState = {
   data: [],
@@ -52,6 +54,18 @@ export default (state = initialState, action) => {
           allGame: action.data,
           waiting: false
         }
+    case DATA_BXH:
+        return {
+          ...state,
+          data_bxh: action.data,
+          waiting: false
+        }
+    case DATA_RANKING:
+        return {
+          ...state,
+          data_ranking: action.data,
+          waiting: false
+        }
     default:
       return state
   }
@@ -76,6 +90,58 @@ export const getData = (limit, offset, orderBy, searchValue, tagList) => {
       dispatch({
         type: GAME_RESPONSE,
         data: response.data.dataArr,
+        totalRecords: response.data.totalRecords
+      })
+    }).catch(function (error) {
+      dispatch({
+				type: SERVER_ERROR
+			})
+    })
+  }
+}
+
+export const getDataBXH = (service_id, week, token) => {
+  var header = {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "bearer " + token,
+    }
+  }
+  return dispatch => {
+    dispatch({
+      type: GAME_REQUEST
+    })
+    var url = Ultilities.base_url() + "game-ranking/get?service_id=" + service_id + "&week=" + week;
+    return axios.get(url, header).then(function (response) {
+      dispatch({
+        type: DATA_BXH,
+        data: response.data.data,
+        totalRecords: response.data.totalRecords
+      })
+    }).catch(function (error) {
+      dispatch({
+				type: SERVER_ERROR
+			})
+    })
+  }
+}
+
+export const getDataRanking = (service_id, week, token) => {
+  var header = {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "bearer " + token,
+    }
+  }
+  return dispatch => {
+    dispatch({
+      type: GAME_REQUEST
+    })
+    var url = Ultilities.base_url() + "/game-ranking/gift?service_id=" + service_id;
+    return axios.get(url, header).then(function (response) {
+      dispatch({
+        type: DATA_RANKING,
+        data: response.data.data,
         totalRecords: response.data.totalRecords
       })
     }).catch(function (error) {
