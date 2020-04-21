@@ -115,7 +115,7 @@ export const getDataBXH = (service_id, week, token) => {
     return axios.get(url, header).then(function (response) {
       dispatch({
         type: DATA_BXH,
-        data: response.data.data,
+        data: response.data,
         totalRecords: response.data.totalRecords
       })
     }).catch(function (error) {
@@ -126,7 +126,7 @@ export const getDataBXH = (service_id, week, token) => {
   }
 }
 
-export const getDataRanking = (service_id, week, token) => {
+export const getDataRanking = (service_id, token) => {
   var header = {
     headers: {
       "Content-Type": "application/json",
@@ -141,7 +141,7 @@ export const getDataRanking = (service_id, week, token) => {
     return axios.get(url, header).then(function (response) {
       dispatch({
         type: DATA_RANKING,
-        data: response.data.data,
+        data: response.data,
         totalRecords: response.data.totalRecords
       })
     }).catch(function (error) {

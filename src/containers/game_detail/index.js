@@ -43,7 +43,9 @@ class Game_detail extends React.Component {
 			gameData: {},
 			id_game:330307,
 			games:[],
-			scoin_token:'H1PuNJ%2bcoqoAlCi2T%2bfYIl5tq2B%2fnmMetHqFf9kFejj31n4%2f6mx5%2bIwIjFBC0yq17APaC1tNLRMOlMYb9QwS4sMCVx7EMmSVz238FqRr%2biJyBfJ7aUkASsnHxNxFc1CjJ%2fcLXnOx%2b%2fNKBPetyZWI0pwwdU183T7wFXEPMnXpOM0tbZUVNKygNyrj%2fof91g8j',
+			isOpen:false,
+			week:'WEEK_BEFORE_LAST',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8ZwrYkBJxa20PqwbVcGoFUuav9d5FzFtkf%2bdN8PAkUbFxjQ5eB6UY5Rwyeep4VA4HtgMNVbAymIn%2bWE340Z%2fxK9mrOSUjBv6ngM5vncw0R0ju2bUVBulURV%2fhpti8UsmRUb53Dc2UQ%2fHb',
 		};
 	}
 
@@ -85,7 +87,7 @@ class Game_detail extends React.Component {
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				// var gameCare=care.slice(0, 6)
 				var gameCare=_this.random_item(games)
-				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games, showMore: false})
+				_this.setState({gameMoi:gameMoi, gameCare:gameCare, games:games, showMore: false, id_game:id_game})
 			}
 		});
 		this.props.getDataId(+id_game).then(function () {
@@ -187,13 +189,32 @@ class Game_detail extends React.Component {
 	goToLightBoxPrev = () => {
 		this.setState({ lightBoxIndex: this.state.lightBoxIndex - 1 });
 	}
+
+	getWithWeekBXH=(week)=>{
+		const {isOpen}=this.state;
+		if(isOpen){
+			this.getDataBXH();
+		}else{
+			this.setState({week:week},()=>{
+				this.getDataBXH();
+			})
+		}
+	}
 	
 	getDataBXH=()=>{
-
+		var _this = this;
+		const {scoin_token, id_game, week}=this.state
+		this.props.getDataBXH(id_game, week, scoin_token).then(function () {
+			console.log(_this.props.data_bxh)
+		});
 	}
 
 	getDataRanking=()=>{
-
+		var _this = this;
+		const {scoin_token, id_game}=this.state
+		this.props.getDataRanking(id_game, scoin_token).then(function () {
+			console.log(_this.props.data_ranking)
+		});
 	}
 
 	render() {
@@ -219,6 +240,7 @@ class Game_detail extends React.Component {
 					compact={this.compact}
 					getData={this.getData}
 					getDataBXH={this.getDataBXH}
+					getWithWeekBXH={this.getWithWeekBXH}
 					getDataRanking={this.getDataRanking}
 
 					data={this.props.data}

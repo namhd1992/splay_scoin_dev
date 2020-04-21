@@ -254,8 +254,12 @@ class GameDetailComponent extends React.Component {
 		return true;
 	}
 
-	showBXH=()=>{
-		
+	showBXH=(week)=>{
+		this.props.getWithWeekBXH(week)
+	}
+
+	showRanking=()=>{
+		this.props.getDataRanking()
 	}
 
 	render() {
@@ -578,7 +582,7 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
-				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={this.showBXH} /></a></div>
+				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')} /></a></div>
 				<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}
@@ -625,13 +629,13 @@ class GameDetailComponent extends React.Component {
 					{/* <!-- Nav tabs --> */}
 					<ul class="nav nav-tabs nav-justified">
 					<li class="nav-item">
-						<a class="nav-link active text-danger font-weight-bold" data-toggle="tab" href="#bxh">BXH</a>
+						<a class="nav-link active text-danger font-weight-bold" data-toggle="tab" href="#bxh" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')}>BXH</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#thele">Thể lệ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#phucloi">Phúc lợi</a>
+						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#phucloi" onClick={this.showRanking}>Phúc lợi</a>
 					</li>
 					<li class="">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -644,13 +648,13 @@ class GameDetailComponent extends React.Component {
 						{/* <!-- Nav pills --> */}
 						<ul class="nav nav-pills nav-justified mt-3">
 						<li class="nav-item">
-							<a class="nav-link text-secondary active small" data-toggle="pill" href="#tuantruongnua">Tuần trước nữa</a>
+							<a class="nav-link text-secondary active small" data-toggle="pill" href="#tuantruongnua" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')}>Tuần trước nữa</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc">Tuần trước</a>
+							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc" onClick={()=>this.showBXH('null')}>Tuần trước</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay">Tuần này</a>
+							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay" onClick={()=>this.showBXH('THIS_WEEK')}>Tuần này</a>
 						</li>
 						</ul>
 						
