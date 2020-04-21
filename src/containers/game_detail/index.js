@@ -41,11 +41,14 @@ class Game_detail extends React.Component {
 			gameMoi:[],
 			gameCare:[],
 			gameData: {},
+			users:[],
+			data_bxh:{},
+			data_ranking:[],
 			id_game:330307,
 			games:[],
 			isOpen:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8ZwrYkBJxa20PqwbVcGoFUuav9d5FzFtkf%2bdN8PAkUbFxjQ5eB6UY5Rwyeep4VA4HtgMNVbAymIn%2bWE340Z%2fxK9mrOSUjBv6ngM5vncw0R0ju2bUVBulURV%2fhpti8UsmRUb53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z4IqI4PtGGEcDxtDVyHTCVCv9d5FzFtkf1ScqLV75CxdGap3eo6B1DZIQSPGCTYeZiMpMqeRypqu4PefxP7vGajcyKsJJaoSMOPBt1e8lvZoPpVY9ZJei0%2f0S6sDRhTe2L53Dc2UQ%2fHb',
 		};
 	}
 
@@ -183,6 +186,8 @@ class Game_detail extends React.Component {
 		this.setState({ lightBoxOpen: true, lightBoxIndex: index });
 	}
 
+
+
 	goToLightBoxNext = () => {
 		this.setState({ lightBoxIndex: this.state.lightBoxIndex + 1 });
 	}
@@ -190,30 +195,35 @@ class Game_detail extends React.Component {
 		this.setState({ lightBoxIndex: this.state.lightBoxIndex - 1 });
 	}
 
-	getWithWeekBXH=(week)=>{
-		const {isOpen}=this.state;
-		if(isOpen){
-			this.getDataBXH();
-		}else{
-			this.setState({week:week},()=>{
+	getWithWeekBXH=(weeked)=>{
+		const {week}=this.state;
+		if(weeked!==''){
+			if(week!=='WEEK_BEFORE_LAST'){
+				this.setState({week:weeked},()=>{
+					this.getDataBXH();
+				})
+			}else{
 				this.getDataBXH();
-			})
+			}
+		}else{
+			this.getDataBXH();
 		}
 	}
 	
 	getDataBXH=()=>{
 		var _this = this;
 		const {scoin_token, id_game, week}=this.state
-		this.props.getDataBXH(id_game, week, scoin_token).then(function () {
-			console.log(_this.props.data_bxh)
+		this.props.getDataBXH(330333, week, scoin_token).then(function () {
+			_this.setState({users: _this.props.data_bxh.data.users, data_bxh:_this.props.data_bxh.data})
+			// console.log(_this.props.data_bxh)
 		});
 	}
 
 	getDataRanking=()=>{
 		var _this = this;
 		const {scoin_token, id_game}=this.state
-		this.props.getDataRanking(id_game, scoin_token).then(function () {
-			console.log(_this.props.data_ranking)
+		this.props.getDataRanking(330333, scoin_token).then(function () {
+			_this.setState({data_ranking:_this.props.data_ranking.data.ranks})
 		});
 	}
 
@@ -244,6 +254,9 @@ class Game_detail extends React.Component {
 					getDataRanking={this.getDataRanking}
 
 					data={this.props.data}
+					users={this.state.users}
+					data_bxh={this.state.data_bxh}
+					data_ranking={this.state.data_ranking}
 					server={this.props.server}
 					dataMission={this.props.dataMission}
 					dataGiftcode={this.props.dataGiftcode}

@@ -137,7 +137,7 @@ export const getDataRanking = (service_id, token) => {
     dispatch({
       type: GAME_REQUEST
     })
-    var url = Ultilities.base_url() + "/game-ranking/gift?service_id=" + service_id;
+    var url = Ultilities.base_url() + "game-ranking/gift?service_id=" + service_id;
     return axios.get(url, header).then(function (response) {
       dispatch({
         type: DATA_RANKING,
