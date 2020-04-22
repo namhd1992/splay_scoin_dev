@@ -91,7 +91,6 @@ export const updateProfile = (token, profile) => {
 		}
 		var url = Ultilities.base_url() + "updateProfile";
 		return axios.post(url, formData, header).then(function (response) {
-			console.log(response);
 			dispatch({
 				type: PROFILE_UPDATE,
 				data: response

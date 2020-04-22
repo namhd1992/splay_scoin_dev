@@ -67,7 +67,6 @@ class Mission extends React.Component {
 
 		this.props.getAllGame().then(function () {
 			var data=_this.props.allGame
-			console.log(data)
 			if(data.status==="01"){
 				var news=data.data.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
 				var gameMoi=news.slice(0, 5)
@@ -163,7 +162,6 @@ class Mission extends React.Component {
 
 	
 	doMission = (obj) => {
-		console.log(obj)
 		switch (+obj.actionId) {
 			case 1:
 				this.luckySpin();

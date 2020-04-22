@@ -74,7 +74,6 @@ class MenuAppBar extends React.Component {
 			var millisecond = Math.floor(duration.asMilliseconds()) + 86400000;
 			if (millisecond > 0) {
 				_this.props.getData(user.access_token).then(function () {
-					console.log(_this.props.data)
 					if (_this.props.data === null) {
 						_this.logoutAction();
 					}

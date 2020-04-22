@@ -141,7 +141,6 @@ class Vong_Quay_May_Man extends React.Component {
 		if(scoin_token!=="" && scoin_token!==undefined){
 			this.setState({scoin_token: scoin_token, idLucky:this.props.match.params.id})
 		}		
-		console.log(this.props.match.params.id)
 		this.setState({idLucky:this.props.match.params.id})
 		this.onResize()
 		window.removeEventListener('scroll', this.handleScroll);
@@ -290,7 +289,6 @@ class Vong_Quay_May_Man extends React.Component {
 		const {limit, idLucky}=this.state;
 		this.props.getVinhDanh(idLucky, limit, (pageNumber-1)).then(()=>{
 			var data=this.props.dataVinhDanh;
-			console.log(data)
 			if(data!==undefined){
 				if(data.status==='01'){	
 					this.setState({listVinhDanh:data.data, countVinhDanh:data.totalRecords})
@@ -395,7 +393,6 @@ class Vong_Quay_May_Man extends React.Component {
 									if(auto){
 										var elem = document.getElementById('auto');
 										elem.scrollTop = elem.scrollHeight;
-										console.log('AAAAAAAAAAA', elem)
 									}
 									if(data.data.type==="LUCKY_NUMBER"){
 										this.setState({code:true})
@@ -440,7 +437,6 @@ class Vong_Quay_May_Man extends React.Component {
 										$('#myModal8').modal('show');
 									})
 								}else{
-									console.log('AAAAAAAAAAAAAAAAAA')
 									$('#myModal11').modal('show');
 									this.setState({message_error:'Vòng quay đang có lỗi. Vui lòng tải lại trang.'})
 								}
@@ -694,7 +690,6 @@ class Vong_Quay_May_Man extends React.Component {
 				var data=this.props.dataCodeBonus;
 				if(data!==undefined){
 					if(data.status==='01'){
-						console.log(data.data)
 						this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
 					}else{
 						$('#myModal11').modal('show');

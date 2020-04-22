@@ -173,7 +173,6 @@ class GameDetailComponent extends React.Component {
 		}
 
 		if(this.props.data_ranking !== nextProps.data_ranking){
-			console.log( nextProps.data_ranking)
 			this.setState({items: nextProps.data_ranking[0].items})
 		}
 		
@@ -263,7 +262,6 @@ class GameDetailComponent extends React.Component {
 
 	getTheLoai=(obj)=>{
 		var tagsList=obj.tagsList;
-		console.log(tagsList)
 		var theloai="";
 		if (tagsList !== undefined) {
 			for(var i=0; i<tagsList.length;i++){

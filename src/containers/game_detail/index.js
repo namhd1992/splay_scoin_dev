@@ -56,7 +56,9 @@ class Game_detail extends React.Component {
 
 	componentWillMount(){
 		var id = this.getParamValue("service_id");
+		console.log('ID:', id)
 		var scoin_token=this.getParamValue("ud");
+		console.log('Scoin_Token:', scoin_token)
 		if(scoin_token!=="" && scoin_token!==undefined){
 			this.setState({scoin_token: scoin_token})
 		}		
@@ -225,7 +227,6 @@ class Game_detail extends React.Component {
 		var _this = this;
 		const {scoin_token, id_game}=this.state
 		this.props.getDataRanking(330333, scoin_token).then(function () {
-			console.log(_this.props.data_ranking.data.endDateReceivedGift)
 			_this.setState({data_ranking:_this.props.data_ranking.data.ranks, endDateReceivedGift: _this.props.data_ranking.data.endDateReceivedGift})
 		});
 	}

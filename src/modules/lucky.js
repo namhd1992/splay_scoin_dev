@@ -223,7 +223,6 @@ export const buyTurn = (id, turn, spin_name) => {
 		})
 		var url = Ultilities.base_url() + "lucky-spin/buy-turn";
 		return axios.post(url, body, header).then(function (response) {
-			console.log(response.data)
 			dispatch({
 				type: LUCKY_TURN_RESPONSE,
 				data: response.data
@@ -251,7 +250,6 @@ export const history = (id, type) => {
 		})
 		var url = Ultilities.base_url() + "lucky-spin-history?lucky_spin_id="+id+'&type_gift='+type;
 		return axios.get(url, header).then(function (response) {
-			console.log(response.data)
 			dispatch({
 				type: LUCKY_HISTORY_RESPONSE,
 				data: response.data

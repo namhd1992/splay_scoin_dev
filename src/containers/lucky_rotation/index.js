@@ -626,7 +626,6 @@ class Lucky_Rotation extends React.Component {
 				var data=this.props.dataCodeBonus;
 				if(data!==undefined){
 					if(data.status==='01'){
-						console.log(data.data)
 						this.setState({dataCodeBonus:data.data, countCodeBonus:data.data.length, listCodeBonus: data.data.slice(0,5), noti_mdt:false})
 					}else{
 						$('#myModal11').modal('show');
