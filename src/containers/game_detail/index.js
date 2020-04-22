@@ -44,11 +44,13 @@ class Game_detail extends React.Component {
 			users:[],
 			data_bxh:{},
 			data_ranking:[],
+			endDateReceivedGift:0,
 			id_game:330307,
 			games:[],
+			myPosition:0,
 			isOpen:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z4IqI4PtGGEcDxtDVyHTCVCv9d5FzFtkf1ScqLV75CxdGap3eo6B1DZIQSPGCTYeZiMpMqeRypqu4PefxP7vGajcyKsJJaoSMOPBt1e8lvZoPpVY9ZJei0%2f0S6sDRhTe2L53Dc2UQ%2fHb',
+			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z5HJuUI%2f7bWewwhbl95lLBiv9d5FzFtkfxVArIaLvU1gws%2fsrB4u6lG33LI5ImQi2tdC69hwlYCcTu6Uft1okxm%2b5dNYLT7ejhHrmkSsevQ7WS4KNTPAuXfPHJ1Ev6U6yr53Dc2UQ%2fHb',
 		};
 	}
 
@@ -214,7 +216,7 @@ class Game_detail extends React.Component {
 		var _this = this;
 		const {scoin_token, id_game, week}=this.state
 		this.props.getDataBXH(330333, week, scoin_token).then(function () {
-			_this.setState({users: _this.props.data_bxh.data.users, data_bxh:_this.props.data_bxh.data})
+			_this.setState({users: _this.props.data_bxh.data.users, data_bxh: _this.props.data_bxh.data, myPosition: _this.props.data_bxh.data.myPosition})
 			// console.log(_this.props.data_bxh)
 		});
 	}
@@ -223,7 +225,8 @@ class Game_detail extends React.Component {
 		var _this = this;
 		const {scoin_token, id_game}=this.state
 		this.props.getDataRanking(330333, scoin_token).then(function () {
-			_this.setState({data_ranking:_this.props.data_ranking.data.ranks})
+			console.log(_this.props.data_ranking.data.endDateReceivedGift)
+			_this.setState({data_ranking:_this.props.data_ranking.data.ranks, endDateReceivedGift: _this.props.data_ranking.data.endDateReceivedGift})
 		});
 	}
 
@@ -255,8 +258,10 @@ class Game_detail extends React.Component {
 
 					data={this.props.data}
 					users={this.state.users}
+					myPosition={this.state.myPosition}
 					data_bxh={this.state.data_bxh}
 					data_ranking={this.state.data_ranking}
+					endDateReceivedGift={this.state.endDateReceivedGift}
 					server={this.props.server}
 					dataMission={this.props.dataMission}
 					dataGiftcode={this.props.dataGiftcode}

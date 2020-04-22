@@ -199,11 +199,12 @@ class MissionComponent extends React.Component {
 															<a class="text-dark">
 																<img src={obj.bigImage} width="100%" />
 															</a>
+															<h3 class="font14 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
 															<div class="overlay">
 																<div class="text text-white small">Chơi ngay &raquo;</div>
 															</div>
 														</div>
-														<h3 class="font14 py-2"><a title="Thái cổ thần vương" class="text-dark">{obj.name}</a></h3>
+														
 													</a>
 												</div>
 											)

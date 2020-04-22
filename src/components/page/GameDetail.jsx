@@ -71,6 +71,12 @@ class GameDetailComponent extends React.Component {
 			device:'',
 			widthImage:1024,
 			widthScreenShot:200,
+			rankPosition:1,
+			day:'00',
+			hour:'00', 
+			minute:'00', 
+			second:'00',
+			items:[]
 		}
 	}
 	componentWillMount(){
@@ -84,6 +90,7 @@ class GameDetailComponent extends React.Component {
 		}
 		this.setState({year:n})
 		this.onResize();
+		
 	}
 
 	componentWillUnmount() {
@@ -161,6 +168,29 @@ class GameDetailComponent extends React.Component {
 				img.src = link.replace("=download","");
 			}	
 		}
+		if(this.props.endDateReceivedGift !== nextProps.endDateReceivedGift){
+			this.timeRemain(nextProps.endDateReceivedGift);
+		}
+
+		if(this.props.data_ranking !== nextProps.data_ranking){
+			console.log( nextProps.data_ranking)
+			this.setState({items: nextProps.data_ranking[0].items})
+		}
+		
+	}
+
+	timeRemain=(times)=>{
+		var _this=this;
+		setInterval(()=>{
+			var time=(times-Date.now())/1000;
+			if(time>0){
+				var day=Math.floor(time/86400) > 9 ? Math.floor(time/86400) : `0${Math.floor(time/86400)}`;
+				var hour=Math.floor((time%86400)/3600) > 9 ? Math.floor((time%86400)/3600) : `0${Math.floor((time%86400)/3600)}`;
+				var minute=Math.floor(((time%86400)%3600)/60) > 9 ? Math.floor(((time%86400)%3600)/60) : `0${Math.floor(((time%86400)%3600)/60)}`;
+				var second=Math.ceil(((time%86400)%3600)%60) > 9 ? Math.ceil(((time%86400)%3600)%60) : `0${Math.ceil(((time%86400)%3600)%60)}`;
+				_this.setState({day:day, hour: hour, minute: minute, second:second})
+			}
+		}, 1000);
 	}
 
 	getDataGame=(obj)=>{
@@ -262,12 +292,15 @@ class GameDetailComponent extends React.Component {
 		this.props.getDataRanking()
 	}
 
-	render() {
-		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,
-			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
+	changeRanking=(obj)=>{
+		this.setState({rankPosition:obj.rankPosition, items:obj.items})
+	}
 
+	render() {
+		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,
+			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot}=this.state;
+		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -775,28 +808,45 @@ class GameDetailComponent extends React.Component {
 						{/* <!-- Nav pills --> */}
 						<ul class="nav nav-pills nav-justified">
 							{data_ranking.map((obj, key) => {
-								var href='#'+ obj.rankPosition
-								return (<li class="nav-item" key={key}>
-									<a class="nav-link" data-toggle="pill" href={href}><span class="badge badge-pill badge-danger" style={{width: 30, height: 30}}>&nbsp;</span></a>
+								return (<li class="nav-item" key={key} style={{cursor:'pointer'}}>
+									<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img src={obj.rankIconUrl} width="35"/></a>
 								</li>)}
 							)}
 						</ul>
 						{/* <!-- Tab panes --> */}
 						<div class="tab-content">
 							{data_ranking.map((obj, key) => (
-								<div class="tab-pane" id={obj.rankPosition}>
-									<h6 class="text-center mt-3">{obj.decription}</h6>
-									<div class="row pt-3">
-									
-									</div>
+								<div class={rankPosition===obj.rankPosition ? "tab-pane active" : "tab-pane"}>
+									{(obj.rankPosition===myPosition)?(<div>
+									<h6 class="text-center mt-3">Quà nhận được <br /><span class="text-danger small">Hết hạn sau: {day} ngày {hour}h {minute}p {second}s</span></h6>
+										<div class="row pt-3">
+											{items.map((item, k)=>{
+												return (<div class="col-3 pr-1 pl-3 text-center">
+												<a class="text-secondary" href="#" title="">
+													<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
+														<h4 class="small pt-2">{item.itemName}</h4>
+														<button type="button" class="btn btn-warning btn-sm mb-2 py-0 px-3"><span class="small">Nhận</span></button>
+												</a>
+											</div>)
+											})}
+										
+										</div>
+									</div>):(<div>
+										<h6 class="text-center mt-3 text-danger small">Xếp hạng của bạn trong chu kỳ trước không thuộc Rank này</h6>
+										
+										<div class="row pt-3">
+											{items.map((item, k)=>{
+												return (<div class="col-3 pr-1 pl-3 text-center">
+													<a class="text-secondary" title="">
+														<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
+															<h4 class="small pt-2">{item.itemName}</h4>
+													</a>
+												</div>)
+											})}
+										</div>
+									</div>)}
 								</div>
 							))}
-							{/* <div class="tab-pane active" id="1">
-								<h6 class="text-center mt-3">Quà nhận được <br /><span class="text-danger small">Hết hạn sau: 6 ngày 5h 43p 10s</span></h6>
-								<div class="row pt-3">
-								
-								</div>
-							</div> */}
 						</div>  
 					</div>
 					</div>
