@@ -359,7 +359,7 @@ class GameDetailComponent extends React.Component {
 						<div class="col-sm-9 px-2">
 							<div class="bg-white mb-3 content">
 								<div class="detail-bannergame position-relative overflow-hidden">
-									<img src={gameData.bigImage} class="overflow-hidden" width="100%" />
+									<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
 										<div class="col-md-9">
 											<div class="media px-1">
