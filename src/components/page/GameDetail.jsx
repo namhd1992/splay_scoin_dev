@@ -295,7 +295,7 @@ class GameDetailComponent extends React.Component {
 	}
 
 	render() {
-		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,
+		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,item_award, message_error, show_award,show_award_error,
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
 		const { classes } = this.props;
 		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items}=this.state;
@@ -641,6 +641,48 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</DialogActions>
 						</Dialog>
+
+
+						<Dialog
+							fullScreen={false}
+							open={show_award}
+							onClose={this.props.closeAward}
+							aria-labelledby="responsive-dialog-title"
+							classes={{ paper: classes.paper }}
+						>
+							<DialogContent>
+								<div style={{paddingRight:40, paddingLeft:40}}>
+									<span>Tên phúc lợi</span> <br></br>
+								  	<span>{item_award.itemName}</span><br></br>
+									<span>Nội dung</span> <br></br>
+								  	<span>{item_award.value}</span>
+								</div>
+							</DialogContent>
+							<DialogActions>
+								<div>
+									<Button onClick={this.props.closeAward} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
+								</div>
+							</DialogActions>
+						</Dialog>
+
+						<Dialog
+							fullScreen={false}
+							open={show_award_error}
+							onClose={this.props.closeError}
+							aria-labelledby="responsive-dialog-title"
+							classes={{ paper: classes.paper }}
+						>
+							<DialogContent>
+								<div>
+									{message_error}
+								</div>
+							</DialogContent>
+							<DialogActions>
+								<div>
+									<Button onClick={this.props.closeError} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
+								</div>
+							</DialogActions>
+						</Dialog>
 						{((arrImages !== undefined) && (
 							<Lightbox
 								images={arrImages}
@@ -820,10 +862,9 @@ class GameDetailComponent extends React.Component {
 										<div class="row pt-3">
 											{items.map((item, k)=>{
 												return (<div class="col-3 pr-1 pl-3 text-center">
-												<a class="text-secondary" href="#" title="">
+												<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.props.awards(item)}>
 													<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
-														<h4 class="small pt-2">{item.itemName}</h4>
-														<button type="button" class="btn btn-warning btn-sm mb-2 py-0 px-3"><span class="small">Nhận</span></button>
+													<h4 class="small pt-2">{item.itemName}</h4>
 												</a>
 											</div>)
 											})}

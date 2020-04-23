@@ -8,7 +8,8 @@ export const GAME_RESPONSE_RATING = 'game/GAME_RESPONSE_RATING'
 export const GAME_RESPONSE_MORE = 'game/GAME_RESPONSE_MORE'
 export const ALL_GAME_RESPONSE = 'game/ALL_GAME_RESPONSE'
 export const DATA_BXH = 'game/DATA_BXH'
-export const DATA_RANKING='game/DATA_RANKING'
+export const DATA_RANKING='game/DATA_RANKING';
+export const GAME_AWARDS='game/GAME_AWARDS'
 
 const initialState = {
   data: [],
@@ -66,6 +67,12 @@ export default (state = initialState, action) => {
           data_ranking: action.data,
           waiting: false
         }
+    case GAME_AWARDS:
+      return {
+        ...state,
+        data_awards: action.data,
+        waiting: false
+      }
     default:
       return state
   }
@@ -150,6 +157,35 @@ export const getDataRanking = (service_id, token) => {
 			})
     })
   }
+}
+
+export const awards = (itemId, service_id, token) => {
+	var header = {
+		headers: {
+			"content-type": "application/json",
+			"Authorization": "bearer " + token,
+		}
+	}
+	return dispatch => {
+		dispatch({
+			type: GAME_REQUEST
+		})
+		var url = Ultilities.base_url() + "game-ranking/awards";
+		var data = {
+			item_id: itemId,
+			service_id: service_id
+		}
+		return axios.post(url, data, header).then(function (response) {
+			dispatch({
+				type: GAME_AWARDS,
+				data: response.data
+			})
+		}).catch(function (error) {
+			dispatch({
+				type: SERVER_ERROR
+			})
+		})
+	}
 }
 
 export const getDataId = (id) => {

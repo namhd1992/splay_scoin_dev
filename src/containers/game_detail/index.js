@@ -7,7 +7,8 @@ import {
 	getData,
 	rating,
 	getDataBXH,
-	getDataRanking
+	getDataRanking,
+	awards
 } from '../../modules/game'
 import {
 	getDataByGame
@@ -49,8 +50,12 @@ class Game_detail extends React.Component {
 			games:[],
 			myPosition:0,
 			isOpen:false,
+			show_award:false,
+			show_award_error:false,
+			message_error:'',
+			item_award:{},
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z5HJuUI%2f7bWewwhbl95lLBiv9d5FzFtkfxVArIaLvU1gws%2fsrB4u6lG33LI5ImQi2tdC69hwlYCcTu6Uft1okxm%2b5dNYLT7ejhHrmkSsevQ7WS4KNTPAuXfPHJ1Ev6U6yr53Dc2UQ%2fHb',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5pE7KWyGPcx4RUOBRQPXXn0Oa09E7f9njLHGg6UELUQctgyRnj41hCZblHd9ntMz4J4gFKYSjL8ERajqyI%2bgzU7d6lcA3aVLRzz2mTDcSvB8RUDqoV%2f0E%2fjlIvsaU3UVbN%2fDHhACRKz2',
 		};
 	}
 
@@ -231,6 +236,36 @@ class Game_detail extends React.Component {
 		});
 	}
 
+	awards=(item)=>{
+		var _this = this;
+		console.log(item)
+		const {scoin_token, id_game}=this.state;
+		if(item.received){
+			this.setState({show_award:true, item_award:item});
+		}else{
+			this.props.awards(item.itemId, 330333, scoin_token).then(function () {
+				const data=_this.props.data_awards;
+				if(data.status==="01"){
+					this.setState({show_award:true, item_award:item})
+				}else if(data.status==="04"){
+					this.setState({show_award_error:true, message_error:'Bạn đã nhận quà rồi.'})
+				}else if(data.status==="05"){
+					this.setState({show_award_error:true, message_error:'Quà này không thuộc rank của bạn.'})
+				}
+				console.log(_this.props.data_awards)
+				// _this.setState({data_ranking:_this.props.data_ranking.data.ranks, endDateReceivedGift: _this.props.data_ranking.data.endDateReceivedGift})
+			});
+		}
+		
+	}
+
+	closeError=()=>{
+		this.setState({show_award_error:false});
+	}
+	closeAward=()=>{
+		this.setState({show_award:false});
+	}
+
 	render() {
 		
 		return (
@@ -256,6 +291,13 @@ class Game_detail extends React.Component {
 					getDataBXH={this.getDataBXH}
 					getWithWeekBXH={this.getWithWeekBXH}
 					getDataRanking={this.getDataRanking}
+					awards={this.awards}
+					closeError={this.closeError}
+					closeAward={this.closeAward}
+					show_award_error={this.state.show_award_error}
+					show_award={this.state.show_award}
+					message_error={this.state.message_error}
+					item_award={this.state.item_award}
 
 					data={this.props.data}
 					users={this.state.users}
@@ -295,6 +337,7 @@ const mapStateToProps = state => {
 		data: state.game.dataDetail,
 		data_bxh: state.game.data_bxh,
 		data_ranking: state.game.data_ranking,
+		data_awards:state.game.data_awards,
 		allGame: state.game.allGame,
 		dataRating: state.game.dataRating,
 		dataMission: state.mission.dataMission,
@@ -320,6 +363,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 	getAllGame,
 	getDataBXH,
 	getDataRanking,
+	awards,
 }, dispatch)
 
 
