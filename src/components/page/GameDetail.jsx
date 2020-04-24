@@ -26,7 +26,7 @@ import Notification from '../../components/Notification'
 import Lightbox from 'react-images'
 import moment from 'moment';
 import '../../styles/style.css';
-
+import $ from 'jquery';
 import {
 	isAndroid,
 	isIOS,
@@ -76,7 +76,10 @@ class GameDetailComponent extends React.Component {
 			hour:'00', 
 			minute:'00', 
 			second:'00',
-			items:[]
+			items:[],
+			active_bxh: true,
+			active_thele:false,
+			active_phucloi:false,
 		}
 	}
 	componentWillMount(){
@@ -294,11 +297,25 @@ class GameDetailComponent extends React.Component {
 		this.setState({rankPosition:obj.rankPosition, items:obj.items})
 	}
 
+	changeTabBXH=()=>{
+		this.setState({active_bxh:true, active_thele:false, active_phucloi:false})
+	}
+
+	changeTabTheLe=()=>{
+		this.setState({active_bxh:false, active_thele:true, active_phucloi:false});
+	}
+
+	changeTabPhucLoi=()=>{
+		this.setState({active_bxh:false, active_thele:false, active_phucloi:true})
+	}
+
+
+
 	render() {
 		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,item_award, message_error, show_award,show_award_error,
-			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server}=this.props;
+			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server, week}=this.props;
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items}=this.state;
+		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items, active_bxh, active_phucloi, active_thele}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -613,7 +630,7 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
-				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')} /></a></div>
+				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>
 				<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}
@@ -652,10 +669,10 @@ class GameDetailComponent extends React.Component {
 						>
 							<DialogContent>
 								<div style={{paddingRight:40, paddingLeft:40}}>
-									<span>Tên phúc lợi</span> <br></br>
-								  	<span>{item_award.itemName}</span><br></br>
-									<span>Nội dung</span> <br></br>
-								  	<span>{item_award.value}</span>
+									<span style={{fontWeight:'bold', fontSize:18}}>Tên phúc lợi:</span> <br></br>
+								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
+									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
+								  	<span style={{fontSize:16}}>{item_award.value}</span>
 								</div>
 							</DialogContent>
 							<DialogActions>
@@ -701,14 +718,14 @@ class GameDetailComponent extends React.Component {
 				<div class="modal-body py-2 px-1">
 					{/* <!-- Nav tabs --> */}
 					<ul class="nav nav-tabs nav-justified">
-					<li class="nav-item">
-						<a class="nav-link active text-danger font-weight-bold" data-toggle="tab" href="#bxh" onClick={()=>this.showBXH('')}>BXH</a>
+					<li class="nav-item" onClick={this.changeTabBXH}>
+						<a class={active_bxh ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"}  data-toggle="tab" href="#bxh" onClick={()=>this.showBXH(week)}>BXH</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#thele">Thể lệ</a>
+					<li class="nav-item" onClick={this.changeTabTheLe}>
+						<a class={active_thele ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"} data-toggle="tab" href="#thele">Thể lệ</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-danger font-weight-bold" data-toggle="tab" href="#phucloi" onClick={this.showRanking}>Phúc lợi</a>
+					<li class="nav-item" onClick={this.changeTabPhucLoi}>
+						<a class={active_phucloi ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"} data-toggle="tab" href="#phucloi" onClick={this.showRanking}>Phúc lợi</a>
 					</li>
 					<li class="">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -719,12 +736,12 @@ class GameDetailComponent extends React.Component {
 					<div class="tab-content">
 					<div class="tab-pane active" id="bxh">
 						{/* <!-- Nav pills --> */}
-						<ul class="nav nav-pills nav-justified mt-3">
+						<ul class="nav nav-pills nav-justified mt-3" style={{lineHeight:'15px'}}>
 						<li class="nav-item">
 							<a class="nav-link text-secondary active small" data-toggle="pill" href="#tuantruongnua" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')}>Tuần trước nữa</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc" onClick={()=>this.showBXH('null')}>Tuần trước</a>
+							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc" onClick={()=>this.showBXH('')}>Tuần trước</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay" onClick={()=>this.showBXH('THIS_WEEK')}>Tuần này</a>
@@ -734,7 +751,7 @@ class GameDetailComponent extends React.Component {
 						{/* <!-- Tab panes --> */}
 						<div class="tab-content">
 						<div class="tab-pane active" id="tuantruongnua">
-							<table class="table table-striped text-center mt-3 small">
+							<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
 								<thead>
 								<tr>
 									<th>Top</th>
@@ -753,7 +770,7 @@ class GameDetailComponent extends React.Component {
 								</tbody>
 							</table>
 							<h6 class="text-left"><span class="badge badge-pill badge-info">#</span> Thứ hạng của bạn</h6>
-							<table class="table table-striped text-center mt-3 small">
+							<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
 								<tbody>
 								<tr>
 									<td>{data_bxh.myPosition}</td>
@@ -762,14 +779,14 @@ class GameDetailComponent extends React.Component {
 								</tr>
 								<tr>
 									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
-									<td><button type="button" class="btn btn-info btn-sm">Xem chi tiết &rarr;</button></td>
+									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
 								</tr>
 								</tbody>
 							</table>
 							
 						</div>
 						<div class="tab-pane fade" id="tuantruoc">
-							<table class="table table-striped text-center mt-3 small">
+							<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
 								<thead>
 								<tr>
 									<th>Top</th>
@@ -797,13 +814,13 @@ class GameDetailComponent extends React.Component {
 								</tr>
 								<tr>
 									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
-									<td><button type="button" class="btn btn-info btn-sm">Xem chi tiết &rarr;</button></td>
+									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
 								</tr>
 								</tbody>
 							</table>
 						</div>
 						<div class="tab-pane fade" id="tuannay">
-							<table class="table table-striped text-center mt-3 small">
+							<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
 								<thead>
 								<tr>
 									<th>Top</th>
@@ -831,7 +848,7 @@ class GameDetailComponent extends React.Component {
 								</tr>
 								<tr>
 									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
-									<td><button type="button" class="btn btn-info btn-sm">Xem chi tiết &rarr;</button></td>
+									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
 								</tr>
 								</tbody>
 							</table>

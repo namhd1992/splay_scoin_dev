@@ -152,7 +152,7 @@ class MissionComponent extends React.Component {
 											<img src="../icon_diemdanh_active.png" alt="Điểm danh" class="mr-3" width="48" />
 											<div class="media-body">
 												<h4 class="font14 font-weight-bold">{obj.missionName}</h4>
-												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" /> {obj.valueAward} </span>
+												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" />{obj.valueAward} </span>
 											</div>
 											<div class="position-absolute action_mission" style={{right: -5}}>
 												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary font15" onClick={()=>this.openPopupMission(obj)}>i</span>
@@ -338,7 +338,7 @@ class MissionComponent extends React.Component {
 							<button type="button" class="close" data-dismiss="modal" style={{marginRight:10, marginTop:10}}>&times;</button>
 						</div>
 						<h4 class="modal-title font15 font-weight-bold color-title-cat" style={{textAlign:'center'}}>Thông báo</h4>
-						<p style={{textAlign:'center', marginTop:10}}>Rất tiếc bạn không đủ điều kiện nhận thưởng.</p>
+						<p style={{textAlign:'center', marginTop:10, lineHeight:"20px"}}>Rất tiếc bạn không đủ điều kiện nhận thưởng.</p>
 
 						<div style={{textAlign:'right', padding:'5px 30px 10px 0px'}}>
 							<button type="button" class="btn btn-hover text-white" style={{padding:'7px 30px'}} onClick={this.closeNotification}><span class="small">OK</span></button>

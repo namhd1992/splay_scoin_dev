@@ -55,7 +55,7 @@ class Game_detail extends React.Component {
 			message_error:'',
 			item_award:{},
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5pE7KWyGPcx4RUOBRQPXXn0Oa09E7f9njLHGg6UELUQctgyRnj41hCZblHd9ntMz4J4gFKYSjL8ERajqyI%2bgzU7d6lcA3aVLRzz2mTDcSvB8RUDqoV%2f0E%2fjlIvsaU3UVbN%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5ueSnd7Mk%2fGRqM67ORU9MdkOa09E7f9njI6UeBl51uplk4gOI22hc2WMVZlAsCGO4DHGTi5LB6VUK7xTgrofXsnAvvDtGvekAWrVJp6UKJMemdxCtwRre0TC1LRNp5VUud%2fDHhACRKz2',
 		};
 	}
 
@@ -205,23 +205,15 @@ class Game_detail extends React.Component {
 	}
 
 	getWithWeekBXH=(weeked)=>{
-		const {week}=this.state;
-		if(weeked!==''){
-			if(week!=='WEEK_BEFORE_LAST'){
-				this.setState({week:weeked},()=>{
-					this.getDataBXH();
-				})
-			}else{
-				this.getDataBXH();
-			}
-		}else{
+		this.setState({week:weeked},()=>{
 			this.getDataBXH();
-		}
+		})
 	}
 	
 	getDataBXH=()=>{
 		var _this = this;
-		const {scoin_token, id_game, week}=this.state
+		const {scoin_token, id_game, week}=this.state;
+		console.log(week)
 		this.props.getDataBXH(330333, week, scoin_token).then(function () {
 			_this.setState({users: _this.props.data_bxh.data.users, data_bxh: _this.props.data_bxh.data, myPosition: _this.props.data_bxh.data.myPosition})
 			// console.log(_this.props.data_bxh)
@@ -325,6 +317,7 @@ class Game_detail extends React.Component {
 					gameData={this.state.gameData}
 					gameMoi={this.state.gameMoi}
 					gameCare={this.state.gameCare}
+					week={this.state.week}
 				/>
 
 			</div>
