@@ -711,7 +711,7 @@ class GameDetailComponent extends React.Component {
 								onClose={this.closeLightBox}
 							/>
 						))}
-		<div class="modal p-0" id="bxhmodal" style={{marginTop:40}}>
+		<div class="modal p-0" id="bxhmodal" style={{marginTop:100}}>
 			<div class="modal-dialog">
 				<div class="modal-content">
 				{/* <!-- Modal body --> */}
@@ -777,10 +777,10 @@ class GameDetailComponent extends React.Component {
 									<td>{data_bxh.myGameName}</td>
 									<td>{data_bxh.myRankName}</td>
 								</tr>
-								<tr>
-									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
+								{(data_bxh.myPosition > 100) ? (<tr>
+									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
 									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
-								</tr>
+								</tr>):(<tr></tr>)}
 								</tbody>
 							</table>
 							
@@ -813,7 +813,7 @@ class GameDetailComponent extends React.Component {
 									<td>{data_bxh.myRankName}</td>
 								</tr>
 								<tr>
-									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
+									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
 									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
 								</tr>
 								</tbody>
@@ -847,7 +847,7 @@ class GameDetailComponent extends React.Component {
 									<td>{data_bxh.myRankName}</td>
 								</tr>
 								<tr>
-									<td colspan="2" class="font-italic">Chưa có dữ liệu</td>
+									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
 									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
 								</tr>
 								</tbody>
