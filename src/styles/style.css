@@ -364,6 +364,13 @@ div.hover-mualuot:focus {background-color: rgba(51,202,187,.2); font-size: 16px;
 filter: contrast(150%);
 }
 
+.top-rank  {
+	animation: jump 1s infinite;
+	position: fixed;
+	bottom:0;
+	left: 0;
+}
+
 
 .btn-downgame {
 	content: '';

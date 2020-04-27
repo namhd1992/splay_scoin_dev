@@ -55,7 +55,7 @@ class Game_detail extends React.Component {
 			message_error:'',
 			item_award:{},
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5ueSnd7Mk%2fGRqM67ORU9MdkOa09E7f9njI6UeBl51uplk4gOI22hc2WMVZlAsCGO4DHGTi5LB6VUK7xTgrofXsnAvvDtGvekAWrVJp6UKJMemdxCtwRre0TC1LRNp5VUud%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5pkF9yd7Ge4izRQqpaKXrm0Oa09E7f9njAgFswhZReoPefNpKN1BgMziixegTBvZLvvoUatNETEW%2bqbq1qa%2f1pMjhDicErz5CKR8TruDbOMR1QvbUARp85X7HnLN0xLv6N%2fDHhACRKz2',
 		};
 	}
 
