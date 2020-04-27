@@ -80,6 +80,8 @@ class GameDetailComponent extends React.Component {
 			active_bxh: true,
 			active_thele:false,
 			active_phucloi:false,
+			positon_rank:0,
+			data_ranking:[]
 		}
 	}
 	componentWillMount(){
@@ -140,6 +142,7 @@ class GameDetailComponent extends React.Component {
 		}
 	}
 	UNSAFE_componentWillReceiveProps(nextProps){
+		const {positon_rank}=this.state;
 		if(this.props.gameData !== nextProps.gameData){
 			const _this=this;
 			var arrScreenShot = [];
@@ -176,7 +179,7 @@ class GameDetailComponent extends React.Component {
 		}
 
 		if(this.props.data_ranking !== nextProps.data_ranking){
-			this.setState({items: nextProps.data_ranking[0].items})
+			this.setState({items: nextProps.data_ranking[positon_rank].items, data_ranking: nextProps.data_ranking})
 		}
 		
 	}
@@ -294,7 +297,9 @@ class GameDetailComponent extends React.Component {
 	}
 
 	changeRanking=(obj)=>{
-		this.setState({rankPosition:obj.rankPosition, items:obj.items})
+		const {data_ranking}=this.state
+		var pos = data_ranking.map(function(e) { return e.rankPosition; }).indexOf(obj.rankPosition);
+		this.setState({rankPosition:obj.rankPosition, items:obj.items, positon_rank:pos})
 	}
 
 	changeTabBXH=()=>{
@@ -668,7 +673,7 @@ class GameDetailComponent extends React.Component {
 							classes={{ paper: classes.paper }}
 						>
 							<DialogContent>
-								<div style={{paddingRight:40, paddingLeft:40}}>
+								<div style={{paddingRight:40, paddingLeft:40, lineHeight:"30px"}}>
 									<span style={{fontWeight:'bold', fontSize:18}}>Tên phúc lợi:</span> <br></br>
 								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
 									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
@@ -799,7 +804,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -833,7 +838,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -860,13 +865,24 @@ class GameDetailComponent extends React.Component {
 							dangerouslySetInnerHTML={{ __html: data_bxh.gameRule }}>
 						</div>
 					</div>
+
+{/* 
+					<div class="thumb-lat-the position-relative">
+													<a class="text-dark">
+														<img src={obj.bigImage} width="100%" />
+													</a>
+													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
+													<div class="overlay">
+														<div class="text text-white small">Chơi ngay &raquo;</div>
+													</div>
+												</div> */}
 					<div class="tab-pane fade" id="phucloi">
 						<h6 class="text-center mt-3">Rank tuần trước</h6>
 						{/* <!-- Nav pills --> */}
 						<ul class="nav nav-pills nav-justified">
 							{data_ranking.map((obj, key) => {
 								return (<li class="nav-item" key={key} style={{cursor:'pointer'}}>
-									<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img src={obj.rankIconUrl} width="35"/></a>
+									<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img class="img-shadow" src={obj.rankIconUrl} width="35"/></a>
 								</li>)}
 							)}
 						</ul>
@@ -880,8 +896,10 @@ class GameDetailComponent extends React.Component {
 											{items.map((item, k)=>{
 												return (<div class="col-3 pr-1 pl-3 text-center">
 												<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.props.awards(item)}>
-													<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
+													<img class="zoom" src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
 													<h4 class="small pt-2">{item.itemName}</h4>
+													{/* <div class="overlay">
+													</div> */}
 												</a>
 											</div>)
 											})}
@@ -894,7 +912,7 @@ class GameDetailComponent extends React.Component {
 											{items.map((item, k)=>{
 												return (<div class="col-3 pr-1 pl-3 text-center">
 													<a class="text-secondary" title="">
-														<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
+														<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} style={{filter: 'grayscale(100%)'}} />
 															<h4 class="small pt-2">{item.itemName}</h4>
 													</a>
 												</div>)

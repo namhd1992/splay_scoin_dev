@@ -371,7 +371,21 @@ filter: contrast(150%);
 	left: 0;
 }
 
+#phucloi .nav-pills .nav-link.active {
+	background: none !important;
+}
+#phucloi .nav-pills .nav-link.active .img-shadow {
+	-webkit-filter: drop-shadow(0 0 15px red);
+     filter: drop-shadow(0 0 5px red);
+	 transform: scale(1.2);
 
+}
+.zoom {
+  transition: transform .2s;
+  }
+  .zoom:hover {
+    transform: scale(1.2);
+  }
 .btn-downgame {
 	content: '';
 	  position: absolute;
