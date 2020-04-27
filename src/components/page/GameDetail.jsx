@@ -511,7 +511,7 @@ class GameDetailComponent extends React.Component {
 										)}
 								</div>
 							</div>
-							{(youtubeData !== undefined && youtubeData.length > 0) ? (
+							{/* {(youtubeData !== undefined && youtubeData.length > 0) ? (
 							<div class="bg-white p-3 mb-3 font13">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Video</h2>
 									<Grid container style={{
@@ -563,7 +563,7 @@ class GameDetailComponent extends React.Component {
 											</Grid>
 										</Grid>
 									</Grid></div>
-								) : (<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}></div>)}
+								) : (<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}></div>)} */}
 							
 							<div class="mb-3 bg-white p-3">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
@@ -817,10 +817,10 @@ class GameDetailComponent extends React.Component {
 									<td>{data_bxh.myGameName}</td>
 									<td>{data_bxh.myRankName}</td>
 								</tr>
-								<tr>
+								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
 									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
-								</tr>
+								</tr>):(<tr></tr>)}
 								</tbody>
 							</table>
 						</div>
@@ -851,10 +851,10 @@ class GameDetailComponent extends React.Component {
 									<td>{data_bxh.myGameName}</td>
 									<td>{data_bxh.myRankName}</td>
 								</tr>
-								<tr>
+								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
 									<td><a type="button" class="btn btn-info btn-sm" data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ &rarr;</a></td>
-								</tr>
+								</tr>):(<tr></tr>)}
 								</tbody>
 							</table>
 						</div>
