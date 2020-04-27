@@ -711,7 +711,7 @@ class GameDetailComponent extends React.Component {
 								onClose={this.closeLightBox}
 							/>
 						))}
-		<div class="modal p-0" id="bxhmodal" style={{marginTop:100}}>
+		<div class="modal p-0" id="bxhmodal" style={{marginTop:120}}>
 			<div class="modal-dialog">
 				<div class="modal-content">
 				{/* <!-- Modal body --> */}
@@ -764,7 +764,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
