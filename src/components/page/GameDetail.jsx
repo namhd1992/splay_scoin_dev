@@ -678,7 +678,7 @@ class GameDetailComponent extends React.Component {
 									<span style={{fontWeight:'bold', fontSize:18}}>Tên phúc lợi:</span> <br></br>
 								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
 									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
-								  	<span style={{fontSize:16}}>{item_award.value ? item_award.value.toLocaleString() : 0}</span><br></br>
+								  	<span style={{fontSize:16}}>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
 									{(item_award.consumable)?(<span style={{fontSize:16, color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
 								</div>
 							</DialogContent>
