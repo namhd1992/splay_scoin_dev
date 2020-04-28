@@ -54,8 +54,9 @@ class Game_detail extends React.Component {
 			show_award_error:false,
 			message_error:'',
 			item_award:{},
+			gameRanking:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5il%2bll1RNZ5%2byxpLUre2JwwOa09E7f9njBoAbjJs2yO2VnaIaWQL8vfgI96XyIij3Xzdxw%2foQ0vVlgoMmh4uoh%2b28FLVQj%2bnI%2b5FM9Wakh15g2Eke6s%2bNzdcLI9rWLrwI9%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5kOUT5MLA%2fyd9z6G8%2bukzrgOa09E7f9njLKfhiS9D3HbxGXsny9TY8enhe8oFDYjDtx2XN%2bP43efnpEuiexPZe4F2NsHglk5%2b5QnGQviablZySxklXYmk5m03MUP72Vou9%2fDHhACRKz2',
 		};
 	}
 
@@ -106,7 +107,7 @@ class Game_detail extends React.Component {
 			var data=_this.props.data
 			if(data.status==="01"){
 				_this.props.getYoutubeData(data.data.youtubeChannelId, data.data.youtubeDefaultSearch);
-				_this.setState({ gameData: _this.props.data.data });
+				_this.setState({ gameData: _this.props.data.data, gameRanking:data.data.gameRanking });
 			}
 		});
 	}
@@ -230,15 +231,27 @@ class Game_detail extends React.Component {
 
 	awards=(item)=>{
 		var _this = this;
+		var type=item.itemType
+		var new_item=item;
 		console.log(item)
 		const {scoin_token, id_game}=this.state;
+		switch(type) {
+			case '':
+			  
+			  break;
+			case '':
+			  
+			  break;
+			default:
+			  
+		  }
 		if(item.received){
 			this.setState({show_award:true, item_award:item});
 		}else{
 			this.props.awards(item.itemId, 330333, scoin_token).then(function () {
 				const data=_this.props.data_awards;
 				if(data.status==="01"){
-					this.setState({show_award:true, item_award:item})
+					this.setState({show_award:true, item_award:new_item})
 				}else if(data.status==="04"){
 					this.setState({show_award_error:true, message_error:'Bạn đã nhận quà rồi.'})
 				}else if(data.status==="05"){
@@ -296,6 +309,7 @@ class Game_detail extends React.Component {
 					myPosition={this.state.myPosition}
 					data_bxh={this.state.data_bxh}
 					data_ranking={this.state.data_ranking}
+					gameRanking={this.state.gameRanking}
 					endDateReceivedGift={this.state.endDateReceivedGift}
 					server={this.props.server}
 					dataMission={this.props.dataMission}

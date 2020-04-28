@@ -141,8 +141,8 @@ class MissionComponent extends React.Component {
 		return (<div>
 					<div class="container py-3" style={{marginTop:55}}>
 						<div class="row">
-							<div class="col-sm-9 px-2">
-								<div class="bg-white p-3 mb-3">
+							<div class="col-sm-9 px-1">
+								<div class="bg-white p-3 mb-2 shadow-ssm card border-0">
 									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Nhiệm vụ</span></h2>
 									{(data.length>0)?(<div>
 									{data.map((obj, key) => {
@@ -188,7 +188,7 @@ class MissionComponent extends React.Component {
 
 									</div>):(<div></div>)}               
 								</div>
-								<div class="mb-3 bg-white p-3">
+								<div class="mb-2 bg-white p-3 shadow-ssm card border-0">
 									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 									<div class="row">
 										{gameCare.map((obj, key)=>{
@@ -214,7 +214,7 @@ class MissionComponent extends React.Component {
 									
 								</div>
 							</div>
-							<div class="col-sm-3 px-2">
+							<div class="col-sm-3 px-1">
 								{/* <div class="bg-white p-3">
 									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
 									<div class="font14 list-newest">
@@ -229,7 +229,7 @@ class MissionComponent extends React.Component {
 									</div>
 									
 								</div> */}
-								<div class="bg-white pt-3 pl-3">
+								<div class="bg-white mb-2 pl-3 shadow-ssm card border-0">
 									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
 									{gameMoi.map((obj, key)=>{
 											return (

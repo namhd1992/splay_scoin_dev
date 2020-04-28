@@ -118,11 +118,11 @@ class GameDetailComponent extends React.Component {
 
 	onResize=()=>{
 		if (window.innerWidth <= 600) {
-			this.setState({ iframeWidth: window.innerWidth-20, iframeHeight:400, widthImage:215, widthScreenShot:100});
+			this.setState({ iframeWidth: window.innerWidth-10, iframeHeight:400, widthImage:215, widthScreenShot:100});
 			return;
 		}
 		if (window.innerWidth > 1024) {
-			this.setState({ iframeWidth: 265, iframeHeight:400, widthScreenShot:200});
+			this.setState({ iframeWidth: 275, iframeHeight:400, widthScreenShot:200});
 			return;
 		}
 	}
@@ -318,7 +318,7 @@ class GameDetailComponent extends React.Component {
 
 	render() {
 		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,item_award, message_error, show_award,show_award_error,
-			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server, week}=this.props;
+			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server, week, gameRanking}=this.props;
 		const { classes } = this.props;
 		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items, active_bxh, active_phucloi, active_thele}=this.state;
 		const { theme } = this.props;
@@ -378,9 +378,9 @@ class GameDetailComponent extends React.Component {
 		return (gameData!==undefined)?(<div>	
 					<div id="top" class="py-3 container" style={{marginTop:55}}>
 					<div class="row">
-						<div class="col-sm-9 px-2">
-							<div class="bg-white mb-3 content">
-								<div class="detail-bannergame position-relative overflow-hidden">
+						<div class="col-sm-9 px-1">
+							<div class="bg-white mb-2 content">
+								<div class="detail-bannergame position-relative overflow-hidden card border-0 shadow-ssm mb-0">
 									<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
 										<div class="col-md-9">
@@ -421,7 +421,7 @@ class GameDetailComponent extends React.Component {
 								
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
-							<div class="bg-white p-3 mb-3 font13 text-justify">
+							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div id="demo" class="carousel slide pb-" data-ride="carousel" data-touch="true" data-wrap="true">
 									<Grid item xs={12} style={{
@@ -512,7 +512,7 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</div>
 							{/* {(youtubeData !== undefined && youtubeData.length > 0) ? (
-							<div class="bg-white p-3 mb-3 font13">
+							<div class="bg-white p-3 mb-2 font13 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Video</h2>
 									<Grid container style={{
 										width: "100%",
@@ -565,7 +565,7 @@ class GameDetailComponent extends React.Component {
 									</Grid></div>
 								) : (<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}></div>)} */}
 							
-							<div class="mb-3 bg-white p-3">
+							<div class="mb-2 bg-white p-3 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 								<div class="row">
 									{gameCare.map((obj, key)=>{
@@ -592,8 +592,8 @@ class GameDetailComponent extends React.Component {
 								
 							</div>
 						</div>
-						<div class="col-sm-3 px-2">
-							<div class="download">
+						<div class="col-sm-3 px-1">
+							<div class="download mb-2 card border-0 shadow-ssm bg-transparent">
 								{(gameData.gameType==="MOBILE")?(<div><a href={gameData.urlDownloadIos}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-ios.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.urlDownloadAndroid}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
 								<a href={gameData.urlDownloadPC}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a></div>):(
@@ -602,12 +602,12 @@ class GameDetailComponent extends React.Component {
 								
 								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp Game</span></button></a>                
 							</div>
-							<div class="bg-white mt-3" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
+							<div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
 								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 								
 							</div>
 							
-							<div class="bg-white pt-3 pl-3 mt-3">
+							<div class="bg-white p-3 mb-2 card border-0 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
@@ -635,7 +635,8 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
-				<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>
+				{(gameRanking)?(<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>):(<div></div>)}
+				
 				<Dialog
 							fullScreen={fullScreen}
 							open={youtubeOpen}
@@ -678,6 +679,7 @@ class GameDetailComponent extends React.Component {
 								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
 									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
 								  	<span style={{fontSize:16}}>{item_award.value}</span>
+									{(item_award.consumable)?(<span style={{fontSize:16, color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
 								</div>
 							</DialogContent>
 							<DialogActions>
@@ -769,7 +771,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+											<td>{obj.myRankName} {(obj.myRankIconUrl!==null)?(<img src={obj.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -780,7 +782,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.myRankName}</td>
+									<td>{data_bxh.rankName} {(data_bxh.rankIconUrl!==null)?(<img src={data_bxh.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
@@ -815,7 +817,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.myRankName}</td>
+									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
@@ -849,7 +851,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.myRankName}</td>
+									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
@@ -882,7 +884,7 @@ class GameDetailComponent extends React.Component {
 						<ul class="nav nav-pills nav-justified">
 							{data_ranking.map((obj, key) => {
 								return (<li class="nav-item" key={key} style={{cursor:'pointer'}}>
-									<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img class="img-shadow" src={obj.rankIconUrl} width="35"/></a>
+									<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img class="img-shadow" src={obj.rankIconUrl} width="72"/></a>
 								</li>)}
 							)}
 						</ul>
