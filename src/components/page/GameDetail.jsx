@@ -674,12 +674,12 @@ class GameDetailComponent extends React.Component {
 							classes={{ paper: classes.paper }}
 						>
 							<DialogContent>
-								<div style={{paddingRight:40, paddingLeft:40, lineHeight:"30px"}}>
-									<span style={{fontWeight:'bold', fontSize:18}}>Tên phúc lợi:</span> <br></br>
-								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
-									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
-								  	<span style={{fontSize:16}}>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
-									{(item_award.consumable)?(<span style={{fontSize:16, color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
+								<div class="small" style={{paddingRight:40, paddingLeft:40, lineHeight:"30px"}}>
+									<span style={{fontWeight:'bold', fontSize:16}}>Tên phúc lợi:</span> <br></br>
+								  	<span>{item_award.itemName}</span><br></br>
+									<span style={{fontWeight:'bold', fontSize:16, marginTop:10}}>Nội dung:</span> <br></br>
+								  	<span>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
+									{(item_award.consumable)?(<span style={{color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
 								</div>
 							</DialogContent>
 							<DialogActions>
@@ -865,8 +865,8 @@ class GameDetailComponent extends React.Component {
 						</div>
 						</div>          
 					</div>
-					<div class="tab-pane fade" id="thele">
-						<div style={{ lineHeight:'20px', padding:10 }}
+					<div class="tab-pane fade small" id="thele">
+						<div style={{ lineHeight:'20px', padding: "30px 10px 10px 10px" }}
 							dangerouslySetInnerHTML={{ __html: data_bxh.gameRule }}>
 						</div>
 					</div>
