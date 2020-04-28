@@ -220,7 +220,7 @@ a.btn-dv:hover {color: #ffd102;}
 }
 @media (max-width: 640px) {
 	.download{
-		display: none;
+		display: none !important;
 	}
 	.content-inner-p1 {background-position: center bottom; height: 1000px; background-size: 150%;}
 	.btn-thamgiangay {position: absolute; bottom: 40px;left: 44%;}

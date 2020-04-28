@@ -771,7 +771,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.myRankName} {(obj.myRankIconUrl!==null)?(<img src={obj.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -782,7 +782,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.rankName} {(data_bxh.rankIconUrl!==null)?(<img src={data_bxh.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
@@ -817,7 +817,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
@@ -851,7 +851,7 @@ class GameDetailComponent extends React.Component {
 								<tr>
 									<td>{data_bxh.myPosition}</td>
 									<td>{data_bxh.myGameName}</td>
-									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+									<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 								</tr>
 								{(data_bxh.myPosition > 100) ? (<tr>
 									<td colspan="2" class="font-italic">Chỉ thống kê đến Top 100</td>
