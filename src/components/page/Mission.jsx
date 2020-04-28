@@ -331,21 +331,21 @@ class MissionComponent extends React.Component {
 
 					{/* <!-- The Modal Thong báo --> */}
 					<div class="modal fade" id="notification">
-					<div class="modal-dialog">
-						<div class="modal-content">
+						<div class="modal-dialog">
+							<div class="modal-content">
 
-						<div>
-							<button type="button" class="close" data-dismiss="modal" style={{marginRight:10, marginTop:10}}>&times;</button>
-						</div>
-						<h4 class="modal-title font15 font-weight-bold color-title-cat" style={{textAlign:'center'}}>Thông báo</h4>
-						<p style={{textAlign:'center', marginTop:10, lineHeight:"20px"}}>Rất tiếc bạn không đủ điều kiện nhận thưởng.</p>
+							<div>
+								<button type="button" class="close" data-dismiss="modal" style={{marginRight:10, marginTop:10}}>&times;</button>
+							</div>
+							<h4 class="modal-title font15 font-weight-bold color-title-cat" style={{textAlign:'center'}}>Thông báo</h4>
+							<p style={{textAlign:'center', marginTop:10, lineHeight:"20px"}}>Rất tiếc bạn không đủ điều kiện nhận thưởng.</p>
 
-						<div style={{textAlign:'right', padding:'5px 30px 10px 0px'}}>
-							<button type="button" class="btn btn-hover text-white" style={{padding:'7px 30px'}} onClick={this.closeNotification}><span class="small">OK</span></button>
-						</div>
+							<div style={{textAlign:'right', padding:'5px 30px 10px 0px'}}>
+								<button type="button" class="btn btn-hover text-white" style={{padding:'7px 30px'}} onClick={this.closeNotification}><span class="small">OK</span></button>
+							</div>
 
+							</div>
 						</div>
-					</div>
 					</div>
 
 					<Dialog

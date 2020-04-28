@@ -678,7 +678,7 @@ class GameDetailComponent extends React.Component {
 									<span style={{fontWeight:'bold', fontSize:18}}>Tên phúc lợi:</span> <br></br>
 								  	<span style={{fontSize:16}}>{item_award.itemName}</span><br></br>
 									<span style={{fontWeight:'bold', fontSize:18, marginTop:10}}>Nội dung:</span> <br></br>
-								  	<span style={{fontSize:16}}>{item_award.value}</span>
+								  	<span style={{fontSize:16}}>{item_award.value ? item_award.value.toLocaleString() : 0}</span><br></br>
 									{(item_award.consumable)?(<span style={{fontSize:16, color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
 								</div>
 							</DialogContent>
@@ -707,6 +707,9 @@ class GameDetailComponent extends React.Component {
 								</div>
 							</DialogActions>
 						</Dialog>
+
+
+
 						{((arrImages !== undefined) && (
 							<Lightbox
 								images={arrImages}
@@ -771,7 +774,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -806,7 +809,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -840,7 +843,7 @@ class GameDetailComponent extends React.Component {
 										<tr key={key}>
 											<td>{obj.position}</td>
 											<td>{obj.userName}</td>
-											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="18" height="18" />):(<div></div>)}</td>
+											<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
 										</tr>
 									))}
 								</tbody>
@@ -863,7 +866,7 @@ class GameDetailComponent extends React.Component {
 						</div>          
 					</div>
 					<div class="tab-pane fade" id="thele">
-						<div style={{ lineHeight:'20px' }}
+						<div style={{ lineHeight:'20px', padding:10 }}
 							dangerouslySetInnerHTML={{ __html: data_bxh.gameRule }}>
 						</div>
 					</div>
@@ -899,7 +902,7 @@ class GameDetailComponent extends React.Component {
 												return (<div class="col-3 pr-1 pl-3 text-center">
 												<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.props.awards(item)}>
 													<img class="zoom" src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
-													<h4 class="small pt-2">{item.itemName}</h4>
+													<h4 class="small pt-2" style={{color:'black'}}>{item.itemName}</h4>
 													{/* <div class="overlay">
 													</div> */}
 												</a>

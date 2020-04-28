@@ -56,7 +56,7 @@ class Game_detail extends React.Component {
 			item_award:{},
 			gameRanking:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5kOUT5MLA%2fyd9z6G8%2bukzrgOa09E7f9njLKfhiS9D3HbxGXsny9TY8enhe8oFDYjDtx2XN%2bP43efnpEuiexPZe4F2NsHglk5%2b5QnGQviablZySxklXYmk5m03MUP72Vou9%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5hTk7EVtdT%2bhzXe%2boOBZhf8Oa09E7f9njEJTXGvkGupiFjn1M9Al3qXsTkM2XkEFTPcRFhghKjihIRbpL4H5acoFv7jpHU6Pm1xNmj4lxN4LH94sQR5Ov8f7HnLN0xLv6N%2fDHhACRKz2',
 		};
 	}
 
@@ -236,13 +236,20 @@ class Game_detail extends React.Component {
 		console.log(item)
 		const {scoin_token, id_game}=this.state;
 		switch(type) {
-			case '':
-			  
+			case 'TURN_LUCKYSPIN':
+			  new_item.consumable=true;
 			  break;
-			case '':
-			  
+			case 'XU':
+				new_item.consumable=true;
+			  break;
+			case 'SCOIN':
+				new_item.consumable=true;
+			  break;
+			case 'CARD':
+				new_item.consumable=true;
 			  break;
 			default:
+				new_item.consumable=false;
 			  
 		  }
 		if(item.received){
