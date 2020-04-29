@@ -254,7 +254,7 @@ class Game_detail extends React.Component {
 			  break;
 			default:
 				new_item.consumable=false;
-				new_item.show_value='';
+				new_item.show_value=item.content;
 			  
 		  }
 		if(item.received){
