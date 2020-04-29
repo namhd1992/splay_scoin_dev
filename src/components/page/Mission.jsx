@@ -155,7 +155,11 @@ class MissionComponent extends React.Component {
 												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" />{obj.valueAward} </span>
 											</div>
 											<div class="position-absolute action_mission" style={{right: -5}}>
-												<span type="button" style={{cursor:'pointer'}} class="badge badge-pill badge-secondary font15" onClick={()=>this.openPopupMission(obj)}>i</span>
+												<span type="button" style={{cursor:'pointer'}} onClick={()=>this.openPopupMission(obj)}>
+													<svg class="bi bi-info-circle-fill" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" d="M8 16A8 8 0 108 0a8 8 0 000 16zm.93-9.412l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+													</svg>
+												</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
 													{(obj.actionId==='6')?(<div>
 														<FacebookShareButton url={obj.linkToShare}>
