@@ -258,7 +258,7 @@ class Game_detail extends React.Component {
 			  
 		  }
 		if(item.received){
-			this.setState({show_award:true, item_award:item});
+			this.setState({show_award:true, item_award:new_item});
 		}else{
 			this.props.awards(item.itemId, 330333, scoin_token).then(function () {
 				const data=_this.props.data_awards;
