@@ -482,8 +482,7 @@ class GameDetailComponent extends React.Component {
 													display: "block",
 													position: "absolute",
 													paddingTop: "20px",
-													marginTop: "-40px",
-													background: "linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.6), rgba(255,255,255,.9), rgba(255,255,255,1))"
+													marginTop: "-30px",
 													
 												}} onClick={() => this.compact()}>Thu gọn</a>
 										</div>
