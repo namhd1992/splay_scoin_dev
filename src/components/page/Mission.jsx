@@ -219,32 +219,21 @@ class MissionComponent extends React.Component {
 								</div>
 							</div>
 							<div class="col-sm-3 px-1">
-								{/* <div class="bg-white p-3">
-									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game thủ may mắn</span></h2>
-									<div class="font14 list-newest">
-										<ul>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Long Phi - </span>Thẻ 50k <span class="new">New</span></li>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Huyền My - </span>Thẻ 10k <span class="new">New</span></li>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">fb_356safh... - </span>Thẻ 20k <span class="new">New</span></li>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Spider man - </span>Thẻ 30k </li>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Ngọc Trinh - </span>Thẻ 10k </li>
-											<li class="py-2"><img src="../icon-scoin.png" width="32" /><span class="text-muted px-2">Chim sẻ đi nắng - </span>Thẻ 5k </li>
-										</ul>
-									</div>
-									
-								</div> */}
-								<div class="bg-white mb-2 pl-3 shadow-ssm card border-0">
+								<div class="bg-white mb-2 pl-3 pt-3 shadow-ssm card border-0">
 									<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game Mới </span></h2>
 									{gameMoi.map((obj, key)=>{
-											return (
-												<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
-													<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
-													<div class="media-body">
-														<h4 class="font13 font-weight-bold">{obj.name}</h4>
-														<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
-													</div>
+										return (
+											<a href={this.getDataGame(obj)} target="_parent" style={{color:'black'}}>
+											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}}>
+												
+												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
+												<div class="media-body">
+													<h4 class="font13 font-weight-bold">{obj.name}</h4>
+													<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
 												</div>
-											)
+											</div>
+											</a>
+										)
 									})}
 								</div>
 							
