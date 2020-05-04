@@ -56,7 +56,7 @@ class Game_detail extends React.Component {
 			item_award:{},
 			gameRanking:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5hTk7EVtdT%2bhzXe%2boOBZhf8Oa09E7f9njEJTXGvkGupiFjn1M9Al3qXsTkM2XkEFTPcRFhghKjihIRbpL4H5acoFv7jpHU6Pm1xNmj4lxN4LH94sQR5Ov8f7HnLN0xLv6N%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5qJ41Cq410k8xY0EhrCchdcOa09E7f9njKfvFOqKAMLJVp2RDSDLH0mjS5zScxO%2fgk5vMvFQ%2fJ8WC%2bcK7nDg13yVO061eXbffcgyRKjrXKNHW4H9%2f7IGgQCZtLoZJ%2bW279%2fDHhACRKz2',
 		};
 	}
 
@@ -257,17 +257,19 @@ class Game_detail extends React.Component {
 				new_item.show_value=item.content;
 			  
 		  }
+		  console.log(new_item)
 		if(item.received){
 			this.setState({show_award:true, item_award:new_item});
 		}else{
 			this.props.awards(item.itemId, 330333, scoin_token).then(function () {
 				const data=_this.props.data_awards;
 				if(data.status==="01"){
-					this.setState({show_award:true, item_award:new_item})
+					_this.setState({show_award:true, item_award:new_item})
+					_this.getDataRanking();
 				}else if(data.status==="04"){
-					this.setState({show_award_error:true, message_error:'Bạn đã nhận quà rồi.'})
+					_this.setState({show_award_error:true, message_error:'Bạn đã nhận quà rồi.'})
 				}else if(data.status==="05"){
-					this.setState({show_award_error:true, message_error:'Quà này không thuộc rank của bạn.'})
+					_this.setState({show_award_error:true, message_error:'Quà này không thuộc rank của bạn.'})
 				}
 				console.log(_this.props.data_awards)
 				// _this.setState({data_ranking:_this.props.data_ranking.data.ranks, endDateReceivedGift: _this.props.data_ranking.data.endDateReceivedGift})
