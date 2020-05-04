@@ -69,7 +69,7 @@ class GameDetailComponent extends React.Component {
 			iframeWidth:230,
 			iframeHeight:250,
 			device:'',
-			widthImage:1024,
+			widthImage:450,
 			widthScreenShot:200,
 			rankPosition:1,
 			day:'00',
@@ -122,7 +122,7 @@ class GameDetailComponent extends React.Component {
 			return;
 		}
 		if (window.innerWidth > 1024) {
-			this.setState({ iframeWidth: 275, iframeHeight:400, widthScreenShot:200});
+			this.setState({ iframeWidth: 275, iframeHeight:400, widthScreenShot:200, widthImage:450});
 			return;
 		}
 	}
