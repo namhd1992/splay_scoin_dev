@@ -81,7 +81,8 @@ class GameDetailComponent extends React.Component {
 			active_thele:false,
 			active_phucloi:false,
 			positon_rank:0,
-			data_ranking:[]
+			data_ranking:[],
+			rangeTop:0
 		}
 	}
 	componentWillMount(){
@@ -114,6 +115,8 @@ class GameDetailComponent extends React.Component {
 			this.setState({ marginTop: '-30px' });
 		}
 		window.addEventListener('scroll', this.handleScroll);
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 	onResize=()=>{
@@ -320,7 +323,7 @@ class GameDetailComponent extends React.Component {
 		const {data, dataGiftcode, youtubeData, dialogLoginOpen, dialogRatingOpen, videoId, pointSubmit, showMore, message,gameCare, gameMoi,data_ranking, users,data_bxh,myPosition,item_award, message_error, show_award,show_award_error,
 			 snackVariant, openSnack,lightBoxOpen, lightBoxIndex, youtubeOpen, gameArticles, gameData,server, week, gameRanking}=this.props;
 		const { classes } = this.props;
-		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items, active_bxh, active_phucloi, active_thele}=this.state;
+		const {iframeWidth, iframeHeight, year, widthImage, heightScreenShot, widthScreenShot, rankPosition, day, hour, minute, second, items, active_bxh, active_phucloi, active_thele, rangeTop}=this.state;
 		const { theme } = this.props;
 		const { primary, secondary } = theme.palette;
 		const { fullScreen } = this.props;
@@ -720,7 +723,7 @@ class GameDetailComponent extends React.Component {
 								onClose={this.closeLightBox}
 							/>
 						))}
-		<div class="modal p-0" id="bxhmodal">
+		<div class="modal p-0" id="bxhmodal" style={{marginTop:rangeTop}}>
 			<div class="modal-dialog">
 				<div class="modal-content">
 				{/* <!-- Modal body --> */}
