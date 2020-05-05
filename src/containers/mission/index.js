@@ -116,7 +116,8 @@ class Mission extends React.Component {
 	}
 
 	luckySpin=()=>{
-		window.location.assign(`http://sandbox.scoin.vn/choi-game?GameId=4`)
+		// window.location.assign(`http://sandbox.scoin.vn/choi-game?GameId=4`)
+		window.open(`http://sandbox.scoin.vn/choi-game?GameId=4`, "_parent");
 	}
 
 
@@ -131,11 +132,13 @@ class Mission extends React.Component {
 	}
 
 	loginGame=(obj)=>{
-		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+		window.open(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`, "_parent");
+		// window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 
 	firstLoginGame=(obj)=>{
-		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+		window.open(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`, "_parent");
+		// window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 
 	card=()=>{
