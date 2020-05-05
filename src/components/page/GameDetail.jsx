@@ -317,6 +317,19 @@ class GameDetailComponent extends React.Component {
 		this.setState({active_bxh:false, active_thele:false, active_phucloi:true})
 	}
 
+	closeAward=()=>{
+		$('#award_success').removeClass('show d-block').addClass('fade')
+	}
+	
+	closeError=()=>{
+		$('#award_error').removeClass('show d-block').addClass('fade')
+	}
+	
+	awards=(item)=>{
+		this.props.awards(item);
+		$('#award_success').addClass('show d-block')
+		$('#award_error').addClass('show d-block')
+	}
 
 
 	render() {
@@ -668,7 +681,7 @@ class GameDetailComponent extends React.Component {
 						</Dialog>
 
 
-						<Dialog
+						{/* <Dialog
 							fullScreen={false}
 							open={show_award}
 							onClose={this.props.closeAward}
@@ -708,7 +721,7 @@ class GameDetailComponent extends React.Component {
 									<Button onClick={this.props.closeError} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
 								</div>
 							</DialogActions>
-						</Dialog>
+						</Dialog> */}
 
 
 
@@ -723,6 +736,50 @@ class GameDetailComponent extends React.Component {
 								onClose={this.closeLightBox}
 							/>
 						))}
+
+					<div class={show_award ? "modal fade show d-block" : "modal fade"} id="award_success" style={{marginTop:rangeTop, zIndex:10006}}>
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+							<div>
+								<button type="button" class="close" data-dismiss="modal" style={{marginRight:10, marginTop:10}} onClick={this.closeAward}>&times;</button>
+							</div>
+							<div class="small" style={{paddingRight:40, paddingLeft:40, lineHeight:"30px"}}>
+								<span style={{fontWeight:'bold', fontSize:16}}>Tên phúc lợi:</span> <br></br>
+								<span>{item_award.itemName}</span><br></br>
+								<span style={{fontWeight:'bold', fontSize:16, marginTop:10}}>Nội dung:</span> <br></br>
+								<span>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
+								{(item_award.consumable)?(<span style={{color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
+							</div>
+
+							<div style={{textAlign:'right', padding:'5px 30px 10px 0px'}}>
+								<button type="button" class="btn btn-hover text-white" style={{padding:'7px 30px'}} data-dismiss="modal" onClick={this.closeAward}><span class="small">Đóng</span></button>
+							</div>
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class={show_award_error ? "modal fade show d-block" : "modal fade"} id="award_error" style={{marginTop:rangeTop}}>
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+							<div>
+								<button type="button" class="close" data-dismiss="modal" style={{marginRight:10, marginTop:10}} onClick={this.closeError}>&times;</button>
+							</div>
+							
+							<p style={{textAlign:'center', marginTop:10, lineHeight:"20px"}}>{message_error}</p>
+
+							<div style={{textAlign:'right', padding:'5px 30px 10px 0px'}}>
+								<button type="button" class="btn btn-hover text-white" style={{padding:'7px 30px'}} onClick={this.closeError}><span class="small">Đóng</span></button>
+							</div>
+
+							</div>
+						</div>
+					</div>
+
+
 		<div class="modal p-0" id="bxhmodal" style={{marginTop:rangeTop}}>
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -902,7 +959,7 @@ class GameDetailComponent extends React.Component {
 										<div class="row pt-3">
 											{items.map((item, k)=>{
 												return (<div class="col-3 pr-1 pl-3 text-center">
-												<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.props.awards(item)}>
+												<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.awards(item)}>
 													<img class="zoom" src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
 													<h4 class="small pt-2" style={{color:'black'}}>{item.itemName}</h4>
 													{/* <div class="overlay">
