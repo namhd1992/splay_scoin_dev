@@ -161,7 +161,7 @@ class MissionComponent extends React.Component {
 												<span class="font14 badge text-dark bg-badge-opacity-2 p-1 font-weight-normal"><img src="../Xu.png" alt="icon" width="16" class="mr-1" />{obj.valueAward ? obj.valueAward.toLocaleString() : 0} </span>
 											</div>
 											<div class="position-absolute action_mission" style={{right: -5}}>
-												<span type="button" style={{cursor:'pointer'}} onClick={()=>this.openPopupMission(obj)}>
+												<span style={{cursor:'pointer'}} onClick={()=>this.openPopupMission(obj)}>
 													<img src="../icon-info-circled.png" alt="" width="24" />
 												</span>
 												{(!obj.finish)?(<div style={{display:'inline-block'}}>
