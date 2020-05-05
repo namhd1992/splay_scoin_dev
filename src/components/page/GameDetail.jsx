@@ -379,7 +379,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div id="top" class="py-3 container">
+					<div id="top" class="py-3 container container-gamedetail">
 					<div class="row">
 						<div class="col-sm-9 px-1">
 							<div class="bg-white mb-2 content">
