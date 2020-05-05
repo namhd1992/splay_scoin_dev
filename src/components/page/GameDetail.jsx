@@ -328,7 +328,6 @@ class GameDetailComponent extends React.Component {
 	awards=(item)=>{
 		this.props.awards(item);
 		$('#award_success').addClass('show d-block')
-		$('#award_error').addClass('show d-block')
 	}
 
 
