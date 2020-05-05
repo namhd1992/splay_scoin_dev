@@ -146,6 +146,7 @@ class San_Kho_Bau extends React.Component {
 			turnsBuyInfo:[],
 			soinValue:0,
 			hideNav:false,
+			rangeTop:0,
 			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMegWgxizIdh3eJBWhbaix8Z6iBfunW1PVvVxWBKRqjuumv9d5FzFtkf6w7YlTnFHK3oS2IfJvSu5WQDnTlpMFwSp2iAXYDqQKXQKq9hMJHmdMvVqqpjH%2fOwCYV2Wy1MpupKTncq4HqanjsmrRJhQPmhr53Dc2UQ%2fHb',
 
 		};
@@ -199,6 +200,8 @@ class San_Kho_Bau extends React.Component {
 		this.getDataVinhDanh('highlights',1);
 		window.addEventListener('scroll', this.handleScroll);
 		$("#demo").carousel({interval: 3000});
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 	componentWillUnmount() {
@@ -735,7 +738,7 @@ class San_Kho_Bau extends React.Component {
 
 
 	render() {
-		const {textAuto, soinValue,listCountBonus, listKey, activeKey, turnsBuyInfo,status_sukien, xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, message_status, data_auto,message_error,
+		const {rangeTop, textAuto, soinValue,listCountBonus, listKey, activeKey, turnsBuyInfo,status_sukien, xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, message_status, data_auto,message_error,
 			activeRuong, activeHistory, activeBonus, activeVinhDanh, limit, countCodeBonus, countRuong, countKey, countVinhDanh, listHistory, listCodeBonus, listRuong, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, hour_live, minute_live, second_live, user}=this.state;
 		const { classes } = this.props;
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
@@ -1037,7 +1040,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* The Modal Phần thưởng */}
-			<div class="modal fade" data-keyboard="false" data-backdrop="static" id="GiaiThuong">
+			<div class="modal fade" data-keyboard="false" data-backdrop="static" id="GiaiThuong" style={{marginTop:rangeTop}}>
 				<div class="modal-dialog">
 					<div class="modal-content bg-modal-content border-0" style={{marginTop: 60}}>
 					<div class="modal-header border-bottom-0">
@@ -1070,7 +1073,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* The Modal them luot */}
-			<div class="modal fade" id="ThemLuot" style={{zIndex:10001}}>
+			<div class="modal fade" id="ThemLuot" style={{zIndex:10001, marginTop:rangeTop}}>
 				<div class="modal-dialog">
 					<div class="modal-content bg-modal-content border-0">
 						<div class="modal-header border-bottom-0">
@@ -1097,7 +1100,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* The Modal chia khoa */}
-			<div class="modal fade" id="MuaChiaKhoa" style={{zIndex:10002}}>
+			<div class="modal fade" id="MuaChiaKhoa" style={{zIndex:10002, marginTop:rangeTop}}>
 				<div class="modal-dialog">
 					<div class="modal-content bg-modal-content border-0">
 						<div class="modal-header border-bottom-0">
@@ -1130,7 +1133,7 @@ class San_Kho_Bau extends React.Component {
 
 
 			{/* The Modal Lich su */}
-			<div class="modal fade" id="LichSu" data-keyboard="false" data-backdrop="static" style={{zIndex:100001}}>
+			<div class="modal fade" id="LichSu" data-keyboard="false" data-backdrop="static" style={{zIndex:100001, marginTop:rangeTop}}>
 				<div class="modal-dialog">
 					<div class="modal-content bg-modal-content border-0">
 					<div class="modal-header border-bottom-0">
@@ -1357,7 +1360,7 @@ class San_Kho_Bau extends React.Component {
 				</div>
 				</div>
 			{/* The Modal Thông báo chúc mừng */}
-			<div className="modal" id="myModal4">
+			<div className="modal" id="myModal4" style={{marginTop:rangeTop}}>
 			<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 						<div className="modal-header border-bottom-0">	
@@ -1378,7 +1381,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Thông báo đăng nhập--> */}
-			<div className="modal fade" id="myModal5">
+			<div className="modal fade" id="myModal5" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1401,7 +1404,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Thông báo hết lượt--> */}
-			<div class="modal fade" id="myModal6" style={{zIndex:10001}}>
+			<div class="modal fade" id="myModal6" style={{zIndex:10001, marginTop:rangeTop}}>
 				<div class="modal-dialog">
 					<div class="modal-content bg-modal-content border-0">
 					<div class="modal-header border-bottom-0">
@@ -1429,7 +1432,7 @@ class San_Kho_Bau extends React.Component {
 
 
 			{/* <!-- The Modal Rương rỗng--> */}
-			<div className="modal fade" id="myModal7">
+			<div className="modal fade" id="myModal7" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1453,7 +1456,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Kho bau--> */}
-			<div className="modal fade" id="Khobau" >
+			<div className="modal fade" id="Khobau" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content  bg-transparent border-0 center-screen">
 
@@ -1467,7 +1470,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Xác thực sdt--> */}
-			<div className="modal fade" id="myModal8">
+			<div className="modal fade" id="myModal8" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1491,7 +1494,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 			{/* <!-- The Modal Kết quả quay tự động--> */}
 
-			<div className="modal fade" id="myModal9" data-keyboard="false" data-backdrop="static" style={{zIndex:10000}}>
+			<div className="modal fade" id="myModal9" data-keyboard="false" data-backdrop="static" style={{zIndex:10000, marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1522,7 +1525,7 @@ class San_Kho_Bau extends React.Component {
 			</div>
 
 			{/* <!-- The Modal báo lỗi--> */}
-			<div className="modal fade" id="myModal11">
+			<div className="modal fade" id="myModal11" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1542,7 +1545,7 @@ class San_Kho_Bau extends React.Component {
 					</div>
 				</div>
 			</div>
-			<div className="modal fade" id="myModal12">
+			<div className="modal fade" id="myModal12" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1567,7 +1570,7 @@ class San_Kho_Bau extends React.Component {
 				</div>
 			</div>
 
-			<div className="modal fade" id="myModal13">
+			<div className="modal fade" id="myModal13" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 

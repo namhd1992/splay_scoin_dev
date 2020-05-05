@@ -133,6 +133,7 @@ class Vong_Quay_May_Man extends React.Component {
 			user:{},
 			xacthuc:false,
 			idLucky:0,
+			rangeTop:0,
 			scoin_token:'H1PuNJ%2bcoqqf5LuMQVl44l5tq2B%2fnmMeVu7rmeAlNtN0b2UtVW8Xhmgtsqg4zxddzORW2Hcq9ZSwVmWTs8FIj%2fxn0BwYMA3D25kLeBZL1WsOAFk8%2biMrn4yXSPfirVg4CewsAjzKgUjU6gQ%2b2Z69FZrhs9HXS5wbO0JujzdXatknDxxHCtqaoiTxhzDdkGEr',
 		};
 	}
@@ -245,6 +246,8 @@ class Vong_Quay_May_Man extends React.Component {
 		loadedImg.src = rotaion;
 		this.setState({theWheel:theWheel})
 		window.addEventListener('scroll', this.handleScroll);
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 	componentWillUnmount() {
@@ -802,14 +805,14 @@ class Vong_Quay_May_Man extends React.Component {
 
 	render() {
 		const {xacthuc, scoinCard,height, width, dialogLoginOpen, dialogBonus, auto, dialogWarning, textWarning, isLogin, userTurnSpin, day, hour, minute, second, code,numberPage, img_status, message_status, data_auto,message_error,linkLiveStream,
-			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished, hour_live, minute_live, second_live, isLive, user}=this.state;
+			 activeTuDo, activeHistory, activeCodeBonus, activeVinhDanh, limit, countCodeBonus, countTuDo, countHistory, countVinhDanh, listHistory, listCodeBonus, listTuDo, listVinhDanh,itemBonus, turnsFree, noti_mdt, noti_tudo, finished, hour_live, minute_live, second_live, isLive, user, rangeTop}=this.state;
 		const { classes } = this.props;
 		const notification_mdt=noti_mdt?(<span className="badge badge-pill badge-danger position-absolute noti-mdt">!</span>):(<span></span>);
 		const notification_tudo=noti_tudo?(<span className="badge badge-pill badge-danger position-absolute noti-tudo">!</span>):(<span></span>);
 		return (
 		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
-			<div className="container-fluid page1">
+			<div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
 					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" width="500" className="img-fluid" /></h1>
 					<div className="container">
@@ -961,7 +964,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* The Modal Phần thưởng */}
-			<div className="modal fade" id="myModal">
+			<div className="modal fade" id="myModal" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -985,7 +988,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* The Modal Thể lệ */}
-			<div className="modal fade" id="myModal1" style={{zIndex:10000}}>
+			<div className="modal fade" id="myModal1" style={{zIndex:10000, marginTop:rangeTop}} >
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1022,7 +1025,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 			{/* The Modal Tủ đồ */}
-			<div className="modal fade" id="myModal2" style={{zIndex:10001}}>
+			<div className="modal fade" id="myModal2" style={{zIndex:10001, marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1124,7 +1127,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 
 			{/* The Modal Mã dự thưởng */}
-			<div className="modal fade" id="myModal3" style={{zIndex:10002}}>
+			<div className="modal fade" id="myModal3" style={{zIndex:10002, marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1184,7 +1187,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* The Modal Thông báo chúc mừng */}
-			<div className="modal" id="myModal4">
+			<div className="modal" id="myModal4" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1237,7 +1240,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Thông báo đăng nhập--> */}
-			<div className="modal fade" id="myModal5">
+			<div className="modal fade" id="myModal5" style={{ marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1260,7 +1263,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 			{/* <!-- The Modal Thông báo đăng nhập--> */}
-			<div className="modal fade" id="myModal6" style={{zIndex:10002}}>
+			<div className="modal fade" id="myModal6" style={{zIndex:10002, marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1284,7 +1287,7 @@ class Vong_Quay_May_Man extends React.Component {
 				</div>
 			</div>
 
-			<div className="modal fade" id="myModal8">
+			<div className="modal fade" id="myModal8" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1308,7 +1311,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div>
 
 
-			<div className="modal fade" id="myModal9" data-keyboard="false" data-backdrop="static" style={{zIndex:10000}}>
+			<div className="modal fade" id="myModal9" data-keyboard="false" data-backdrop="static" style={{zIndex:10000, marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1336,7 +1339,7 @@ class Vong_Quay_May_Man extends React.Component {
 				</div>
 			</div>
 
-			<div className="modal fade" id="myModal10">
+			<div className="modal fade" id="myModal10" style={{marginTop:rangeTop}}>
 				<div className="modal-dialog">
 					<div className="modal-content popup-phanthuong">
 
@@ -1423,7 +1426,7 @@ class Vong_Quay_May_Man extends React.Component {
 				</div>
 				</div>
 
-				<div className="modal fade" id="myModal11">
+				<div className="modal fade" id="myModal11" style={{marginTop:rangeTop}}>
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 
@@ -1443,7 +1446,7 @@ class Vong_Quay_May_Man extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className="modal fade" id="myModal12">
+				<div className="modal fade" id="myModal12" style={{marginTop:rangeTop}}>
 					<div className="modal-dialog">
 						<div className="modal-content popup-phanthuong">
 

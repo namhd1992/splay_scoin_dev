@@ -42,6 +42,7 @@ class MissionComponent extends React.Component {
 			height:0,
 			paddingL:0,
 			dataMission:{},
+			rangeTop:0,
 		};
 	}
 
@@ -58,6 +59,11 @@ class MissionComponent extends React.Component {
 			padding_l=0;
 		}
 		this.setState({paddingL:padding_l, year:n});
+	}
+
+	componentDidMount(){
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 
@@ -136,10 +142,10 @@ class MissionComponent extends React.Component {
 		const { theme } = this.props;
 		const { classes } = this.props;
 		const { secondary } = theme.palette;
-		const {dataMission, year}=this.state;
+		const {dataMission, year, rangeTop}=this.state;
 
 		return (<div>
-					<div class="container py-3" style={{marginTop:55}}>
+					<div id="top" class="container py-3" style={{marginTop:55}}>
 						<div class="row">
 							<div class="col-sm-9 px-1">
 								<div class="bg-white p-3 mb-2 shadow-ssm card border-0">
@@ -246,7 +252,7 @@ class MissionComponent extends React.Component {
 					Copyright {year} VTC Mobile. All rights reserved </p>
 					</div>
 					{/* <!-- The Modal Thong tin phan thuong --> */}
-					<div class="modal fade" id="myModal">
+					<div class="modal fade" id="myModal" style={{marginTop:rangeTop}}>
 					<div class="modal-dialog">
 						<div class="modal-content">
 
@@ -323,7 +329,7 @@ class MissionComponent extends React.Component {
 
 
 					{/* <!-- The Modal Thong báo --> */}
-					<div class="modal fade" id="notification">
+					<div class="modal fade" id="notification" style={{marginTop:rangeTop}}>
 						<div class="modal-dialog">
 							<div class="modal-content">
 
