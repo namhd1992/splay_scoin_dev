@@ -10,6 +10,7 @@ font-weight:normal;
 font-style:normal;
 }
 /* .modal {margin-top: 55px;} */
+
 .div-vqmm {font-family: 'helvetica' !important; margin-top: 50px;}
 html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png);  background-position: top center; background-repeat: no-repeat;}
@@ -219,6 +220,9 @@ a.btn-dv:hover {color: #ffd102;}
 	}
 }
 @media (max-width: 640px) {
+	#top{
+		margin-top: 58px;
+	}
 	.download{
 		display: none !important;
 	}
