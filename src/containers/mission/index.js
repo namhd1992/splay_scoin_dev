@@ -131,11 +131,11 @@ class Mission extends React.Component {
 	}
 
 	loginGame=(obj)=>{
-		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+		window.location.replace(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 
 	firstLoginGame=(obj)=>{
-		window.location.assign(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
+		window.location.replace(`http://sandbox.scoin.vn/splay?url=gamedetail%3Fservice_id%3D${obj.objectId}`)
 	}
 
 	card=()=>{
