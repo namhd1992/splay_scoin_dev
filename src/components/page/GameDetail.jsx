@@ -319,6 +319,7 @@ class GameDetailComponent extends React.Component {
 
 	closeAward=()=>{
 		$('#award_success').removeClass('show d-block').addClass('fade')
+		$("#award_success").modal({backdrop: false});
 	}
 	
 	closeError=()=>{
@@ -328,6 +329,8 @@ class GameDetailComponent extends React.Component {
 	awards=(item)=>{
 		this.props.awards(item);
 		$('#award_success').addClass('show d-block')
+		$("#award_success").modal({backdrop: true});
+		$("#award_success").css({paddingRight: 0});
 	}
 
 
