@@ -220,6 +220,7 @@ a.btn-dv:hover {color: #ffd102;}
 	}
 }
 @media (max-width: 640px) {
+	.div-vqmm {margin-top: 55px;}
 	.container-gamedetail{
 		margin-top: 55px;
 	}
