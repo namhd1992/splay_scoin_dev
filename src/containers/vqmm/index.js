@@ -1204,12 +1204,12 @@ class Vong_Quay_May_Man extends React.Component {
 									<div>
 										<div className="text-chucmung text-center" style={{marginTop:70}}>
 											<span className="text-white">Bạn vừa quay vào ô</span>
-											<span className="pt-1 d-block" style={{lineHeight:20}}>Mã số dự thưởng iPhone 11 Pro Max 256GB đã được lưu trong Mã dự thưởng.</span>
+											<span className="pt-1 d-block" style={{lineHeight:"20px"}}>Mã số dự thưởng iPhone 11 Pro Max 256GB đã được lưu trong Mã dự thưởng.</span>
 											{/* <span className="pt-1 d-block">Bạn vừa nhận được Mã số dự thưởng giải hiện vật <span style={{fontWeight:'bold'}}>iPhone 11 Pro Max 256GB</span></span> */}
 										</div>
 										{/* <p style={{textAlign:'center', fontSize:30, fontWeight:'bold'}}>{itemBonus.value}</p> */}
 									
-										<p className="small pt-2 mb-2 text-center" style={{lineHeight:20}}>So KQ Mã số dự thưởng vào lúc 19:00 ngày 04/11/2019.<br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalCodeBonus}>Xem phần thưởng</label></p>
+										<p className="small pt-2 mb-2 text-center" style={{lineHeight:"20px"}}>So KQ Mã số dự thưởng vào lúc 19:00 ngày 04/11/2019.<br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalCodeBonus}>Xem phần thưởng</label></p>
 										<button type="button" className="btn btn-xacnhan text-white btn-block text-center" onClick={this.hideModalDetailBonus}>Xác nhận</button>
 									</div>
 									):(
@@ -1217,12 +1217,12 @@ class Vong_Quay_May_Man extends React.Component {
 										{(scoinCard)?(<div><div className="text-chucmung text-center" style={{marginTop:70}}>
 											<span>Bạn vừa quay vào ô <span style={{color:'red'}}>thẻ Scoin {itemBonus.value}VND</span></span>
 										</div>
-										<p className="small pt-2 mb-2 text-center" style={{lineHeight:20}}>(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p></div>):(
+										<p className="small pt-2 mb-2 text-center" style={{lineHeight:"20px"}}>(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p></div>):(
 											<div>
 											<div className="text-chucmung text-center" style={{marginTop:70}}>
 											<span style={{lineHeight:20}}>{itemBonus.winningTitle}</span>
 										</div>
-										<p className="small pt-2 mb-2 text-center" style={{lineHeight:20}}>(Phần thưởng đã được cộng vào ví Scoin)</p>
+										<p className="small pt-2 mb-2 text-center" style={{lineHeight:"20px"}}>(Phần thưởng đã được cộng vào ví Scoin)</p>
 										</div>
 										)}
 									

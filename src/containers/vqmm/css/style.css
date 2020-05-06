@@ -11,7 +11,7 @@ font-style:normal;
 }
 /* .modal {margin-top: 55px;} */
 
-.div-vqmm {font-family: 'helvetica' !important;}
+.div-vqmm {font-family: 'helvetica' !important; background-color: #FFFFFF;}
 html {scroll-behavior: smooth;}
 .page1 {background-image:url(../images/bg1.png);  background-position: top center; background-repeat: no-repeat;}
 .content-inner-p1 {height: 1100px; width: 100%; position: relative; background-image:url(../images/bg1a.png) ; background-position: center 270px; background-repeat: no-repeat; overflow: hidden}
@@ -220,7 +220,6 @@ a.btn-dv:hover {color: #ffd102;}
 	}
 }
 @media (max-width: 640px) {
-	.div-vqmm{margin-top: 55px;}
 	.container-gamedetail{
 		margin-top: 55px;
 	}
