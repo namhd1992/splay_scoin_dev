@@ -62,8 +62,8 @@ class MissionComponent extends React.Component {
 	}
 
 	componentDidMount(){
-		// var testDiv = document.getElementById("top");
-		// this.setState({rangeTop: testDiv.offsetTop+15})
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 
@@ -145,8 +145,7 @@ class MissionComponent extends React.Component {
 		const {dataMission, year, rangeTop}=this.state;
 
 		return (<div>
-					{/* <div id="top" class="container py-3 container-gamedetail"> */}
-					<div class="container py-3">
+					<div id="top" class="container py-3 container-gamedetail">
 						<div class="row">
 							<div class="col-sm-9 px-1">
 								<div class="bg-white p-3 mb-2 shadow-ssm card border-0">
