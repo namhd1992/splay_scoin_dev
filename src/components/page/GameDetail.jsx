@@ -739,7 +739,7 @@ class GameDetailComponent extends React.Component {
 							/>
 						))}
 
-					<div class={show_award ? "modal fade show d-block" : "modal fade"} id="award_success" style={{marginTop:rangeTop, zIndex:10006}}>
+					<div class={show_award ? "modal fade show d-block" : "modal fade"} id="award_success" style={{marginTop:rangeTop, zIndex:10006, backgroundColor:"rgba(0,0,0,0.6)"}}>
 						<div class="modal-dialog">
 							<div class="modal-content">
 
