@@ -1220,7 +1220,7 @@ class Vong_Quay_May_Man extends React.Component {
 										<p className="small pt-2 mb-2 text-center" style={{lineHeight:"20px"}}>(Phần thưởng đã được chuyển vào Tủ đồ sự kiện) <br /><label title="Xem phần thưởng" className="underline pt-2 d-block" style={{color:"#fff", cursor:'pointer'}} onClick={this.showModalTuDo}>Xem phần thưởng</label></p></div>):(
 											<div>
 											<div className="text-chucmung text-center" style={{marginTop:70}}>
-											<span style={{lineHeight:20}}>{itemBonus.winningTitle}</span>
+											<span style={{lineHeight:"20px"}}>{itemBonus.winningTitle}</span>
 										</div>
 										<p className="small pt-2 mb-2 text-center" style={{lineHeight:"20px"}}>(Phần thưởng đã được cộng vào ví Scoin)</p>
 										</div>
