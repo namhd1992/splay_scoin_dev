@@ -440,8 +440,17 @@ class GameDetailComponent extends React.Component {
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
 							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
-								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết X</h2>
-
+								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
+								<div className="scrollImg">
+									
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+								</div>
 								<div>
 									{(showMore) ? (
 										<div style={{ position: "relative", padding: "10px" }}>
