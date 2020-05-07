@@ -464,7 +464,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 										</Slider> */}
-										{/* <div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+										<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
 											<div style={{ display: "flex" }}>
 											{arrScreenShot.map((obj, key) => (
 												<div key={key} style={{marginRight:5}}>
@@ -483,7 +483,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 											</div>
-										</div> */}
+										</div>
 									</Grid>
 								</div>
 								<div>
@@ -619,10 +619,10 @@ class GameDetailComponent extends React.Component {
 								
 								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp Game</span></button></a>                
 							</div>
-							{/* <div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
+							<div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
 								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 								
-							</div> */}
+							</div>
 							
 							<div class="bg-white p-3 mb-2 card border-0 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
