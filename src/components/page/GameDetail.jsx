@@ -467,7 +467,7 @@ class GameDetailComponent extends React.Component {
 										<div style={{ overflowX: "scroll", overflowY: "hidden", whiteSpace:"nowrap"}}>
 											{arrScreenShot.map((obj, key) => (
 												<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
-													<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
+													<img src={obj} width= "100px" height="100px" />
 													{/* <div onClick={() => this.openLightBox(key)} style={{
 														backgroundImage: "url(" + obj + ")",
 														backgroundRepeat: "no-repeat",
