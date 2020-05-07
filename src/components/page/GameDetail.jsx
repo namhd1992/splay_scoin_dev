@@ -464,7 +464,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 										</Slider> */}
-										{/* <div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+										<div style={{ width: "100%", overflowX: "hidden"}}>
 											<div style={{ display: "flex" }}>
 											{arrScreenShot.map((obj, key) => (
 												<div key={key} style={{marginRight:5}}>
@@ -483,7 +483,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 											</div>
-										</div> */}
+										</div>
 									</Grid>
 								</div>
 								<div>
