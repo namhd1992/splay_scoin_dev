@@ -619,10 +619,10 @@ class GameDetailComponent extends React.Component {
 								
 								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp Game</span></button></a>                
 							</div>
-							<div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
+							{/* <div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
 								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 								
-							</div>
+							</div> */}
 							
 							<div class="bg-white p-3 mb-2 card border-0 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
@@ -780,6 +780,195 @@ class GameDetailComponent extends React.Component {
 							</div>
 						</div>
 					</div>
+
+
+					<div class="modal p-0" id="bxhmodal" style={{marginTop:rangeTop}}>
+						<div class="modal-dialog">
+							<div class="modal-content">
+							<div class="modal-body py-2 px-1">
+								<ul class="nav nav-tabs nav-justified">
+								<li class="nav-item" onClick={this.changeTabBXH}>
+									<a class={active_bxh ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"}  data-toggle="tab" href="#bxh" onClick={()=>this.showBXH(week)}>BXH</a>
+								</li>
+								<li class="nav-item" onClick={this.changeTabTheLe}>
+									<a class={active_thele ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"} data-toggle="tab" href="#thele">Thể lệ</a>
+								</li>
+								<li class="nav-item" onClick={this.changeTabPhucLoi}>
+									<a class={active_phucloi ? "nav-link active text-danger font-weight-bold" : "nav-link text-danger font-weight-bold"} data-toggle="tab" href="#phucloi" onClick={this.showRanking}>Phúc lợi</a>
+								</li>
+								<li class="">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</li>
+								</ul>
+								
+								<div class="tab-content">
+								<div class="tab-pane active" id="bxh">
+									<ul class="nav nav-pills nav-justified mt-3" style={{lineHeight:'15px'}}>
+									<li class="nav-item">
+										<a class="nav-link text-secondary active small" data-toggle="pill" href="#tuantruongnua" onClick={()=>this.showBXH('WEEK_BEFORE_LAST')}>Tuần trước nữa</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-secondary small" data-toggle="pill" href="#tuantruoc" onClick={()=>this.showBXH('')}>Tuần trước</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay" onClick={()=>this.showBXH('THIS_WEEK')}>Tuần này</a>
+									</li>
+									</ul>
+									
+									<div class="tab-content">
+									<div class="tab-pane active" id="tuantruongnua">
+										<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
+											<thead>
+											<tr>
+												<th>Top</th>
+												<th>Tên NV</th>
+												<th>Rank</th>
+											</tr>
+											</thead>
+											<tbody>
+												{users.map((obj, key) => (
+													<tr key={key}>
+														<td>{obj.position}</td>
+														<td>{obj.userName}</td>
+														<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+										<h6 class="text-left"><span class="badge badge-pill badge-info">#</span> Thứ hạng của bạn</h6>
+										<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
+											<tbody>
+											{(data_bxh.myPosition > 0 && data_bxh.myPosition < 100) ? (<tr>
+												<td>{data_bxh.myPosition}</td>
+												<td>{data_bxh.myGameName}</td>
+												<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+											</tr>):(<tr>
+												<td colspan="2">Chỉ thống kê đến Top 100. <a href="https://scoin.vn/nap-game" target="_blank">Nạp thêm</a> hoặc <a data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ</a></td>
+											</tr>)}
+											</tbody>
+										</table>
+										
+									</div>
+									<div class="tab-pane fade" id="tuantruoc">
+										<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
+											<thead>
+											<tr>
+												<th>Top</th>
+												<th>Tên NV</th>
+												<th>Rank</th>
+											</tr>
+											</thead>
+											<tbody>
+												{users.map((obj, key) => (
+													<tr key={key}>
+														<td>{obj.position}</td>
+														<td>{obj.userName}</td>
+														<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+										<h6 class="text-left"><span class="badge badge-pill badge-info">#</span> Thứ hạng của bạn</h6>
+										<table class="table table-striped text-center mt-3 small">
+											<tbody>
+											{(data_bxh.myPosition > 0 && data_bxh.myPosition < 100) ? (<tr>
+												<td>{data_bxh.myPosition}</td>
+												<td>{data_bxh.myGameName}</td>
+												<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+											</tr>):(<tr>
+												<td colspan="2">Chỉ thống kê đến Top 100. <a href="https://scoin.vn/nap-game" target="_blank">Nạp thêm</a> hoặc <a data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ</a></td>
+											</tr>)}
+											</tbody>
+										</table>
+									</div>
+									<div class="tab-pane fade" id="tuannay">
+										<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
+											<thead>
+											<tr>
+												<th>Top</th>
+												<th>Tên NV</th>
+												<th>Rank</th>
+											</tr>
+											</thead>
+											<tbody>
+												{users.map((obj, key) => (
+													<tr key={key}>
+														<td>{obj.position}</td>
+														<td>{obj.userName}</td>
+														<td>{obj.rankName} {(obj.rankIconUrl!==null)?(<img src={obj.rankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+													</tr>
+												))}
+											</tbody>
+										</table>
+										<h6 class="text-left"><span class="badge badge-pill badge-info">#</span> Thứ hạng của bạn</h6>
+										<table class="table table-striped text-center mt-3 small">
+											<tbody>
+											{(data_bxh.myPosition > 0 && data_bxh.myPosition < 100) ? (<tr>
+												<td>{data_bxh.myPosition}</td>
+												<td>{data_bxh.myGameName}</td>
+												<td>{data_bxh.myRankName} {(data_bxh.myRankIconUrl!==null)?(<img src={data_bxh.myRankIconUrl} width="30" height="30" />):(<div></div>)}</td>
+											</tr>):(<tr>
+												<td colspan="2">Chỉ thống kê đến Top 100. <a href="https://scoin.vn/nap-game" target="_blank">Nạp thêm</a> hoặc <a data-toggle="tab" href="#thele" onClick={this.changeTabTheLe}>Xem thể lệ</a></td>
+											</tr>)}
+											</tbody>
+										</table>
+									</div>
+									</div>          
+								</div>
+								<div class="tab-pane fade small" id="thele">
+									<div style={{ lineHeight:'20px', padding: "30px 10px 10px 10px" }}
+										dangerouslySetInnerHTML={{ __html: data_bxh.gameRule }}>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="phucloi">
+									<h6 class="text-center mt-3">Rank tuần trước</h6>
+									<ul class="nav nav-pills nav-justified">
+										{data_ranking.map((obj, key) => {
+											return (<li class="nav-item" key={key} style={{cursor:'pointer'}}>
+												<a class={rankPosition===obj.rankPosition ? "nav-link active" : "nav-link"} data-toggle="pill" onClick={()=>this.changeRanking(obj)} ><img class="img-shadow" src={obj.rankIconUrl} width="72"/></a>
+											</li>)}
+										)}
+									</ul>
+									<div class="tab-content">
+										{data_ranking.map((obj, key) => (
+											<div class={rankPosition===obj.rankPosition ? "tab-pane active" : "tab-pane"}>
+												{(obj.rankPosition===myPosition)?(<div>
+												<h6 class="text-center mt-3">Quà nhận được <br /><span class="text-danger small">Hết hạn sau: {day} ngày {hour}h {minute}p {second}s</span></h6>
+													<div class="row pt-3">
+														{items.map((item, k)=>{
+															return (<div class="col-3 pr-1 pl-3 text-center">
+															<a class="text-secondary" style={{cursor:'pointer'}} onClick={()=>this.awards(item)}>
+																<img class="zoom" src={item.itemIconUrl} width="60" height="60" alt={item.itemName} />
+																<h4 class="small pt-2" style={{color:'black'}}>{item.itemName}</h4>
+															</a>
+														</div>)
+														})}
+													
+													</div>
+												</div>):(<div>
+													<h6 class="text-center mt-3 text-danger small">Xếp hạng của bạn trong chu kỳ trước không thuộc Rank này</h6>
+													
+													<div class="row pt-3">
+														{items.map((item, k)=>{
+															return (<div class="col-3 pr-1 pl-3 text-center">
+																<a class="text-secondary" title="">
+																	<img src={item.itemIconUrl} width="60" height="60" alt={item.itemName} style={{filter: 'grayscale(100%)'}} />
+																		<h4 class="small pt-2">{item.itemName}</h4>
+																</a>
+															</div>)
+														})}
+													</div>
+												</div>)}
+											</div>
+										))}
+									</div>  
+								</div>
+								</div>
+							</div>
+
+							</div>
+						</div>
+						</div>
 
 		</div>):(<div></div>)
 	}
