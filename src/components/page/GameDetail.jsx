@@ -443,13 +443,54 @@ class GameDetailComponent extends React.Component {
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div className="scrollImg">
 									
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+								</div>
+								<div>
+									{(showMore) ? (
+										<div style={{ position: "relative", padding: "10px" }}>
+											<div style={{ lineHeight:'20px' }}
+												dangerouslySetInnerHTML={{ __html: gameData.description }}>
+											</div>
+											<a style={{
+													color: '#00cc00',
+													cursor:'pointer',
+													textAlign: "center",
+													width: "100%",
+													display: "block",
+													position: "absolute",
+													paddingTop: "20px",
+													marginTop: "-30px",
+													
+												}} onClick={() => this.compact()}>Thu gọn</a>
+										</div>
+									) : (<div style={{ position: "relative", padding: "10px" }}>
+										<HTMLEllipsis
+											unsafeHTML={gameData.description}
+											maxLine='5'
+											ellipsis='...'
+											basedOn='letters'
+											style={{lineHeight:"20px", fontSize:14}}
+										/>
+										<a style={{
+											color: '#00cc00',
+											cursor:'pointer',
+											textAlign: "center",
+											width: "100%",
+											display: "block",
+											position: "absolute",
+											paddingTop: "20px",
+											marginTop: "-40px",
+											background: "linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.6), rgba(255,255,255,.9), rgba(255,255,255,1))"
+											
+										}} onClick={() => this.readMore()}>Xem thêm</a>
+									</div>
+										)}
 								</div>
 							</div>
 							{/* {(youtubeData !== undefined && youtubeData.length > 0) ? (
