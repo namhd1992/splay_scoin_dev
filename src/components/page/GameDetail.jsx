@@ -442,23 +442,14 @@ class GameDetailComponent extends React.Component {
 							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết X</h2>
 								<div className="scrollImg">
-									{arrScreenShot.map((obj, key) => (
-										<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
-											<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
-											{/* <div onClick={() => this.openLightBox(key)} style={{
-												backgroundImage: "url(" + obj + ")",
-												backgroundRepeat: "no-repeat",
-												backgroundPosition: "center",
-												backgroundSize: "contain",
-												with: "100%",
-												width: widthScreenShot,
-												height:heightScreenShot,
-												margin:this.state.margin,
-												paddingBottom: this.state.paddingBottom
-											}}>
-											</div> */}
-										</span>
-									))}
+									
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
+									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="200px" height="400px" />
 								</div>
 								<div>
 									{(showMore) ? (
