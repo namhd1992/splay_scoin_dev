@@ -464,11 +464,11 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 										</Slider> */}
-										<div style={{ width: "100%", overflowX: "hidden"}}>
-											<div style={{ display: "flex" }}>
+										<div style={{ width: "100%", overflowX: "auto", display:'flex'}}>
 											{arrScreenShot.map((obj, key) => (
-												<div key={key} style={{marginRight:5}}>
-													<div onClick={() => this.openLightBox(key)} style={{
+												<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
+													<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
+													{/* <div onClick={() => this.openLightBox(key)} style={{
 														backgroundImage: "url(" + obj + ")",
 														backgroundRepeat: "no-repeat",
 														backgroundPosition: "center",
@@ -479,10 +479,9 @@ class GameDetailComponent extends React.Component {
 														margin:this.state.margin,
 														paddingBottom: this.state.paddingBottom
 													}}>
-													</div>
-												</div>
+													</div> */}
+												</span>
 											))}
-											</div>
 										</div>
 									</Grid>
 								</div>
