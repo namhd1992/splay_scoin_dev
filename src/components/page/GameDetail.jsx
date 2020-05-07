@@ -464,7 +464,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 										</Slider> */}
-										<div style={{ width: "100%", overflowX: "auto", display:"-webkit-flex"}}>
+										<div style={{ overflowX: "scroll", overflowY: "hidden", whiteSpace:"nowrap"}}>
 											{arrScreenShot.map((obj, key) => (
 												<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
 													<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
