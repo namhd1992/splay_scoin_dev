@@ -440,50 +440,25 @@ class GameDetailComponent extends React.Component {
 								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
 							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
-								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
-								<div id="demo" class="carousel slide pb-" data-ride="carousel" data-touch="true" data-wrap="true">
-									<Grid item xs={12} style={{
-									width: "100%",
-									overflow: "hidden",
-									padding:"0px 10px"
-									}}>
-										{/* <Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
-											{arrScreenShot.map((obj, key) => (
-												<div key={key} style={{}}>
-													<div onClick={() => this.openLightBox(key)} style={{
-														backgroundImage: "url(" + obj + ")",
-														backgroundRepeat: "no-repeat",
-														backgroundPosition: "center",
-														backgroundSize: "contain",
-														with: "100%",
-														height:this.state.height,
-														margin:this.state.margin,
-														paddingBottom: this.state.paddingBottom
-													}}>
-													</div>
-												</div>
-											))}
-										</Slider> */}
-										<div className="scrollImg">
-											{arrScreenShot.map((obj, key) => (
-												<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
-													<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
-													{/* <div onClick={() => this.openLightBox(key)} style={{
-														backgroundImage: "url(" + obj + ")",
-														backgroundRepeat: "no-repeat",
-														backgroundPosition: "center",
-														backgroundSize: "contain",
-														with: "100%",
-														width: widthScreenShot,
-														height:heightScreenShot,
-														margin:this.state.margin,
-														paddingBottom: this.state.paddingBottom
-													}}>
-													</div> */}
-												</span>
-											))}
-										</div>
-									</Grid>
+								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết X</h2>
+								<div className="scrollImg">
+									{arrScreenShot.map((obj, key) => (
+										<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
+											<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
+											{/* <div onClick={() => this.openLightBox(key)} style={{
+												backgroundImage: "url(" + obj + ")",
+												backgroundRepeat: "no-repeat",
+												backgroundPosition: "center",
+												backgroundSize: "contain",
+												with: "100%",
+												width: widthScreenShot,
+												height:heightScreenShot,
+												margin:this.state.margin,
+												paddingBottom: this.state.paddingBottom
+											}}>
+											</div> */}
+										</span>
+									))}
 								</div>
 								<div>
 									{(showMore) ? (
