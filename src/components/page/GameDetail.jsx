@@ -464,10 +464,10 @@ class GameDetailComponent extends React.Component {
 												</div>
 											))}
 										</Slider> */}
-										<div style={{ overflowX: "scroll", overflowY: "hidden", whiteSpace:"nowrap"}}>
+										<div className="scrollImg">
 											{arrScreenShot.map((obj, key) => (
 												<span key={key} style={{marginRight:5}} onClick={() => this.openLightBox(key)}>
-													<img src={obj} width= "100px" height="100px" />
+													<img src={obj} width= {widthScreenShot} height={heightScreenShot} />
 													{/* <div onClick={() => this.openLightBox(key)} style={{
 														backgroundImage: "url(" + obj + ")",
 														backgroundRepeat: "no-repeat",

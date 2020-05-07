@@ -435,6 +435,15 @@ filter: contrast(150%);
 
 
 /*end success check*/
+
+
+.scrollImg{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+
 @media (max-width: 992px) {
 	.box-social {display: none;}
 	.md-box-social {position: absolute; top: 0; right: 10px;}
