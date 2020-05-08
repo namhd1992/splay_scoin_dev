@@ -465,7 +465,7 @@ class GameDetailComponent extends React.Component {
 											))}
 										</Slider> */}
 										<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-											{(isMobile)?(<div style={{ display: "flex", width:iframeWidth-10 }}>
+											{(isMobile)?(<div style={{ display: "flex", width:iframeWidth-60 }}>
 											{arrScreenShot.map((obj, key) => (
 												<div key={key} style={{marginRight:5}}>
 													<div onClick={() => this.openLightBox(key)} style={{
