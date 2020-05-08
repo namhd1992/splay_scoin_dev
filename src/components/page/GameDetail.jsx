@@ -441,15 +441,68 @@ class GameDetailComponent extends React.Component {
 							</div>
 							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
-								<div className="scrollImg">
-									
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
-									<img src="http://171.244.14.44:9091/resources/image/1587348370250-1242x2208-1.jpg" width="100%" />
+								<div id="demo" class="carousel slide pb-" data-ride="carousel" data-touch="true" data-wrap="true">
+									<Grid item xs={12} style={{
+									width: "100%",
+									overflow: "hidden",
+									padding:"0px 10px"
+									}}>
+										{/* <Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
+											{arrScreenShot.map((obj, key) => (
+												<div key={key} style={{}}>
+													<div onClick={() => this.openLightBox(key)} style={{
+														backgroundImage: "url(" + obj + ")",
+														backgroundRepeat: "no-repeat",
+														backgroundPosition: "center",
+														backgroundSize: "contain",
+														with: "100%",
+														height:this.state.height,
+														margin:this.state.margin,
+														paddingBottom: this.state.paddingBottom
+													}}>
+													</div>
+												</div>
+											))}
+										</Slider> */}
+										<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+											{(isMobile)?(<div style={{ display: "flex", width:iframeWidth }}>
+											{arrScreenShot.map((obj, key) => (
+												<div key={key} style={{marginRight:5}}>
+													<div onClick={() => this.openLightBox(key)} style={{
+														backgroundImage: "url(" + obj + ")",
+														backgroundRepeat: "no-repeat",
+														backgroundPosition: "center",
+														backgroundSize: "contain",
+														with: "100%",
+														width: widthScreenShot,
+														height:heightScreenShot,
+														margin:this.state.margin,
+														paddingBottom: this.state.paddingBottom
+													}}>
+													</div>
+												</div>
+											))}
+											</div>):(<div style={{ display: "flex" }}>
+											{arrScreenShot.map((obj, key) => (
+												<div key={key} style={{marginRight:5}}>
+													<div onClick={() => this.openLightBox(key)} style={{
+														backgroundImage: "url(" + obj + ")",
+														backgroundRepeat: "no-repeat",
+														backgroundPosition: "center",
+														backgroundSize: "contain",
+														with: "100%",
+														width: widthScreenShot,
+														height:heightScreenShot,
+														margin:this.state.margin,
+														paddingBottom: this.state.paddingBottom
+													}}>
+													</div>
+												</div>
+											))}
+											</div>)}
+											
+										</div>
+									</Grid>
 								</div>
 								<div>
 									{(showMore) ? (
@@ -647,51 +700,6 @@ class GameDetailComponent extends React.Component {
 							</DialogActions>
 						</Dialog>
 
-
-						{/* <Dialog
-							fullScreen={false}
-							open={show_award}
-							onClose={this.props.closeAward}
-							aria-labelledby="responsive-dialog-title"
-							classes={{ paper: classes.paper }}
-						>
-							<DialogContent>
-								<div class="small" style={{paddingRight:40, paddingLeft:40, lineHeight:"30px"}}>
-									<span style={{fontWeight:'bold', fontSize:16}}>Tên phúc lợi:</span> <br></br>
-								  	<span>{item_award.itemName}</span><br></br>
-									<span style={{fontWeight:'bold', fontSize:16, marginTop:10}}>Nội dung:</span> <br></br>
-								  	<span>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
-									{(item_award.consumable)?(<span style={{color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
-								</div>
-							</DialogContent>
-							<DialogActions>
-								<div>
-									<Button onClick={this.props.closeAward} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
-								</div>
-							</DialogActions>
-						</Dialog>
-
-						<Dialog
-							fullScreen={false}
-							open={show_award_error}
-							onClose={this.props.closeError}
-							aria-labelledby="responsive-dialog-title"
-							classes={{ paper: classes.paper }}
-						>
-							<DialogContent>
-								<div>
-									{message_error}
-								</div>
-							</DialogContent>
-							<DialogActions>
-								<div>
-									<Button onClick={this.props.closeError} style={{ color: "#fe8731", borderRadius:"20px" }}>Đóng</Button>
-								</div>
-							</DialogActions>
-						</Dialog> */}
-
-
-
 						{((arrImages !== undefined) && (
 							<Lightbox
 								images={arrImages}
@@ -765,7 +773,6 @@ class GameDetailComponent extends React.Component {
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</li>
 								</ul>
-								
 								<div class="tab-content">
 								<div class="tab-pane active" id="bxh">
 									<ul class="nav nav-pills nav-justified mt-3" style={{lineHeight:'15px'}}>
@@ -779,7 +786,6 @@ class GameDetailComponent extends React.Component {
 										<a class="nav-link text-secondary small" data-toggle="pill" href="#tuannay" onClick={()=>this.showBXH('THIS_WEEK')}>Tuần này</a>
 									</li>
 									</ul>
-									
 									<div class="tab-content">
 									<div class="tab-pane active" id="tuantruongnua">
 										<table class="table table-striped text-center mt-3 small" style={{lineHeight:'15px'}}>
@@ -933,7 +939,7 @@ class GameDetailComponent extends React.Component {
 
 							</div>
 						</div>
-						</div>
+					</div>
 
 		</div>):(<div></div>)
 	}
