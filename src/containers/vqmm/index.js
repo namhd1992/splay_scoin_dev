@@ -812,12 +812,12 @@ class Vong_Quay_May_Man extends React.Component {
 		return (
 		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
-			{/* <div id="top" className="container-fluid page1">
+			<div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
-					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" className="img-fluid" /></h1>
+					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" width="500" className="img-fluid" /></h1>
 					<div className="container">
 						<div className="timer-vqmm float-right-vqmm" style={{float:'right'}}>
-							<img src={img_status} alt="Sự kiện đang diễn ra" className="img-fluid" />
+							<img src={img_status} alt="Sự kiện đang diễn ra" width="298" className="img-fluid" />
 							<div className="table-responsive">
 							<table className="table table-borderless text-white">
 								<tr>
@@ -841,26 +841,38 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" style={{maxWidth:"150%"}} /></a></p>
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="500" style={{maxWidth:"150%"}} /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
+							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
 							<li className="pt-5a"><a href="#bvd" title="Vinh danh">Vinh danh</a></li>
 						</ul>
 					</div>
 				</div>
-			</div> */}
+			</div>
 			{/* End p1 */}
 
 			<div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
-					<h1 className="logo-p2"><img src={logo} alt="Logo" className="img-fluid" /></h1>
+					<h1 className="logo-p2"><img src={logo} alt="Logo" width="600" className="img-fluid" /></h1>
 					<div className="vqmm">
 							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
 							</canvas>
+							{/* <canvas style={{marginTop:-(height+15), padding:0}} id="new_canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">
+								
+							</canvas> */}
+						{/* <img src={vqmm_p2} alt="Vòng quay may mắn" className="img-fluid"/>     */}
+					</div>
+					{/* <div className="btn-logout">
+						{(isLogin)?(<div><p className="p-0 m-0 text-center">Xin chào {userTurnSpin.currName}</p>
+						<h5 className="text-center" onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 className="text-center" onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
+						
+					</div> */}
 					<div className="btn-quay">
+						{/* <h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5> */}
 						<h5 className="text-center">Còn: {turnsFree ? turnsFree.toLocaleString() : 0} Xu</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
@@ -1024,8 +1036,8 @@ class Vong_Quay_May_Man extends React.Component {
 					</div>
 
 					{/* <!-- Modal body --> */}
-					<div className="modal-body" style={{lineHeight:'20px'}}>
-						<ul class="nav nav-pills nav-justified mx-auto">
+					<div className="modal-body">
+						<ul class="nav nav-pills nav-justified w-50 mx-auto">
 							<li class="nav-item">
 								<a class="nav-link active text-red" data-toggle="pill" href="#phanthuong" onClick={()=>this.getDataTuDo()}>Phần thưởng</a>
 							</li>
