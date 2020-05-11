@@ -854,7 +854,7 @@ class Vong_Quay_May_Man extends React.Component {
 			</div> */}
 			{/* End p1 */}
 
-			{/* <div id="p2" className="container-fluid page2">
+			<div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
 					<h1 className="logo-p2"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="vqmm">
@@ -875,7 +875,7 @@ class Vong_Quay_May_Man extends React.Component {
 						<li className="txt-tudo"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
 					</ul>
 				</div>
-			</div> */}
+			</div>
 			{/* End p2 */}
 
 			<div className="container jumbotron">			
