@@ -58,6 +58,12 @@ import spin from './images/spin.gif';
 import $ from 'jquery';
 import 'bootstrap';
 
+import {
+	isAndroid,
+	isIOS,
+	isMobile
+  } from "react-device-detect";
+
 const styles = {
 	paper: {
 		background: "#fff",
@@ -892,7 +898,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 			<div className="container jumbotron">			
 				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span className="txt-bvd">BẢNG VINH DANH</span></h5>
-				{/* <div className="table-responsive mt-4">
+				{(isMobile)?(<div className="table-responsive mt-4" style={{width:window.innerWidth-20}}>
 					<table className="table table-bordered tbl-bvd mx-auto text-center">            
 						<tbody className="top100">
 							{listVinhDanh.map((obj, key) => (
@@ -917,7 +923,33 @@ class Vong_Quay_May_Man extends React.Component {
 							onChange={(v) => this.handlePageChangeVinhDanh(v)}
 						/>
 					</div> 
-				</div> */}
+				</div>):(<div className="table-responsive mt-4">
+					<table className="table table-bordered tbl-bvd mx-auto text-center">            
+						<tbody className="top100">
+							{listVinhDanh.map((obj, key) => (
+								<tr key={key}>
+									<td className="border-right-0">{obj.userName}</td>
+									<td className="border-left-0 border-right-0">{obj.itemName}</td>
+									<td className="border-left-0">{obj.date}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+					<div className="pagination justify-content-center pag-custom">
+						<Pagination
+							activePage={activeVinhDanh}
+							itemsCountPerPage={10}
+							totalItemsCount={countVinhDanh}
+							pageRangeDisplayed={numberPage}
+							lastPageText={'Trang cuối'}
+							firstPageText={'Trang đầu'}
+							itemClass={"page-item"}
+							linkClass={"page-link"}
+							onChange={(v) => this.handlePageChangeVinhDanh(v)}
+						/>
+					</div> 
+				</div>)}
+				
 				<div className="w-100 justify-content-center text-center pt-5">
 					<ul className="nav nav-pills nav-justified">
 						<li className="nav-item">
