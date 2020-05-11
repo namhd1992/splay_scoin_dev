@@ -203,6 +203,7 @@ class GameDetailComponent extends React.Component {
 
 	getDataGame=(obj)=>{
 		this.props.getData(obj.scoinGameId);
+		window.scrollTo(0, 0);
 	}
 
 	goToLightBoxPrev=()=>{
@@ -607,7 +608,6 @@ class GameDetailComponent extends React.Component {
 										return (
 											
 											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
-												<a href="#top">
 												<div class="thumb-lat-the position-relative">
 													<a class="text-dark">
 														<img src={obj.bigImage} width="100%" />
@@ -617,7 +617,6 @@ class GameDetailComponent extends React.Component {
 														<div class="text text-white small">Chơi ngay &raquo;</div>
 													</div>
 												</div>
-												</a>
 											</div>
 										)
 									})}
@@ -646,7 +645,7 @@ class GameDetailComponent extends React.Component {
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
 								{gameMoi.map((obj, key)=>{
 										return (
-											<a href="#top" style={{color:'black'}} class='a_game'>
+											<a style={{color:'black'}} class='a_game'>
 											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												
 												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
