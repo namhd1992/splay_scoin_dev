@@ -237,21 +237,14 @@ class Game_detail extends React.Component {
 		const {scoin_token, id_game}=this.state;
 		switch(type) {
 			case 'TURN_LUCKYSPIN':
-			  new_item.consumable=true;
-			  new_item.show_value=item.quantity;
-			  break;
-			case 'XU':
 				new_item.consumable=true;
-				new_item.show_value=item.value;
-			  break;
+				new_item.show_value=item.quantity;
+				break;
+			case 'XU':
 			case 'SCOIN':
 				new_item.consumable=true;
 				new_item.show_value=item.value;
-			  break;
-			case 'CARD':
-				new_item.consumable=true;
-				new_item.show_value=item.value;
-			  break;
+			  	break;
 			default:
 				new_item.consumable=false;
 				new_item.show_value=item.content;
