@@ -812,7 +812,7 @@ class Vong_Quay_May_Man extends React.Component {
 		return (
 		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
-			<div id="top" className="container-fluid page1">
+			{/* <div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
 					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="container">
@@ -845,34 +845,22 @@ class Vong_Quay_May_Man extends React.Component {
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
-							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
 							<li className="pt-5a"><a href="#bvd" title="Vinh danh">Vinh danh</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			{/* End p1 */}
 
-			<div id="p2" className="container-fluid page2">
+			{/* <div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
 					<h1 className="logo-p2"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="vqmm">
 							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
 							</canvas>
-							{/* <canvas style={{marginTop:-(height+15), padding:0}} id="new_canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">
-								
-							</canvas> */}
-						{/* <img src={vqmm_p2} alt="Vòng quay may mắn" className="img-fluid"/>     */}
-					</div>
-					{/* <div className="btn-logout">
-						{(isLogin)?(<div><p className="p-0 m-0 text-center">Xin chào {userTurnSpin.currName}</p>
-						<h5 className="text-center" onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 className="text-center" onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
-						
-					</div> */}
 					<div className="btn-quay">
-						{/* <h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5> */}
 						<h5 className="text-center">Còn: {turnsFree ? turnsFree.toLocaleString() : 0} Xu</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
@@ -887,7 +875,7 @@ class Vong_Quay_May_Man extends React.Component {
 						<li className="txt-tudo"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
 					</ul>
 				</div>
-			</div>
+			</div> */}
 			{/* End p2 */}
 
 			<div className="container jumbotron">			
