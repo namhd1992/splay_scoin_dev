@@ -814,7 +814,7 @@ class Vong_Quay_May_Man extends React.Component {
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
 			<div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
-					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" width="500" className="img-fluid" /></h1>
+					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="container">
 						<div className="timer-vqmm float-right-vqmm" style={{float:'right'}}>
 							<img src={img_status} alt="Sự kiện đang diễn ra" width="298" className="img-fluid" />
@@ -1036,8 +1036,8 @@ class Vong_Quay_May_Man extends React.Component {
 					</div>
 
 					{/* <!-- Modal body --> */}
-					<div className="modal-body">
-						<ul class="nav nav-pills nav-justified w-50 mx-auto">
+					<div className="modal-body" style={{lineHeight:'20px'}}>
+						<ul class="nav nav-pills nav-justified mx-auto">
 							<li class="nav-item">
 								<a class="nav-link active text-red" data-toggle="pill" href="#phanthuong" onClick={()=>this.getDataTuDo()}>Phần thưởng</a>
 							</li>
