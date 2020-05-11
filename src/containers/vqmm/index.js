@@ -210,44 +210,44 @@ class Vong_Quay_May_Man extends React.Component {
 		}
 		this.getVinhDanh(1);
 		
-		// let theWheel = new Wheel({
-		// 	'numSegments'       : 10,         
-		// 	'outerRadius'       : 150,       
-		// 	'drawMode'          : 'image',   
-		// 	'drawText'          : true,      
-		// 	'textFontSize'      : 12,       
-		// 	'textOrientation'   : 'curved',
-		// 	'textDirection'     : 'reversed',
-		// 	'textAlignment'     : 'outer',
-		// 	'textMargin'        : 5,
-		// 	'textFontFamily'    : 'monospace',
-		// 	'textStrokeStyle'   : 'black',
-		// 	'textLineWidth'     : 2,
-		// 	'responsive'   : true,
-		// 	'textFillStyle'     : 'white',
+		let theWheel = new Wheel({
+			'numSegments'       : 10,         // Specify number of segments.
+			'outerRadius'       : 150,       // Set outer radius so wheel fits inside the background.
+			'drawMode'          : 'image',   // drawMode must be set to image.
+			'drawText'          : true,      // Need to set this true if want code-drawn text on image wheels.
+			'textFontSize'      : 12,        // Set text options as desired.
+			'textOrientation'   : 'curved',
+			'textDirection'     : 'reversed',
+			'textAlignment'     : 'outer',
+			'textMargin'        : 5,
+			'textFontFamily'    : 'monospace',
+			'textStrokeStyle'   : 'black',
+			'textLineWidth'     : 2,
+			'responsive'   : true,
+			'textFillStyle'     : 'white',
 
-		// 	'animation' :                 
-		// 	{
-		// 		'type'     : 'spinToStop',
-		// 		'duration' : 5,    
-		// 		'spins'    : 10,    
-		// 		'callbackFinished' : this.completeRotation
-		// 	}
-		// });
+			'animation' :                 
+			{
+				'type'     : 'spinToStop',
+				'duration' : 5,    
+				'spins'    : 10,    
+				'callbackFinished' : this.completeRotation
+			}
+		});
 
-		// let loadedImg = new Image();
-		// loadedImg.onload = function()
-		// {
-		// 	theWheel.wheelImage = loadedImg;   
-		// 	theWheel.draw();                    
-		// }
-		// loadedImg.width=img_width;
-		// loadedImg.height=img_height;
-		// loadedImg.src = rotaion;
-		// this.setState({theWheel:theWheel})
-		// window.addEventListener('scroll', this.handleScroll);
-		// var testDiv = document.getElementById("top");
-		// this.setState({rangeTop: testDiv.offsetTop+15})
+		let loadedImg = new Image();
+		loadedImg.onload = function()
+		{
+			theWheel.wheelImage = loadedImg;   
+			theWheel.draw();                    
+		}
+		loadedImg.width=img_width;
+		loadedImg.height=img_height;
+		loadedImg.src = rotaion;
+		this.setState({theWheel:theWheel})
+		window.addEventListener('scroll', this.handleScroll);
+		var testDiv = document.getElementById("top");
+		this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 	componentWillUnmount() {
@@ -812,7 +812,7 @@ class Vong_Quay_May_Man extends React.Component {
 		return (
 		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
-			{/* <div id="top" className="container-fluid page1">
+			<div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
 					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" width="500" className="img-fluid" /></h1>
 					<div className="container">
@@ -845,23 +845,34 @@ class Vong_Quay_May_Man extends React.Component {
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
+							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
 							<li className="pt-5a"><a href="#bvd" title="Vinh danh">Vinh danh</a></li>
 						</ul>
 					</div>
 				</div>
-			</div> */}
+			</div>
 			{/* End p1 */}
 
-			{/* <div id="p2" className="container-fluid page2">
+			<div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
 					<h1 className="logo-p2"><img src={logo} alt="Logo" width="600" className="img-fluid" /></h1>
 					<div className="vqmm">
 							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
 							</canvas>
+							{/* <canvas style={{marginTop:-(height+15), padding:0}} id="new_canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">
+								
+							</canvas> */}
+						{/* <img src={vqmm_p2} alt="Vòng quay may mắn" className="img-fluid"/>     */}
 					</div>
+					{/* <div className="btn-logout">
+						{(isLogin)?(<div><p className="p-0 m-0 text-center">Xin chào {userTurnSpin.currName}</p>
+						<h5 className="text-center" onClick={this.logoutAction}><a style={{cursor:'pointer'}} title="Đăng xuất">Đăng xuất</a></h5></div>):(<h5 className="text-center" onClick={this.loginAction}><a style={{cursor:'pointer'}} title="Đăng nhập" >Đăng nhập</a></h5>)}
+						
+					</div> */}
 					<div className="btn-quay">
+						{/* <h5 className="text-center">Còn: {turnsFree} lượt &nbsp;<a className="small" href="#" title="Thêm lượt" data-toggle="modal" data-target="#myModal10"><u>Thêm lượt</u></a></h5> */}
 						<h5 className="text-center">Còn: {turnsFree ? turnsFree.toLocaleString() : 0} Xu</h5>
 						<a style={{cursor:'pointer'}} onClick={this.btnStart}><img src={btn_quay_p2} alt="" className="img-fluid hv" /></a>
 						<div className="custom-control custom-checkbox">
@@ -876,30 +887,12 @@ class Vong_Quay_May_Man extends React.Component {
 						<li className="txt-tudo"><a style={{color:"#fff", cursor:'pointer'}} title="Tủ đồ" onClick={this.showModalTuDo}>Tủ đồ</a>{notification_tudo}</li>
 					</ul>
 				</div>
-			</div> */}
+			</div>
 			{/* End p2 */}
 
 			<div className="container jumbotron">			
 				<h5 id="bvd" className="d-block btn-ketqua mt-5"><img src={icon_bangvinhdanh} alt="icon" /><span className="txt-bvd">BẢNG VINH DANH</span></h5>
-				<div className="table-responsive mt-4">
-					{/* <table className="table table-borderless tbl-bvd mx-auto text-center">
-						<thead>
-						<tr className="text-uppercase title-bvd">
-							<th></th>
-							<th>Tên</th>
-							<th>Phần thưởng</th>
-							<th>Thời gian trúng</th>
-						</tr>
-						</thead>
-						<tbody className="top-12">
-						<tr>
-							<td></td>
-							<td>sb_32375.5d***</td>
-							<td>iPhone 11 Pro Max 256GB</td>
-							<td>20:00:00 04-11-2019</td>
-						</tr>
-						</tbody>
-					</table> */}
+				{/* <div className="table-responsive mt-4">
 					<table className="table table-bordered tbl-bvd mx-auto text-center">            
 						<tbody className="top100">
 							{listVinhDanh.map((obj, key) => (
@@ -924,7 +917,7 @@ class Vong_Quay_May_Man extends React.Component {
 							onChange={(v) => this.handlePageChangeVinhDanh(v)}
 						/>
 					</div> 
-				</div>
+				</div> */}
 				<div className="w-100 justify-content-center text-center pt-5">
 					<ul className="nav nav-pills nav-justified">
 						<li className="nav-item">
