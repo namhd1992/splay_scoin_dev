@@ -246,8 +246,8 @@ class Vong_Quay_May_Man extends React.Component {
 		loadedImg.src = rotaion;
 		this.setState({theWheel:theWheel})
 		window.addEventListener('scroll', this.handleScroll);
-		var testDiv = document.getElementById("top");
-		this.setState({rangeTop: testDiv.offsetTop+15})
+		// var testDiv = document.getElementById("top");
+		// this.setState({rangeTop: testDiv.offsetTop+15})
 	}
 
 	componentWillUnmount() {
@@ -812,7 +812,7 @@ class Vong_Quay_May_Man extends React.Component {
 		return (
 		<div className="div-vqmm">
 			<a href="#logo" id="button"><img src={backtotop} alt="Back to Top" width="16" /></a>
-			<div id="top" className="container-fluid page1">
+			{/* <div id="top" className="container-fluid page1">
 				<div className="content-inner-p1">
 					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" width="500" className="img-fluid" /></h1>
 					<div className="container">
@@ -845,14 +845,13 @@ class Vong_Quay_May_Man extends React.Component {
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
-							{/* <li className="pt-6"><a href="http://sandbox.scoin.vn/nap-vao-game?GameId=330287" title="Nạp Scoin" target="_blank">Nạp Game</a></li> */}
 							<li className="pt-5b"><a href="#" title="Thể lệ" onClick={this.showModalRules}>Thể lệ</a></li>
 							<li className="pt-5b"><a href="#" title="Phần thưởng" onClick={this.showModalBonus}>Phần thưởng</a></li>
 							<li className="pt-5a"><a href="#bvd" title="Vinh danh">Vinh danh</a></li>
 						</ul>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			{/* End p1 */}
 
 			<div id="p2" className="container-fluid page2">
