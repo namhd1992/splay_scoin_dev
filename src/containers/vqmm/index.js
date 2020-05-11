@@ -817,7 +817,7 @@ class Vong_Quay_May_Man extends React.Component {
 					<h1 className="logo-p1" id="logo"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="container">
 						<div className="timer-vqmm float-right-vqmm" style={{float:'right'}}>
-							<img src={img_status} alt="Sự kiện đang diễn ra" width="298" className="img-fluid" />
+							<img src={img_status} alt="Sự kiện đang diễn ra" className="img-fluid" />
 							<div className="table-responsive">
 							<table className="table table-borderless text-white">
 								<tr>
@@ -841,7 +841,7 @@ class Vong_Quay_May_Man extends React.Component {
 							</div>
 						</div> 
 					</div>
-					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" width="500" style={{maxWidth:"150%"}} /></a></p>
+					<p className="btn-thamgiangay"><a href="#p2" title="Tham gia ngay"><img src={thamgiangay} alt="Tham gia ngay" style={{maxWidth:"150%"}} /></a></p>
 					<div className="position-absolute-p1" style={{zIndex:800}}>
 						<ul className="nav flex-column menu-left-p1">
 							<li className="pt-6"><a href="http://sandbox.scoin.vn/choi-game?GameId=5" title="Nạp Scoin" target="_blank">Nhận Xu</a></li>
@@ -857,7 +857,7 @@ class Vong_Quay_May_Man extends React.Component {
 
 			<div id="p2" className="container-fluid page2">
 				<div className="container content-inner-p2">
-					<h1 className="logo-p2"><img src={logo} alt="Logo" width="600" className="img-fluid" /></h1>
+					<h1 className="logo-p2"><img src={logo} alt="Logo" className="img-fluid" /></h1>
 					<div className="vqmm">
 							<canvas style={{}} id="canvas" width={width} height={height} data-responsiveMinWidth="180"  data-responsiveScaleHeight="true">		
 							</canvas>
