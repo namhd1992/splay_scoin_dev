@@ -321,7 +321,8 @@ class GameDetailComponent extends React.Component {
 	}
 
 	closeAward=()=>{
-		$('#award_success').removeClass('show d-block').addClass('fade')
+		$('#award_success').removeClass('show d-block').addClass('fade');
+		this.props.closeAward();
 		// $("#award_success").modal({backdrop: false});
 	}
 	
@@ -724,7 +725,8 @@ class GameDetailComponent extends React.Component {
 								<span style={{fontWeight:'bold', fontSize:16}}>Tên phúc lợi:</span> <br></br>
 								<span>{item_award.itemName}</span><br></br>
 								<span style={{fontWeight:'bold', fontSize:16, marginTop:10}}>Nội dung:</span> <br></br>
-								<span>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span><br></br>
+								
+								{(item_award.consumable)?(<span>{item_award.show_value ? item_award.show_value.toLocaleString() : 0}</span>):(<span>{item_award.show_value}</span>)}<br></br>
 								{(item_award.consumable)?(<span style={{color:'red'}}>(Đã cộng vào tài khoản)</span>):(<div></div>)}
 							</div>
 

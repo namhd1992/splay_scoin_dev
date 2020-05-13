@@ -56,7 +56,7 @@ class Game_detail extends React.Component {
 			item_award:{},
 			gameRanking:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5utACRlRWKf5%2fhFXGDXFTaAOa09E7f9njLW73Urn2kFtj%2fsZbmpm1jJmx%2feB4jfP5vAyaLCqfgzeqOMfBkrxJn%2fK2XzIGIkeC6Q69T9z3OfF3pWVBUw3o1BHWmdHDmHXud%2fDHhACRKz2',
+			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5vmeWPGFTGsKR1FjMaPur44Oa09E7f9njCgjLGiWL3rB13hdxqv8Sa0%2fU9BuhC%2fJ8fzdY6Yjc5HAGR%2bsyd0o1q7zPDjYtGS6ZrHCy5HYf3yOgNxwsLzSsv79hPPJdmUNSd%2fDHhACRKz2',
 		};
 	}
 
@@ -275,7 +275,7 @@ class Game_detail extends React.Component {
 		this.setState({show_award_error:false});
 	}
 	closeAward=()=>{
-		this.setState({show_award:false});
+		delete this.state.item_award;
 	}
 
 	render() {
