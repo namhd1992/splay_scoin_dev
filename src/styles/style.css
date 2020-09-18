@@ -14,6 +14,8 @@ body {font-family: Tahoma, Verdana, Arial !important;}
 .color-nd {color: #33cabb}
 .icon-thongtinphanthuong {top:0; right: 0;}
 .border-avatar {border: solid 3px #FFFFFF;}
+.btn-md-pc {display: block;}
+.btn-md-mobile { display: none}
 .bg-circle { 
    width: 80px;
    height: 80px;
@@ -463,6 +465,8 @@ filter: contrast(150%);
 }
 
 @media (max-width: 576px) {
+  .btn-md-pc {display: none;}
+	.btn-md-mobile { display: block}
   .a_game:hover{
     text-decoration: none;
   }
@@ -496,7 +500,7 @@ filter: contrast(150%);
 }
 
 @media (min-width: 768px) {
-
+  .container {width: 768px !important; }
     /* show 3 items */
     .carousel-inner .active,
     .carousel-inner .active + .carousel-item,

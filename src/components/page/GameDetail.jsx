@@ -66,8 +66,8 @@ class GameDetailComponent extends React.Component {
 			lightBoxOpen: false,
 			lightBoxIndex: 0,
 			marginTop:'',
-			iframeWidth:230,
-			iframeHeight:250,
+			iframeWidth: window.innerWidth-30,
+			iframeHeight:400,
 			device:'',
 			widthImage:450,
 			widthScreenShot:200,
@@ -121,11 +121,11 @@ class GameDetailComponent extends React.Component {
 
 	onResize=()=>{
 		if (window.innerWidth <= 600) {
-			this.setState({ iframeWidth: window.innerWidth-10, iframeHeight:400, widthImage:215, widthScreenShot:100});
+			this.setState({ widthImage:215, widthScreenShot:100});
 			return;
 		}
 		if (window.innerWidth > 1024) {
-			this.setState({ iframeWidth: 275, iframeHeight:400, widthScreenShot:200, widthImage:450});
+			this.setState({ widthScreenShot:200, widthImage:450});
 			return;
 		}
 	}
@@ -398,23 +398,21 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-					<div id="top" class="py-3 container container-gamedetail">
-					<div class="row">
-						<div class="col-sm-9 px-1">
+				<div id="top" class="py-3 container">
 							<div class="bg-white mb-2 content">
 								<div class="detail-bannergame position-relative overflow-hidden card border-0 shadow-ssm mb-0">
 									<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
-										<div class="col-md-9">
+										<div>
 											<div class="media px-1">
-											<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
-											<div class="media-body mt-2">
-												<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
-												{tagsList.map((obj, key)=>{
-													return <span class="btn-tag-event font-weight-normal"> {obj.name} </span>
-												})}
-												<p class="font13 text-secondary pt-2 mb-1">{gameData.downloadTurns ? gameData.downloadTurns.toLocaleString() : 0} Lượt tải</p>
-											</div>
+												<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
+												<div class="media-body mt-2">
+													<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
+													{tagsList.map((obj, key)=>{
+														return <span class="btn-tag-event font-weight-normal"> {obj.name} </span>
+													})}
+													<p class="font13 text-secondary pt-2 mb-1">{gameData.downloadTurns ? gameData.downloadTurns.toLocaleString() : 0} Lượt tải</p>
+												</div>
 											</div>
 										</div>
 										<div id="btnPlay" class="col-md-3 text-center box-social pt-4">
@@ -433,16 +431,31 @@ class GameDetailComponent extends React.Component {
 							
 								</div>
 							</div>
-							<div class="mb-3 font13 btn-md-mobile">
+							<div class="btn-md-pc">
+							{(gameData.gameType==="MOBILE")?(<div><a href={gameData.urlDownloadIos}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-downgame text-white text-uppercase d-inline w-25"><span class="small">Tải iOS</span></button></a>
+								<a href={gameData.urlDownloadAndroid}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-downgame text-white text-uppercase d-inline w-25"><span class="small">Tải Android</span></button></a>
+								<a href={gameData.urlDownloadPC}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-downgame text-white text-uppercase d-inline w-25"><span class="small">Tải bản pc</span></button></a>
+								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-hover text-white text-uppercase d-inline w-25 py-2"><span class="small">Nạp Game</span></button></a>
+								</div>):(<div>
+									<a href={gameData.webgameUrl}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-downgame text-white text-uppercase d-inline w-25"><span class="small">Chơi Ngay</span></button></a>
+									<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn shadow-sm btn-hover text-white text-uppercase d-inline w-25 py-2"><span class="small">Nạp Game</span></button></a>
+									</div>
+								)}
+								
+								
+							</div>
+							<div class="mb-2 font13 btn-md-mobile">            	
 								{(gameData.gameType==='MOBILE')?(<div>
-									<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
-								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+									<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-25"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-25"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
 								</div>):(
 									<a href={gameData.webgameUrl} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase"><span class="small">Chơi Ngay</span></button></a>
 								)}
 								
-								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase py-2"><span class="small">Nạp Game</span></button></a>
+								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase d-inline w-25 py-2"><span class="small">Nạp Game</span></button></a>
 							</div>
+
+
 							<div class="bg-white p-3 mb-2 font13 text-justify shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold pb-2">Chi tiết</h2>
 								<div id="demo" class="carousel slide pb-" data-ride="carousel" data-touch="true" data-wrap="true">
@@ -603,7 +616,12 @@ class GameDetailComponent extends React.Component {
 										</Grid>
 									</Grid></div>
 								) : (<div class="bg-white p-3 mb-3 font13" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}></div>)} */}
+							{(isMobile)?(<div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
+								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>	
+							</div>):(<div></div>)}
 							
+							
+
 							<div class="mb-2 bg-white p-3 shadow-ssm">
 								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game có thể bạn quan tâm</span></h2>
 								<div class="row">
@@ -626,46 +644,31 @@ class GameDetailComponent extends React.Component {
 									
 									
 								</div>
-								
 							</div>
-						</div>
-						<div class="col-sm-3 px-1">
-							<div class="download mb-2 card border-0 shadow-ssm bg-transparent">
-								{(gameData.gameType==="MOBILE")?(<div><a href={gameData.urlDownloadIos}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải iOS <img src="../icon-ios.png" alt="" width="24" /></span></button></a>
-								<a href={gameData.urlDownloadAndroid}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải Android <img src="../icon-android.png" alt="" width="24" /></span></button></a>
-								<a href={gameData.urlDownloadPC}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Tải bản pc <img src="../icon-windows.png" alt="" width="24" /></span></button></a></div>):(
-									<a href={gameData.webgameUrl}  target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm btn-light py-4 text-uppercase border" style={{marginBottom:10}}><span class="small">Chơi Ngay</span></button></a>
-								)}
-								
-								<a href="https://scoin.vn/nap-game" target="_blank" style={{textDecoration:'none'}}><button type="button" class="btn btn-block shadow-sm border btn-hover text-uppercase text-white py-4"><span class="small">Nạp Game</span></button></a>                
-							</div>
-							<div class="bg-white mb-2 fb-box card border-0 shadow-ssm" style={{backgroundImage: "url(../loading.gif)", backgroundSize: "50px 50px",minHeight: 100,backgroundPositionX: "center", backgroundPositionY:'center', backgroundRepeat:'no-repeat'}}>
-								<iframe src={"https://www.facebook.com/plugins/page.php?href="+gameData.fanpageFB+"%2F&tabs=timeline&width="+iframeWidth+"&height="+iframeHeight+"&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=138908086313274"} width={iframeWidth} height={iframeHeight} style={{border:'none',overflow:'hidden'}} scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-								
-							</div>
-							
-							<div class="bg-white p-3 mb-2 card border-0 shadow-ssm">
-								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới </span></h2>
-								{gameMoi.map((obj, key)=>{
+
+							<div class="mb-2 bg-white p-3 shadow-ssm">
+								<h2 class="font16 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game mới</span></h2>
+								<div class="row">
+									{gameMoi.map((obj, key)=>{
 										return (
-											<a style={{color:'black'}} class='a_game'>
-											<div class="media border-bottom py-2 my-1" style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
-												
-												<img src={obj.defaultImage} alt={obj.name} class="mr-3" style={{width:60}} />
-												<div class="media-body">
-													<h4 class="font13 font-weight-bold">{obj.name}</h4>
-													<p class="small">{obj.downloadTurns ? obj.downloadTurns.toLocaleString() : 0} lượt tải</p>
+											
+											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
+												<div class="thumb-lat-the position-relative">
+													<a class="text-dark">
+														<img src={obj.bigImage} width="100%" />
+													</a>
+													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
+													<div class="overlay">
+														<div class="text text-white small">Chơi ngay &raquo;</div>
+													</div>
 												</div>
 											</div>
-											</a>
 										)
-								})}
-								
-								
-							</div>
-							
-						</div>
-					</div>   
+									})}
+									
+									
+								</div>
+							</div>  
 				</div>
 				<div class="container font13">
 					<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>

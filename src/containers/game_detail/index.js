@@ -96,7 +96,7 @@ class Game_detail extends React.Component {
 			if(data.status==="01"){
 				var games=data.data.filter(v=>v.scoinGameId!==+id_game)
 				var news=games.sort((a,b) => (a.createOn < b.createOn) ? 1 : ((b.createOn < a.createOn) ? -1 : 0));
-				var gameMoi=news.slice(0, 5)
+				var gameMoi=news.slice(0, 6)
 				var care=games.sort((a,b) => (a.downloadTurns < b.downloadTurns) ? 1 : ((b.downloadTurns < a.downloadTurns) ? -1 : 0));
 				// var gameCare=care.slice(0, 6)
 				var gameCare=_this.random_item(games)
