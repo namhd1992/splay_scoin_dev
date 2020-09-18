@@ -403,7 +403,7 @@ class GameDetailComponent extends React.Component {
 								<div class="detail-bannergame position-relative overflow-hidden card border-0 shadow-ssm mb-0">
 									<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />
 									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
-										<div>
+										<div class="col-md-9 pb-1">
 											<div class="media px-1">
 												<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
 												<div class="media-body mt-2">
@@ -415,7 +415,7 @@ class GameDetailComponent extends React.Component {
 												</div>
 											</div>
 										</div>
-										<div id="btnPlay" class="col-md-3 text-center box-social pt-4">
+										<div id="btnPlay" class="col-3 text-center box-social pt-4">
 											{/* <!-- <button type="button" class="btn btn-sm btn-block border-0 shadow-sm mx-1 border btn-hover text-uppercase text-white py-1"><span class="small">Chơi ngay</span></button>
 											<button type="button" class="btn btn-sm btn-block btn-link mx-1 py-1">Fanpage</button> --> */}
 											<span class="con-hover"><a href={gameData.fanpageFB} title="Fanpage"  class="img-hover" style={{paddingRight:5}} target="_blank"><img src="../fb-fanpage.png" width="32" alt="Fanpage" /></a></span>
