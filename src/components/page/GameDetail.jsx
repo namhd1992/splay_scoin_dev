@@ -446,18 +446,11 @@ class GameDetailComponent extends React.Component {
 							</div>
 							<div class="mb-2 font13 btn-md-mobile">            	
 								{(gameData.gameType==='MOBILE')?(<div>
-									<div style={{marginBottom:10}}>{(isIOS)?(<div>
-										<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-50"><span class="small">Tải ngay</span></button></a>
-										<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase d-inline w-50 py-2"><span class="small">Nạp Game</span></button></a></div>):(<div></div>)}</div>
-								<div style={{marginBottom:10}}>{(isAndroid)?(<div>
-									<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-50"><span class="small">Tải ngay</span></button></a>
-									<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase d-inline w-50 py-2"><span class="small">Nạp Game</span></button></a></div>):(<div></div>)}</div>
-								</div>):(<div>
-									<a href={gameData.webgameUrl} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-50"><span class="small">Chơi Ngay</span></button></a>
-									<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase d-inline w-50 py-2"><span class="small">Nạp Game</span></button></a>
-								</div>
-									
+									<div style={{marginBottom:10}}>{(isIOS)?(<a href={gameData.urlDownloadIos} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-100"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								<div style={{marginBottom:10}}>{(isAndroid)?(<a href={gameData.urlDownloadAndroid} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-100"><span class="small">Tải ngay</span></button></a>):(<div></div>)}</div>
+								</div>):(<a href={gameData.webgameUrl} class="text-decoration-none"  target="_blank"><button type="button" class="btn btn-block shadow-sm btn-downgame text-white py-2 text-uppercase d-inline w-100"><span class="small">Chơi Ngay</span></button></a>
 								)}
+								<a href='https://scoin.vn/nap-game' class="text-white text-decoration-none" target="_blank"><button type="button" class="btn btn-block shadow-sm border text-white btn-hover text-uppercase d-inline w-100 py-2"><span class="small">Nạp Game</span></button></a>
 								
 								
 							</div>
