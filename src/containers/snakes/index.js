@@ -8,12 +8,27 @@ import {
 
 import LiveStreamComponent from '../../components/page/LiveStream';
 
-var playerX=10, playerY=10;
-var gridSize=20, tileCount=20;
-var appleX=15, appleY=15;
-var xVel=0, yVel=0;
-var trail=[];
-var tail=5;
+const board_border = 'black';
+const board_background = "white";
+const snake_col = 'lightblue';
+const snake_border = 'darkblue';
+
+let snake = [
+  {x: 200, y: 200},
+  {x: 190, y: 200},
+  {x: 180, y: 200},
+  {x: 170, y: 200},
+  {x: 160, y: 200}
+]
+
+let score = 0;
+let changing_direction = false;
+let food_x;
+let food_y;
+let dx = 10;
+let dy = 0;
+var FPS=10
+
 var ctx={};
 var canvas={};
 
@@ -37,66 +52,204 @@ class Snake extends React.Component {
 	componentDidMount() {
 		canvas =document.getElementById('myCanvas');
 		ctx = canvas.getContext("2d");
-		document.addEventListener("keydown",this.keyPush);
-		setInterval(this.game,1000/50);
+		// document.addEventListener("keydown",this.keyPush);
+		this.gen_food()
+		document.addEventListener("keydown", this.change_direction);
+		
+		this.run();
 	}
-	game = () => {
-		playerX += xVel;
-		playerY += yVel;
+	
+	run=()=>{
+		setInterval(this.main,1000/FPS);
+	}
+
+	main=()=> {
+        if (this.has_game_ended()) return;
+        changing_direction = false;
+        this.clear_board();
+        this.drawFood();
+        this.move_snake();
+        this.drawSnake();
+	}
+
+	clear_board=()=> {
+		//  Select the colour to fill the drawing
+		ctx.fillStyle = board_background;
+		//  Select the colour for the border of the canvas
+		ctx.strokestyle = board_border;
+		// Draw a "filled" rectangle to cover the entire canvas
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		// Draw a "border" around the entire canvas
+		ctx.strokeRect(0, 0, canvas.width, canvas.height);
+	}
+
+	drawFood=()=> {
+		ctx.fillStyle = 'lightgreen';
+		ctx.strokestyle = 'darkgreen';
+		ctx.fillRect(food_x, food_y, 10, 10);
+		ctx.strokeRect(food_x, food_y, 10, 10);
+	  }
+
+	drawSnake=()=> {
+	// Draw each part
+		snake.forEach(this.drawSnakePart)
+	}
+
+	drawSnakePart=(snakePart)=> {
+
+		// Set the colour of the snake part
+		ctx.fillStyle = snake_col;
+		// Set the border colour of the snake part
+		ctx.strokestyle = snake_border;
+		// Draw a "filled" rectangle to represent the snake part at the coordinates
+		// the part is located
+		ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+		// Draw a border around the snake part
+		ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+	}
+
+	has_game_ended=()=> {
+		for (let i = 4; i < snake.length; i++) {
+			if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
+		}
+		const hitLeftWall = snake[0].x < 0;
+		const hitRightWall = snake[0].x > canvas.width - 10;
+		const hitToptWall = snake[0].y < 0;
+		const hitBottomWall = snake[0].y > canvas.height - 10;
+		return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+	}
+
+	random_food=(min, max)=> {
+		return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+	}
+
+	gen_food=()=> {
+		// Generate a random number the food x-coordinate
+		food_x = this.random_food(0, canvas.width - 10);
+		// Generate a random number for the food y-coordinate
+		food_y = this.random_food(0, canvas.height - 10);
+		// if the new food location is where the snake currently is, generate a new food location
+		snake.forEach(function has_snake_eaten_food(part) {
+			const has_eaten = part.x == food_x && part.y == food_y;
+			if (has_eaten) this.gen_food();
+		});
+	}
+
+	change_direction=(event)=> {
+		const LEFT_KEY = 37;
+		const RIGHT_KEY = 39;
+		const UP_KEY = 38;
+		const DOWN_KEY = 40;
+		
+		// Prevent the snake from reversing
+		
+		if (changing_direction) return;
+		changing_direction = true;
+		const keyPressed = event.keyCode;
+		const goingUp = dy === -10;
+		const goingDown = dy === 10;
+		const goingRight = dx === 10;
+		const goingLeft = dx === -10;
+		if (keyPressed === LEFT_KEY && !goingRight) {
+			dx = -10;
+			dy = 0;
+		}
+		if (keyPressed === UP_KEY && !goingDown) {
+			dx = 0;
+			dy = -10;
+		}
+		if (keyPressed === RIGHT_KEY && !goingLeft) {
+			dx = 10;
+			dy = 0;
+		}
+		if (keyPressed === DOWN_KEY && !goingUp) {
+			dx = 0;
+			dy = 10;
+		}
+	}
+
+	move_snake=()=> {
+	// Create the new Snake's head
+		const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+	// Add the new head to the beginning of snake body
+		snake.unshift(head);
+		const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
+		if (has_eaten_food) {
+			// Increase score
+			score += 1;
+			if(score%4===0){
+				FPS=FPS-20;
+				console.log(FPS)
+			}
+			// Display score on screen
+			document.getElementById('score').innerHTML = score;
+			// Generate new food location
+			this.gen_food();
+		} else {
+			// Remove the last part of snake body
+			snake.pop();
+		}
+	}
   
-		if ( playerX < 0 ) {
-		  playerX = tileCount-1;
-		}
-		if ( playerX > tileCount-1 ) {
-		  playerX = 0;
-		}
-		if ( playerY < 0 ) {
-		  playerY = tileCount-1;
-		}
-		if ( playerY > tileCount-1 ) {
-		  playerY=0;
-		}
-		ctx.fillStyle='#000'; // BG
-		ctx.fillRect(0,0,canvas.width,canvas.height);
-		ctx.fillStyle='lime'; // Snake
-		for(let i=0; i<trail.length; i++) {
-		  ctx.fillRect(trail[i].x*gridSize, trail[i].y*gridSize, gridSize-2, gridSize-2)
-		  if(trail[i].x==playerX && trail[i].y==playerY) {
-			tail = 5;
-		  }
-		}
-		trail.push({x:playerX,y:playerY});
-		while(trail.length>tail) {
-		  trail.shift();
-		}
-		if(appleX==playerX && appleY==playerY) {
-		  tail++;
-		  appleX = Math.floor((Math.random() * tileCount));
-		  appleY = Math.floor((Math.random() * tileCount));
-		} 
-		ctx.fillStyle='red'; //Apple
-		ctx.fillRect(appleX*gridSize, appleY*gridSize, gridSize-2, gridSize-2);
-	}
-	keyPush = (e) => {
-		switch(e.keyCode) {
-			case 37:
-			xVel = -1;
-			yVel = 0;
-			break;
-			case 38:
-			xVel = 0;
-			yVel = -1;
-			break;
-			case 39:
-			xVel = 1;
-			yVel = 0;
-			break;
-			case 40:
-			xVel = 0;
-			yVel = 1;
-			break;
-		}
-	}
+	
+
+	// game = () => {
+	// 	playerX += xVel;
+	// 	playerY += yVel;
+  
+	// 	if ( playerX < 0 ) {
+	// 	  playerX = tileCount-1;
+	// 	}
+	// 	if ( playerX > tileCount-1 ) {
+	// 	  playerX = 0;
+	// 	}
+	// 	if ( playerY < 0 ) {
+	// 	  playerY = tileCount-1;
+	// 	}
+	// 	if ( playerY > tileCount-1 ) {
+	// 	  playerY=0;
+	// 	}
+	// 	ctx.fillStyle='#000'; // BG
+	// 	ctx.fillRect(0,0,canvas.width,canvas.height);
+	// 	ctx.fillStyle='lime'; // Snake
+	// 	for(let i=0; i<trail.length; i++) {
+	// 	  ctx.fillRect(trail[i].x*gridSize, trail[i].y*gridSize, gridSize-2, gridSize-2)
+	// 	  if(trail[i].x==playerX && trail[i].y==playerY) {
+	// 		tail = 5;
+	// 	  }
+	// 	}
+	// 	trail.push({x:playerX,y:playerY});
+	// 	while(trail.length>tail) {
+	// 	  trail.shift();
+	// 	}
+	// 	if(appleX==playerX && appleY==playerY) {
+	// 	  tail++;
+	// 	  appleX = Math.floor((Math.random() * tileCount));
+	// 	  appleY = Math.floor((Math.random() * tileCount));
+	// 	} 
+	// 	ctx.fillStyle='red'; //Apple
+	// 	ctx.fillRect(appleX*gridSize, appleY*gridSize, gridSize-2, gridSize-2);
+	// }
+	// keyPush = (e) => {
+	// 	switch(e.keyCode) {
+	// 		case 37:
+	// 		xVel = -1;
+	// 		yVel = 0;
+	// 		break;
+	// 		case 38:
+	// 		xVel = 0;
+	// 		yVel = -1;
+	// 		break;
+	// 		case 39:
+	// 		xVel = 1;
+	// 		yVel = 0;
+	// 		break;
+	// 		case 40:
+	// 		xVel = 0;
+	// 		yVel = 1;
+	// 		break;
+	// 	}
+	// }
 
 
 	backLucky=()=>{
@@ -106,6 +259,7 @@ class Snake extends React.Component {
 	render() {
 		return (
 			<div class='container'>
+				<div id="score" style={{textAlign:'center', fontSize:'30px'}}>0</div>
 				<canvas id="myCanvas" width="500" height="500"></canvas>
 			</div>
 		)
