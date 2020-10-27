@@ -56,7 +56,7 @@ class Snake extends React.Component {
 		this.gen_food()
 		document.addEventListener("keydown", this.change_direction);
 		
-		this.run();
+		this.main();
 	}
 	
 	run=()=>{
@@ -64,12 +64,17 @@ class Snake extends React.Component {
 	}
 
 	main=()=> {
-        if (this.has_game_ended()) return;
-        changing_direction = false;
+		if (this.has_game_ended()) return;
+		changing_direction = false;
         this.clear_board();
         this.drawFood();
         this.move_snake();
         this.drawSnake();
+ 
+	}
+
+	reset=()=>{
+       
 	}
 
 	clear_board=()=> {
@@ -177,10 +182,7 @@ class Snake extends React.Component {
 		if (has_eaten_food) {
 			// Increase score
 			score += 1;
-			if(score%4===0){
-				FPS=FPS-20;
-				console.log(FPS)
-			}
+
 			// Display score on screen
 			document.getElementById('score').innerHTML = score;
 			// Generate new food location
@@ -261,6 +263,11 @@ class Snake extends React.Component {
 			<div class='container'>
 				<div id="score" style={{textAlign:'center', fontSize:'30px'}}>0</div>
 				<canvas id="myCanvas" width="500" height="500"></canvas>
+				<div>
+					<button style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>Bắt Đầu</button>
+					<button style={{width:200, height:40, backgroundColor:'#fff'}} onClick={this.reset}>Reset</button>
+				</div>
+				
 			</div>
 		)
 	}
