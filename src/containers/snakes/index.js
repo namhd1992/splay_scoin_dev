@@ -74,7 +74,7 @@ class Snake extends React.Component {
 	}
 
 	reset=()=>{
-       
+		window.location.reload(true)
 	}
 
 	clear_board=()=> {
