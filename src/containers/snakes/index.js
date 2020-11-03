@@ -40,12 +40,20 @@ class Snake extends React.Component {
 			message: "",
 			openSnack: false,
 			snackVariant: "info",
-			dialogLoginOpen: false,	
+			dialogLoginOpen: false,
+			txt_btn:'Bắt Đầu',
+			start:false,
+			reset:false	
 		};
 	}
 
 	componentWillMount(){
-	
+		var txt_btn=localStorage.getItem('txt_btn');
+		var start=JSON.parse(localStorage.getItem('start'));
+		var reset=JSON.parse(localStorage.getItem('reset'));
+		if(txt_btn!==null){
+			this.setState({txt_btn:txt_btn, start:start, reset:reset})
+		}
 
 	}
 
@@ -60,11 +68,15 @@ class Snake extends React.Component {
 	}
 	
 	run=()=>{
+		this.setState({start:true})
 		setInterval(this.main,1000/FPS);
 	}
 
 	main=()=> {
-		if (this.has_game_ended()) return;
+		if (this.has_game_ended()){
+			this.setState({start:false, txt_btn:'Chơi Lại', reset:true});
+			return;
+		} 
 		changing_direction = false;
         this.clear_board();
         this.drawFood();
@@ -259,13 +271,22 @@ class Snake extends React.Component {
 	}
 
 	render() {
+		const {txt_btn, start, reset}=this.state
 		return (
 			<div class='container'>
 				<div id="score" style={{textAlign:'center', fontSize:'30px'}}>0</div>
 				<canvas id="myCanvas" width="500" height="500"></canvas>
 				<div>
-					<button style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>Bắt Đầu</button>
-					<button style={{width:200, height:40, backgroundColor:'#fff'}} onClick={this.reset}>Reset</button>
+					{(!start)?(<div>
+						{(reset)?(<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.reset}>{txt_btn}</button>):(
+							<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>{txt_btn}</button>
+						)}
+						
+					</div>):(
+						<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} disabled>{txt_btn}</button>
+					)}
+				
+					{/* <button style={{width:200, height:40, backgroundColor:'#fff'}} onClick={this.reset}>Reset</button> */}
 				</div>
 				
 			</div>
