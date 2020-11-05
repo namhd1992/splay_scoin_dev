@@ -67,7 +67,7 @@ class ListMinigameComponent extends React.Component {
                                 return ( <div key={key}>
                                     <div class="px-2">
                                         <div class="position-relative">
-                                        <Link  to={{pathname: `minigame`,  query:{id: obj.id}}}>
+                                        <Link  to={{pathname: `minigame`,  state:{id: obj.id}}}>
                                             <a title="Chơi ngay" class="text-dark text-center">
                                                 <img src={obj.img} alt="Thiên ma quyết" width={50} height={50} class="border-4 mx-auto" />
                                                 <h2 class="small py-2">{obj.name}</h2>
@@ -86,7 +86,7 @@ class ListMinigameComponent extends React.Component {
                             {top_game.map((obj, key) => {
                                 return (<div class="col-4 col-md-3 px-3" key={key}>
                                             <div class="thumb-lat-the position-relative">
-                                                <Link to={{pathname: `minigame`,  query:{id: obj.id}}}>
+                                                <Link to={{pathname: `minigame`,  state:{id: obj.id}}}>
                                                     <a title="Chơi ngay" class="text-dark text-center">
                                                         <img src={obj.img} alt="Thiên ma quyết" width={50} height={50} class="border-4 mx-auto" />
                                                         <h2 class="small py-2">{obj.name}</h2>

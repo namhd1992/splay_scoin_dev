@@ -34,7 +34,7 @@ const styles = {
 	},
 };
 
-class MinigameComponent extends React.Component {
+class ListComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -61,19 +61,12 @@ class MinigameComponent extends React.Component {
 
 		return (<div class="container py-2">
                     <div class="mb-2 bg-white p-3 card border-0 shadow-ssm">
-                        <h2 class="pb-2 font-weight-bold h4">Đua xe địa hình</h2>
-                        <div class="justify-content-center align-items-center d-flex" style={{width: "100%",  minHeight: "50vh", backgroundColor: "#ccc"}}>
-                            <span class="spinner-border spinner-border-sm"></span>&nbsp; Loading...
-                        </div>	        
-                    
-                    </div>
-                    <div class="mb-2 bg-white p-3 card border-0 shadow-ssm">
                         <h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tất cả mini game H5</span></h2>
                         <div class="row">
                             {list_game.map((obj, key) => {
                                 return (<div class="col-4 col-md-3 px-3" key={key}>
                                             <div class="thumb-lat-the position-relative">
-                                                <Link to="minigame" params={{ id: obj.id }}>
+                                                <Link to={{pathname: `minigame`,  state:{id: obj.id}}}>
                                                     <a title="Chơi ngay" class="text-dark text-center">
                                                         <img src={obj.img} alt="Thiên ma quyết" width={50} height={50} class="border-4 mx-auto" />
                                                         <h2 class="small py-2">{obj.name}</h2>
@@ -89,9 +82,9 @@ class MinigameComponent extends React.Component {
 		</div>)
 	}
 }
-MinigameComponent.propTypes = {
+ListComponent.propTypes = {
 	fullScreen: PropTypes.bool.isRequired,
 };
 
 
-export default connect()(withMobileDialog()(withStyles(styles, { withTheme: true })(MinigameComponent)))
+export default connect()(withMobileDialog()(withStyles(styles, { withTheme: true })(ListComponent)))

@@ -14,12 +14,9 @@ import {
 	changeTitle
 } from '../../modules/global'
 import Ultilities from '../../Ultilities/global'
-import Snake from '../minigame/snake/index'
-import FlappyBird from '../minigame/flappy_bird/index'
-import Caro from '../minigame/caro/index'
-import Tower from '../minigame/tower/index'
+import ListComponent from '../../components/page/Minigame'
 
-class Minigame_detail extends React.Component {
+class List extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -31,46 +28,22 @@ class Minigame_detail extends React.Component {
 		};
 	}
 	componentWillMount(){
-		var id_game=this.props.location.state.id;
 		var list_game=[{id:1, img:'https://i.postimg.cc/fWvL01y0/cara.png', name:'Cờ Caro'}, {id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird'}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi'}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp'}];
-		this.setState({list_game:list_game, id_game:id_game})
+		this.setState({list_game:list_game})
 	}
 
 	componentDidMount() {
 
 	}
 
-	UNSAFE_componentWillReceiveProps(nextProp){
-		if(this.props.location.state.id !== nextProp.location.state.id){
-			this.setState({id_game:nextProp.location.state.id})
-		}
-	}
-
 	render() {
-		const {list_game, id_game}=this.state;
-
-		if (id_game===1){
-			return (
-				<Caro list_game={list_game}/>
-			)
-		}
-		if (id_game===2){
-			return (
-				<FlappyBird list_game={list_game}/>
-			)
-		}
-		if (id_game===3){
-			return (
-				<Snake list_game={list_game}/>
-			)
-		}
-		if (id_game===4){
-			return (
-				<Tower list_game={list_game}/>
-			)
-		}
+		const {list_game}=this.state;
 		
-		
+		return (
+			<div>
+				<ListComponent list_game={list_game}/>
+			</div>
+		)
 	}
 }
 
@@ -95,4 +68,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Minigame_detail)
+)(List)
