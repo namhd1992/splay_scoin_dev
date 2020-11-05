@@ -19,7 +19,7 @@ import Lucky_Rotation from '../lucky_rotation'
 import San_Kho_Bau from '../san_kho_bau'
 import Vong_Quay_May_Man from '../vqmm'
 import Snake from '../snakes'
-import Snakes from '../new_snake'
+// import Snakes from '../new_snake'
 import list_game from '../list_minigame'
 import minigame from '../minigame_detail'
 
@@ -60,7 +60,6 @@ class App extends React.Component {
 						<Route exact path="/luckyrotation" component={Lucky_Rotation} />
 						<Route exact path="/san-kho-bau" component={San_Kho_Bau} />
 						<Route exact path="/snake" component={Snake} />
-						<Route exact path="/snakes" component={Snakes} />
 						<Route exact path="/vqmm/:id" component={Vong_Quay_May_Man} />
 						{/* <Route exact path="/history" component={History} /> */}
 						{/* <Route exact path="/lucky" component={Lucky} /> */}
