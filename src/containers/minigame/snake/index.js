@@ -274,8 +274,16 @@ class Snake extends React.Component {
 		return (
 			<div class='container'>
 				<div id="score" style={{textAlign:'center', fontSize:'30px'}}>0</div>
-				<canvas id="myCanvas" width="500" height="500"></canvas>
-				<div>
+				<div style={{ position:'relative',height:400}}>
+					<div style={{width:600, height:400, position:'absolute', zIndex:1}}>
+						<canvas id="myCanvas" width="600" height="400" style={{width:600, height:400}}></canvas>
+						
+					</div>
+				</div>
+				
+				
+				
+				<div style={{zIndex:2}}>
 					{(!start)?(<div>
 						{(reset)?(<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.reset}>{txt_btn}</button>):(
 							<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>{txt_btn}</button>
@@ -287,7 +295,7 @@ class Snake extends React.Component {
 				
 					{/* <button style={{width:200, height:40, backgroundColor:'#fff'}} onClick={this.reset}>Reset</button> */}
 				</div>
-                <ListComponent list_game={list_game} />
+                {/* <ListComponent list_game={list_game} /> */}
 				
 			</div>
 		)
