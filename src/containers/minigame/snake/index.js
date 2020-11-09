@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import ListComponent from '../../../components/page/List'
 // import '../../styles/lucky.css'
+import $ from 'jquery';
 
 
 const board_border = 'black';
@@ -66,8 +67,29 @@ class Snake extends React.Component {
 	}
 	
 	run=()=>{
+		$('#menu').hide();
+		document.getElementById("myCanvas").style.backgroundColor = "#fff";
+		document.getElementById("myCanvas").style.opacity = "1";
 		this.setState({start:true})
 		setInterval(this.main,1000/FPS);
+	}
+
+	setup=()=>{
+		document.getElementById("main").style.display = "none";
+		document.getElementById("credits").style.display = "block";
+
+	}
+
+	easy=()=>{
+		FPS=10;
+		document.getElementById("main").style.display = "block";
+		document.getElementById("credits").style.display = "none";
+	}
+
+	hard=()=>{
+		FPS=25;
+		document.getElementById("main").style.display = "block";
+		document.getElementById("credits").style.display = "none";
 	}
 
 	main=()=> {
@@ -280,13 +302,13 @@ class Snake extends React.Component {
 							<div id="main" >
 								<h1>Rắn Săn Mồi</h1>
 
-								<button style={{width:150, height:40, backgroundColor:'#fff', marginRight:15}}>Bắt Đầu</button>
-								<button style={{width:150, height:40, backgroundColor:'#fff'}}>Cài Đặt</button>
+								<button style={{width:150, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>Bắt Đầu</button>
+								<button style={{width:150, height:40, backgroundColor:'#fff'}} onClick={this.setup}>Cài Đặt</button>
 							</div>
 							<div id="credits" style={{display:'none'}}>
 								<h1>Tốc Độ</h1>
-								<button>Dễ</button>
-								<button>Khó</button>
+								<button style={{width:150, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.easy}>Dễ</button>
+								<button style={{width:150, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.hard}>Khó</button>
 							</div>
 						</div>
 						<canvas id="myCanvas" width="600" height="400" style={{width:600, height:400, zIndex:1 ,position:'absolute', backgroundColor:'gray', opacity:'0.6'}}></canvas>
