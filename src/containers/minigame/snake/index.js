@@ -274,16 +274,32 @@ class Snake extends React.Component {
 		return (
 			<div class='container'>
 				<div id="score" style={{textAlign:'center', fontSize:'30px'}}>0</div>
-				<div style={{ position:'relative',height:400}}>
+				<div style={{height:400}}>
 					<div style={{width:600, height:400, position:'absolute', zIndex:1}}>
-						<canvas id="myCanvas" width="600" height="400" style={{width:600, height:400}}></canvas>
-						
+						<div id="menu" style={{position:'absolute', width:600, height:400, zIndex:2, textAlign:'center'}}>
+							<div id="main" >
+								<h1>Rắn Săn Mồi</h1>
+
+								<button style={{width:150, height:40, backgroundColor:'#fff', marginRight:15}}>Bắt Đầu</button>
+								<button style={{width:150, height:40, backgroundColor:'#fff'}}>Cài Đặt</button>
+							</div>
+							<div id="credits" style={{display:'none'}}>
+								<h1>Tốc Độ</h1>
+								<button>Dễ</button>
+								<button>Khó</button>
+							</div>
+						</div>
+						<canvas id="myCanvas" width="600" height="400" style={{width:600, height:400, zIndex:1 ,position:'absolute', backgroundColor:'gray', opacity:'0.6'}}></canvas>
+						<div id="game-over" style={{position:'absolute', width:600, height:400, zIndex:7, textAlign:'center', display:'none'}}>
+							<h2>You ran <span id="score"></span> meters!</h2>
+							<a href="javascript:void(0)" class="button restart">Try again?</a>
+						</div>
 					</div>
 				</div>
 				
 				
 				
-				<div style={{zIndex:2}}>
+				{/* <div style={{zIndex:2}}>
 					{(!start)?(<div>
 						{(reset)?(<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.reset}>{txt_btn}</button>):(
 							<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} onClick={this.run}>{txt_btn}</button>
@@ -292,10 +308,8 @@ class Snake extends React.Component {
 					</div>):(
 						<button id='txt_btn' style={{width:200, height:40, backgroundColor:'#fff', marginRight:15}} disabled>{txt_btn}</button>
 					)}
-				
-					{/* <button style={{width:200, height:40, backgroundColor:'#fff'}} onClick={this.reset}>Reset</button> */}
-				</div>
-                {/* <ListComponent list_game={list_game} /> */}
+				</div> */}
+                <ListComponent list_game={list_game} />
 				
 			</div>
 		)
