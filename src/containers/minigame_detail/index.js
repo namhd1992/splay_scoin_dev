@@ -29,16 +29,32 @@ class Minigame_detail extends React.Component {
 			cardWidth: 0,
 			cardHeight: 0,
 			list_game: [],
+			link:'',
+			width_ifranme:0,
+			height_iframe:0
 		};
 	}
 	componentWillMount(){
+		
 		var id_game=this.props.location.state.id;
-		var list_game=[{id:1, img:'https://i.postimg.cc/fWvL01y0/cara.png', name:'Cờ Caro'}, {id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird'}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi'}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp'}, {id:5, img:'https://i.postimg.cc/C5NmCyMc/t-i-xu-ng.jpg', name:'Xếp Gạch'}];
-		this.setState({list_game:list_game, id_game:id_game})
+		var width_ifranme=window.screen.width;
+		var height_iframe=window.screen.height
+		// var list_game=[{id:1, img:'https://i.postimg.cc/fWvL01y0/cara.png', name:'Cờ Caro'}, {id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird'}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi'}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp'}, {id:5, img:'https://i.postimg.cc/C5NmCyMc/t-i-xu-ng.jpg', name:'Xếp Gạch'}];
+		var list_game=[{id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird', link:'https://games.cdn.famobi.com/html5games/a/angry-flappy-wings/v070/?fg_domain=play.famobi.com&fg_aid=A-UENLJ&fg_uid=7e2fd492-a4a1-4cba-9e72-f503591e3b5c&fg_pid=1ef4faf5-ab92-4d5d-b053-76eb0ade0249&fg_beat=330&original_ref='}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi', link:'https://html5.gamedistribution.com/54ca781032914740a819c2242b770878/?gdpr-targeting=1'}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp', link:'https://html5.gamedistribution.com/rvvASMiM/e49e377096194ed383dba2a18a110498/?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL2tpejEwLmNvbS8iLCJwYXJlbnREb21haW4iOiJraXoxMC5jb20iLCJ0b3BEb21haW4iOiJraXoxMC5jb20iLCJoYXNJbXByZXNzaW9uIjp0cnVlLCJsb2FkZXJFbmFibGVkIjp0cnVlLCJ2ZXJzaW9uIjoiMS4xLjM5In0%253D'}, {id:5, img:'https://i.postimg.cc/C5NmCyMc/t-i-xu-ng.jpg', name:'Xếp Gạch', link:'https://tetris.fbrq.io/tetris/index.html'}];
+		var pos = list_game.map(function(e) { return e.id; }).indexOf(id_game);
+		this.setState({list_game:list_game, link:list_game[pos].link, width_ifranme:width_ifranme, height_iframe:height_iframe})
+		
 	}
 
 	componentDidMount() {
-
+		var elem = document.getElementById("game");
+		if (!document.fullscreenElement) {
+			elem.requestFullscreen().catch(err => {
+			  alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+			});
+		  } else {
+			document.exitFullscreen();
+		  }
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProp){
@@ -48,34 +64,38 @@ class Minigame_detail extends React.Component {
 	}
 
 	render() {
-		const {list_game, id_game}=this.state;
+		const {list_game, id_game, link, width_ifranme, height_iframe}=this.state;
 
-		if (id_game===1){
-			return (
-				<Caro list_game={list_game}/>
-			)
-		}
-		if (id_game===2){
-			return (
-				<FlappyBird list_game={list_game}/>
-			)
-		}
-		if (id_game===3){
-			return (
-				<Snake list_game={list_game}/>
-			)
-		}
-		if (id_game===4){
-			return (
-				<Tower list_game={list_game}/>
-			)
-		}
+		// if (id_game===1){
+		// 	return (
+		// 		<Caro list_game={list_game}/>
+		// 	)
+		// }
+		// if (id_game===2){
+		// 	return (
+		// 		<FlappyBird list_game={list_game}/>
+		// 	)
+		// }
+		// if (id_game===3){
+		// 	return (
+		// 		<Snake list_game={list_game}/>
+		// 	)
+		// }
+		// if (id_game===4){
+		// 	return (
+		// 		<Tower list_game={list_game}/>
+		// 	)
+		// }
 
-		if (id_game===5){
-			return (
-				<Tetris list_game={list_game}/>
-			)
-		}
+		// if (id_game===5){
+		// 	return (
+		// 		<Tetris list_game={list_game}/>
+		// 	)
+		// }
+
+		return(
+			<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
+		)
 		
 		
 	}
