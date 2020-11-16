@@ -25,6 +25,7 @@ import {
 	FacebookIcon,
 	FacebookShareButton,
   } from "react-share";
+  import Slider from 'react-slick'
 // import '../../styles/mission.css'
 // import '../../styles/imageServerError.css'
 
@@ -53,16 +54,70 @@ class ListMinigameComponent extends React.Component {
 
 	componentDidMount(){
 
-	}
+    }
+    
+
+
 
 	render() {
 		const {list_game, top_game}=this.props;
-		const {dataMission, year, rangeTop}=this.state;
+        const {dataMission, year, rangeTop}=this.state;
+        var settings = {
+			infinite: true,
+			speed: 500,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			autoplay: false,
+			autoplaySpeed: 2000,
+			responsive: [
+				{
+					breakpoint: 1080,
+					settings: {
+						slidesToShow: 4,
+						slidesToScroll: 4,
+					}
+				},
+				{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3
+					}
+				},
+				{
+					breakpoint: 520,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3
+					}
+				}
+			]
+		};
 
 		return (<div class="container py-2">
                     <div class="mb-2 bg-white p-3 card border-0 shadow-ssm">
                         <h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Game nổi bật</span></h2>
-                        <section class="center slider mb-2">
+                        <Slider dotsClass={"slick-dots carousel-dot"} {...settings} >
+                            {top_game.map((obj, key) => (
+                                <div key={key}>
+                                    <Link  to={{pathname: `minigame`,  state:{id: obj.id}}}>
+                                        <div style={{
+                                            backgroundImage: "url(" + obj.img + ")",
+                                            backgroundRepeat: "no-repeat",
+                                            backgroundPosition: "center",
+                                            backgroundSize: "contain",
+                                            with: 132,
+                                            height:132,
+                                            margin:10,
+                                            paddingBottom: this.state.paddingBottom
+                                        }}>
+                                        </div>
+                                    </Link>
+                                    <p style={{textAlign:'center'}}>{obj.name}</p>
+                                </div>
+                            ))}
+                        </Slider>
+                        {/* <section class="center slider mb-2">
                             {top_game.map((obj, key) => {
                                 return ( <div key={key}>
                                     <div class="px-2">
@@ -78,7 +133,7 @@ class ListMinigameComponent extends React.Component {
                                 </div>)
                                 }
 							)}
-                        </section>        
+                        </section>         */}
                     </div>
                     <div class="mb-2 bg-white p-3 card border-0 shadow-ssm">
                         <h2 class="font13 color-title-cat font-weight-bold border-bottom pb-2"><span class="border-title-cat pr-2">Tất cả mini game H5</span></h2>
@@ -88,7 +143,7 @@ class ListMinigameComponent extends React.Component {
                                             <div class="thumb-lat-the position-relative">
                                                 <Link to={{pathname: `minigame`,  state:{id: obj.id}}}>
                                                     <a title="Chơi ngay" class="text-dark text-center">
-                                                        <img src={obj.img} alt="Thiên ma quyết" width={50} height={50} class="border-4 mx-auto" />
+                                                        <img src={obj.img} alt="Thiên ma quyết" width={150} height={150} class="border-4 mx-auto" />
                                                         <h2 class="small py-2">{obj.name}</h2>
                                                     </a>
                                                 </Link>
