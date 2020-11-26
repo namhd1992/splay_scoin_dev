@@ -87,58 +87,21 @@ class Minigame_detail extends React.Component {
 		var mgl=0;
 		if(!horizontal){
 			mgl=200;
-			console.log('AAAAAAAA')
 		}
 
-		// if (id_game===1){
-		// 	return (
-		// 		<Caro list_game={list_game}/>
-		// 	)
-		// }
-		// if (id_game===2){
-		// 	return (
-		// 		<FlappyBird list_game={list_game}/>
-		// 	)
-		// }
-		// if (id_game===3){
-		// 	return (
-		// 		<Snake list_game={list_game}/>
-		// 	)
-		// }
-		// if (id_game===4){
-		// 	return (
-		// 		<Tower list_game={list_game}/>
-		// 	)
-		// }
-
-		// if (id_game===5){
-		// 	return (
-		// 		<Tetris list_game={list_game}/>
-		// 	)
-		// }
 
 		return(<div>
 			{(mobile)?(<div>
 				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
-				<div class="modal fade" id="ads" style={{
-                                            backgroundImage: "url('https://i.postimg.cc/2SL8rjPm/truykich.png')",
-                                            backgroundRepeat: "no-repeat",
-                                            backgroundPosition: "center",
-                                            backgroundSize: "contain",
-                                            with: 400,
-                                            height:400,
-                                        }}>
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header border-bottom-0 pb-0">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>     
-						</div>
-					</div>
-				</div>
-
+				<div class="alert alert-dismissible fade show navbar fixed-bottom lightbox p-0">
+					{/* <a href="#" class="close p-2" data-dismiss="alert" aria-label="close">&times;</a> */}
+					<a href="http://aumobile.vn/" title="" target="_blank"><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="50px"/></a>
+				</div>   
 			</div>):(<div  class="container" style={{paddingLeft:mgl}}>
 				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
+				<div style={{marginTop:15}}>
+					<a href="http://aumobile.vn/" title="" target="_blank"><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width={width_ifranme} alt="" height="150px"/></a>
+				</div>   
 			</div>)}
 				
 		</div>)

@@ -143,7 +143,7 @@ class ListMinigameComponent extends React.Component {
                                             <div class="thumb-lat-the position-relative">
                                                 <Link to={{pathname: `minigame`,  state:{id: obj.id}}}>
                                                     <a title="Chơi ngay" class="text-dark text-center">
-                                                        <img src={obj.img} alt="Thiên ma quyết" width={150} height={150} class="border-4 mx-auto" />
+                                                        <img src={obj.img} alt="Thiên ma quyết" class="border-4 w-100 mx-auto" />
                                                         <h2 class="small py-2">{obj.name}</h2>
                                                     </a>
                                                 </Link>
