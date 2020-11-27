@@ -93,9 +93,9 @@ class Minigame_detail extends React.Component {
 		return(<div>
 			{(mobile)?(<div>
 				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
-				<div class="alert alert-dismissible fade show navbar fixed-bottom lightbox p-0">
-					{/* <a href="#" class="close p-2" data-dismiss="alert" aria-label="close">&times;</a> */}
-					<a href="http://aumobile.vn/" title="" target="_blank"><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="50px"/></a>
+				<div class="alert alert-dismissible fade show navbar lightbox p-0" style={{position:'fixed', top:'40%'}}>
+					<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>
+					<a href="http://aumobile.vn/" title="" target="_blank"><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="200px"/></a>
 				</div>   
 			</div>):(<div  class="container" style={{paddingLeft:mgl}}>
 				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
