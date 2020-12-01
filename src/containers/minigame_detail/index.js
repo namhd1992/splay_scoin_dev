@@ -40,13 +40,17 @@ class Minigame_detail extends React.Component {
 			height_iframe:0,
 			horizontal:false,
 			mobile:false,
+			video:false,
+			close:false
 		};
 	}
 	componentWillMount(){
 		
 		var id_game=this.props.location.state.id;
 		var width_ifranme=window.screen.width;
-		var height_iframe=window.screen.height
+		var height_iframe=window.screen.height;
+		var number=Math.floor(Math.random() * 10);
+
 		// var list_game=[{id:1, img:'https://i.postimg.cc/fWvL01y0/cara.png', name:'Cờ Caro'}, {id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird'}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi'}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp'}, {id:5, img:'https://i.postimg.cc/C5NmCyMc/t-i-xu-ng.jpg', name:'Xếp Gạch'}];
 		var list_game=[{id:2, img:'https://i.postimg.cc/L5v8KgwV/Flappy-Bird-icon.png', name:'Flappy Bird', link:'https://www.gamearter.com/game/flappy-superhero-dunk/',horizontal:true}, {id:3, img:'https://i.postimg.cc/8cTz0mK5/snake.png', name:'Rắn Săn Mồi', link:'https://html5.gamedistribution.com/54ca781032914740a819c2242b770878/?gdpr-targeting=1', horizontal:true}, {id:4, img:'https://i.postimg.cc/tCM93bj7/town.jpg', name:'Xếp Tháp', link:'https://html5.gamedistribution.com/rvvASMiM/e49e377096194ed383dba2a18a110498/?gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL2tpejEwLmNvbS8iLCJwYXJlbnREb21haW4iOiJraXoxMC5jb20iLCJ0b3BEb21haW4iOiJraXoxMC5jb20iLCJoYXNJbXByZXNzaW9uIjp0cnVlLCJsb2FkZXJFbmFibGVkIjp0cnVlLCJ2ZXJzaW9uIjoiMS4xLjM5In0%253D', horizontal:false}, {id:5, img:'https://i.postimg.cc/C5NmCyMc/t-i-xu-ng.jpg', name:'Xếp Gạch', link:'https://tetris.fbrq.io/tetris/index.html', horizontal:false}];
 		var pos = list_game.map(function(e) { return e.id; }).indexOf(id_game);
@@ -59,6 +63,9 @@ class Minigame_detail extends React.Component {
 			}else{
 				this.setState({list_game:list_game, link:list_game[pos].link, width_ifranme:400, height_iframe:600, mobile:false, horizontal:horizontal})
 			}
+		}
+		if(number%2===0){
+			this.setState({video:true})
 		}
 		// this.setState({list_game:list_game, link:list_game[pos].link, width_ifranme:width_ifranme, height_iframe:height_iframe})
 		
@@ -73,7 +80,8 @@ class Minigame_detail extends React.Component {
 		//   } else {
 		// 	document.exitFullscreen();
 		//   }
-		  $('#ads').modal('show');
+		var start=new Date().getTime()+10*1000;
+		this.timeRemain(start);
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProp){
@@ -82,8 +90,24 @@ class Minigame_detail extends React.Component {
 		}
 	}
 
+	timeRemain=(times)=>{
+		var _this=this;
+		setInterval(()=>{
+			var time=(Date.now()-times)/1000;
+			if(time>0){
+
+				_this.setState({close:true})
+			}
+		}, 1000);
+	}
+
+	closeADS=()=>{
+		this.setState({close:true})
+		$('#ads').hide();
+	}
+
 	render() {
-		const {list_game, id_game, link, width_ifranme, height_iframe, mobile,horizontal}=this.state;
+		const {list_game, id_game, link, width_ifranme, height_iframe, mobile,horizontal, video, close}=this.state;
 		var mgl=0;
 		if(!horizontal){
 			mgl=200;
@@ -92,11 +116,19 @@ class Minigame_detail extends React.Component {
 
 		return(<div>
 			{(mobile)?(<div>
-				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
-				<div class="alert alert-dismissible fade show navbar lightbox p-0" style={{position:'fixed', top:'40%'}}>
-					<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>
-					<a href="http://aumobile.vn/" title="" target="_blank"><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="200px"/></a>
-				</div>   
+				
+				<div style={ close ? { top:0, left:0} : {width:'100vw', height:'100vh', backgroundColor:'rgba(0, 0, 0, 0.6)', zIndex:1000, position:'absolute', top:0, left:0}}>	
+					<div id="ads" class="alert alert-dismissible fade show navbar lightbox p-0" style={{position:'fixed', top:'40%'}}>
+						{(video)?(<div>
+							{(close)?(<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>):(<div></div>)}
+							<iframe width="320" height="200" src="http://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1" frameborder="0" allowfullscreen></iframe></div>):(<div>
+							{(close)?(<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>):(<div></div>)}
+							
+							<a href="http://aumobile.vn/" title="" target="_blank" onClick={this.closeADS}><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="200px"/></a>
+						</div>)}
+					</div> 
+				</div>  
+				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>
 			</div>):(<div  class="container" style={{paddingLeft:mgl}}>
 				<iframe id='game' width={width_ifranme} height={height_iframe} frameBorder='0' allow='autoplay' allowTransparency="true" allowFullScreen="true" seamless scrolling='no' src={link}></iframe>	
 				<div style={{marginTop:15}}>
