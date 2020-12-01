@@ -121,7 +121,7 @@ class Minigame_detail extends React.Component {
 					<div id="ads" class="alert alert-dismissible fade show navbar lightbox p-0" style={{position:'fixed', top:'40%'}}>
 						{(video)?(<div>
 							{(close)?(<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>):(<div></div>)}
-							<iframe width="320" height="200" src="http://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1" frameborder="0" allowfullscreen></iframe></div>):(<div>
+							<iframe width="100%" height="200px" src="http://www.youtube.com/embed/oHg5SJYRHA0?autoplay=1" frameborder="0" allowfullscreen></iframe></div>):(<div>
 							{(close)?(<a class="close p-2" data-dismiss="alert" aria-label="close">&times;</a>):(<div></div>)}
 							
 							<a href="http://aumobile.vn/" title="" target="_blank" onClick={this.closeADS}><img src="https://i.postimg.cc/YqQvPD4H/Au-mobile.png" width="100%" alt="" height="200px"/></a>
