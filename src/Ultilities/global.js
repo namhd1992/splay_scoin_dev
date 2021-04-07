@@ -72,7 +72,8 @@ class Ultilities {
 		// 	return "https://dev.splay.vn/";
 		// } else {
 			// return "https://server.splay.vn/";
-			return "http://171.244.14.44:9090/";
+			// return "http://171.244.14.44:9090/";
+			return "https://dev.splay.vn/";
 		// }
 	}
 
