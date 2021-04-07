@@ -56,7 +56,7 @@ class Game_detail extends React.Component {
 			item_award:{},
 			gameRanking:false,
 			week:'WEEK_BEFORE_LAST',
-			scoin_token:'NJdUu5%2f%2bUAlMTHiGPohIJ5VTIQN45mOggf1ek2qI5LHxXv9CSQrj5vmeWPGFTGsKR1FjMaPur44Oa09E7f9njCgjLGiWL3rB13hdxqv8Sa0%2fU9BuhC%2fJ8fzdY6Yjc5HAGR%2bsyd0o1q7zPDjYtGS6ZrHCy5HYf3yOgNxwsLzSsv79hPPJdmUNSd%2fDHhACRKz2',
+			scoin_token:'VeQZbuh3R2lIHjpPdedPHou97Pv2g46F8V7%2fQkkK4%2baQCzT4kXihLZnB%2f772IOTKgBt55notC2%2f%2f9TnPu%2bXB8FXh9v25XJTy31zeYLirLF%2bebaUn5AfcC4eOVCBoRRwx8pmHCocmCgwUuQ7xWC%2bTkFb%2fwnQizFUlSegmf9BF2Irfwx4QAkSs9g%3d%3d',
 		};
 	}
 
