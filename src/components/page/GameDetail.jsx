@@ -401,11 +401,14 @@ class GameDetailComponent extends React.Component {
 				<div id="top" class="py-3 container">
 							<div class="bg-white mb-2 content">
 								<div class="detail-bannergame position-relative overflow-hidden card border-0 shadow-ssm mb-0">
-									<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />
+									{(gameData.bigImage)?(<div>{(gameData.bigImage.indexOf('http://171.244.14.44:9091')!==-1)?(<img src={gameData.bigImage.replace('http://171.244.14.44:9091','https://dev.splay.vn')} class="overflow-hidden mb-4" width="100%" />):(<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />)}</div>):(<div></div>)}
+									
+									
 									<div class="row mx-0 position-absolute w-100 sum-game pt-4">
 										<div class="col-md-9 pb-1">
 											<div class="media px-1">
-												<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />
+												{(gameData.defaultImage)?(<div>{(gameData.defaultImage.indexOf('http://171.244.14.44:9091')!==-1)?(<img src={gameData.defaultImage.replace('http://171.244.14.44:9091','https://dev.splay.vn')} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />):(<img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} />)}</div>):(<div></div>)}
+												{/* <img src={gameData.defaultImage} alt={gameData.name} class="mr-3 mt-2" style={{width:60}} /> */}
 												<div class="media-body mt-2">
 													<h4 class="h5 font-weight-bold" style={{marginBottom:0}}>{gameData.name}</h4>
 													{tagsList.map((obj, key)=>{
@@ -483,39 +486,39 @@ class GameDetailComponent extends React.Component {
 										</Slider> */}
 										<div style={{ width: "100%", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
 											{(isMobile)?(<div style={{ display: "flex", width:iframeWidth-60 }}>
-											{arrScreenShot.map((obj, key) => (
-												<div key={key} style={{marginRight:5}}>
-													<div onClick={() => this.openLightBox(key)} style={{
-														backgroundImage: "url(" + obj + ")",
-														backgroundRepeat: "no-repeat",
-														backgroundPosition: "center",
-														backgroundSize: "contain",
-														with: "100%",
-														width: widthScreenShot,
-														height:heightScreenShot,
-														margin:this.state.margin,
-														paddingBottom: this.state.paddingBottom
-													}}>
+												{arrScreenShot.map((obj, key) => (
+													<div key={key} style={{marginRight:5}}>
+														<div onClick={() => this.openLightBox(key)} style={{
+															backgroundImage: "url(" + obj + ")",
+															backgroundRepeat: "no-repeat",
+															backgroundPosition: "center",
+															backgroundSize: "contain",
+															with: "100%",
+															width: widthScreenShot,
+															height:heightScreenShot,
+															margin:this.state.margin,
+															paddingBottom: this.state.paddingBottom
+														}}>
+														</div>
 													</div>
-												</div>
-											))}
-											</div>):(<div style={{ display: "flex" }}>
-											{arrScreenShot.map((obj, key) => (
-												<div key={key} style={{marginRight:5}}>
-													<div onClick={() => this.openLightBox(key)} style={{
-														backgroundImage: "url(" + obj + ")",
-														backgroundRepeat: "no-repeat",
-														backgroundPosition: "center",
-														backgroundSize: "contain",
-														with: "100%",
-														width: widthScreenShot,
-														height:heightScreenShot,
-														margin:this.state.margin,
-														paddingBottom: this.state.paddingBottom
-													}}>
+												))}
+												</div>):(<div style={{ display: "flex" }}>
+												{arrScreenShot.map((obj, key) => (
+													<div key={key} style={{marginRight:5}}>
+														<div onClick={() => this.openLightBox(key)} style={{
+															backgroundImage: "url(" + obj + ")",
+															backgroundRepeat: "no-repeat",
+															backgroundPosition: "center",
+															backgroundSize: "contain",
+															with: "100%",
+															width: widthScreenShot,
+															height:heightScreenShot,
+															margin:this.state.margin,
+															paddingBottom: this.state.paddingBottom
+														}}>
+														</div>
 													</div>
-												</div>
-											))}
+												))}
 											</div>)}
 											
 										</div>
@@ -631,7 +634,8 @@ class GameDetailComponent extends React.Component {
 											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												<div class="thumb-lat-the position-relative">
 													<a class="text-dark">
-														<img src={obj.bigImage} width="100%" />
+													{(obj.bigImage)?(<div>{(obj.bigImage.indexOf('http://171.244.14.44:9091')!==-1)?(<img src={obj.bigImage.replace('http://171.244.14.44:9091','https://dev.splay.vn')} width="100%" />):(<img src={obj.bigImage} width="100%" />)}</div>):(<div></div>)}
+														{/* <img src={obj.bigImage} width="100%" /> */}
 													</a>
 													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
 													<div class="overlay">
@@ -655,7 +659,8 @@ class GameDetailComponent extends React.Component {
 											<div class="col-6 col-md-4 px-3" key={key} style={{cursor:'pointer'}} onClick={()=>this.getDataGame(obj)}>
 												<div class="thumb-lat-the position-relative">
 													<a class="text-dark">
-														<img src={obj.bigImage} width="100%" />
+														{(obj.bigImage)?(<div>{(obj.bigImage.indexOf('http://171.244.14.44:9091')!==-1)?(<img src={obj.bigImage.replace('http://171.244.14.44:9091','https://dev.splay.vn')} width="100%" />):(<img src={obj.bigImage} width="100%" />)}</div>):(<div></div>)}
+														{/* <img src={obj.bigImage} width="100%" /> */}
 													</a>
 													<h3 class="font13 py-2"><a title="Thái cổ thần vương" class="text-dark a_game">{obj.name}</a></h3>
 													<div class="overlay">
