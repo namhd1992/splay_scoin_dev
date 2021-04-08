@@ -73,7 +73,7 @@ class Ultilities {
 		// } else {
 			// return "https://server.splay.vn/";
 			// return "http://171.244.14.44:9090/";
-			return "http://dev.splay.vn/";
+			return "https://dev.splay.vn/";
 		// }
 	}
 
