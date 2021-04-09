@@ -352,7 +352,15 @@ class GameDetailComponent extends React.Component {
 		var tagsList = [];
 		if (!this.isEmpty(gameData)) {
 			if (gameData.screenShot !== null && gameData.screenShot !== "") {
-				arrScreenShot = gameData.screenShot.split(",");
+				var arr = gameData.screenShot.split(",");
+				for (let i = 0; i < arr.length; i++) {
+					if(arr[i].indexOf('http://171.244.14.44:9091')!==-1){
+						arrScreenShot.push(arr[i].replace('http://171.244.14.44:9091','https://dev.splay.vn'))
+					}else{
+						arrScreenShot.push(arr[i])
+					}
+				}
+
 			}
 			if (gameData.tagsList!==null){
 				tagsList=gameData.tagsList;
@@ -366,6 +374,7 @@ class GameDetailComponent extends React.Component {
 			arrImages.push({ src: obj, caption: 'Screen shot' });
 			return 0;
 		});
+		console.log(arrScreenShot)
 		var settings = {
 			infinite: true,
 			speed: 500,
@@ -488,7 +497,7 @@ class GameDetailComponent extends React.Component {
 											{(isMobile)?(<div style={{ display: "flex", width:iframeWidth-60 }}>
 												{arrScreenShot.map((obj, key) => (
 													<div key={key} style={{marginRight:5}}>
-														<div onClick={() => this.openLightBox(key)} style={{
+														{/* <div onClick={() => this.openLightBox(key)} style={{
 															backgroundImage: "url(" + obj + ")",
 															backgroundRepeat: "no-repeat",
 															backgroundPosition: "center",
@@ -499,13 +508,17 @@ class GameDetailComponent extends React.Component {
 															margin:this.state.margin,
 															paddingBottom: this.state.paddingBottom
 														}}>
+															
+														</div> */}
+														<div onClick={() => this.openLightBox(key)}>
+															<img src={obj} width="100%" />
 														</div>
 													</div>
 												))}
 												</div>):(<div style={{ display: "flex" }}>
 												{arrScreenShot.map((obj, key) => (
 													<div key={key} style={{marginRight:5}}>
-														<div onClick={() => this.openLightBox(key)} style={{
+														{/* <div onClick={() => this.openLightBox(key)} style={{
 															backgroundImage: "url(" + obj + ")",
 															backgroundRepeat: "no-repeat",
 															backgroundPosition: "center",
@@ -516,6 +529,9 @@ class GameDetailComponent extends React.Component {
 															margin:this.state.margin,
 															paddingBottom: this.state.paddingBottom
 														}}>
+														</div> */}
+														<div onClick={() => this.openLightBox(key)}>
+															<img src={obj} width="100%" />
 														</div>
 													</div>
 												))}
