@@ -374,7 +374,6 @@ class GameDetailComponent extends React.Component {
 			arrImages.push({ src: obj, caption: 'Screen shot' });
 			return 0;
 		});
-		console.log(arrScreenShot)
 		var settings = {
 			infinite: true,
 			speed: 500,
@@ -696,7 +695,7 @@ class GameDetailComponent extends React.Component {
 					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
 				Copyright {year} VTC Mobile. All rights reserved </p>
 				</div>
-				{(gameRanking)?(<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>):(<div></div>)}
+				{/* {(gameRanking)?(<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>):(<div></div>)} */}
 				
 				<Dialog
 							fullScreen={fullScreen}
