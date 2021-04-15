@@ -406,7 +406,7 @@ class GameDetailComponent extends React.Component {
 			]
 		};
 		return (gameData!==undefined)?(<div>	
-				<div id="top" class="py-3 container">
+				<div id="top" class="py-3 container c-detail">
 							<div class="bg-white mb-2 content">
 								<div class="detail-bannergame position-relative overflow-hidden card border-0 shadow-ssm mb-0">
 									{(gameData.bigImage)?(<div>{(gameData.bigImage.indexOf('http://171.244.14.44:9091')!==-1)?(<img src={gameData.bigImage.replace('http://171.244.14.44:9091','https://dev.splay.vn')} class="overflow-hidden mb-4" width="100%" />):(<img src={gameData.bigImage} class="overflow-hidden mb-4" width="100%" />)}</div>):(<div></div>)}
