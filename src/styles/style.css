@@ -501,7 +501,7 @@ filter: contrast(150%);
 
 @media (min-width: 768px) {
   .container {width: 768px !important; }
-  .c-detail {padding-right:0}
+  .c-detail {padding-right:0 !important;}
     /* show 3 items */
     .carousel-inner .active,
     .carousel-inner .active + .carousel-item,

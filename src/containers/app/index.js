@@ -29,7 +29,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			main: null,
-			backgroundColor:'#ecf5fe',
+			backgroundColor:'#f5f5f5',
 		};
 	}
 
