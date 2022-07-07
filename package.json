@@ -15,7 +15,7 @@
 		"jquery": "^3.4.1",
 		"material-ui": "v1.0.0-beta.45",
 		"material-ui-icons": "^1.0.0-beta.36",
-		"moment": "^2.21.0",
+		"moment": "^2.29.4",
 		"popper.js": "^1.15.0",
 		"react": "16.4.0",
 		"react-bookmark": "^0.8.0",
