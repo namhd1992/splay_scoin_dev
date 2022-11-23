@@ -40,7 +40,7 @@
 		"react-youtube": "^7.6.0",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0",
-		"socket.io": "^2.0.4"
+		"socket.io": "^2.5.0"
 	},
 	"scripts": {
 		"startwin": "set HTTPS=true && react-scripts start",
