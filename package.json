@@ -7,7 +7,7 @@
 		"axios": "^0.18.0",
 		"bootstrap": "^4.3.1",
 		"copy-to-clipboard": "^3.0.8",
-		"express": "^4.16.4",
+		"express": "^4.17.3",
 		"fingerprintjs": "^0.5.3",
 		"fingerprintjs2": "^1.8.0",
 		"gsap": "^2.1.3",
