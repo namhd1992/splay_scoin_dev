@@ -692,9 +692,22 @@ class GameDetailComponent extends React.Component {
 							</div>  
 				</div>
 				<div class="container font13">
-					<p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p>
-					<p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
-				Copyright {year} VTC Mobile. All rights reserved </p>
+					{/* <p class="text-center"><a href="https://cs.vtcmobile.vn/" title="Hỗ trợ" target="_blank"><span>Hỗ trợ</span></a> | <a href="https://www.facebook.com/scoinvtcmobile" title="Fanpage" target="_blank"><span>Fanpage</span></a> | <a href="tel:19001104"><span>Điện thoại: <strong>1900 1104</strong></span></a></p> */}
+					{/* <p class="text-center" style={{lineHeight:'20px'}}>Hệ thống phát hành game VTC Mobile <br />
+				Copyright {year} VTC Mobile. All rights reserved </p> */}
+				<p class="text-center font13">
+					Hệ thống phát hành game VTC Mobile
+					<br />
+					Copyright &copy;{year} VTC Mobile. All rights reserved
+				</p>
+				<p class="text-center font13">
+					Công ty Cổ Phần VTC Dịch Vụ Di Động <br></br>
+					Tầng 11, Tòa nhà VTC Online, số 18 Tam Trinh, Hai Bà Trưng, Hà Nội <br></br>
+					SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn <br></br>
+					Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Ngọc Bảo <br></br>
+					Tổng đài hỗ trợ 1900 1104 <br></br></p>
+
+				
 				</div>
 				{/* {(gameRanking)?(<div class="fixed-bottom rounded-circle top-rank text-danger container"><a href="#bxhmodal" data-toggle="modal"><img src="../top-rank.png" width="48" onClick={()=>this.showBXH(week)} /></a></div>):(<div></div>)} */}
 				
