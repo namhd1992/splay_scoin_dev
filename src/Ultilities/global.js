@@ -74,7 +74,7 @@ class Ultilities {
 			// return "https://server.splay.vn/";
 			// return "http://171.244.14.44:9090/";
 			return "https://dev.splay.vn/";
-			// return "http://localhost:9090/";
+			// return "http://localhost:8080";
 		// }
 	}
 

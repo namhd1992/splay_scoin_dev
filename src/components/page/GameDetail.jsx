@@ -69,7 +69,7 @@ class GameDetailComponent extends React.Component {
 			iframeWidth: window.innerWidth-30,
 			iframeHeight:400,
 			device:'',
-			widthImage:450,
+			widthImage:550,
 			widthScreenShot:200,
 			rankPosition:1,
 			day:'00',
@@ -125,7 +125,7 @@ class GameDetailComponent extends React.Component {
 			return;
 		}
 		if (window.innerWidth > 1024) {
-			this.setState({ widthScreenShot:200, widthImage:450});
+			this.setState({ widthScreenShot:200, widthImage:550});
 			return;
 		}
 	}
@@ -199,6 +199,7 @@ class GameDetailComponent extends React.Component {
 				_this.setState({day:day, hour: hour, minute: minute, second:second})
 			}
 		}, 1000);
+	
 	}
 
 	getDataGame=(obj)=>{
@@ -510,7 +511,7 @@ class GameDetailComponent extends React.Component {
 															
 														</div> */}
 														<div onClick={() => this.openLightBox(key)}>
-															<img src={obj} width="100%" />
+															<img src={obj} width="150px" />
 														</div>
 													</div>
 												))}
@@ -530,7 +531,7 @@ class GameDetailComponent extends React.Component {
 														}}>
 														</div> */}
 														<div onClick={() => this.openLightBox(key)}>
-															<img src={obj} width="100%" />
+															<img src={obj} width="200px"/>
 														</div>
 													</div>
 												))}
