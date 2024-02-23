@@ -704,7 +704,7 @@ class GameDetailComponent extends React.Component {
 					Công ty Cổ Phần VTC Dịch Vụ Di Động <br></br>
 					Tầng 11, Tòa nhà VTC Online, số 18 Tam Trinh, Hai Bà Trưng, Hà Nội <br></br>
 					SĐT : (84-4).39877470 | Email : vtcmobile@vtc.vn <br></br>
-					Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Ngọc Bảo <br></br>
+					Người chịu trách nhiệm quản lý nội dung: Ông Nguyễn Viết Quang Minh <br></br>
 					Tổng đài hỗ trợ 1900 1104 <br></br></p>
 
 				
